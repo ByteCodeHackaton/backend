@@ -17,10 +17,10 @@ CREATE TABLE "stations" (
   "line"  TEXT NOT NULL,
   "adm_area"  TEXT NOT NULL,
   "district"  NUMERIC NOT NULL,
-  "mcd_station"  JSON DEFAULT(''),
-  "aeroexpress_station"  JSON DEFAULT(''),
-  "railway_station"  JSON DEFAULT(''),
-  "railway_terminal" JSON DEFAULT(''),
+  "mcd_station"  JSON DEFAULT('[]'),
+  "aeroexpress_station"  JSON DEFAULT('[]'),
+  "railway_station"  JSON DEFAULT('[]'),
+  "railway_terminal" JSON DEFAULT('[]'),
   "objec_status"  TEXT,
   "global_id"  INTEGER
 );
