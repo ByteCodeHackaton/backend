@@ -25,3 +25,9 @@ CREATE TABLE "stations" (
   "global_id"  INTEGER
 );
 ```
+
+```sql
+SELECT json_extract(value, '$.value')) mcd_name,
+FROM stations s, json_each(json_extract(s.mcd_station, '$'))
+GROUP BY mcd_name
+```
