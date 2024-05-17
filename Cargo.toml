@@ -1,0 +1,15 @@
+[package]
+name = "metro_social_api"
+version = "0.1.0"
+edition = "2021"
+authors = ["Alex_Xar <P40b0s@gmail.com>"]
+
+[workspace]
+members = [
+    "api",
+    ]
+default-members = ["api"]
+[dependencies]
+
+
+
