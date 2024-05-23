@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"math/rand"
 	"net/http"
@@ -34,7 +35,7 @@ type (
 	}
 
 	DocumentInfo struct {
-		Document_ Orders `json:"data"`
+		Document_ Orders `json:"document"`
 	}
 )
 
@@ -46,18 +47,25 @@ func initial() {
 
 func main() {
 	initial()
-	http.Handle("/", http.FileServer(http.Dir("client")))
-	http.HandleFunc("/sse", randomHandler)
+	http.HandleFunc(configuration.HttpDomain, randomHandler)
 
 	log.Printf("Starting server on port %s", configuration.HttpPort)
 	log.Fatal(http.ListenAndServe(configuration.HttpPort, nil))
 }
 
 func randomHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Content-Type", "text/event-stream")
 	w.Header().Set("Cache-Control", "no-cache")
 	w.Header().Set("Connection", "keep-alive")
-	w.Header().Set("Content-Type", "text/event-stream")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
+	// Send an Intial Connection Response
+	fmt.Fprint(w, "data: Connection\n\n")
+	flusher, ok := w.(http.Flusher)
+	if !ok {
+		http.Error(w, "Streaming not supported", http.StatusInternalServerError)
+		return
+	}
 
 	for {
 
@@ -92,12 +100,21 @@ func randomHandler(w http.ResponseWriter, r *http.Request) {
 		// имитация данных, надо переделать, брать из бд или из api <-
 
 		response := DocumentInfo{Document_: Orders{Date: date_, Orders_: order_}}
-		json.NewEncoder(w).Encode(response)
+
+		jsonData, err := json.Marshal(response)
+		if err != nil {
+			fmt.Println("Error marshalling JSON:", err)
+			continue
+		}
+
+		fmt.Fprintf(w, "data: %s\n\n", jsonData)
+		flusher.Flush()
+		time.Sleep(1 * time.Second)
 
 		if f, ok := w.(http.Flusher); ok {
 			f.Flush()
 		}
-		time.Sleep(5 * time.Second)
+		time.Sleep(10 * time.Second)
 	}
 }
 

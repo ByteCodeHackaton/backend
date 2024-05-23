@@ -8,4 +8,5 @@ type Configuration struct {
 	DbName     string `json:"-" example:"-"`
 	HttpDomain string `json:"httpdomain" example:"localhost"`
 	HttpPort   string `json:"httpport" example:"5000"`
+	Sleep      int    `json:"sleep" example:"5"`
 }
