@@ -12,9 +12,13 @@ const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 var seededRand *rand.Rand = rand.New(rand.NewSource(time.Now().UnixNano()))
 
+var (
+	configuration = Configuration{}
+)
+
 type (
 	Orders struct {
-		Data    string  `json:"data,omitempty"`
+		Date    string  `json:"date,omitempty"`
 		Orders_ []Order `json:"order,omitempty"`
 	}
 	Order struct {
@@ -30,16 +34,23 @@ type (
 	}
 
 	DocumentInfo struct {
-		Document_ Orders `json:"document"`
+		Document_ Orders `json:"data"`
 	}
 )
 
+func initial() {
+	configuration.HttpDomain = "/sse"
+	configuration.HttpPort = ":5000"
+	log.Print("Initial configuration complete!")
+}
+
 func main() {
+	initial()
 	http.Handle("/", http.FileServer(http.Dir("client")))
+	http.HandleFunc("/sse", randomHandler)
 
-	http.HandleFunc("/random", randomHandler)
-
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Printf("Starting server on port %s", configuration.HttpPort)
+	log.Fatal(http.ListenAndServe(configuration.HttpPort, nil))
 }
 
 func randomHandler(w http.ResponseWriter, r *http.Request) {
@@ -57,7 +68,7 @@ func randomHandler(w http.ResponseWriter, r *http.Request) {
 
 		fio_ := generateRandomString(10)
 		station_ := generateRandomString(20)
-		data_ := time.Now().Format("2006-01-02")
+		date_ := time.Now().Format("2006-01-02")
 
 		for i := 0; i < countOrder; i++ {
 
@@ -80,7 +91,7 @@ func randomHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		// имитация данных, надо переделать, брать из бд или из api <-
 
-		response := DocumentInfo{Document_: Orders{Data: data_, Orders_: order_}}
+		response := DocumentInfo{Document_: Orders{Date: date_, Orders_: order_}}
 		json.NewEncoder(w).Encode(response)
 
 		if f, ok := w.(http.Flusher); ok {
