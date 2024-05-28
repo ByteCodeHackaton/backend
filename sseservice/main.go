@@ -69,7 +69,7 @@ func initial() {
 	if err != nil {
 		log.Fatal("error initializing DB connection: ping error: ", err)
 	}
-	fmt.Println("database initialized..")
+	log.Print("database initialized..")
 	///////
 }
 
@@ -82,7 +82,7 @@ func main() {
 }
 
 func randomHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "text/event-stream")
+	w.Header().Set("Content-Type", "text/event-stream;charset=UTF-8")
 	w.Header().Set("Cache-Control", "no-cache")
 	w.Header().Set("Connection", "keep-alive")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
