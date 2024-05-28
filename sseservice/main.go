@@ -1,12 +1,16 @@
 package main
 
 import (
+	"context"
+	"database/sql"
 	"encoding/json"
 	"fmt"
 	"log"
 	"math/rand"
 	"net/http"
 	"time"
+
+	_ "modernc.org/sqlite"
 )
 
 const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -39,10 +43,34 @@ type (
 	}
 )
 
+var db *sql.DB
+
+func initDatabase(dbPath string) error {
+	var err error
+	db, err = sql.Open("sqlite", dbPath)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func initial() {
 	configuration.HttpDomain = "/sse"
 	configuration.HttpPort = ":5000"
 	log.Print("Initial configuration complete!")
+
+	///////
+	dbPath := "metro.db"
+	err := initDatabase(dbPath)
+	if err != nil {
+		log.Fatal("error initializing DB connection: ", err)
+	}
+	err = db.Ping()
+	if err != nil {
+		log.Fatal("error initializing DB connection: ping error: ", err)
+	}
+	fmt.Println("database initialized..")
+	///////
 }
 
 func main() {
@@ -75,7 +103,8 @@ func randomHandler(w http.ResponseWriter, r *http.Request) {
 		countOrder := rand.Intn(15)
 
 		fio_ := generateRandomString(10)
-		station_ := generateRandomString(20)
+		station_, _ := getStationFromDb(328)
+		//station_ := generateRandomString(20)
 		date_ := time.Now().Format("2006-01-02")
 
 		for i := 0; i < countOrder; i++ {
@@ -116,6 +145,18 @@ func randomHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		time.Sleep(10 * time.Second)
 	}
+}
+
+func getStationFromDb(length int) (string, error) {
+	id := seededRand.Intn(length)
+	var station = ""
+
+	row := db.QueryRowContext(context.Background(), `SELECT station FROM station WHERE id=?`, id)
+	err := row.Scan(&station)
+	if err != nil {
+		return station, err
+	}
+	return station, nil
 }
 
 func generateRandomString(length int) string {
