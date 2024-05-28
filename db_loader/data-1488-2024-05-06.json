@@ -1,0 +1,4603 @@
+[
+    {
+        "ID": 136,
+        "Station": "Третьяковская",
+        "Line": "Калининская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Замоскворечье",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701962
+    },
+    {
+        "ID": 86,
+        "Station": "Медведково",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "район Северное Медведково",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701963
+    },
+    {
+        "ID": 41,
+        "Station": "Первомайская",
+        "Line": "Арбатско-Покровская линия",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Измайлово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701964
+    },
+    {
+        "ID": 104,
+        "Station": "Калужская",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "Обручевский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701965
+    },
+    {
+        "ID": 251,
+        "Station": "Каховская",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "район Зюзино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701966
+    },
+    {
+        "ID": 184,
+        "Station": "Бульвар адмирала Ушакова",
+        "Line": "Бутовская линия Лёгкого метро",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "район Южное Бутово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701967
+    },
+    {
+        "ID": 28,
+        "Station": "Павелецкая",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Замоскворечье",
+        "MCDStation": [],
+        "AeroexpressStation": {
+            "global_id": 1508979807,
+            "value": "Павелецкий вокзал"
+        },
+        "RailwayStation": {
+            "global_id": 1272850186,
+            "value": "Павелецкий вокзал"
+        },
+        "RailwayTerminal": [
+            {
+                "global_id": 1058615635,
+                "value": "Павелецкий"
+            }
+        ],
+        "ObjectStatus": "действует",
+        "global_id": 58701968
+    },
+    {
+        "ID": 172,
+        "Station": "Волжская",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "район Кузьминки",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701969
+    },
+    {
+        "ID": 99,
+        "Station": "Шаболовская",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Южный административный округ",
+        "District": "Донской район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701970
+    },
+    {
+        "ID": 221,
+        "Station": "Плющиха",
+        "Line": "Солнцевская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Арбат",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "строится",
+        "global_id": 58701971
+    },
+    {
+        "ID": 142,
+        "Station": "Тимирязевская",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Северный административный округ",
+        "District": "Тимирязевский район",
+        "MCDStation": {
+            "global_id": 1058907003,
+            "value": "Тимирязевская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132046986,
+            "value": "Тимирязевская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701972
+    },
+    {
+        "ID": 90,
+        "Station": "ВДНХ",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "Останкинский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701973
+    },
+    {
+        "ID": 31,
+        "Station": "Тверская",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Тверской район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701974
+    },
+    {
+        "ID": 208,
+        "Station": "Фонвизинская",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "Бутырский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701975
+    },
+    {
+        "ID": 249,
+        "Station": "Воронцовская",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "Обручевский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701976
+    },
+    {
+        "ID": 143,
+        "Station": "Дмитровская",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "Бутырский район",
+        "MCDStation": {
+            "global_id": 1058996666,
+            "value": "Дмитровская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155396,
+            "value": "Дмитровская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701978
+    },
+    {
+        "ID": 103,
+        "Station": "Новые Черёмушки",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "район Черёмушки",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701979
+    },
+    {
+        "ID": 191,
+        "Station": "Улица Милашенкова",
+        "Line": "Московская монорельсовая транспортная система",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "Бутырский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701980
+    },
+    {
+        "ID": 119,
+        "Station": "Пушкинская",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Тверской район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701981
+    },
+    {
+        "ID": 32,
+        "Station": "Маяковская",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Тверской район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701982
+    },
+    {
+        "ID": 231,
+        "Station": "Нижегородская",
+        "Line": "Некрасовская линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "Нижегородский район",
+        "MCDStation": {
+            "global_id": 2616714661,
+            "value": "Нижегородская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155557,
+            "value": "Нижегородская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701983
+    },
+    {
+        "ID": 89,
+        "Station": "Ботанический сад",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "район Свиблово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701984
+    },
+    {
+        "ID": 256,
+        "Station": "Нижегородская",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "Нижегородский район",
+        "MCDStation": {
+            "global_id": 2616714661,
+            "value": "Нижегородская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155557,
+            "value": "Нижегородская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701985
+    },
+    {
+        "ID": 33,
+        "Station": "Белорусская",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Тверской район",
+        "MCDStation": {
+            "global_id": 2616708142,
+            "value": "Белорусская"
+        },
+        "AeroexpressStation": {
+            "global_id": 1508985008,
+            "value": "Белорусский вокзал"
+        },
+        "RailwayStation": {
+            "global_id": 2616731767,
+            "value": "Белорусская"
+        },
+        "RailwayTerminal": [
+            {
+                "global_id": 1058611508,
+                "value": "Белорусский"
+            }
+        ],
+        "ObjectStatus": "действует",
+        "global_id": 58701986
+    },
+    {
+        "ID": 20,
+        "Station": "Красногвардейская",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Южный административный округ",
+        "District": "район Зябликово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701988
+    },
+    {
+        "ID": 6,
+        "Station": "Комсомольская",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Красносельский район",
+        "MCDStation": {
+            "global_id": 1059233585,
+            "value": "Каланчевская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155426,
+            "value": "Ленинградский вокзал"
+        },
+        "RailwayTerminal": [
+            {
+                "global_id": 1058613060,
+                "value": "Ленинградский"
+            },
+            {
+                "global_id": 1058611738,
+                "value": "Казанский"
+            }
+        ],
+        "ObjectStatus": "действует",
+        "global_id": 58701989
+    },
+    {
+        "ID": 152,
+        "Station": "Нагатинская",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Южный административный округ",
+        "District": "Нагорный район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155490,
+            "value": "Нагатинская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701990
+    },
+    {
+        "ID": 137,
+        "Station": "Алтуфьево",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "район Бибирево",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701991
+    },
+    {
+        "ID": 268,
+        "Station": "Новопеределкино",
+        "Line": "Солнцевская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Ново-Переделкино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701992
+    },
+    {
+        "ID": 27,
+        "Station": "Автозаводская",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Южный административный округ",
+        "District": "Даниловский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701993
+    },
+    {
+        "ID": 220,
+        "Station": "Дорогомиловская",
+        "Line": "Солнцевская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Дорогомилово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "строится",
+        "global_id": 58701994
+    },
+    {
+        "ID": 125,
+        "Station": "Текстильщики",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "район Текстильщики",
+        "MCDStation": {
+            "global_id": 1059235328,
+            "value": "Текстильщики"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155413,
+            "value": "Текстильщики"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701995
+    },
+    {
+        "ID": 170,
+        "Station": "Кожуховская",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "Южнопортовый район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701996
+    },
+    {
+        "ID": 175,
+        "Station": "Марьино",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "район Марьино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701997
+    },
+    {
+        "ID": 77,
+        "Station": "Павелецкая",
+        "Line": "Кольцевая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Замоскворечье",
+        "MCDStation": [],
+        "AeroexpressStation": {
+            "global_id": 1508979807,
+            "value": "Павелецкий вокзал"
+        },
+        "RailwayStation": {
+            "global_id": 1272850186,
+            "value": "Павелецкий вокзал"
+        },
+        "RailwayTerminal": [
+            {
+                "global_id": 1058615635,
+                "value": "Павелецкий"
+            }
+        ],
+        "ObjectStatus": "действует",
+        "global_id": 58701998
+    },
+    {
+        "ID": 3,
+        "Station": "Преображенская площадь",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Преображенское",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58701999
+    },
+    {
+        "ID": 82,
+        "Station": "Новослободская",
+        "Line": "Кольцевая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Тверской район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702000
+    },
+    {
+        "ID": 65,
+        "Station": "Фили",
+        "Line": "Филёвская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Филёвский Парк",
+        "MCDStation": {
+            "global_id": 1058903042,
+            "value": "Фили"
+        },
+        "AeroexpressStation": {
+            "global_id": 1508985884,
+            "value": "Фили"
+        },
+        "RailwayStation": {
+            "global_id": 1132155388,
+            "value": "Фили"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702001
+    },
+    {
+        "ID": 244,
+        "Station": "Кунцевская",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Кунцево",
+        "MCDStation": {
+            "global_id": 1058901824,
+            "value": "Кунцевская"
+        },
+        "AeroexpressStation": {
+            "global_id": 1508986102,
+            "value": "Кунцевская"
+        },
+        "RailwayStation": {
+            "global_id": 1132155392,
+            "value": "Кунцевская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702002
+    },
+    {
+        "ID": 21,
+        "Station": "Домодедовская",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Южный административный округ",
+        "District": "район Орехово-Борисово Южное",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702003
+    },
+    {
+        "ID": 242,
+        "Station": "Мнёвники",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Северо-Западный административный округ",
+        "District": "район Хорошёво-Мнёвники",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702004
+    },
+    {
+        "ID": 10,
+        "Station": "Охотный ряд",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Тверской район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702005
+    },
+    {
+        "ID": 129,
+        "Station": "Новокосино",
+        "Line": "Калининская линия",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Новокосино",
+        "MCDStation": {
+            "global_id": 2616718100,
+            "value": "Реутов"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702006
+    },
+    {
+        "ID": 79,
+        "Station": "Курская",
+        "Line": "Кольцевая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Басманный район",
+        "MCDStation": {
+            "global_id": 1059233904,
+            "value": "Курская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155409,
+            "value": "Курская"
+        },
+        "RailwayTerminal": [
+            {
+                "global_id": 1058614652,
+                "value": "Курский"
+            }
+        ],
+        "ObjectStatus": "действует",
+        "global_id": 58702007
+    },
+    {
+        "ID": 228,
+        "Station": "Лухмановская",
+        "Line": "Некрасовская линия",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Косино-Ухтомский",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702008
+    },
+    {
+        "ID": 163,
+        "Station": "Достоевская",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Тверской район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702009
+    },
+    {
+        "ID": 73,
+        "Station": "Москва-Сити",
+        "Line": "Филёвская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Пресненский район",
+        "MCDStation": {
+            "global_id": 1058903381,
+            "value": "Тестовская"
+        },
+        "AeroexpressStation": {
+            "global_id": 1508985132,
+            "value": "Тестовская"
+        },
+        "RailwayStation": {
+            "global_id": 1132155494,
+            "value": "Тестовская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702011
+    },
+    {
+        "ID": 176,
+        "Station": "Борисово",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Южный административный округ",
+        "District": "район Зябликово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702012
+    },
+    {
+        "ID": 188,
+        "Station": "Выставочный центр",
+        "Line": "Московская монорельсовая транспортная система",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "Останкинский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702013
+    },
+    {
+        "ID": 116,
+        "Station": "Беговая",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Пресненский район",
+        "MCDStation": {
+            "global_id": 1058905211,
+            "value": "Беговая"
+        },
+        "AeroexpressStation": {
+            "global_id": 1721303669,
+            "value": "Беговая"
+        },
+        "RailwayStation": {
+            "global_id": 1132155386,
+            "value": "Беговая"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702014
+    },
+    {
+        "ID": 243,
+        "Station": "Терехово",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Северо-Западный административный округ",
+        "District": "район Хорошёво-Мнёвники",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702015
+    },
+    {
+        "ID": 222,
+        "Station": "Третьяковская",
+        "Line": "Солнцевская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Замоскворечье",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "строится",
+        "global_id": 58702016
+    },
+    {
+        "ID": 144,
+        "Station": "Савёловская",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "Бутырский район",
+        "MCDStation": {
+            "global_id": 1058906777,
+            "value": "Савеловская"
+        },
+        "AeroexpressStation": {
+            "global_id": 1508984420,
+            "value": "Савеловский вокзал"
+        },
+        "RailwayStation": {
+            "global_id": 1132046977,
+            "value": "Савёловская"
+        },
+        "RailwayTerminal": [
+            {
+                "global_id": 1058615229,
+                "value": "Савеловский"
+            }
+        ],
+        "ObjectStatus": "действует",
+        "global_id": 58702017
+    },
+    {
+        "ID": 59,
+        "Station": "Волоколамская",
+        "Line": "Арбатско-Покровская линия",
+        "AdmArea": "Северо-Западный административный округ",
+        "District": "район Митино",
+        "MCDStation": {
+            "global_id": 1058982846,
+            "value": "Волоколамская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155513,
+            "value": "Волоколамская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702018
+    },
+    {
+        "ID": 218,
+        "Station": "Парк Победы",
+        "Line": "Солнцевская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Дорогомилово",
+        "MCDStation": {
+            "global_id": 2616702382,
+            "value": "Поклонная"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155563,
+            "value": "Поклонная"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702019
+    },
+    {
+        "ID": 156,
+        "Station": "Чертановская",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Южный административный округ",
+        "District": "район Чертаново Северное",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702020
+    },
+    {
+        "ID": 52,
+        "Station": "Парк Победы",
+        "Line": "Арбатско-Покровская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Дорогомилово",
+        "MCDStation": {
+            "global_id": 2616702382,
+            "value": "Поклонная"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155563,
+            "value": "Поклонная"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702021
+    },
+    {
+        "ID": 63,
+        "Station": "Филёвский парк",
+        "Line": "Филёвская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Фили-Давыдково",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702022
+    },
+    {
+        "ID": 14,
+        "Station": "Фрунзенская",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Хамовники",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702023
+    },
+    {
+        "ID": 120,
+        "Station": "Кузнецкий мост",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Мещанский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702024
+    },
+    {
+        "ID": 9,
+        "Station": "Лубянка",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Тверской район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702025
+    },
+    {
+        "ID": 187,
+        "Station": "Улица Сергея Эйзенштейна",
+        "Line": "Московская монорельсовая транспортная система",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "Останкинский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702026
+    },
+    {
+        "ID": 38,
+        "Station": "Водный стадион",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Северный административный округ",
+        "District": "Головинский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702027
+    },
+    {
+        "ID": 117,
+        "Station": "Улица 1905 года",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Пресненский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702028
+    },
+    {
+        "ID": 224,
+        "Station": "Ломоносовский проспект",
+        "Line": "Солнцевская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Раменки",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702029
+    },
+    {
+        "ID": 135,
+        "Station": "Марксистская",
+        "Line": "Калининская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Таганский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702030
+    },
+    {
+        "ID": 267,
+        "Station": "Боровское шоссе",
+        "Line": "Солнцевская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Ново-Переделкино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702031
+    },
+    {
+        "ID": 43,
+        "Station": "Партизанская",
+        "Line": "Арбатско-Покровская линия",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Измайлово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702032
+    },
+    {
+        "ID": 159,
+        "Station": "Улица академика Янгеля",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Южный административный округ",
+        "District": "район Чертаново Южное",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702033
+    },
+    {
+        "ID": 84,
+        "Station": "Краснопресненская",
+        "Line": "Кольцевая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Пресненский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702034
+    },
+    {
+        "ID": 230,
+        "Station": "Авиамоторная",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "район Лефортово",
+        "MCDStation": {
+            "global_id": 2608948139,
+            "value": "Авиамоторная"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155548,
+            "value": "Авиамоторная"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702035
+    },
+    {
+        "ID": 166,
+        "Station": "Чкаловская",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Басманный район",
+        "MCDStation": {
+            "global_id": 2616712938,
+            "value": "Курская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155409,
+            "value": "Курская"
+        },
+        "RailwayTerminal": [
+            {
+                "global_id": 1058614652,
+                "value": "Курский"
+            }
+        ],
+        "ObjectStatus": "действует",
+        "global_id": 58702036
+    },
+    {
+        "ID": 151,
+        "Station": "Тульская",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Южный административный округ",
+        "District": "Даниловский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155583,
+            "value": "Тульская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702037
+    },
+    {
+        "ID": 204,
+        "Station": "Лермонтовский проспект",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "район Выхино-Жулебино",
+        "MCDStation": {
+            "global_id": 2608949026,
+            "value": "Косино"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155450,
+            "value": "Косино"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702038
+    },
+    {
+        "ID": 203,
+        "Station": "Спартак",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Северо-Западный административный округ",
+        "District": "район Покровское-Стрешнево",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702039
+    },
+    {
+        "ID": 70,
+        "Station": "Арбатская",
+        "Line": "Филёвская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Арбат",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702040
+    },
+    {
+        "ID": 160,
+        "Station": "Аннино",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Южный административный округ",
+        "District": "район Чертаново Южное",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702041
+    },
+    {
+        "ID": 155,
+        "Station": "Севастопольская",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "район Зюзино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702042
+    },
+    {
+        "ID": 102,
+        "Station": "Профсоюзная",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "Академический район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702043
+    },
+    {
+        "ID": 49,
+        "Station": "Арбатская",
+        "Line": "Арбатско-Покровская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Арбат",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702044
+    },
+    {
+        "ID": 185,
+        "Station": "Улица Горчакова",
+        "Line": "Бутовская линия Лёгкого метро",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "район Южное Бутово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702045
+    },
+    {
+        "ID": 58,
+        "Station": "Мякинино",
+        "Line": "Арбатско-Покровская линия",
+        "AdmArea": "Северо-Западный административный округ",
+        "District": "район Строгино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702046
+    },
+    {
+        "ID": 98,
+        "Station": "Октябрьская",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Якиманка",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702047
+    },
+    {
+        "ID": 62,
+        "Station": "Пионерская",
+        "Line": "Филёвская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Фили-Давыдково",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702048
+    },
+    {
+        "ID": 134,
+        "Station": "Площадь Ильича",
+        "Line": "Калининская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Таганский район",
+        "MCDStation": {
+            "global_id": 2616713724,
+            "value": "Серп и Молот"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155410,
+            "value": "Москва-Товарная"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702049
+    },
+    {
+        "ID": 269,
+        "Station": "Рассказовка",
+        "Line": "Солнцевская линия",
+        "AdmArea": "Новомосковский административный округ",
+        "District": "поселение Внуковское",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702050
+    },
+    {
+        "ID": 253,
+        "Station": "Нагатинский Затон",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Южный административный округ",
+        "District": "район Нагатинский Затон",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702051
+    },
+    {
+        "ID": 42,
+        "Station": "Измайловская",
+        "Line": "Арбатско-Покровская линия",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Измайлово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702052
+    },
+    {
+        "ID": 226,
+        "Station": "Косино",
+        "Line": "Некрасовская линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "район Выхино-Жулебино",
+        "MCDStation": {
+            "global_id": 2608949026,
+            "value": "Косино"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155450,
+            "value": "Косино"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702053
+    },
+    {
+        "ID": 215,
+        "Station": "Битцевский парк",
+        "Line": "Бутовская линия Лёгкого метро",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "район Ясенево",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702054
+    },
+    {
+        "ID": 36,
+        "Station": "Сокол",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Северный административный округ",
+        "District": "район Сокол",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702055
+    },
+    {
+        "ID": 261,
+        "Station": "Рижская",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Мещанский район",
+        "MCDStation": {
+            "global_id": 1058999474,
+            "value": "Рижская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155428,
+            "value": "Рижская"
+        },
+        "RailwayTerminal": [
+            {
+                "global_id": 1058611993,
+                "value": "Рижский"
+            }
+        ],
+        "ObjectStatus": "действует",
+        "global_id": 58702056
+    },
+    {
+        "ID": 260,
+        "Station": "Сокольники",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Сокольники",
+        "MCDStation": {
+            "global_id": 2608947198,
+            "value": "Митьково"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702057
+    },
+    {
+        "ID": 69,
+        "Station": "Смоленская",
+        "Line": "Филёвская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Арбат",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702058
+    },
+    {
+        "ID": 13,
+        "Station": "Парк культуры",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Хамовники",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702060
+    },
+    {
+        "ID": 263,
+        "Station": "Мичуринский проспект",
+        "Line": "Солнцевская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Раменки",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702061
+    },
+    {
+        "ID": 206,
+        "Station": "Котельники",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "район Выхино-Жулебино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702062
+    },
+    {
+        "ID": 11,
+        "Station": "Библиотека имени Ленина",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Арбат",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702063
+    },
+    {
+        "ID": 229,
+        "Station": "Некрасовка",
+        "Line": "Некрасовская линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "район Некрасовка",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702064
+    },
+    {
+        "ID": 124,
+        "Station": "Волгоградский проспект",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "Южнопортовый район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702065
+    },
+    {
+        "ID": 164,
+        "Station": "Трубная",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Мещанский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702066
+    },
+    {
+        "ID": 34,
+        "Station": "Динамо",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Северный административный округ",
+        "District": "район Аэропорт",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702067
+    },
+    {
+        "ID": 91,
+        "Station": "Алексеевская",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "Алексеевский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702068
+    },
+    {
+        "ID": 189,
+        "Station": "Улица Академика Королёва",
+        "Line": "Московская монорельсовая транспортная система",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "Останкинский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702070
+    },
+    {
+        "ID": 110,
+        "Station": "Планерная",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Северо-Западный административный округ",
+        "District": "район Северное Тушино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702071
+    },
+    {
+        "ID": 15,
+        "Station": "Спортивная",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Хамовники",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702072
+    },
+    {
+        "ID": 201,
+        "Station": "Суворовская",
+        "Line": "Кольцевая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Мещанский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "строится",
+        "global_id": 58702074
+    },
+    {
+        "ID": 122,
+        "Station": "Таганская",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Таганский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702075
+    },
+    {
+        "ID": 51,
+        "Station": "Киевская",
+        "Line": "Арбатско-Покровская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Дорогомилово",
+        "MCDStation": [],
+        "AeroexpressStation": {
+            "global_id": 1508979255,
+            "value": "Киевский вокзал"
+        },
+        "RailwayStation": {
+            "global_id": 1132155459,
+            "value": "Киевский вокзал"
+        },
+        "RailwayTerminal": [
+            {
+                "global_id": 1058616246,
+                "value": "Киевский"
+            }
+        ],
+        "ObjectStatus": "действует",
+        "global_id": 58702076
+    },
+    {
+        "ID": 30,
+        "Station": "Театральная",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Тверской район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702077
+    },
+    {
+        "ID": 4,
+        "Station": "Сокольники",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Сокольники",
+        "MCDStation": {
+            "global_id": 2608947198,
+            "value": "Митьково"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702078
+    },
+    {
+        "ID": 217,
+        "Station": "Деловой центр",
+        "Line": "Солнцевская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Пресненский район",
+        "MCDStation": {
+            "global_id": 1058903381,
+            "value": "Тестовская"
+        },
+        "AeroexpressStation": {
+            "global_id": 1508985132,
+            "value": "Тестовская"
+        },
+        "RailwayStation": {
+            "global_id": 1132155494,
+            "value": "Тестовская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702079
+    },
+    {
+        "ID": 161,
+        "Station": "Бульвар Дмитрия Донского",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "район Северное Бутово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702080
+    },
+    {
+        "ID": 177,
+        "Station": "Шипиловская",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Южный административный округ",
+        "District": "район Зябликово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702081
+    },
+    {
+        "ID": 83,
+        "Station": "Белорусская",
+        "Line": "Кольцевая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Тверской район",
+        "MCDStation": {
+            "global_id": 1058906594,
+            "value": "Белорусская"
+        },
+        "AeroexpressStation": {
+            "global_id": 1508985008,
+            "value": "Белорусский вокзал"
+        },
+        "RailwayStation": {
+            "global_id": 1132155385,
+            "value": "Белорусская"
+        },
+        "RailwayTerminal": [
+            {
+                "global_id": 1058611508,
+                "value": "Белорусский"
+            }
+        ],
+        "ObjectStatus": "действует",
+        "global_id": 58702083
+    },
+    {
+        "ID": 149,
+        "Station": "Полянка",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Якиманка",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702084
+    },
+    {
+        "ID": 56,
+        "Station": "Крылатское",
+        "Line": "Арбатско-Покровская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Крылатское",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702085
+    },
+    {
+        "ID": 111,
+        "Station": "Сходненская",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Северо-Западный административный округ",
+        "District": "район Южное Тушино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702086
+    },
+    {
+        "ID": 48,
+        "Station": "Площадь Революции",
+        "Line": "Арбатско-Покровская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Тверской район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702087
+    },
+    {
+        "ID": 19,
+        "Station": "Юго-Западная",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Тропарёво-Никулино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702088
+    },
+    {
+        "ID": 132,
+        "Station": "Шоссе Энтузиастов",
+        "Line": "Калининская линия",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Перово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702089
+    },
+    {
+        "ID": 96,
+        "Station": "Китай-город",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Тверской район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702090
+    },
+    {
+        "ID": 113,
+        "Station": "Щукинская",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Северо-Западный административный округ",
+        "District": "район Щукино",
+        "MCDStation": {
+            "global_id": 1058984955,
+            "value": "Щукинская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155510,
+            "value": "Щукинская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702091
+    },
+    {
+        "ID": 216,
+        "Station": "Лесопарковая",
+        "Line": "Бутовская линия Лёгкого метро",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "район Северное Бутово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702092
+    },
+    {
+        "ID": 130,
+        "Station": "Новогиреево",
+        "Line": "Калининская линия",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Новогиреево",
+        "MCDStation": {
+            "global_id": 2616716786,
+            "value": "Новогиреево"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155457,
+            "value": "Новогиреево"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702093
+    },
+    {
+        "ID": 47,
+        "Station": "Курская",
+        "Line": "Арбатско-Покровская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Басманный район",
+        "MCDStation": {
+            "global_id": 1059233904,
+            "value": "Курская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155409,
+            "value": "Курская"
+        },
+        "RailwayTerminal": [
+            {
+                "global_id": 1058614652,
+                "value": "Курский"
+            }
+        ],
+        "ObjectStatus": "действует",
+        "global_id": 58702094
+    },
+    {
+        "ID": 223,
+        "Station": "Минская",
+        "Line": "Солнцевская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Дорогомилово",
+        "MCDStation": {
+            "global_id": 2616701750,
+            "value": "Минская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 2363186137,
+            "value": "Минская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702098
+    },
+    {
+        "ID": 67,
+        "Station": "Студенческая",
+        "Line": "Филёвская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Дорогомилово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702099
+    },
+    {
+        "ID": 158,
+        "Station": "Пражская",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Южный административный округ",
+        "District": "район Чертаново Центральное",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702100
+    },
+    {
+        "ID": 74,
+        "Station": "Парк культуры",
+        "Line": "Кольцевая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Хамовники",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702101
+    },
+    {
+        "ID": 35,
+        "Station": "Аэропорт",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Северный административный округ",
+        "District": "район Аэропорт",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702102
+    },
+    {
+        "ID": 81,
+        "Station": "Проспект Мира",
+        "Line": "Кольцевая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Мещанский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702103
+    },
+    {
+        "ID": 97,
+        "Station": "Третьяковская",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Замоскворечье",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702104
+    },
+    {
+        "ID": 162,
+        "Station": "Марьина роща",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "район Марьина Роща",
+        "MCDStation": {
+            "global_id": 2577702298,
+            "value": "Марьина Роща"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 2577703365,
+            "value": "Марьина Роща"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702105
+    },
+    {
+        "ID": 121,
+        "Station": "Китай-город",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Тверской район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702106
+    },
+    {
+        "ID": 133,
+        "Station": "Авиамоторная",
+        "Line": "Калининская линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "район Лефортово",
+        "MCDStation": {
+            "global_id": 2608948139,
+            "value": "Авиамоторная"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155548,
+            "value": "Авиамоторная"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702107
+    },
+    {
+        "ID": 154,
+        "Station": "Нахимовский проспект",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "район Зюзино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702108
+    },
+    {
+        "ID": 196,
+        "Station": "Алма-Атинская",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Южный административный округ",
+        "District": "район Братеево",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702109
+    },
+    {
+        "ID": 146,
+        "Station": "Цветной бульвар",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Тверской район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702110
+    },
+    {
+        "ID": 210,
+        "Station": "Окружная",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Северный административный округ",
+        "District": "Тимирязевский район",
+        "MCDStation": {
+            "global_id": 1058907212,
+            "value": "Окружная"
+        },
+        "AeroexpressStation": {
+            "global_id": 1508983290,
+            "value": "Окружная"
+        },
+        "RailwayStation": {
+            "global_id": 1132046990,
+            "value": "Окружная"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702111
+    },
+    {
+        "ID": 76,
+        "Station": "Добрынинская",
+        "Line": "Кольцевая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Замоскворечье",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702112
+    },
+    {
+        "ID": 197,
+        "Station": "Технопарк",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Южный административный округ",
+        "District": "район Нагатино-Садовники",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702113
+    },
+    {
+        "ID": 150,
+        "Station": "Серпуховская",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Замоскворечье",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702114
+    },
+    {
+        "ID": 25,
+        "Station": "Каширская",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Южный административный округ",
+        "District": "район Нагатино-Садовники",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702115
+    },
+    {
+        "ID": 205,
+        "Station": "Жулебино",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "район Выхино-Жулебино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702116
+    },
+    {
+        "ID": 212,
+        "Station": "Селигерская",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Северный административный округ",
+        "District": "Бескудниковский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702117
+    },
+    {
+        "ID": 234,
+        "Station": "Юго-Восточная",
+        "Line": "Некрасовская линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "район Выхино-Жулебино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702118
+    },
+    {
+        "ID": 266,
+        "Station": "Солнцево",
+        "Line": "Солнцевская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Солнцево",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702119
+    },
+    {
+        "ID": 200,
+        "Station": "Пятницкое шоссе",
+        "Line": "Арбатско-Покровская линия",
+        "AdmArea": "Северо-Западный административный округ",
+        "District": "район Митино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702120
+    },
+    {
+        "ID": 183,
+        "Station": "Улица Скобелевская",
+        "Line": "Бутовская линия Лёгкого метро",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "район Южное Бутово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702121
+    },
+    {
+        "ID": 16,
+        "Station": "Воробьёвы горы",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Раменки",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702122
+    },
+    {
+        "ID": 246,
+        "Station": "Мичуринский проспект",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Раменки",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702123
+    },
+    {
+        "ID": 211,
+        "Station": "Верхние Лихоборы",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Северный административный округ",
+        "District": "Бескудниковский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702124
+    },
+    {
+        "ID": 57,
+        "Station": "Строгино",
+        "Line": "Арбатско-Покровская линия",
+        "AdmArea": "Северо-Западный административный округ",
+        "District": "район Строгино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702125
+    },
+    {
+        "ID": 139,
+        "Station": "Отрадное",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "район Отрадное",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702126
+    },
+    {
+        "ID": 126,
+        "Station": "Кузьминки",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "район Кузьминки",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702127
+    },
+    {
+        "ID": 61,
+        "Station": "Кунцевская",
+        "Line": "Филёвская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Кунцево",
+        "MCDStation": {
+            "global_id": 1058901824,
+            "value": "Кунцевская"
+        },
+        "AeroexpressStation": {
+            "global_id": 1508986102,
+            "value": "Кунцевская"
+        },
+        "RailwayStation": {
+            "global_id": 1132155392,
+            "value": "Кунцевская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702128
+    },
+    {
+        "ID": 233,
+        "Station": "Окская",
+        "Line": "Некрасовская линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "Рязанский район",
+        "MCDStation": {
+            "global_id": 2608949019,
+            "value": "Вешняки"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155448,
+            "value": "Вешняки"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702129
+    },
+    {
+        "ID": 60,
+        "Station": "Митино",
+        "Line": "Арбатско-Покровская линия",
+        "AdmArea": "Северо-Западный административный округ",
+        "District": "район Митино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702130
+    },
+    {
+        "ID": 101,
+        "Station": "Академическая",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "Академический район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702131
+    },
+    {
+        "ID": 123,
+        "Station": "Пролетарская",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Таганский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702132
+    },
+    {
+        "ID": 240,
+        "Station": "Деловой центр",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Пресненский район",
+        "MCDStation": {
+            "global_id": 1058903381,
+            "value": "Тестовская"
+        },
+        "AeroexpressStation": {
+            "global_id": 1508985132,
+            "value": "Тестовская"
+        },
+        "RailwayStation": {
+            "global_id": 1132155494,
+            "value": "Тестовская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702134
+    },
+    {
+        "ID": 95,
+        "Station": "Тургеневская",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Красносельский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702135
+    },
+    {
+        "ID": 105,
+        "Station": "Беляево",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "район Коньково",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702136
+    },
+    {
+        "ID": 23,
+        "Station": "Царицыно",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Южный административный округ",
+        "District": "район Царицыно",
+        "MCDStation": {
+            "global_id": 1059237948,
+            "value": "Царицыно"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155420,
+            "value": "Царицыно"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702137
+    },
+    {
+        "ID": 219,
+        "Station": "Волхонка",
+        "Line": "Солнцевская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Хамовники",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "строится",
+        "global_id": 58702138
+    },
+    {
+        "ID": 68,
+        "Station": "Киевская",
+        "Line": "Филёвская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Дорогомилово",
+        "MCDStation": [],
+        "AeroexpressStation": {
+            "global_id": 1508979255,
+            "value": "Киевский вокзал"
+        },
+        "RailwayStation": {
+            "global_id": 1132155459,
+            "value": "Киевский вокзал"
+        },
+        "RailwayTerminal": [
+            {
+                "global_id": 1058616246,
+                "value": "Киевский"
+            }
+        ],
+        "ObjectStatus": "действует",
+        "global_id": 58702139
+    },
+    {
+        "ID": 115,
+        "Station": "Полежаевская",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Северный административный округ",
+        "District": "Хорошёвский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702140
+    },
+    {
+        "ID": 255,
+        "Station": "Текстильщики",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "район Текстильщики",
+        "MCDStation": {
+            "global_id": 1059235328,
+            "value": "Текстильщики"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155413,
+            "value": "Текстильщики"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702141
+    },
+    {
+        "ID": 37,
+        "Station": "Войковская",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Северный административный округ",
+        "District": "Войковский район",
+        "MCDStation": {
+            "global_id": 1058985425,
+            "value": "Стрешнево"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155400,
+            "value": "Стрешнево"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702142
+    },
+    {
+        "ID": 195,
+        "Station": "Саларьево",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Солнцево",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702143
+    },
+    {
+        "ID": 174,
+        "Station": "Братиславская",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "район Марьино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702144
+    },
+    {
+        "ID": 157,
+        "Station": "Южная",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Южный административный округ",
+        "District": "район Чертаново Центральное",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702145
+    },
+    {
+        "ID": 85,
+        "Station": "Киевская",
+        "Line": "Кольцевая линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Дорогомилово",
+        "MCDStation": [],
+        "AeroexpressStation": {
+            "global_id": 1508979255,
+            "value": "Киевский вокзал"
+        },
+        "RailwayStation": {
+            "global_id": 1132155459,
+            "value": "Киевский вокзал"
+        },
+        "RailwayTerminal": [
+            {
+                "global_id": 1058616246,
+                "value": "Киевский"
+            }
+        ],
+        "ObjectStatus": "действует",
+        "global_id": 58702146
+    },
+    {
+        "ID": 53,
+        "Station": "Славянский бульвар",
+        "Line": "Арбатско-Покровская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Фили-Давыдково",
+        "MCDStation": {
+            "global_id": 1058902031,
+            "value": "Славянский бульвар"
+        },
+        "AeroexpressStation": {
+            "global_id": 1508985977,
+            "value": "Славянский бульвар"
+        },
+        "RailwayStation": {
+            "global_id": 1132155390,
+            "value": "Славянский бульвар"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702147
+    },
+    {
+        "ID": 88,
+        "Station": "Свиблово",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "район Свиблово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702148
+    },
+    {
+        "ID": 17,
+        "Station": "Университет",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Раменки",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702149
+    },
+    {
+        "ID": 182,
+        "Station": "Улица Старокачаловская",
+        "Line": "Бутовская линия Лёгкого метро",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "район Северное Бутово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702150
+    },
+    {
+        "ID": 45,
+        "Station": "Электрозаводская",
+        "Line": "Арбатско-Покровская линия",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Соколиная Гора",
+        "MCDStation": {
+            "global_id": 2608947208,
+            "value": "Электрозаводская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155441,
+            "value": "Электрозаводская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702151
+    },
+    {
+        "ID": 108,
+        "Station": "Ясенево",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "район Ясенево",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702152
+    },
+    {
+        "ID": 194,
+        "Station": "Румянцево",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Новомосковский административный округ",
+        "District": "поселение Московский",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702153
+    },
+    {
+        "ID": 193,
+        "Station": "Тропарёво",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Тропарёво-Никулино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702154
+    },
+    {
+        "ID": 78,
+        "Station": "Таганская",
+        "Line": "Кольцевая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Таганский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702155
+    },
+    {
+        "ID": 22,
+        "Station": "Орехово",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Южный административный округ",
+        "District": "район Орехово-Борисово Северное",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702157
+    },
+    {
+        "ID": 131,
+        "Station": "Перово",
+        "Line": "Калининская линия",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Новогиреево",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702158
+    },
+    {
+        "ID": 190,
+        "Station": "Телецентр",
+        "Line": "Московская монорельсовая транспортная система",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "Останкинский район",
+        "MCDStation": {
+            "global_id": 2608947179,
+            "value": "Останкино"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155429,
+            "value": "Останкино"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702159
+    },
+    {
+        "ID": 169,
+        "Station": "Дубровка",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "Южнопортовый район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702160
+    },
+    {
+        "ID": 252,
+        "Station": "Каширская",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Южный административный округ",
+        "District": "район Москворечье-Сабурово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702161
+    },
+    {
+        "ID": 44,
+        "Station": "Семёновская",
+        "Line": "Арбатско-Покровская линия",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Соколиная Гора",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702162
+    },
+    {
+        "ID": 232,
+        "Station": "Стахановская",
+        "Line": "Некрасовская линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "Рязанский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702163
+    },
+    {
+        "ID": 54,
+        "Station": "Кунцевская",
+        "Line": "Арбатско-Покровская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Кунцево",
+        "MCDStation": {
+            "global_id": 1058901824,
+            "value": "Кунцевская"
+        },
+        "AeroexpressStation": {
+            "global_id": 1508986102,
+            "value": "Кунцевская"
+        },
+        "RailwayStation": {
+            "global_id": 1132155392,
+            "value": "Кунцевская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702164
+    },
+    {
+        "ID": 209,
+        "Station": "Петровско-Разумовская",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Северный административный округ",
+        "District": "Тимирязевский район",
+        "MCDStation": {
+            "global_id": 2608946922,
+            "value": "Петровско-Разумовская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155430,
+            "value": "Петровско-Разумовская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702165
+    },
+    {
+        "ID": 107,
+        "Station": "Тёплый стан",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "район Ясенево",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702166
+    },
+    {
+        "ID": 128,
+        "Station": "Выхино",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "район Выхино-Жулебино",
+        "MCDStation": {
+            "global_id": 2608949023,
+            "value": "Выхино"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155449,
+            "value": "Выхино"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702168
+    },
+    {
+        "ID": 24,
+        "Station": "Кантемировская",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Южный административный округ",
+        "District": "район Царицыно",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702170
+    },
+    {
+        "ID": 55,
+        "Station": "Молодёжная",
+        "Line": "Арбатско-Покровская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Кунцево",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702172
+    },
+    {
+        "ID": 140,
+        "Station": "Владыкино",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "район Отрадное",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702173
+    },
+    {
+        "ID": 168,
+        "Station": "Крестьянская застава",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Таганский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702174
+    },
+    {
+        "ID": 238,
+        "Station": "Хорошёвская",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Северный административный округ",
+        "District": "Хорошёвский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702175
+    },
+    {
+        "ID": 178,
+        "Station": "Зябликово",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Южный административный округ",
+        "District": "район Зябликово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702176
+    },
+    {
+        "ID": 141,
+        "Station": "Петровско-Разумовская",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Северный административный округ",
+        "District": "Тимирязевский район",
+        "MCDStation": {
+            "global_id": 2608946922,
+            "value": "Петровско-Разумовская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155430,
+            "value": "Петровско-Разумовская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702177
+    },
+    {
+        "ID": 5,
+        "Station": "Красносельская",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Красносельский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702178
+    },
+    {
+        "ID": 8,
+        "Station": "Чистые пруды",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Басманный район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702180
+    },
+    {
+        "ID": 214,
+        "Station": "Лианозово",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Северный административный округ",
+        "District": "район Восточное Дегунино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702181
+    },
+    {
+        "ID": 80,
+        "Station": "Комсомольская",
+        "Line": "Кольцевая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Красносельский район",
+        "MCDStation": {
+            "global_id": 2616711959,
+            "value": "Площадь трёх вокзалов"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155426,
+            "value": "Ленинградский вокзал"
+        },
+        "RailwayTerminal": [
+            {
+                "global_id": 1058613060,
+                "value": "Ленинградский"
+            },
+            {
+                "global_id": 1058611738,
+                "value": "Казанский"
+            },
+            {
+                "global_id": 1058612845,
+                "value": "Ярославский"
+            }
+        ],
+        "ObjectStatus": "действует",
+        "global_id": 58702182
+    },
+    {
+        "ID": 165,
+        "Station": "Сретенский бульвар",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Красносельский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702183
+    },
+    {
+        "ID": 247,
+        "Station": "Проспект Вернадского",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Раменки",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702184
+    },
+    {
+        "ID": 148,
+        "Station": "Боровицкая",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Арбат",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702185
+    },
+    {
+        "ID": 138,
+        "Station": "Бибирево",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "район Бибирево",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702186
+    },
+    {
+        "ID": 39,
+        "Station": "Речной вокзал",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Северный административный округ",
+        "District": "район Левобережный",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702187
+    },
+    {
+        "ID": 173,
+        "Station": "Люблино",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "район Люблино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702188
+    },
+    {
+        "ID": 207,
+        "Station": "Бутырская",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "Бутырский район",
+        "MCDStation": {
+            "global_id": 2608947179,
+            "value": "Останкино"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155429,
+            "value": "Останкино"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702189
+    },
+    {
+        "ID": 114,
+        "Station": "Октябрьское поле",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Северо-Западный административный округ",
+        "District": "район Щукино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702190
+    },
+    {
+        "ID": 29,
+        "Station": "Новокузнецкая",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Замоскворечье",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702191
+    },
+    {
+        "ID": 66,
+        "Station": "Кутузовская",
+        "Line": "Филёвская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Дорогомилово",
+        "MCDStation": {
+            "global_id": 2616703635,
+            "value": "Кутузовская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 2616728372,
+            "value": "Кутузовская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702192
+    },
+    {
+        "ID": 112,
+        "Station": "Тушинская",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Северо-Западный административный округ",
+        "District": "район Покровское-Стрешнево",
+        "MCDStation": {
+            "global_id": 1058984243,
+            "value": "Тушинская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155511,
+            "value": "Тушинская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702194
+    },
+    {
+        "ID": 26,
+        "Station": "Коломенская",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Южный административный округ",
+        "District": "район Нагатино-Садовники",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702195
+    },
+    {
+        "ID": 75,
+        "Station": "Октябрьская",
+        "Line": "Кольцевая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Якиманка",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702196
+    },
+    {
+        "ID": 18,
+        "Station": "Проспект Вернадского",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Проспект Вернадского",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702197
+    },
+    {
+        "ID": 153,
+        "Station": "Нагорная",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Южный административный округ",
+        "District": "Нагорный район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702198
+    },
+    {
+        "ID": 72,
+        "Station": "Деловой центр",
+        "Line": "Филёвская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Пресненский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702199
+    },
+    {
+        "ID": 186,
+        "Station": "Бунинская аллея",
+        "Line": "Бутовская линия Лёгкого метро",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "район Южное Бутово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702200
+    },
+    {
+        "ID": 92,
+        "Station": "Рижская",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Мещанский район",
+        "MCDStation": {
+            "global_id": 1058999474,
+            "value": "Рижская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155428,
+            "value": "Рижская"
+        },
+        "RailwayTerminal": [
+            {
+                "global_id": 1058611993,
+                "value": "Рижский"
+            }
+        ],
+        "ObjectStatus": "действует",
+        "global_id": 58702201
+    },
+    {
+        "ID": 109,
+        "Station": "Новоясеневская",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "район Ясенево",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702203
+    },
+    {
+        "ID": 46,
+        "Station": "Бауманская",
+        "Line": "Арбатско-Покровская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Басманный район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702204
+    },
+    {
+        "ID": 1,
+        "Station": "Бульвар Рокоссовского",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Богородское",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702205
+    },
+    {
+        "ID": 2,
+        "Station": "Черкизовская",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Преображенское",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [
+            {
+                "global_id": 1124877069,
+                "value": "Восточный"
+            }
+        ],
+        "ObjectStatus": "действует",
+        "global_id": 58702206
+    },
+    {
+        "ID": 106,
+        "Station": "Коньково",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "район Тёплый Стан",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702207
+    },
+    {
+        "ID": 145,
+        "Station": "Менделеевская",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Тверской район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702208
+    },
+    {
+        "ID": 227,
+        "Station": "улица Дмитриевского",
+        "Line": "Некрасовская линия",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Косино-Ухтомский",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702209
+    },
+    {
+        "ID": 259,
+        "Station": "Электрозаводская",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Соколиная Гора",
+        "MCDStation": {
+            "global_id": 2608947208,
+            "value": "Электрозаводская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155441,
+            "value": "Электрозаводская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702210
+    },
+    {
+        "ID": 225,
+        "Station": "Раменки",
+        "Line": "Солнцевская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Раменки",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702211
+    },
+    {
+        "ID": 50,
+        "Station": "Смоленская",
+        "Line": "Арбатско-Покровская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Арбат",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702212
+    },
+    {
+        "ID": 118,
+        "Station": "Баррикадная",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Пресненский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702213
+    },
+    {
+        "ID": 64,
+        "Station": "Багратионовская",
+        "Line": "Филёвская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Филёвский Парк",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702214
+    },
+    {
+        "ID": 87,
+        "Station": "Бабушкинская",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "Бабушкинский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702215
+    },
+    {
+        "ID": 12,
+        "Station": "Кропоткинская",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Хамовники",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702216
+    },
+    {
+        "ID": 93,
+        "Station": "Проспект Мира",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Мещанский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702217
+    },
+    {
+        "ID": 94,
+        "Station": "Сухаревская",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Красносельский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702218
+    },
+    {
+        "ID": 192,
+        "Station": "Тимирязевская",
+        "Line": "Московская монорельсовая транспортная система",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "Бутырский район",
+        "MCDStation": {
+            "global_id": 1058907003,
+            "value": "Тимирязевская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132046986,
+            "value": "Тимирязевская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702219
+    },
+    {
+        "ID": 7,
+        "Station": "Красные ворота",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Красносельский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702220
+    },
+    {
+        "ID": 171,
+        "Station": "Печатники",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "район Печатники",
+        "MCDStation": {
+            "global_id": 2372331630,
+            "value": "Печатники"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 2370945789,
+            "value": "Печатники"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702221
+    },
+    {
+        "ID": 127,
+        "Station": "Рязанский проспект",
+        "Line": "Таганско-Краснопресненская линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "Рязанский район",
+        "MCDStation": {
+            "global_id": 2608949019,
+            "value": "Вешняки"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155448,
+            "value": "Вешняки"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702223
+    },
+    {
+        "ID": 167,
+        "Station": "Римская",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Таганский район",
+        "MCDStation": {
+            "global_id": 2616713724,
+            "value": "Серп и Молот"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155410,
+            "value": "Москва-Товарная"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702224
+    },
+    {
+        "ID": 71,
+        "Station": "Александровский сад",
+        "Line": "Филёвская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Тверской район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702225
+    },
+    {
+        "ID": 100,
+        "Station": "Ленинский проспект",
+        "Line": "Калужско-Рижская линия",
+        "AdmArea": "Южный административный округ",
+        "District": "Донской район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702226
+    },
+    {
+        "ID": 147,
+        "Station": "Чеховская",
+        "Line": "Серпуховско-Тимирязевская линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Тверской район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702227
+    },
+    {
+        "ID": 254,
+        "Station": "Печатники",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "район Печатники",
+        "MCDStation": {
+            "global_id": 2372331630,
+            "value": "Печатники"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 2370945789,
+            "value": "Печатники"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702228
+    },
+    {
+        "ID": 40,
+        "Station": "Щёлковская",
+        "Line": "Арбатско-Покровская линия",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Гольяново",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702229
+    },
+    {
+        "ID": 199,
+        "Station": "Ховрино",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Северный административный округ",
+        "District": "район Ховрино",
+        "MCDStation": {
+            "global_id": 2608946046,
+            "value": "Ховрино"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155434,
+            "value": "Ховрино"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 58702230
+    },
+    {
+        "ID": 284,
+        "Station": "Шелепиха",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Центральный административный округ",
+        "District": "Пресненский район",
+        "MCDStation": {
+            "global_id": 1058903381,
+            "value": "Тестовская"
+        },
+        "AeroexpressStation": {
+            "global_id": 1508985132,
+            "value": "Тестовская"
+        },
+        "RailwayStation": {
+            "global_id": 1132155494,
+            "value": "Тестовская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904735
+    },
+    {
+        "ID": 288,
+        "Station": "Площадь Гагарина",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "Гагаринский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904736
+    },
+    {
+        "ID": 280,
+        "Station": "Лихоборы",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Северный административный округ",
+        "District": "район Коптево",
+        "MCDStation": {
+            "global_id": 2608946727,
+            "value": "Лихоборы"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155537,
+            "value": "Лихоборы"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904737
+    },
+    {
+        "ID": 292,
+        "Station": "Автозаводская",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Южный административный округ",
+        "District": "Даниловский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904738
+    },
+    {
+        "ID": 271,
+        "Station": "Шоссе Энтузиастов",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Соколиная Гора",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904739
+    },
+    {
+        "ID": 283,
+        "Station": "Хорошёво",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Северный административный округ",
+        "District": "Хорошёвский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904740
+    },
+    {
+        "ID": 296,
+        "Station": "Соколиная Гора",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Соколиная Гора",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904741
+    },
+    {
+        "ID": 273,
+        "Station": "Локомотив",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Преображенское",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [
+            {
+                "global_id": 1124877069,
+                "value": "Восточный"
+            }
+        ],
+        "ObjectStatus": "действует",
+        "global_id": 277904742
+    },
+    {
+        "ID": 286,
+        "Station": "Кутузовская",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Западный административный округ",
+        "District": "район Дорогомилово",
+        "MCDStation": {
+            "global_id": 2616703635,
+            "value": "Кутузовская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 2616728372,
+            "value": "Кутузовская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904743
+    },
+    {
+        "ID": 281,
+        "Station": "Балтийская",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Северный административный округ",
+        "District": "Войковский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904744
+    },
+    {
+        "ID": 278,
+        "Station": "Владыкино",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "район Марфино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904745
+    },
+    {
+        "ID": 293,
+        "Station": "Угрешская",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "район Печатники",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904746
+    },
+    {
+        "ID": 277,
+        "Station": "Ботанический сад",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "район Свиблово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904747
+    },
+    {
+        "ID": 270,
+        "Station": "Андроновка",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Перово",
+        "MCDStation": {
+            "global_id": 2608948202,
+            "value": "Андроновка"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155444,
+            "value": "Андроновка"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904748
+    },
+    {
+        "ID": 297,
+        "Station": "Дубровка",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "Южнопортовый район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904749
+    },
+    {
+        "ID": 272,
+        "Station": "Измайлово",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Соколиная Гора",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904750
+    },
+    {
+        "ID": 287,
+        "Station": "Лужники",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Центральный административный округ",
+        "District": "район Хамовники",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904751
+    },
+    {
+        "ID": 295,
+        "Station": "Нижегородская",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "Нижегородский район",
+        "MCDStation": {
+            "global_id": 2616714661,
+            "value": "Нижегородская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155557,
+            "value": "Нижегородская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904752
+    },
+    {
+        "ID": 294,
+        "Station": "Новохохловская",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "Нижегородский район",
+        "MCDStation": {
+            "global_id": 1059235164,
+            "value": "Новохохловская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904753
+    },
+    {
+        "ID": 291,
+        "Station": "ЗИЛ",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Южный административный округ",
+        "District": "Даниловский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904754
+    },
+    {
+        "ID": 290,
+        "Station": "Верхние Котлы",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Южный административный округ",
+        "District": "Нагорный район",
+        "MCDStation": [],
+        "AeroexpressStation": {
+            "global_id": 1508979796,
+            "value": "Верхние Котлы"
+        },
+        "RailwayStation": {
+            "global_id": 1132155488,
+            "value": "Верхние Котлы"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904755
+    },
+    {
+        "ID": 275,
+        "Station": "Белокаменная",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Богородское",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904756
+    },
+    {
+        "ID": 276,
+        "Station": "Ростокино",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "район Ростокино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155477,
+            "value": "Ростокино"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904757
+    },
+    {
+        "ID": 285,
+        "Station": "Москва-Сити",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Центральный административный округ",
+        "District": "Пресненский район",
+        "MCDStation": {
+            "global_id": 1058903381,
+            "value": "Тестовская"
+        },
+        "AeroexpressStation": {
+            "global_id": 1508985132,
+            "value": "Тестовская"
+        },
+        "RailwayStation": {
+            "global_id": 1132155494,
+            "value": "Тестовская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904758
+    },
+    {
+        "ID": 274,
+        "Station": "Бульвар Рокоссовского",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Восточный административный округ",
+        "District": "район Богородское",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904759
+    },
+    {
+        "ID": 282,
+        "Station": "Стрешнево",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Северный административный округ",
+        "District": "район Сокол",
+        "MCDStation": {
+            "global_id": 1058985425,
+            "value": "Стрешнево"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155400,
+            "value": "Стрешнево"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904760
+    },
+    {
+        "ID": 289,
+        "Station": "Крымская",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Южный административный округ",
+        "District": "Донской район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904761
+    },
+    {
+        "ID": 279,
+        "Station": "Окружная",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Северный административный округ",
+        "District": "Тимирязевский район",
+        "MCDStation": {
+            "global_id": 1058907212,
+            "value": "Окружная"
+        },
+        "AeroexpressStation": {
+            "global_id": 1508983290,
+            "value": "Окружная"
+        },
+        "RailwayStation": {
+            "global_id": 1132046990,
+            "value": "Окружная"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 277904762
+    },
+    {
+        "ID": 298,
+        "Station": "Петровский парк",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Северный административный округ",
+        "District": "район Аэропорт",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 696737361
+    },
+    {
+        "ID": 299,
+        "Station": "ЦСКА",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Северный административный округ",
+        "District": "Хорошёвский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 696742167
+    },
+    {
+        "ID": 300,
+        "Station": "Шелепиха",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Центральный административный округ",
+        "District": "Пресненский район",
+        "MCDStation": {
+            "global_id": 1058903381,
+            "value": "Тестовская"
+        },
+        "AeroexpressStation": {
+            "global_id": 1508985132,
+            "value": "Тестовская"
+        },
+        "RailwayStation": {
+            "global_id": 1132155494,
+            "value": "Тестовская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 696749112
+    },
+    {
+        "ID": 301,
+        "Station": "Озёрная",
+        "Line": "Солнцевская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Очаково-Матвеевское",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 886123736
+    },
+    {
+        "ID": 302,
+        "Station": "Говорово",
+        "Line": "Солнцевская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Солнцево",
+        "MCDStation": {
+            "global_id": 2616192337,
+            "value": "Солнечная"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155463,
+            "value": "Солнечная"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 886123738
+    },
+    {
+        "ID": 303,
+        "Station": "Беломорская",
+        "Line": "Замоскворецкая линия",
+        "AdmArea": "Северный административный округ",
+        "District": "район Левобережный",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 904474367
+    },
+    {
+        "ID": 304,
+        "Station": "Зорге",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Северо-Западный административный округ",
+        "District": "район Хорошёво-Мнёвники",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 905932318
+    },
+    {
+        "ID": 305,
+        "Station": "Панфиловская",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Северо-Западный административный округ",
+        "District": "район Щукино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 905932372
+    },
+    {
+        "ID": 306,
+        "Station": "Коптево",
+        "Line": "Московское центральное кольцо",
+        "AdmArea": "Северный административный округ",
+        "District": "район Коптево",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 905932373
+    },
+    {
+        "ID": 307,
+        "Station": "Савёловская",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Северный административный округ",
+        "District": "Савёловский район",
+        "MCDStation": {
+            "global_id": 2616710298,
+            "value": "Савёловская"
+        },
+        "AeroexpressStation": {
+            "global_id": 1508984420,
+            "value": "Савёловская"
+        },
+        "RailwayStation": {
+            "global_id": 2616731932,
+            "value": "Савёловская"
+        },
+        "RailwayTerminal": [
+            {
+                "global_id": 1058615229,
+                "value": "Савёловский"
+            }
+        ],
+        "ObjectStatus": "действует",
+        "global_id": 906044097
+    },
+    {
+        "ID": 308,
+        "Station": "Филатов луг",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Новомосковский административный округ",
+        "District": "поселение Сосенское",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 930063626
+    },
+    {
+        "ID": 309,
+        "Station": "Прокшино",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Новомосковский административный округ",
+        "District": "поселение Сосенское",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 930063627
+    },
+    {
+        "ID": 310,
+        "Station": "Ольховая",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Новомосковский административный округ",
+        "District": "поселение Сосенское",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 930063628
+    },
+    {
+        "ID": 311,
+        "Station": "Коммунарка",
+        "Line": "Сокольническая линия",
+        "AdmArea": "Новомосковский административный округ",
+        "District": "поселение Сосенское",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 930063629
+    },
+    {
+        "ID": 315,
+        "Station": "Лефортово",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Юго-Восточный административный округ",
+        "District": "район Лефортово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 1045820903
+    },
+    {
+        "ID": 312,
+        "Station": "Зюзино",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "район Зюзино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 1045820911
+    },
+    {
+        "ID": 316,
+        "Station": "Народное Ополчение",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Северо-Западный административный округ",
+        "District": "район Хорошёво-Мнёвники",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 1103704696
+    },
+    {
+        "ID": 318,
+        "Station": "Давыдково",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Западный административный округ",
+        "District": "Можайский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 1266781625
+    },
+    {
+        "ID": 324,
+        "Station": "Аминьевская",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Очаково-Матвеевское",
+        "MCDStation": {
+            "global_id": 2616700783,
+            "value": "Аминьевская"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1272850193,
+            "value": "Аминьевская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 1266781654
+    },
+    {
+        "ID": 320,
+        "Station": "Новаторская",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Юго-Западный административный округ",
+        "District": "Обручевский район",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 1266781655
+    },
+    {
+        "ID": 321,
+        "Station": "Варшавская",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Южный административный округ",
+        "District": "район Москворечье-Сабурово",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 1132155586,
+            "value": "Варшавская"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 2373307655
+    },
+    {
+        "ID": 322,
+        "Station": "Марьина Роща",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "район Марьина Роща",
+        "MCDStation": {
+            "global_id": 2616711070,
+            "value": "Марьина Роща"
+        },
+        "AeroexpressStation": [],
+        "RailwayStation": {
+            "global_id": 2616732060,
+            "value": "Марьина Роща"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 2536249332
+    },
+    {
+        "ID": 323,
+        "Station": "Кленовый бульвар",
+        "Line": "Большая кольцевая линия",
+        "AdmArea": "Южный административный округ",
+        "District": "район Нагатинский Затон",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 2536249481
+    },
+    {
+        "ID": 328,
+        "Station": "Пыхтино",
+        "Line": "Солнцевская линия",
+        "AdmArea": "Новомосковский административный округ",
+        "District": "поселение Внуковское",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 2615650327
+    },
+    {
+        "ID": 325,
+        "Station": "Аэропорт Внуково",
+        "Line": "Солнцевская линия",
+        "AdmArea": "Западный административный округ",
+        "District": "район Внуково",
+        "MCDStation": [],
+        "AeroexpressStation": {
+            "global_id": 1508979119,
+            "value": "Аэропорт Внуково"
+        },
+        "RailwayStation": {
+            "global_id": 2608387310,
+            "value": "Аэропорт"
+        },
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 2615650424
+    },
+    {
+        "ID": 326,
+        "Station": "Яхромская",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Северный административный округ",
+        "District": "район Восточное Дегунино",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 2615990671
+    },
+    {
+        "ID": 327,
+        "Station": "Физтех",
+        "Line": "Люблинско-Дмитровская линия",
+        "AdmArea": "Северо-Восточный административный округ",
+        "District": "район Северный",
+        "MCDStation": [],
+        "AeroexpressStation": [],
+        "RailwayStation": [],
+        "RailwayTerminal": [],
+        "ObjectStatus": "действует",
+        "global_id": 2615990718
+    }
+]
