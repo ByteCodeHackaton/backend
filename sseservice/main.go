@@ -102,7 +102,8 @@ func randomHandler(w http.ResponseWriter, r *http.Request) {
 		// имитация данных, надо переделать, брать из бд или из api ->
 		countOrder := rand.Intn(15)
 
-		fio_ := generateRandomString(10)
+		fio_, _ := getEmployeeFromDb(50)
+		//fio_ := generateRandomString(10)
 		station_, _ := getStationFromDb(328)
 		//station_ := generateRandomString(20)
 		date_ := time.Now().Format("2006-01-02")
@@ -157,6 +158,18 @@ func getStationFromDb(length int) (string, error) {
 		return station, err
 	}
 	return station, nil
+}
+
+func getEmployeeFromDb(length int) (string, error) {
+	id := seededRand.Intn(length)
+	var family, name, secondname string
+
+	row := db.QueryRowContext(context.Background(), `SELECT family, name, second_name FROM employee WHERE id=?`, id)
+	err := row.Scan(&family, &name, &secondname)
+	if err != nil {
+		return "", err
+	}
+	return family + " " + name + " " + secondname, nil
 }
 
 func generateRandomString(length int) string {
