@@ -133,7 +133,7 @@ func main() {
 	var employee Employee
 	for _, line := range lines {
 		fio := strings.Split(line, " ")
-		employee.Family = fio[2]
+		employee.Family = strings.ReplaceAll(fio[2], "\r", "")
 		employee.Name = fio[0]
 		employee.SecondName = fio[1]
 		//fmt.Println(employee.Family, employee.Name, employee.SecondName)
