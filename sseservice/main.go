@@ -109,7 +109,7 @@ func randomHandler(w http.ResponseWriter, r *http.Request) {
 		for i := 0; i < countOrder; i++ {
 
 			stationstart_, _ := getStationFromDb(327)
-			stationend_, _ := getStationFromDb(328)
+			stationend_, _ := getStationFromDb(327)
 			//fio_ := generateRandomString(10)
 			//station_ := generateRandomString(20)
 
