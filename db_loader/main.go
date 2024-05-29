@@ -8,6 +8,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"strings"
 
 	_ "modernc.org/sqlite"
 )
@@ -44,6 +45,12 @@ type Station struct {
 	// RailwayTerminal_    []RailwayTerminal    `json:"RailwayTerminal,omitempty"`
 	ObjectStatus string `json:"ObjectStatus" example:"действует"`
 	GlobalId     int    `json:"global_id" example:"58701962"`
+}
+
+type Employee struct {
+	Family     string `json:"family" example:"Иванов"`
+	Name       string `json:"name" example:"Иван"`
+	SecondName string `json:"secondname" example:"Иванович"`
 }
 
 var db *sql.DB
@@ -112,6 +119,44 @@ func main() {
 			fmt.Println("Add admarea - ", result[i].AdmArea)
 		}
 	}
+
+	// employee ->
+	filenameStr := "fio.txt"
+	data, err = os.ReadFile(filenameStr)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("Read", filenameStr)
+	lines := strings.Split(string(data), "\n")
+
+	var employee Employee
+	for _, line := range lines {
+		fio := strings.Split(line, " ")
+		employee.Family = fio[2]
+		employee.Name = fio[0]
+		employee.SecondName = fio[1]
+		//fmt.Println(employee.Family, employee.Name, employee.SecondName)
+		id, _ := addEmployeeToDb(employee.Family, employee.Name, employee.SecondName)
+		if id > 0 {
+			fmt.Println("Add employee - ", employee.Family, employee.Name, employee.SecondName)
+		}
+	}
+	// <-
+}
+
+func addEmployeeToDb(family string, name string, secondname string) (int64, error) {
+	result, err := db.ExecContext(context.Background(), `INSERT INTO employee (family, name, second_name) VALUES (?, ?, ?);`,
+		family, name, secondname)
+	if err != nil {
+		return 0, err
+	}
+	var id_ int64
+	id_, err = result.LastInsertId()
+	if err != nil {
+		return 0, err
+	}
+	return id_, nil
 }
 
 func addStationToDb(id int, station string, line string, adm_area string, district string, object_status string, global_id int64) (int64, error) {
