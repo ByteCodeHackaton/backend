@@ -169,7 +169,7 @@ func getStationFromDb(length int) (string, error) {
 }
 
 func getEmployeeFromDb(length int) (string, error) {
-	id := seededRand.Intn(length) + 1
+	id := seededRand.Intn(length) + 51
 	var family, name, secondname string
 
 	row := db.QueryRowContext(context.Background(), `SELECT family, name, second_name FROM employee WHERE id=?`, id)
