@@ -30,6 +30,8 @@ type (
 		Number       int      `json:"number,omitempty"`
 		StartTime    string   `json:"startTime,omitempty"`
 		EndTime      string   `json:"endTime,omitempty"`
+		StationStart string   `json:"stationstart,omitempty"`
+		StationEnd   string   `json:"stationend,omitempty"`
 		PersonsCount int      `json:"personscount,omitempty"`
 		Persons      []Person `json:"person,omitempty"`
 	}
@@ -100,18 +102,22 @@ func randomHandler(w http.ResponseWriter, r *http.Request) {
 		var order_ []Order
 		var person_ []Person
 		// имитация данных, надо переделать, брать из бд или из api ->
-		countOrder := rand.Intn(15)
+		countOrder := rand.Intn(15) + 1
 
-		fio_, _ := getEmployeeFromDb(50)
-		//fio_ := generateRandomString(10)
-		station_, _ := getStationFromDb(328)
-		//station_ := generateRandomString(20)
 		date_ := time.Now().Format("2006-01-02")
 
 		for i := 0; i < countOrder; i++ {
 
-			countPersons := rand.Intn(4)
+			stationstart_, _ := getStationFromDb(327)
+			stationend_, _ := getStationFromDb(328)
+			//fio_ := generateRandomString(10)
+			//station_ := generateRandomString(20)
+
+			person_ = nil
+			countPersons := rand.Intn(3) + 1
 			for j := 0; j < countPersons; j++ {
+				fio_, _ := getEmployeeFromDb(49)
+				station_, _ := getStationFromDb(327)
 				person_ = append(person_,
 					Person{
 						Fio:     fio_,
@@ -123,6 +129,8 @@ func randomHandler(w http.ResponseWriter, r *http.Request) {
 					Number:       int(rand.Int31() % 53),
 					StartTime:    time.Now().Format("2006-01-02"),
 					EndTime:      time.Now().Format("2006-01-02"),
+					StationStart: stationstart_,
+					StationEnd:   stationend_,
 					PersonsCount: countPersons,
 					Persons:      person_})
 
@@ -149,7 +157,7 @@ func randomHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func getStationFromDb(length int) (string, error) {
-	id := seededRand.Intn(length)
+	id := seededRand.Intn(length) + 1
 	var station = ""
 
 	row := db.QueryRowContext(context.Background(), `SELECT station FROM station WHERE id=?`, id)
@@ -161,7 +169,7 @@ func getStationFromDb(length int) (string, error) {
 }
 
 func getEmployeeFromDb(length int) (string, error) {
-	id := seededRand.Intn(length)
+	id := seededRand.Intn(length) + 1
 	var family, name, secondname string
 
 	row := db.QueryRowContext(context.Background(), `SELECT family, name, second_name FROM employee WHERE id=?`, id)
