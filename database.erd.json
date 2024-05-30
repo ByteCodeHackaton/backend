@@ -2,16 +2,16 @@
   "$schema": "https://raw.githubusercontent.com/dineug/erd-editor/main/json-schema/schema.json",
   "version": "3.0.0",
   "settings": {
-    "width": 2000,
-    "height": 2000,
-    "scrollTop": 0,
-    "scrollLeft": -66.9911,
+    "width": 3000,
+    "height": 3000,
+    "scrollTop": -120,
+    "scrollLeft": -2.7676,
     "zoomLevel": 0.9,
     "show": 431,
     "database": 32,
     "databaseName": "",
     "canvasType": "ERD",
-    "language": 1,
+    "language": 16,
     "tableNameCase": 4,
     "columnNameCase": 2,
     "bracketType": 1,
@@ -45,7 +45,9 @@
     "indexIds": [
       "IX4kWNsP2G3Gt8UGfBzQC"
     ],
-    "memoIds": []
+    "memoIds": [
+      "l5OS7Dx8Z7HXWXYg2kjyy"
+    ]
   },
   "collections": {
     "tableEntities": {
@@ -71,15 +73,15 @@
           "dEcHCvgFPo5tSbZ64p1Aa"
         ],
         "ui": {
-          "x": 0.3334,
-          "y": 3.7778,
+          "x": 4.3334,
+          "y": 4.7778,
           "zIndex": 2,
           "widthName": 63,
           "widthComment": 60,
           "color": "#8BC34A"
         },
         "meta": {
-          "updateAt": 1717056190926,
+          "updateAt": 1717056607411,
           "createAt": 1717053265688
         }
       },
@@ -148,15 +150,15 @@
           "24KWXDG0IlH2w4mfav1u-"
         ],
         "ui": {
-          "x": -8.1111,
-          "y": 366.3332,
+          "x": 3.8889,
+          "y": 362.3332,
           "zIndex": 156,
           "widthName": 78,
           "widthComment": 60,
           "color": "#9C27B0"
         },
         "meta": {
-          "updateAt": 1717056214164,
+          "updateAt": 1717056610378,
           "createAt": 1717054361389
         }
       },
@@ -229,7 +231,7 @@
           "color": "#5FDA28"
         },
         "meta": {
-          "updateAt": 1717056222332,
+          "updateAt": 1717056785402,
           "createAt": 1717055561825
         }
       }
@@ -1135,8 +1137,8 @@
           "columnIds": [
             "hDfVHxcraHOKk-DzM7o3Z"
           ],
-          "x": 222.3889,
-          "y": 366.3332,
+          "x": 234.3889,
+          "y": 362.3332,
           "direction": 4
         },
         "end": {
@@ -1144,8 +1146,8 @@
           "columnIds": [
             "dEcHCvgFPo5tSbZ64p1Aa"
           ],
-          "x": 196.3334,
-          "y": 179.7778,
+          "x": 200.3334,
+          "y": 180.7778,
           "direction": 8
         },
         "meta": {
@@ -1275,8 +1277,8 @@
           "columnIds": [
             "hDfVHxcraHOKk-DzM7o3Z"
           ],
-          "x": 452.8889,
-          "y": 442.3332,
+          "x": 464.8889,
+          "y": 438.3332,
           "direction": 2
         },
         "end": {
@@ -1309,7 +1311,24 @@
       }
     },
     "indexColumnEntities": {},
-    "memoEntities": {}
+    "memoEntities": {
+      "l5OS7Dx8Z7HXWXYg2kjyy": {
+        "id": "l5OS7Dx8Z7HXWXYg2kjyy",
+        "value": "Начало и окончание заявки которая взята в работу + список сотрудников, когда end_work будет больше текущего времени заявку надо будет удалить",
+        "ui": {
+          "x": 942,
+          "y": 780,
+          "zIndex": 422,
+          "width": 116,
+          "height": 191,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1717056819561,
+          "createAt": 1717056765269
+        }
+      }
+    }
   },
   "lww": {
     "UxXXdokyIOuHtode2hTyj": [
@@ -1769,7 +1788,8 @@
       -1,
       {
         "name": 1717055574367,
-        "ui.color": 1717055736154
+        "ui.color": 1717055736154,
+        "comment": 1717056785385
       }
     ],
     "bzCIWCimx4pz5i4L8-Ity": [
@@ -1859,6 +1879,14 @@
       1717056203397,
       -1,
       {}
+    ],
+    "l5OS7Dx8Z7HXWXYg2kjyy": [
+      "memoEntities",
+      1717056765224,
+      -1,
+      {
+        "value": 1717056819556
+      }
     ]
   }
 }
