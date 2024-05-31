@@ -10,6 +10,7 @@ import (
 	"os"
 	"strings"
 
+	uuid "github.com/satori/go.uuid"
 	_ "modernc.org/sqlite"
 )
 
@@ -45,12 +46,6 @@ type Station struct {
 	// RailwayTerminal_    []RailwayTerminal    `json:"RailwayTerminal,omitempty"`
 	ObjectStatus string `json:"ObjectStatus" example:"действует"`
 	GlobalId     int    `json:"global_id" example:"58701962"`
-}
-
-type Employee struct {
-	Family     string `json:"family" example:"Иванов"`
-	Name       string `json:"name" example:"Иван"`
-	SecondName string `json:"secondname" example:"Иванович"`
 }
 
 var db *sql.DB
@@ -130,24 +125,24 @@ func main() {
 	fmt.Println("Read", filenameStr)
 	lines := strings.Split(string(data), "\n")
 
-	var employee Employee
 	for _, line := range lines {
-		fio := strings.Split(line, " ")
-		employee.Family = strings.ReplaceAll(fio[2], "\r", "")
-		employee.Name = fio[0]
-		employee.SecondName = fio[1]
-		//fmt.Println(employee.Family, employee.Name, employee.SecondName)
-		id, _ := addEmployeeToDb(employee.Family, employee.Name, employee.SecondName)
+
+		employee := strings.Split(strings.ReplaceAll(line, "\r", ""), " ")
+		fio := employee[2] + " " + employee[0] + " " + employee[1]
+
+		id, _ := addEmployeeToDb(fio, 0)
 		if id > 0 {
-			fmt.Println("Add employee - ", employee.Family, employee.Name, employee.SecondName)
+			fmt.Println("Add employee - ", fio)
 		}
 	}
 	// <-
 }
 
-func addEmployeeToDb(family string, name string, secondname string) (int64, error) {
-	result, err := db.ExecContext(context.Background(), `INSERT INTO employee (family, name, second_name) VALUES (?, ?, ?);`,
-		family, name, secondname)
+func addEmployeeToDb(fio string, is_busy int) (int64, error) {
+	uuid := uuid.NewV4()
+	fmt.Printf("New UUID: %s ", uuid)
+	result, err := db.ExecContext(context.Background(), `INSERT INTO employees (id, fio, is_busy) VALUES (?, ?, ?);`,
+		uuid, fio, is_busy)
 	if err != nil {
 		return 0, err
 	}
