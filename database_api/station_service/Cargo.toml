@@ -10,3 +10,5 @@ rustworkx-core = {git = "https://github.com/Qiskit/rustworkx", version = "0.15.0
 serde="*"
 serde_json="1.0.117"
 logger = {git = "https://github.com/P40b0s/logger.git", branch = "main"}
+once_cell = "*"
+hashbrown="*"

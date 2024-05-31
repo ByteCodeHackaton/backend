@@ -1,23 +1,31 @@
+use std::sync::{Arc, Mutex};
 use std::{collections::HashMap, fs::File, io::BufReader, path::Path};
 use logger::{error, info};
 use rustworkx_core::petgraph::algo::{dijkstra, floyd_warshall};
 use rustworkx_core::petgraph::data::{Build, DataMap};
 use rustworkx_core::petgraph::graph::{DiGraph, Node, NodeIndex};
-use rustworkx_core::petgraph::visit::{EdgeIndexable, EdgeRef, IntoNodeIdentifiers, IntoNodeReferences};
+use rustworkx_core::petgraph::visit::{EdgeIndexable, EdgeRef, IntoNodeIdentifiers, IntoNodeReferences, NodeRef};
+use serde::de::DeserializeOwned;
+use serde::{Deserialize, Serialize};
 use serde_json::Value;
+use once_cell::sync::Lazy;
 use rustworkx_core::petgraph::Graph;
 use rustworkx_core::centrality::betweenness_centrality;
 
 
+static LABELS : Lazy<Mutex<HashMap<String, String>>> = Lazy::new(|| Mutex::new(HashMap::new()));
+static NODEID_STATIONID : Lazy<Mutex<HashMap<String, String>>> = Lazy::new(|| Mutex::new(HashMap::new()));
+static NODEID_NODEINDEX : Lazy<Mutex<HashMap<NodeIndex<u32>, String>>> = Lazy::new(|| Mutex::new(HashMap::new()));
+static NODEID_NODEINDEX_REVERSE : Lazy<Mutex<HashMap<NodeIndex<u32>, String>>> = Lazy::new(|| Mutex::new(HashMap::new()));
 
-pub struct Station
+#[derive(Serialize, Deserialize, Clone)]
+pub struct StationObject<'a> where Self: DeserializeOwned
 {
-    id: String,
-    name: String,
-    ///Соотношение nodeId и stationId
-    stations_dict: HashMap<String, String>,
-    node_indexes: HashMap<String, u32>
-
+    stations_dict: HashMap<&'a str, &'a str>,
+    labels: HashMap<&'a str, &'a str>,
+    node_indexes: HashMap<&'a str, usize>,
+    ///a, b, weight
+    edges: Vec<(usize, usize, usize)>
 }
 
 
@@ -41,6 +49,14 @@ fn get_graph()
     let mut labels : HashMap<&str, &str> = HashMap::new();
     let mut node_indexes : HashMap<&str, NodeIndex<u32>> = HashMap::new();
     let mut node_indexes_reverse : HashMap<NodeIndex<u32>, &str> = HashMap::new();
+    let mut so = StationObject
+    {
+        labels: labels.clone(),
+        stations_dict: stations_dict.clone(),
+        node_indexes: HashMap::new(),
+        edges: vec![]
+
+    };
     let names = extract_data("data/names.json").unwrap();
     let graph = extract_data("data/data.json").unwrap();
     for stop in graph["stops"]["items"].as_array().unwrap()
@@ -55,6 +71,7 @@ fn get_graph()
         {
             let node_index = g.add_node(id);
             node_indexes.insert(id,  node_index);
+            so.node_indexes.insert(id,  node_index.index());
             node_indexes_reverse.insert(node_index, id);
         }
     }
@@ -65,6 +82,7 @@ fn get_graph()
         if a.is_some() && b.is_some()
         {
             let len = link["attributes"]["time"].as_u64().unwrap() as usize;
+            so.edges.push((a.unwrap().index(), b.unwrap().index(), len));
             g.add_edge(a.unwrap().to_owned(), b.unwrap().to_owned(), len);
         }
     }
@@ -79,6 +97,8 @@ fn get_graph()
             }
         } 
     }
+    so.labels = labels.clone();
+    
     let i1 = node_indexes.get("nd89811596").unwrap();
     let i2 = node_indexes.get("nd77715428").unwrap();
     let dij = dijkstra(&g, i1.to_owned(),  Some(i2.to_owned()), |e| *e.weight());
@@ -91,6 +111,7 @@ fn get_graph()
             info!("{} -> {} = {}",labels.get("nd89811596").unwrap(), labels.get("nd77715428").unwrap(), (v.1 as f32 / 60.0).ceil());
         }
     }
+
 }
 
 
