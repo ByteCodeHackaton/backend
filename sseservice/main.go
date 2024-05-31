@@ -169,15 +169,15 @@ func getStationFromDb(length int) (string, error) {
 }
 
 func getEmployeeFromDb(length int) (string, error) {
-	id := seededRand.Intn(length) + 51
-	var family, name, secondname string
-
-	row := db.QueryRowContext(context.Background(), `SELECT family, name, second_name FROM employee WHERE id=?`, id)
-	err := row.Scan(&family, &name, &secondname)
+	//id := 0 //seededRand.Intn(length) + 51
+	//row := db.QueryRowContext(context.Background(), `SELECT fio WHERE id_busy=?`, id)
+	var fio string
+	row := db.QueryRowContext(context.Background(), `SELECT fio FROM employees ORDER BY RANDOM() LIMIT 1`)
+	err := row.Scan(&fio)
 	if err != nil {
 		return "", err
 	}
-	return family + " " + name + " " + secondname, nil
+	return fio, nil
 }
 
 func generateRandomString(length int) string {
