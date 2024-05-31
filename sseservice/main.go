@@ -160,7 +160,7 @@ func getStationFromDb(length int) (string, error) {
 	id := seededRand.Intn(length) + 1
 	var station = ""
 
-	row := db.QueryRowContext(context.Background(), `SELECT station FROM station WHERE id=?`, id)
+	row := db.QueryRowContext(context.Background(), `SELECT station_name FROM station WHERE id=?`, id)
 	err := row.Scan(&station)
 	if err != nil {
 		return station, err
@@ -169,8 +169,6 @@ func getStationFromDb(length int) (string, error) {
 }
 
 func getEmployeeFromDb(length int) (string, error) {
-	//id := 0 //seededRand.Intn(length) + 51
-	//row := db.QueryRowContext(context.Background(), `SELECT fio WHERE id_busy=?`, id)
 	var fio string
 	row := db.QueryRowContext(context.Background(), `SELECT fio FROM employees ORDER BY RANDOM() LIMIT 1`)
 	err := row.Scan(&fio)
