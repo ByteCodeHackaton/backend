@@ -1,6 +1,7 @@
 use std::sync::{Arc, Mutex};
 use std::{collections::HashMap, fs::File, io::BufReader, path::Path};
 use logger::{error, info};
+use petgraph::graph::UnGraph;
 use rustworkx_core::petgraph::algo::{dijkstra, floyd_warshall};
 use rustworkx_core::petgraph::data::{Build, DataMap};
 use rustworkx_core::petgraph::graph::{DiGraph, Node, NodeIndex};
@@ -111,6 +112,102 @@ fn get_graph()
             info!("{} -> {} = {}",labels.get("nd89811596").unwrap(), labels.get("nd77715428").unwrap(), (v.1 as f32 / 60.0).ceil());
         }
     }
+
+}
+
+#[derive(Clone, Eq, PartialEq, Ord, PartialOrd, Hash)]
+struct Station
+{
+    node_id: String,
+    station_id: String,
+    station_name: String
+}
+
+struct MetroMap
+{
+    map: petgraph::Graph<Station, usize>
+}
+
+fn generate_new_shema()
+{
+    let mut stations_dict : HashMap<&str, &str> = HashMap::new();
+    let mut labels : HashMap<&str, &str> = HashMap::new();
+    let mut node_indexes : HashMap<&str, NodeIndex<u32>> = HashMap::new();
+    let mut node_indexes_reverse : HashMap<NodeIndex<u32>, &str> = HashMap::new();
+    let names = extract_data("data/names.json").unwrap();
+    let graph = extract_data("data/data.json").unwrap();
+    let mut g = petgraph::Graph::<Station, usize>::new();
+    for stop in graph["stops"]["items"].as_array().unwrap()
+    {
+        let node_id = stop["nodeId"].as_str().unwrap();
+        let station_id = stop["stationId"].as_str().unwrap();
+        let mut name = String::new();
+        let node_name = [station_id, "-name"].concat();
+        if let Some(label) = names.get("keysets").and_then(|g|g.get("generated").and_then(|d| d.get(node_name).and_then(|ru| ru.get("ru"))))
+        {
+            name = label.as_str().unwrap().into();
+        }
+        if let Some(node) = graph["nodes"]["items"].as_array().unwrap().iter().find(|f| f["id"] == station_id)
+        {
+            let station = Station
+            {
+                station_id: station_id.to_owned(),
+                node_id: node_id.to_owned(),
+                station_name: name
+            };
+            let index = g.add_node(station);
+            node_indexes.insert(node_id, index);
+        }
+    }
+
+    
+    // let mut g = Graph::<&str, usize>::new();
+    // for node in graph["nodes"]["items"].as_array().unwrap()
+    // {
+    //     let id = node["id"].as_str().unwrap();
+    //     if stations_dict.contains_key(id)
+    //     {
+    //         let node_index = g.add_node(id);
+    //         node_indexes.insert(id,  node_index);
+    //         node_indexes_reverse.insert(node_index, id);
+    //     }
+    // }
+    for link in graph["links"]["items"].as_array().unwrap()
+    {
+        let a = node_indexes.get(link["fromNodeId"].as_str().unwrap());
+        let b = node_indexes.get(link["toNodeId"].as_str().unwrap());
+        if a.is_some() && b.is_some()
+        {
+            let len = link["attributes"]["time"].as_u64().unwrap() as usize;
+            g.add_edge(a.unwrap().to_owned(), b.unwrap().to_owned(), len);
+        }
+    }
+    // for id in g.raw_nodes()
+    // {
+    //     if let Some(int_name) = stations_dict.get(&id.weight)
+    //     {
+    //         let node_name = [int_name, "-name"].concat();
+    //         if let Some(label) = names.get("keysets").and_then(|g|g.get("generated").and_then(|d| d.get(node_name).and_then(|ru| ru.get("ru"))))
+    //         {
+    //             labels.insert(id.weight, label.as_str().unwrap());
+    //         }
+    //     } 
+    // }
+    // so.labels = labels.clone();
+    
+    let i1 = node_indexes.get("nd89811596").unwrap();
+    let i2 = node_indexes.get("nd77715428").unwrap();
+    let dij = dijkstra(&g, i1.to_owned(),  Some(i2.to_owned()), |e| *e.weight());
+    for v in dij
+    {
+        //let node_str_index = node_indexes_reverse.get(&v.0).unwrap();
+        //info!("{}, {}", v.1, labels.get(node_str_index).unwrap());
+        if &v.0 == i2
+        {
+            info!("{} -> {} = {}",labels.get("nd89811596").unwrap(), labels.get("nd77715428").unwrap(), (v.1 as f32 / 60.0).ceil());
+        }
+    }
+    plotters:: draw_graph(&g);
 
 }
 
