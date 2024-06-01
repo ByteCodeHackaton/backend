@@ -12,7 +12,7 @@ serde_derive="*"
 serde_json="1.0.117"
 logger = {git = "https://github.com/P40b0s/logger.git", branch = "main"}
 once_cell="*"
-
+thiserror="*"
 
 axum= {version = "0.7.5", features = ["ws"]}
 #axum-macros="0.4.1"
@@ -24,3 +24,4 @@ futures = "0.3.30"
 futures-util = { version = "0.3.30", default-features = false, features = ["sink", "std"] }
 uuid = {version = "*", features = ["v7"]}
 utilites = {git = "https://github.com/P40b0s/help_utilites.git", package = "utilites"}
+reqwest = {version = "*", features = ["json"]}

@@ -65,6 +65,7 @@ pub fn find_nearest(target_node_id: &str, nearest_stations_time: u32) -> Result<
                     });
                 }
             }
+            nearest.sort_by(|a, b| a.time.cmp(&b.time));
             return Ok(nearest);
         }
        

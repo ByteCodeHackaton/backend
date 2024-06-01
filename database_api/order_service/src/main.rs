@@ -1,5 +1,8 @@
 mod order;
 mod api;
+mod error;
+mod operations;
+mod employees;
 use api::run_server;
 use logger::{debug, StructLogger};
 
