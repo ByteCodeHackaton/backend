@@ -39,3 +39,4 @@
 [01-06-2024 18:07:48]:⚙ DEBUG -> request; method=GET uri=/favicon.ico version=HTTP/1.1 headers={"host": "localhost:8888", "user-agent": "Mozilla/5.0 (X11; Linux x86_64; rv:126.0) Gecko/20100101 Firefox/126.0", "accept": "image/avif,image/webp,*/*", "accept-language": "ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3", "accept-encoding": "gzip, deflate, br, zstd", "connection": "keep-alive", "referer": "http://localhost:8888/stations", "sec-fetch-dest": "image", "sec-fetch-mode": "no-cors", "sec-fetch-site": "cross-site", "priority": "u=6"}
 [01-06-2024 18:07:48]:⚙ DEBUG -> started processing request
 [01-06-2024 18:07:48]:⚙ DEBUG -> finished processing request latency=2 ms status=404
+[01-06-2024 19:09:47]:⚙ DEBUG -> Апи сервера доступно на 0.0.0.0:8888
