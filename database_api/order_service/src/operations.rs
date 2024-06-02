@@ -310,6 +310,11 @@ async fn search_in_orders(ord: &RequestOrder, avalible: Vec<(AvalibleEmployees, 
                 }
             }    
         }
+        //если набралось количество необходимое в заявке, то харош
+        if new_order.employess.len() == ord.employees_count as usize
+        {
+            break;
+        }
     }
     if new_order.employess.len() > 0
     {
