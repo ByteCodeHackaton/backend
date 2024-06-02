@@ -1,6 +1,7 @@
 use std::fmt::Display;
 use std::io::Write;
-use std::sync::{Arc, Mutex};
+use std::sync::{Arc};
+use tokio::sync::Mutex;
 use std::{collections::HashMap, fs::File, io::BufReader, path::Path};
 use logger::{error, info};
 use once_cell::sync::Lazy;
@@ -24,10 +25,10 @@ pub struct AvalibleEmployees
     is_busy: bool
 }
 ///Проверяем доступен ли выделенный работник должна совпасть его текущая станция метро и дата заявки
-pub fn search_by_station(id: &str, order_date: &Date) -> Option<AvalibleEmployees>
+pub async fn search_by_station(id: &str, order_date: &Date) -> Vec<AvalibleEmployees>
 {
-    let g = FREE.get().unwrap().lock().unwrap();
-    g.iter().find(|s| &s.station_id == id && s.date.date_is_equalis(order_date)).cloned()
+    let g = FREE.get().unwrap().lock().await;
+    g.iter().filter(|s| &s.station_id == id && s.date.date_is_equalis(order_date)).cloned().collect()
 }
 
 impl AvalibleEmployees

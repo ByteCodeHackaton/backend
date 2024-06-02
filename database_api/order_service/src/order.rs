@@ -1,6 +1,7 @@
 use std::fmt::Display;
 use std::io::Write;
-use std::sync::{Arc, Mutex};
+use std::sync::{Arc};
+use tokio::sync::Mutex;
 use std::{collections::HashMap, fs::File, io::BufReader, path::Path};
 use logger::{error, info};
 use once_cell::sync::Lazy;
@@ -39,12 +40,14 @@ pub struct RequestOrder
     // date
     pub request_date: utilites::Date,
     pub note: Option<String>,
+    //требуемое количество сотрудников (непонятно кто это будет решать)
+    pub employees_count: u32,
     pub place: Place,
 }
 
 impl RequestOrder
 {
-    pub fn new(fio: &str, path_from: &str, path_to: &str, date: Date, note: Option<String>, place: Place) -> Self
+    pub fn new(fio: &str, path_from: &str, path_to: &str, date: Date, count: u32, note: Option<String>, place: Place) -> Self
     {
         let id =  uuid::Uuid::new_v7(Timestamp::from_rfc4122(Date::now().as_naive_datetime().and_utc().timestamp() as u64, fio.len() as u16));
         Self 
@@ -54,6 +57,7 @@ impl RequestOrder
             path_from: path_from.to_owned(),
             path_to: path_to.to_owned(),
             request_date: date,
+            employees_count: count,
             note,
             place
         }
@@ -90,12 +94,13 @@ impl Order
     
 }
 
-pub fn get_orders(avalible: & AvalibleEmployees) -> Vec<Order>
-{
-    let g = ORDERS.get_or_init(|| Arc::new(Mutex::new(vec![])));
-    let guard = g.lock().unwrap();
-    guard.iter().filter(|f| f.employess.iter().find(|e| *e == &avalible.id).is_some()).map(|o| o.to_owned()).collect()
-}
+///получение всех заявок в которых присутсвует данный сотрудник
+// pub fn get_orders(avalible: & AvalibleEmployees) -> Vec<Order>
+// {
+//     let g = ORDERS.get_or_init(|| Arc::new(Mutex::new(vec![])));
+//     let guard = g.lock().unwrap();
+//     guard.iter().filter(|f| f.employess.iter().find(|e| *e == &avalible.id).is_some()).map(|o| o.to_owned()).collect()
+// }
 #[cfg(test)]
 mod tests
 {
