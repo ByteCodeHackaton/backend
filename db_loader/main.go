@@ -8,9 +8,8 @@ import (
 	"io"
 	"log"
 	"os"
-	"strings"
+	"strconv"
 
-	uuid "github.com/satori/go.uuid"
 	_ "modernc.org/sqlite"
 )
 
@@ -46,6 +45,17 @@ type Station struct {
 	// RailwayTerminal_    []RailwayTerminal    `json:"RailwayTerminal,omitempty"`
 	ObjectStatus string `json:"ObjectStatus" example:"действует"`
 	GlobalId     int    `json:"global_id" example:"58701962"`
+}
+
+type Employee struct {
+	Date     string `json:"date"`
+	Timework string `json:"time_work"`
+	Id       string `json:"id"`
+	Fio      string `json:"fio"`
+	Uchastok string `json:"uchastok"`
+	Smena    string `json:"smena"`
+	Rank     string `json:"rank"`
+	Sex      string `json:"sex"`
 }
 
 var db *sql.DB
@@ -115,34 +125,111 @@ func main() {
 		}
 	}
 
-	// employee ->
-	filenameStr := "fio.txt"
-	data, err = os.ReadFile(filenameStr)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println("Read", filenameStr)
-	lines := strings.Split(string(data), "\n")
-
-	for _, line := range lines {
-
-		employee := strings.Split(strings.ReplaceAll(line, "\r", ""), " ")
-		fio := employee[2] + " " + employee[0] + " " + employee[1]
-
-		id, _ := addEmployeeToDb(fio, 0)
-		if id > 0 {
-			fmt.Println("Add employee - ", fio)
-		}
-	}
-	// <-
+	loadEmployees()
 }
 
-func addEmployeeToDb(fio string, is_busy int) (int64, error) {
-	uuid := uuid.NewV4()
-	fmt.Printf("New UUID: %s ", uuid)
-	result, err := db.ExecContext(context.Background(), `INSERT INTO employees (id, fio, is_busy) VALUES (?, ?, ?);`,
-		uuid, fio, is_busy)
+func loadEmployees() {
+	// employee ->
+	// filenameStr := "fio.txt"
+	// data, err = os.ReadFile(filenameStr)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	// fmt.Println("Read", filenameStr)
+	// lines := strings.Split(string(data), "\n")
+
+	// for _, line := range lines {
+
+	// 	employee := strings.Split(strings.ReplaceAll(line, "\r", ""), " ")
+	// 	fio := employee[2] + " " + employee[0] + " " + employee[1]
+
+	// 	id, _ := addEmployeeToDb(fio, 0)
+	// 	if id > 0 {
+	// 		fmt.Println("Add employee - ", fio)
+	// 	}
+	// }
+	// <-
+	filename, err := os.Open("employees.json")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer filename.Close()
+
+	data, err := io.ReadAll(filename)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var result []Employee
+	jsonErr := json.Unmarshal(data, &result)
+
+	if jsonErr != nil {
+		log.Fatal(jsonErr)
+	}
+
+	///////
+	dbPath := "metro.db"
+	err = initDatabase(dbPath)
+	if err != nil {
+		log.Fatal("error initializing DB connection: ", err)
+	}
+	err = db.Ping()
+	if err != nil {
+		log.Fatal("error initializing DB connection: ping error: ", err)
+	}
+	fmt.Println("database initialized..")
+	///////
+
+	for i := 0; i <= len(result)-1; i++ {
+		Id, err := strconv.Atoi(result[i].Id)
+		if err != nil {
+			fmt.Println("Parameter transfer error!")
+			return
+		}
+		addEmployeeToDb(result[i].Date, result[i].Timework, Id, result[i].Fio, result[i].Uchastok, result[i].Smena, result[i].Rank, result[i].Sex)
+		fmt.Println("Add employee - ", result[i].Fio)
+
+		id, _ := addUchastokToDb(result[i].Uchastok)
+		if id > 0 {
+			fmt.Println("Add uchastok - ", result[i].Uchastok)
+		}
+	}
+}
+
+func addEmployeeToDb(date string, timework string, id int, fio string, uchastok string, smena string, rank string, sex string) (int64, error) {
+	result, err := db.ExecContext(context.Background(), `INSERT INTO employees (date, timework, id, fio, uchastok, smena, rank, sex, is_busy) VALUES
+		(?, ?, ?, ?, ?, ?, ?, ?, ?);`, date, timework, id, fio, uchastok, smena, rank, sex, 0)
+	if err != nil {
+		return 0, err
+	}
+	var id_ int64
+	id_, err = result.LastInsertId()
+	if err != nil {
+		return 0, err
+	}
+	return id_, nil
+}
+
+// func addEmployeeToDb(fio string, is_busy int) (int64, error) {
+// 	uuid := uuid.NewV4()
+// 	fmt.Printf("New UUID: %s ", uuid)
+// 	result, err := db.ExecContext(context.Background(), `INSERT INTO employees (id, fio, is_busy) VALUES (?, ?, ?);`,
+// 		uuid, fio, is_busy)
+// 	if err != nil {
+// 		return 0, err
+// 	}
+// 	var id_ int64
+// 	id_, err = result.LastInsertId()
+// 	if err != nil {
+// 		return 0, err
+// 	}
+// 	return id_, nil
+// }
+
+func addUchastokToDb(uchastok string) (int64, error) {
+	result, err := db.ExecContext(context.Background(), `INSERT INTO uchastok_dictionary (uchastok) VALUES (?);`, uchastok)
 	if err != nil {
 		return 0, err
 	}
