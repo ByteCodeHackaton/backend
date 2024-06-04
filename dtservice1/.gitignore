@@ -1,0 +1,13 @@
+# IDE directories and files
+.idea
+.vscode
+
+# Work files
+.station
+
+# Temp files
+go.sum
+go.mod
+
+# Build-file
+main

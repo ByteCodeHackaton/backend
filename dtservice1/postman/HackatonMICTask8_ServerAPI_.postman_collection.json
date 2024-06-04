@@ -1,0 +1,120 @@
+{
+	"info": {
+		"_postman_id": "90e5db62-a337-4186-a55b-a80b9a5fc5a5",
+		"name": "HackatonMICTask8_ServerAPI_",
+		"description": "Сервер HackatonMIC_Task8 предназначен для обмена пакетами между.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18145171"
+	},
+	"item": [
+		{
+			"name": "employee set",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"strictSSL": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "{{content}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\": \"25.04.2024\",\r\n    \"time_work\": \"20:00-08:00\",\r\n    \"id\": \"1300\",\r\n    \"fio\": \"Тестов В.И.\",\r\n    \"uchastok\": \"ЦУ-4 (Н)\",\r\n    \"smena\": \"2Н\",\r\n    \"rank\": \"ЦИ\",\r\n    \"sex\": \"Мужской\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/employee/set",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}{{api}}",
+					"path": [
+						"employee",
+						"set"
+					]
+				},
+				"description": "Добавление сообщения на сервис\n\nPOST метод осуществляет отправку сообщения на сервис."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "protocol",
+			"value": "http",
+			"type": "string"
+		},
+		{
+			"key": "url",
+			"value": "127.0.0.1"
+		},
+		{
+			"key": "port",
+			"value": "5010",
+			"type": "string"
+		},
+		{
+			"key": "api",
+			"value": "/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "fio",
+			"value": "Иванов А.В.",
+			"type": "string"
+		}
+	]
+}
