@@ -31,6 +31,12 @@ type Employee struct {
 	Sex      string `json:"sex"`
 }
 
+type Passenger struct {
+	Fio      string `json:"fio"`
+	Phone    string `json:"phone"`
+	Category int    `json:"category"`
+}
+
 type Response struct {
 	State    string     `json:"state,omitempty" example:"error"`
 	Message  string     `json:"message,omitempty" example:"ок"`
