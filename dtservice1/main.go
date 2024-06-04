@@ -34,13 +34,12 @@ func initial() {
 	// можно вынести в переменные окружения ->
 	configuration.HttpDomain = "/api/v1"
 	configuration.HttpPort = ":5010"
-	configuration.DbPath = "metro.db"
-	configuration.DbPath = "1.0"
+	configuration.DbPath = "../db/metro.db"
+	configuration.Version = "1.0"
 	log.Println("Initial configuration complete!")
 
 	// db init ->
-	dbPath := "metro.db"
-	err := initDatabase(dbPath)
+	err := initDatabase(configuration.DbPath)
 	if err != nil {
 		log.Fatal("error initializing DB connection: ", err)
 	}
@@ -59,6 +58,7 @@ func main() {
 
 	router.HandleFunc(configuration.HttpDomain+"/employee/set", PostEmployeeSet).Methods("POST")
 	router.HandleFunc(configuration.HttpDomain+"/employee/list", GetEmployeeList).Methods("GET")
+	router.HandleFunc(configuration.HttpDomain+"/passengers/set", PostEmployeeSet).Methods("POST")
 
 	log.Println("Init router handlers...")
 	server := &http.Server{
@@ -68,6 +68,6 @@ func main() {
 		ReadTimeout:  60 * time.Second,
 	}
 
-	log.Printf("Starting DepTransService1 v.%s on port%s", configuration.Version, configuration.HttpPort)
+	log.Printf("Starting DepTrans API Service v.%s on port%s", configuration.Version, configuration.HttpPort)
 	log.Fatal(server.ListenAndServe())
 }

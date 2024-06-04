@@ -10,29 +10,6 @@ import (
 func PostEmployeeSet(w http.ResponseWriter, r *http.Request) {
 	log.Println("Request employee set..")
 
-	// token := r.FormValue("token")
-	// if len(token) == 0 {
-	// 	message := "Token not found!"
-	// 	http.Error(w, message, http.StatusUnauthorized) // 401
-	// 	log.Warn(message)
-	// 	return
-	// }
-
-	// terminal := Term{}.getValue(token)
-	// if !terminal.isValidWebOr1C() {
-	// 	message := "Error token not web or 1c!"
-	// 	http.Error(w, message, http.StatusNotFound) // 404
-	// 	log.Warning(message)
-	// 	return
-	// }
-
-	// if isNotContentType(r.Header.Get("Content-Type")) {
-	// 	message := "Error unaccepted Content-Type!"
-	// 	http.Error(w, message, http.StatusUnsupportedMediaType) // 415
-	// 	log.Warning(message)
-	// 	return
-	// }
-
 	var emp Employee
 
 	err := json.NewDecoder(r.Body).Decode(&emp)
