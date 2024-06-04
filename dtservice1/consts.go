@@ -32,8 +32,9 @@ type Employee struct {
 }
 
 type Response struct {
-	State   string `json:"state,omitempty" example:"error"`
-	Message string `json:"message,omitempty" example:"ок"`
+	State    string     `json:"state,omitempty" example:"error"`
+	Message  string     `json:"message,omitempty" example:"ок"`
+	Employee []Employee `json:"details,omitempty"`
 }
 
 type DocumentResponse struct {

@@ -35,6 +35,7 @@ func initial() {
 	configuration.HttpDomain = "/api/v1"
 	configuration.HttpPort = ":5010"
 	configuration.DbPath = "metro.db"
+	configuration.DbPath = "1.0"
 	log.Println("Initial configuration complete!")
 
 	// db init ->
@@ -57,7 +58,7 @@ func main() {
 	router := mux.NewRouter()
 
 	router.HandleFunc(configuration.HttpDomain+"/employee/set", PostEmployeeSet).Methods("POST")
-	// router.HandleFunc(configuration.HttpDomain+"/passenger/set", PostPassengerSet).Methods("POST")
+	router.HandleFunc(configuration.HttpDomain+"/employee/list", GetEmployeeList).Methods("GET")
 
 	log.Println("Init router handlers...")
 	server := &http.Server{
@@ -67,6 +68,6 @@ func main() {
 		ReadTimeout:  60 * time.Second,
 	}
 
-	log.Printf("Starting DepTransService2 v.%s on port %s", configuration.Version, configuration.HttpPort)
+	log.Printf("Starting DepTransService1 v.%s on port%s", configuration.Version, configuration.HttpPort)
 	log.Fatal(server.ListenAndServe())
 }
