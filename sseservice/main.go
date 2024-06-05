@@ -61,7 +61,7 @@ func initial() {
 	configuration.HttpPort = ":5000"
 	log.Print("Initial configuration complete!")
 
-	///////
+	// db init ->
 	dbPath := "metro.db"
 	err := initDatabase(dbPath)
 	if err != nil {
@@ -72,7 +72,7 @@ func initial() {
 		log.Fatal("error initializing DB connection: ping error: ", err)
 	}
 	log.Print("database initialized..")
-	///////
+	// db init <-
 }
 
 func main() {
@@ -89,7 +89,7 @@ func randomHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Connection", "keep-alive")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
-	// Send an Intial Connection Response
+	// initial Connection Response
 	fmt.Fprint(w, "data: Connection\n\n")
 	flusher, ok := w.(http.Flusher)
 	if !ok {
@@ -116,7 +116,7 @@ func randomHandler(w http.ResponseWriter, r *http.Request) {
 			person_ = nil
 			countPersons := rand.Intn(3) + 1
 			for j := 0; j < countPersons; j++ {
-				fio_, _ := getEmployeeFromDb(49)
+				fio_, _ := getEmployeeFromDb()
 				station_, _ := getStationFromDb(327)
 				person_ = append(person_,
 					Person{
@@ -168,7 +168,7 @@ func getStationFromDb(length int) (string, error) {
 	return station, nil
 }
 
-func getEmployeeFromDb(length int) (string, error) {
+func getEmployeeFromDb() (string, error) {
 	var fio string
 	row := db.QueryRowContext(context.Background(), `SELECT fio FROM employees ORDER BY RANDOM() LIMIT 1`)
 	err := row.Scan(&fio)
