@@ -108,7 +108,7 @@ mod tests
     fn test_find_nearest()
     {
         logger::StructLogger::initialize_logger();
-        let nrst = super::find_nearest("nd89811596", 10).unwrap();
+        let nrst = super::find_nearest("nd92103542", 10).unwrap();
         for n in nrst
         {
             info!("{}", n);

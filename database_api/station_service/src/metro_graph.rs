@@ -30,6 +30,20 @@ impl MetroGraph
     }
 }
 
+// #[derive(Clone, Serialize, Deserialize, Debug)]
+// pub struct MetroGraph2
+// {
+//     pub graph: Graph<SubwayStation, usize>,
+//     indexes: HashMap<String, NodeIndex<u32>>
+// }
+// impl MetroGraph2
+// {
+//     pub fn get_by_index(&self, node_id: &str) -> Option<&NodeIndex<u32>>
+//     {
+//         self.indexes.get(node_id)
+//     }
+// }
+
 
 fn extract_data<P: AsRef<Path>>(path: P) -> Option<Value>
 {
@@ -144,6 +158,13 @@ fn generate_new_schema(draw_dia: bool)
 #[cfg(test)]
 mod tests
 {
+    use std::{collections::HashMap, io::Write};
+
+    use logger::info;
+    use petgraph::{algo::{self, astar}, data::Build, graph::NodeIndex, visit::{EdgeFiltered, EdgeRef}};
+
+    use crate::{draw::draw_graph, MetroGraph};
+
     #[test]
     fn test_extract_data()
     {
@@ -156,4 +177,71 @@ mod tests
         logger::StructLogger::initialize_logger();
         super::generate_new_schema(false);
     }
+
+    //
+    // #[test]
+    // fn test_generate_new_schema2()
+    // {
+    //     logger::StructLogger::initialize_logger();
+    //     let names = super::extract_data("data/by_task/metro_stations_name.json").unwrap();
+    //     let mut indexes: HashMap<String, NodeIndex<u32>> = HashMap::new();
+    //     let mut g = petgraph::Graph::<SubwayStation, usize>::new();
+    //     for n in names.as_array().unwrap()
+    //     {
+    //         indexes.insert(n["id"].as_str().unwrap().to_owned(),g.add_node(SubwayStation
+    //         {
+    //             id: n["id"].as_str().unwrap().to_owned(),
+    //             line: n["name_line"].as_str().unwrap().to_owned(),
+    //             name: n["name_station"].as_str().unwrap().to_owned()
+    //         }));
+    //     }
+    //     let ride_time = super::extract_data("data/by_task/metro_station_time.json").unwrap();
+    //     for r in ride_time.as_array().unwrap()
+    //     {
+    //         let node_1 = indexes.get(r["id_st1"].as_str().unwrap()).unwrap();
+    //         let node_2 = indexes.get(r["id_st2"].as_str().unwrap()).unwrap();
+    //         let time: f64 = r["time"].as_str().unwrap().replace(",", ".").parse().unwrap();
+    //         let time = (time * 60.0) as usize;
+    //         g.update_edge(node_1.to_owned(), node_2.to_owned(), time as usize);
+    //         //g.update_edge(node_2.to_owned(), node_1.to_owned(), time as usize);
+    //     }
+    //     let walk_time = super::extract_data("data/by_task/metro_walk_time.json").unwrap();
+    //     for r in walk_time.as_array().unwrap()
+    //     {
+    //         let node_1 = indexes.get(r["id1"].as_str().unwrap());
+    //         let node_2 = indexes.get(r["id2"].as_str().unwrap());
+    //         if node_1.is_some() && node_2.is_some()
+    //         {
+    //             let time: f64 = r["time"].as_str().unwrap().replace(",", ".").parse().unwrap();
+    //             let time = (time * 60.0) as usize;
+    //             g.update_edge(node_1.unwrap().to_owned(), node_2.unwrap().to_owned(), time as usize);
+    //             //g.update_edge(node_2.unwrap().to_owned(), node_1.unwrap().to_owned(), time as usize);
+    //         }
+    //         else {
+    //             logger::error!("{:?} {:?}", node_1, node_2);
+    //         }
+          
+    //     }
+
+        
+    //     let serialized_obj = MetroGraph2
+    //     {
+    //         graph: g.clone(),
+    //         indexes: indexes.clone()
+    //     };
+    //     let json = serde_json::to_string(&serialized_obj).unwrap();
+    //     let mut file = std::fs::File::create("map2.json").unwrap();
+    //     let _ = file.write_all(&json.as_bytes());
+
+
+    //     let i1 = serialized_obj.get_by_index("367").unwrap();
+    //     let i2 = serialized_obj.get_by_index("352").unwrap();
+       
+    //     let res = astar(&serialized_obj.graph, i1.to_owned(), |g| &g == i2, |e| *e.weight(), |_| 0).unwrap();
+    //     let stations: Vec<SubwayStation> = res.1.iter().map(|m| serialized_obj.graph.node_weight(*m).unwrap().clone()).collect();
+    //     let time = (res.0 as f32 / 60.0).ceil() as u32;
+    //     logger::info!("{:?} {}", stations, time);
+    // }
+
+
 }

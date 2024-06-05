@@ -21,3 +21,29 @@ impl Display for Station
         f.write_str(&name)
     }
 }
+
+
+  // "name_station": "Павелецкая КЛ",
+        // "name_line": "5",
+        // "id": "83",
+        // "id_line": "5"
+#[derive(Clone, Serialize, Deserialize, Eq, Debug, PartialEq, Ord, PartialOrd, Hash)]
+pub struct SubwayStation
+{
+    pub name: String,
+    pub id: String,
+    pub line: String
+}
+
+impl Display for SubwayStation
+{
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result 
+    {
+        let node = ["id: ", &self.id, " "].concat();
+        let station = ["line: ", &self.line, " "].concat();
+        let name = ["name: ", &self.name].concat();
+        let _ = f.write_str(&node);
+        let _ = f.write_str(&station);
+        f.write_str(&name)
+    }
+}

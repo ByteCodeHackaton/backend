@@ -9,7 +9,7 @@ pub use nearest::Nearest;
 mod metro_path;
 pub use metro_path::MetroPath;
 mod station;
-pub use station::Station;
+pub use station::{Station};
 mod metro_graph;
 pub use metro_graph::{GRAPH, MetroGraph};
 
