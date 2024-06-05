@@ -58,8 +58,10 @@ func main() {
 
 	router.HandleFunc(configuration.HttpDomain+"/employee/set", PostEmployeeSet).Methods("POST")
 	router.HandleFunc(configuration.HttpDomain+"/employee/list", GetEmployeeList).Methods("GET")
-	//router.HandleFunc(configuration.HttpDomain+"/passenger", GetPassenger).Methods("GET")
 	router.HandleFunc(configuration.HttpDomain+"/passenger/set", PostPassengerSet).Methods("POST")
+	router.HandleFunc(configuration.HttpDomain+"/passenger/list", GetPassengerList).Methods("GET")
+	router.HandleFunc(configuration.HttpDomain+"/passenger", GetPassenger).Methods("GET")
+
 	//router.HandleFunc(configuration.HttpDomain+"/passenger/category", GetPassengerCategory).Methods("GET")
 
 	log.Println("Init router handlers...")

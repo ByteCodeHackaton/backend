@@ -5,6 +5,8 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+
+	"github.com/samborkent/uuidv7"
 )
 
 func PostPassengerSet(w http.ResponseWriter, r *http.Request) {
@@ -31,8 +33,10 @@ func PostPassengerSet(w http.ResponseWriter, r *http.Request) {
 	log.Println("database initialized..")
 
 	var message, state string
-	result, err := db.ExecContext(context.Background(), `INSERT INTO passengers (fio, phone, category) VALUES
-		(?, ?, ?);`, passenger.Fio, passenger.Phone, passenger.Category)
+	uuid := uuidv7.New()
+
+	result, err := db.ExecContext(context.Background(), `INSERT INTO passengers (id, fio, phone, category, sex, description, eks) VALUES
+		(?, ?, ?, ?, ?, ?, ?);`, uuid.String(), passenger.Fio, passenger.Phone, passenger.Category, passenger.Sex, passenger.Description, passenger.Eks)
 	if err != nil {
 		message = "Ошибка добавления пассажира: " + err.Error()
 		http.Error(w, message, http.StatusExpectationFailed) // 417
@@ -50,6 +54,7 @@ func PostPassengerSet(w http.ResponseWriter, r *http.Request) {
 	if id_ > 0 {
 		message = "Добавлен пассажир: " + passenger.Fio
 		log.Println(message)
+		state = uuid.String()
 	}
 
 	documentResponse := Response{State: state, Message: message}
