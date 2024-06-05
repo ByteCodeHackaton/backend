@@ -41,6 +41,11 @@ type Passenger struct {
 	Eks         int    `json:"eks"`
 }
 
+type Category struct {
+	Id       string `json:"id"`
+	Category string `json:"category"`
+}
+
 type Response struct {
 	State    string     `json:"state,omitempty" example:"error"`
 	Message  string     `json:"message,omitempty" example:"ок"`
