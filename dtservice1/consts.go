@@ -32,9 +32,13 @@ type Employee struct {
 }
 
 type Passenger struct {
-	Fio      string `json:"fio"`
-	Phone    string `json:"phone"`
-	Category int    `json:"category"`
+	Id          string `json:"id"`
+	Fio         string `json:"fio"`
+	Phone       string `json:"phone"`
+	Category    string `json:"category"`
+	Sex         string `json:"sex"`
+	Description string `json:"description,omitempty"`
+	Eks         int    `json:"eks"`
 }
 
 type Response struct {
@@ -43,6 +47,16 @@ type Response struct {
 	Employee []Employee `json:"details,omitempty"`
 }
 
+type ResponsePassenger struct {
+	State     string      `json:"state,omitempty" example:"error"`
+	Message   string      `json:"message,omitempty" example:"ок"`
+	Passenger []Passenger `json:"details,omitempty"`
+}
+
 type DocumentResponse struct {
-	Document_ Response `json:"document"`
+	Document_ Response `json:"document,omitempty"`
+}
+
+type DocumentResponsePassenger struct {
+	Document_ ResponsePassenger `json:"document,omitempty"`
 }
