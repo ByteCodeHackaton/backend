@@ -9,7 +9,8 @@
 - [ ] [metod post /employee/set](Метод регистрации нового сотрудника метрополитена)
 - [ ] [metod get  /employee/list](Метод получения списка всех сотрудников, работающих по заявкам)
 - [ ] [metod post /passenger/set](Метод регистрации нового пассажира)
-- [ ] [metod get  /passenger](Метод поиска пассажира)
+- [ ] [metod get  /passenger/list](Метод получения списка всех зарегистрированных пассажиров)
+- [ ] [metod get  /passenger](Метод поиска пассажира по ФИО или по номеру телефона)
 
 ## Зависимости
 
@@ -19,6 +20,7 @@ You will need to get the following packages to make it work:
 go get -u github.com/lib/pq
 go get -u github.com/gorilla/mux
 go get -u modernc.org/sqlite
+go get -u github.com/samborkent/uuidv7
 ```
 
 ## Методы
@@ -163,6 +165,35 @@ go get -u modernc.org/sqlite
         ]
     }
 }
+```
+
+--------------------------------------------
+
+### /passenger
+
+входные параметры:
+fio - ФИО пассажира
+и/или
+phone - телефон пассажира
+
+на выходе при успешном выполнении статус 200 и json:
+
+```json
+{
+    "id": "018fe864-84b3-7656-a270-6a57f43821c4",
+    "fio": "Пассажиров П.П.",
+    "phone": "79871234567",
+    "category": "018fe832-ed6a-7150-8aae-cc3596b17ec9",
+    "sex": "Мужской",
+    "description": "",
+    "eks": 0
+}
+```
+
+если пассажир не найден в бд статус 417 и ошибка:
+
+```txt
+Нет такого пассажира в БД: sql: no rows in result set
 ```
 
 --------------------------------------------

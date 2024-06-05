@@ -37,7 +37,7 @@ type Passenger struct {
 	Phone       string `json:"phone"`
 	Category    string `json:"category"`
 	Sex         string `json:"sex"`
-	Description string `json:"description,omitempty"`
+	Description string `json:"description"`
 	Eks         int    `json:"eks"`
 }
 
