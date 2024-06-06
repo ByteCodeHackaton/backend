@@ -334,15 +334,55 @@
 					}
 				],
 				"url": {
-					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/passenger/category/list",
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/category/list",
 					"protocol": "{{protocol}}",
 					"host": [
 						"{{url}}"
 					],
 					"port": "{{port}}{{api}}",
 					"path": [
-						"passenger",
 						"category",
+						"list"
+					]
+				},
+				"description": "Получить весь список документов для закачки на терминал или 1С конфигурацию\n\nGET метод осуществляет выдачу списка пакетов (документов) для закачки на терминал или 1С конфигурацию"
+			},
+			"response": []
+		},
+		{
+			"name": "uchastok list",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/uchastok/list",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}{{api}}",
+					"path": [
+						"uchastok",
 						"list"
 					]
 				},
