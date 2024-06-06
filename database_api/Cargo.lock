@@ -771,14 +771,17 @@ name = "gateway"
 version = "0.1.0"
 dependencies = [
  "consul",
+ "http-body-util",
  "hyper 1.3.1",
  "hyper-tls 0.6.0",
+ "hyper-util",
  "jsonwebtoken",
  "logger",
  "serde",
  "serde_json",
  "thiserror",
  "tokio",
+ "tower",
  "utilites",
 ]
 
