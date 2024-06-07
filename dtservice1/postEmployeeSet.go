@@ -33,8 +33,8 @@ func PostEmployeeSet(w http.ResponseWriter, r *http.Request) {
 	log.Println("database initialized..")
 
 	var message, state string
-	result, err := db.ExecContext(context.Background(), `INSERT INTO employees (date, timework, id, fio, uchastok, smena, rank, sex, is_busy) VALUES
-		(?, ?, ?, ?, ?, ?, ?, ?, ?);`, emp.Date, emp.Timework, id_, emp.Fio, emp.Uchastok, emp.Smena, emp.Rank, emp.Sex, 0)
+	result, err := db.ExecContext(context.Background(), `INSERT INTO employees (date, timework, id, fio, uchastok, smena, rank, sex, is_busy, phone_work, phone_personal, tab_number, type_work) VALUES
+		(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`, emp.Date, emp.Timework, id_, emp.Fio, emp.Uchastok, emp.Smena, emp.Rank, emp.Sex, 0, emp.Phone_work, emp.Phone_personal, emp.Tab_number, emp.Type_work)
 	if err != nil {
 		message = "Ошибка добавления сотрудника: " + err.Error()
 		http.Error(w, message, http.StatusExpectationFailed) // 417

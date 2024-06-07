@@ -46,10 +46,14 @@ go get -u golang.org/x/crypto/blake2b
     "date": "25.04.2024",
     "time_work": "20:00-08:00",
     "fio": "Тестовых В.И.",
-    "uchastok": "018fe823-9419-7fe0-a8cb-19db323ec1ac",
+    "uchastok": "018fe823-9419-7fe0-a8cb-19db345ec1ac",
     "smena": "2Н",
     "rank": "ЦИ",
-    "sex": "Мужской"
+    "sex": "Мужской",
+    "phone_work": "84959112233",
+    "phone_personal": "89119876543",
+    "tab_number": "46573645",
+    "type_work": "лёгкая работа"
 }
 ```
 
@@ -81,25 +85,33 @@ go get -u golang.org/x/crypto/blake2b
 {
     "document": {
         "details": [
-            {
-                "date": "24.04.2024",
-                "time_work": "08:00-20:00",
-                "id": "3",
-                "fio": "Белоусова Е,В.",
-                "uchastok": "ЦУ-3",
-                "smena": "1",
-                "rank": "ЦИ",
-                "sex": "Женский"
+              {
+                "date": "23.04.2024",
+                "time_work": "20:00-08:00",
+                "id": "018fee07-b2d2-7eff-8e2e-c140187a569b",
+                "fio": "Болотов Г.Е.",
+                "uchastok": "ЦУ-3 (Н)",
+                "smena": "2Н",
+                "rank": "ЦСИ",
+                "sex": "Мужской",
+                "phone_work": "",
+                "phone_personal": "",
+                "tab_number": "",
+                "type_work": ""
             },
             {
-                "date": "24.04.2024",
-                "time_work": "07:00-19:00",
-                "id": "4",
-                "fio": "Жукова Г.Б.",
-                "uchastok": "ЦУ-1",
-                "smena": "1",
+                "date": "23.04.2024",
+                "time_work": "20:00-08:00",
+                "id": "018fee07-b3b1-7f37-b8be-079ffbfd136e",
+                "fio": "Шварева М.В.",
+                "uchastok": "ЦУ-3 (Н)",
+                "smena": "2Н",
                 "rank": "ЦСИ",
-                "sex": "Женский"
+                "sex": "Женский",
+                "phone_work": "",
+                "phone_personal": "",
+                "tab_number": "",
+                "type_work": ""
             }
         ]
     }
@@ -393,6 +405,12 @@ pass - пароль сотрудника (в открытом виде)
 {
     "id": "018fee07-bbfb-7446-aca3-6c0a66505937"
 }
+```
+
+Если один или оба параметра в запросе не были заданы тогда на выходе статус 400 и ошибка:
+
+```txt
+Parameters not found!
 ```
 
 где id - это уникальный идентификатор сотрудника
