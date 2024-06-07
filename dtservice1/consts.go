@@ -76,6 +76,11 @@ type Rank struct {
 	Rank string `json:"rank"`
 }
 
+type ResponseMsg struct {
+	Id      string `json:"id,omitempty"`
+	Message string `json:"message,omitempty" example:"ок"`
+}
+
 type Response struct {
 	State    string     `json:"state,omitempty" example:"error"`
 	Message  string     `json:"message,omitempty" example:"ок"`
@@ -104,6 +109,10 @@ type ResponseRank struct {
 	State   string `json:"state,omitempty" example:"error"`
 	Message string `json:"message,omitempty" example:"ок"`
 	Rank    []Rank `json:"details,omitempty"`
+}
+
+type DocumentResponseMsg struct {
+	Document_ ResponseMsg `json:"document,omitempty"`
 }
 
 type DocumentResponse struct {
