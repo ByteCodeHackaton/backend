@@ -8,6 +8,7 @@ import (
 
 	"github.com/gorilla/mux"
 	_ "github.com/lib/pq"
+	"github.com/rs/cors"
 	_ "modernc.org/sqlite"
 )
 
@@ -64,10 +65,27 @@ func main() {
 	router.HandleFunc(configuration.HttpDomain+"/category/set", PostCategorySet).Methods("POST")
 	router.HandleFunc(configuration.HttpDomain+"/category/list", GetCategoryList).Methods("GET")
 	router.HandleFunc(configuration.HttpDomain+"/uchastok/list", GetUchastokList).Methods("GET")
+	router.HandleFunc(configuration.HttpDomain+"/rank/list", GetRankList).Methods("GET")
+	router.HandleFunc(configuration.HttpDomain+"/account", GetAccount).Methods("GET")
+	router.HandleFunc(configuration.HttpDomain+"/account/exist", GetAccountExist).Methods("GET")
 
 	log.Println("Init router handlers...")
+
+	c := cors.New(cors.Options{
+		AllowedOrigins:   []string{"http://localhost:5173"}, // All origins
+		AllowedMethods:   []string{"GET", "POST"},           // Allowing only get, just an example
+		AllowCredentials: true,
+	})
+
+	// server := &http.Server{
+	// 	Handler:      router,
+	// 	Addr:         configuration.HttpPort,
+	// 	WriteTimeout: 60 * time.Second,
+	// 	ReadTimeout:  60 * time.Second,
+	// }
+
 	server := &http.Server{
-		Handler:      router,
+		Handler:      c.Handler(router),
 		Addr:         configuration.HttpPort,
 		WriteTimeout: 60 * time.Second,
 		ReadTimeout:  60 * time.Second,
