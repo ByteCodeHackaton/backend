@@ -10,6 +10,7 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/samborkent/uuidv7"
 	_ "modernc.org/sqlite"
 )
 
@@ -170,7 +171,7 @@ func loadEmployees() {
 	}
 
 	///////
-	dbPath := "metro.db"
+	dbPath := "../db/metro.db"
 	err = initDatabase(dbPath)
 	if err != nil {
 		log.Fatal("error initializing DB connection: ", err)
@@ -183,24 +184,43 @@ func loadEmployees() {
 	///////
 
 	for i := 0; i <= len(result)-1; i++ {
-		Id, err := strconv.Atoi(result[i].Id)
+		//Id, err := strconv.Atoi(result[i].Id)
 		if err != nil {
 			fmt.Println("Parameter transfer error!")
 			return
 		}
-		addEmployeeToDb(result[i].Date, result[i].Timework, Id, result[i].Fio, result[i].Uchastok, result[i].Smena, result[i].Rank, result[i].Sex)
+
+		uuid := uuidv7.New()
+		fmt.Printf("New UUID: %s ", uuid.String())
+		addEmployeeToDb(result[i].Date, result[i].Timework, uuid.String(), result[i].Fio, result[i].Uchastok, result[i].Smena, result[i].Rank, result[i].Sex)
 		fmt.Println("Add employee - ", result[i].Fio)
 
-		id, _ := addUchastokToDb(result[i].Uchastok)
+		uchastok_uuid := uuidv7.New()
+		id, _ := addUchastokToDb(uchastok_uuid.String(), result[i].Uchastok)
 		if id > 0 {
 			fmt.Println("Add uchastok - ", result[i].Uchastok)
+		}
+
+		rank_uuid := uuidv7.New()
+		id, _ = addRankToDb(rank_uuid.String(), result[i].Rank)
+		if id > 0 {
+			fmt.Println("Add rank - ", result[i].Uchastok)
+		}
+
+		if result[i].Rank == "ЦУ" {
+			login := "loginQWE@" + strconv.Itoa(i)
+			pass := "passQWE@" + strconv.Itoa(i)
+			id, _ = addAccountsToDb(uuid.String(), login, pass)
+			if id > 0 {
+				fmt.Println("Add accounts for UUID - ", uuid.String())
+			}
 		}
 	}
 }
 
-func addEmployeeToDb(date string, timework string, id int, fio string, uchastok string, smena string, rank string, sex string) (int64, error) {
+func addEmployeeToDb(date string, timework string, uuid string, fio string, uchastok string, smena string, rank string, sex string) (int64, error) {
 	result, err := db.ExecContext(context.Background(), `INSERT INTO employees (date, timework, id, fio, uchastok, smena, rank, sex, is_busy) VALUES
-		(?, ?, ?, ?, ?, ?, ?, ?, ?);`, date, timework, id, fio, uchastok, smena, rank, sex, 0)
+		(?, ?, ?, ?, ?, ?, ?, ?, ?);`, date, timework, uuid, fio, uchastok, smena, rank, sex, 0)
 	if err != nil {
 		return 0, err
 	}
@@ -228,8 +248,34 @@ func addEmployeeToDb(date string, timework string, id int, fio string, uchastok 
 // 	return id_, nil
 // }
 
-func addUchastokToDb(uchastok string) (int64, error) {
-	result, err := db.ExecContext(context.Background(), `INSERT INTO uchastok_dictionary (uchastok) VALUES (?);`, uchastok)
+func addAccountsToDb(uuid string, login string, pass string) (int64, error) {
+	result, err := db.ExecContext(context.Background(), `INSERT INTO accounts (id_employee, login, password) VALUES (?, ?, ?);`, uuid, login, pass)
+	if err != nil {
+		return 0, err
+	}
+	var id_ int64
+	id_, err = result.LastInsertId()
+	if err != nil {
+		return 0, err
+	}
+	return id_, nil
+}
+
+func addRankToDb(uuid string, rank string) (int64, error) {
+	result, err := db.ExecContext(context.Background(), `INSERT INTO rank_dictionary (id, rank) VALUES (?, ?);`, uuid, rank)
+	if err != nil {
+		return 0, err
+	}
+	var id_ int64
+	id_, err = result.LastInsertId()
+	if err != nil {
+		return 0, err
+	}
+	return id_, nil
+}
+
+func addUchastokToDb(uuid string, uchastok string) (int64, error) {
+	result, err := db.ExecContext(context.Background(), `INSERT INTO uchastok_dictionary (id, uchastok) VALUES (?, ?);`, uuid, uchastok)
 	if err != nil {
 		return 0, err
 	}
