@@ -13,7 +13,11 @@ pub enum GatewayError
     #[error(transparent)]
     HyperHttpError(#[from] hyper::http::Error),
     #[error(transparent)]
-    HyperLegasyClientError(#[from] hyper_util::client::legacy::Error)
+    HyperLegasyClientError(#[from] hyper_util::client::legacy::Error),
+    #[error(transparent)]
+    DeserializeError(#[from] serde_json::Error),
+    #[error("Ошибка подключения к сервису `{0}` при отправке сообщения")]
+    SendError(String),
 }
 
 // impl std::fmt::Display for GatewayError

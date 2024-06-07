@@ -1,14 +1,14 @@
 mod error;
 
-use hyper::server::conn::{http1};
+use hyper::{body, server::conn::http1, service::Service, Uri};
 use hyper_util::{client::legacy::{Client, connect::HttpConnector}, rt::TokioExecutor, rt::TokioIo};
 use error::GatewayError;
 use http_body_util::{BodyExt, Full};
 use hyper::body::Body;
 use hyper::header;
 use hyper_tls::HttpsConnector;
-use tokio::net::TcpListener;
-use std::collections::HashMap;
+use tokio::net::{TcpListener, TcpStream};
+use std::{collections::HashMap, future::Future, pin::Pin};
 use std::sync::{Arc, Mutex, RwLock};
 use std::net::SocketAddr;
 use std::time::Duration;
@@ -22,16 +22,32 @@ use tower::ServiceBuilder;
 
 const SECRET_KEY: &'static str = "secret_key";
 type BoxBody = http_body_util::combinators::BoxBody<Bytes, hyper::Error>;
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 struct ServiceConfig 
 {
     name: String,
     address: String,
+    endpoints: Vec<Endpoint>
 }
 
+impl ServiceConfig
+{
+    fn get_endpoint(&self, path: &str) -> Option<&Endpoint> 
+    {
+        self.endpoints.iter().find(|f| &f.path == path)
+    }
+}
+#[derive(Debug)]
 struct ServiceRegistry 
 {
-    services: Arc<RwLock<HashMap<String, String>>>,  // Service Name -> Service Address (URL/URI)
+    services: Arc<RwLock<HashMap<String, ServiceConfig>>>,  // Service Name -> Service Address (URL/URI)
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+struct Endpoint
+{
+    path: String,
+    authorization: bool
 }
 
 impl ServiceRegistry 
@@ -44,10 +60,10 @@ impl ServiceRegistry
         }
     }
 
-    fn register(&self, name: String, address: String) 
+    fn register(&self, name: String, config: ServiceConfig) 
     {
         let mut services = self.services.write().unwrap();
-        services.insert(name, address);
+        services.insert(name, config);
     }
 
     fn deregister(&self, name: &str) 
@@ -59,7 +75,17 @@ impl ServiceRegistry
     fn get_address(&self, name: &str) -> Option<String> 
     {
         let services = self.services.read().unwrap();
-        services.get(name).cloned()
+        services.get(name).and_then(|a| Some(a.address.clone()))
+    }
+    fn get_endpoints(&self, name: &str) -> Option<Vec<Endpoint>> 
+    {
+        let services = self.services.read().unwrap();
+        services.get(name).and_then(|a| Some(a.endpoints.clone()))
+    }
+    fn get_config(&self, name: &str) -> Option<ServiceConfig> 
+    {
+        let services = self.services.read().unwrap();
+        services.get(name).and_then(|a| Some(a.clone()))
     }
 }
 
@@ -67,24 +93,27 @@ impl ServiceRegistry
 async fn register_service(req: Request<Incoming>, registry: Arc<ServiceRegistry>) -> Result<Response<BoxBody>, GatewayError> 
 {
     let body = req.collect().await?.to_bytes();
-    let body_str = String::from_utf8_lossy(&body);
-    let parts: Vec<&str> = body_str.split(',').collect();
-    if parts.len() != 2 
+    let config: Result<ServiceConfig, serde_json::Error> = serde_json::from_slice(&body);
+    if config.is_err()
     {
+        let body_str = String::from_utf8_lossy(&body);
+        logger::error!("Неверный формат для регистрации сервиса -> {}, {}", body_str, config.err().unwrap());
         let resp = Response::builder()
             .status(StatusCode::BAD_REQUEST)
             .header(header::CONTENT_TYPE, "text/html; charset=utf-8")
-            .body(to_body(Bytes::from("Неверный формат для регистрации сервиса, формат: 'name,address'")))?;
+            .body(to_body(Bytes::from("Неверный формат для регистрации сервиса, необходим формат: '{ \"name\": string, \"address\": string, \"endpoints\": [ { \"path\": string, \"authorization\": boolean } ] }'")))?;
         return  Ok(resp);    
     }
-    let name = parts[0].to_string();
-    let address = parts[1].to_string();
-    registry.register(name.clone(), address);
+    let config = config.unwrap();
+    let service_name = config.name.clone();
+    registry.register(service_name.clone(), config);
+    logger::debug!("{:?}", &registry);
     let resp = Response::builder()
             .status(StatusCode::OK)
             .header(header::CONTENT_TYPE, "text/html; charset=utf-8")
-            .body(to_body(Bytes::from(format!("Сервис {} успешно зарегистрирован", name))))?;
-        return  Ok(resp);   
+            .body(to_body(Bytes::from(format!("Сервис {} успешно зарегистрирован", service_name))))?;
+        return  Ok(resp);
+   
 }
 
 async fn deregister_service(req: Request<Incoming>, registry: Arc<ServiceRegistry>) -> Result<Response<BoxBody>, GatewayError> 
@@ -95,7 +124,7 @@ async fn deregister_service(req: Request<Incoming>, registry: Arc<ServiceRegistr
     let resp = Response::builder()
             .status(StatusCode::OK)
             .header(header::CONTENT_TYPE, "text/html; charset=utf-8")
-            .body(to_body(Bytes::from(format!("Сервис {} успешно удален из активных", name))))?;
+            .body(to_body(Bytes::from(format!("Сервис {} успешно удален", name))))?;
     return  Ok(resp);   
 }
 
@@ -150,7 +179,7 @@ fn authenticate(token: &str) -> bool
     }
 }
 
-async fn service_handler(req: Request<Incoming>,  client: Arc<Client<HttpsConnector<HttpConnector>, BoxBody>>,) -> Result<Response<BoxBody>, GatewayError>
+async fn service_handler(req: Request<Incoming>) -> Result<Response<BoxBody>, GatewayError>
 {
     // Example of request transformation: Adding a custom header
     let req = Request::builder()
@@ -159,11 +188,13 @@ async fn service_handler(req: Request<Incoming>,  client: Arc<Client<HttpsConnec
         .header("X-Custom-Header", "My API Gateway")
         .body(req.into_body())
         .unwrap();
-
+    let auth = req.uri().authority();
+    let target_host = auth.unwrap().as_str().replace("localhost", "127.0.0.1");
+    let addr: SocketAddr = target_host.parse().unwrap();
     // Отправка запроса на связанный сервис
-    println!("Отправка запроса на {}", req.uri());
+    logger::info!("Отправка запроса на {}", req.uri());
     let req = Request::new(req.boxed());
-    let resp = client.request(req).await?;
+    let response = send(addr, req).await?;
 
     // Example of response transformation: Append custom JSON
     // let body_bytes = hyper::body::to_bytes(resp.into_body()).await?;
@@ -181,85 +212,79 @@ async fn service_handler(req: Request<Incoming>,  client: Arc<Client<HttpsConnec
 
     // data["custom"] = json!("This data is added by the gateway");
     //пока не будем делать инъекцию json просто трансформирую данные
-
-    Ok(Response::new(resp.boxed()))
+    logger::debug!("получен ответ от сервиса {:?}", response.body());
+    Ok(Response::new(response.boxed()))
 }
 
-/*async fn handle_request(req: Request<Body>, rate_limiter: Arc<RateLimiter>, client: Arc<hyper::Client<HttpsConnector<HttpConnector>>>, service_registry: &ServiceRegistry) -> Result<Response<Body>, hyper::Error> {*/
 async fn handle_request(
     mut req: Request<Incoming>,
     remote_addr: SocketAddr,
     rate_limiter: Arc<RateLimiter>,
-    client: Arc<Client<HttpsConnector<HttpConnector>, BoxBody>>,
     registry: Arc<ServiceRegistry>,
 ) -> Result<Response<BoxBody>, GatewayError> 
 {
     if !rate_limiter.allow(remote_addr) 
     {
-        return Ok(Response::builder()
-            .status(StatusCode::TOO_MANY_REQUESTS)
-            .body(to_body(Bytes::from_static(b"Too many requests")))
-            .unwrap());
+        return Ok(error_empty_response(StatusCode::TOO_MANY_REQUESTS));
     }
 
     println!("Получен запрос от {}:{}", remote_addr.ip(), remote_addr.port());
+    //TODO сделать сервис аутентификации
+    // let unauthorized_response = Response::builder()
+    // .status(StatusCode::UNAUTHORIZED)
+    // .body(to_body(Bytes::from_static(b"Unauthorized")))
+    // .unwrap();
+    // // Authentication
+    // match req.headers().get("Authorization") 
+    // {
+    //     Some(value) => 
+    //     {
+    //         let token_str = value.to_str().unwrap_or("");
+    //         if !authenticate(token_str) 
+    //         {
+    //             return Ok(unauthorized_response);
+    //         }
+    //     },
+    //     None => 
+    //     {
+    //         return Ok(unauthorized_response);
+    //     }
+    // }
 
-    let unauthorized_response = Response::builder()
-    .status(StatusCode::UNAUTHORIZED)
-    .body(to_body(Bytes::from_static(b"Unauthorized")))
-    .unwrap();
-    // Authentication
-    match req.headers().get("Authorization") 
+    let path = req.uri().path().strip_prefix('/');
+    if path.is_none()
     {
-        Some(value) => 
-        {
-            let token_str = value.to_str().unwrap_or("");
-            if !authenticate(token_str) 
-            {
-                return Ok(unauthorized_response);
-            }
-        },
-        None => 
-        {
-            return Ok(unauthorized_response);
-        }
+        return Ok(error_response(format!("Ошибка запроса {}, указан неверный путь к сервису",  req.uri().path()), StatusCode::BAD_REQUEST));
     }
-
-    let path = req.uri().path();
-
-    // первый путь это имя сервиса.
-    let parts: Vec<&str> = path.split('/').collect();
-    if parts.len() < 2 
+    let path = path.unwrap();
+    // если слеша нет то сервиса в запросе нет
+    let parts = path.split_once('/');
+    if parts.is_none()
     {
-        return Ok(Response::new(to_body(Bytes::from_static(b"Invalid request URI"))));
+        return Ok(error_response(format!("Ошибка запроса {}, не уточнен сервис к которому производится запрос", path), StatusCode::BAD_REQUEST));
     }
-
-    let service_name = parts[1];
-    match registry.get_address(service_name) 
+    let (service_name, path) = parts.unwrap();
+    logger::info!("запрос сервиса {} с эндпоинтом {}", service_name, path);
+    match registry.get_config(service_name) 
     {
-        Some(address) => {
-            // используем адрес для перенаправления запроса.
-            // Создаем новый адрес на основе полученного
-            let mut address = address;
-            if !address.starts_with("http://") && !address.starts_with("https://") 
+        Some(address) => 
+        {
+            if let Some(endpoint) = address.get_endpoint(path)
             {
-                address = format!("http://{}", address);
-            }
-            let forward_uri = format!("{}{}", address, req.uri().path_and_query().map_or("", |x| x.as_str()));
-
-            if let Ok(uri) = forward_uri.parse() 
-            {
+                //TODO если авторизация необходима то реализовать проверку на этом этапе как раз для этого endpoint и получали
+                let uri = Uri::builder()
+                .scheme("http")
+                .authority(address.address.clone())
+                .path_and_query(["/", &endpoint.path].concat()).build().unwrap();
                 *req.uri_mut() = uri;
-            } 
+                return service_handler(req).await;
+            }
             else 
             {
-                return Ok(Response::new(to_body(Bytes::from_static(b"Invalid service URI"))));
+                return Ok(error_response(format!("Ошибка в сервисе {} не найден путь {}", service_name, path), StatusCode::BAD_REQUEST));
             }
-
-            // отправляем запрос в service handler
-            service_handler(req, client).await
         },
-        None => return Ok(Response::new(to_body(Bytes::from_static(b"Service not found")))),
+        None => return Ok(error_response(format!("Сервис {} не найден", service_name), StatusCode::NOT_FOUND)),
     }
 
 }
@@ -268,7 +293,6 @@ async fn router(
     req: Request<Incoming>,
     remote_addr: SocketAddr,
     rate_limiter: Arc<RateLimiter>,
-    client: Arc<Client<HttpsConnector<HttpConnector>, BoxBody>>,
     registry: Arc<ServiceRegistry>) -> Result<Response<BoxBody>, GatewayError>
 {   
     let path = req.uri().path();
@@ -283,78 +307,123 @@ async fn router(
         return deregister_service(req, Arc::clone(&registry)).await;
     }
     // Handle other requests using the previously defined handler
-    handle_request(req, remote_addr, rate_limiter, client, registry).await
+    handle_request(req, remote_addr, rate_limiter, registry).await
+}
+
+async fn send(addr:  SocketAddr, req: Request<BoxBody>) -> Result<Response<Incoming>, GatewayError>
+{
+    
+    let client_stream = TcpStream::connect(&addr).await;
+    if client_stream.is_err()
+    {
+        logger::error!("Ошибка подключения к сервису {} -> {}", addr, client_stream.err().unwrap());
+        return Err(GatewayError::SendError(addr.to_string()));
+    }
+    let io = TokioIo::new(client_stream.unwrap());
+    let (mut sender, conn) = hyper::client::conn::http1::handshake(io).await?;
+    tokio::task::spawn(async move 
+    {
+        if let Err(err) = conn.await 
+        {
+            logger::error!("Ошибка подключения: {:?}", err);
+        }
+    });
+    let send = sender.send_request(req).await?;
+    Ok(send)
+    
 }
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>>
 {
     logger::StructLogger::initialize_logger();
     let rate_limiter = Arc::new(RateLimiter::new());
-    let https = HttpsConnector::new();
-    let client = Client::builder(TokioExecutor::new()).build::<_, BoxBody>(https);
-    let client = Arc::new(client);
     let registry = Arc::new(ServiceRegistry::new());
-
     let addr = SocketAddr::from(([0, 0, 0, 0], 8080));
     let listener = TcpListener::bind(addr).await?;
     loop 
     {
         let rate_limitter_clone = Arc::clone(&rate_limiter);
-        let client_clone = Arc::clone(&client);
         let registry_clone = Arc::clone(&registry);
         let (stream, remote_addr) = listener.accept().await?;
         let io = TokioIo::new(stream);
         tokio::spawn(async move 
         {
             logger::info!("Запрос от {}", &remote_addr);
-            // N.B. should use hyper service_fn here, since it's required to be implemented hyper Service trait!
             let service = hyper::service::service_fn(move |req| 
             {
                 router(
                 req,
                 remote_addr,
                 Arc::clone(&rate_limitter_clone),
-                Arc::clone(&client_clone),
                 Arc::clone(&registry_clone))
             });
-            
+            //let svc = ServiceBuilder::new().layer_fn(RateLimiter::new()).service(service);
+            // if let Err(err) = http1::Builder::new().serve_connection(io, svc).await {
+            //     eprintln!("server error: {}", err);
+            // }
+
             if let Err(err) = http1::Builder::new().keep_alive(true).serve_connection(io, service).await 
             {
                 logger::error!("server error: {}", err);
             }
         });
     }
-
-    // Handle Requests
-    // let make_svc = make_service_fn(move |conn: &AddrStream| {
-    //     let remote_addr = conn.remote_addr();
-    //     let rate_limiter = Arc::clone(&rate_limiter);
-    //     let client = Arc::clone(&client);
-    //     let registry_clone = Arc::clone(&registry);
-
-    //     let service = service_fn(move |req| 
-    //     {
-    //         router(req, remote_addr, Arc::clone(&rate_limiter), Arc::clone(&client), Arc::clone(&registry_clone))
-    //     });
-
-    //     async { Ok::<_, hyper::Error>(service) }
-    // });
-
-
-    // let addr = ([127, 0, 0, 1], 8080).into();
-
-    // let server = Server::bind(&addr)
-    //     .http1_keepalive(true)
-    //     .http2_keep_alive_timeout(Duration::from_secs(120))
-    //     .serve(make_svc);
-
-    // println!("API Gateway running on http://{}", addr);
-
-    // if let Err(e) = server.await {
-    //     eprintln!("server error: {}", e);
-    // }
 }
 
+fn error_response(err: String, code: StatusCode) -> Response<BoxBody>
+{
+    Response::builder()
+    .status(code)
+    .header(header::CONTENT_TYPE, "text/html; charset=utf-8")
+    .body(to_body(Bytes::from(err))).unwrap()
+}
+fn error_empty_response(code: StatusCode) -> Response<BoxBody>
+{
+    Response::builder()
+    .status(code)
+    .header(header::CONTENT_TYPE, "text/html; charset=utf-8")
+    .body(to_body(Bytes::new())).unwrap()
+}
+
+
+
+// impl Service<Request<Incoming>> for RateLimiter
+// {
+//     type Response = Response<Full<Bytes>>;
+//     type Error = hyper::Error;
+//     type Future = Pin<Box<dyn Future<Output = Result<Self::Response, Self::Error>> + Send>>;
+
+//     fn call(&self, req: Request<Incoming>) -> Self::Future 
+//     {
+//         fn mk_response(s: String) -> Result<Response<Full<Bytes>>, hyper::Error> 
+//         {
+//             Ok(Response::builder().body(Full::new(Bytes::from(s))).unwrap())
+//         }
+        
+//         if !self.allow(remote_addr) 
+//         {
+//             return Ok(Response::builder()
+//                 .status(StatusCode::TOO_MANY_REQUESTS)
+//                 .body(to_body(Bytes::from_static(b"Too many requests")))
+//                 .unwrap());
+//         }
+
+//         if req.uri().path() != "/favicon.ico" {
+//             *self.counter.lock().expect("lock poisoned") += 1;
+//         }
+
+//         let res = match req.uri().path() {
+//             "/" => mk_response(format!("home! counter = {:?}", self.counter)),
+//             "/posts" => mk_response(format!("posts, of course! counter = {:?}", self.counter)),
+//             "/authors" => mk_response(format!(
+//                 "authors extraordinare! counter = {:?}",
+//                 self.counter
+//             )),
+//             _ => mk_response("oh no! not found".into()),
+//         };
+//         Box::pin(async { res })
+//     }
+// }
 
 
 fn full<T: Into<Bytes>>(chunk: T) -> BoxBody 

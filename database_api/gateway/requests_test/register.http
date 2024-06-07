@@ -1,0 +1,22 @@
+POST http://localhost:8080/register_service HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sample_service",
+    "address": "localhost:9999",
+    "endpoints":
+    [
+        {
+            "path": "authorization",
+            "authorization": false
+        },
+        {
+            "path": "employess/count",
+            "authorization": false
+        },
+        {
+            "path": "employess/add",
+            "authorization": true
+        }
+    ]
+}
