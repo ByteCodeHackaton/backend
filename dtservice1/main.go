@@ -65,6 +65,7 @@ func main() {
 	router.HandleFunc(configuration.HttpDomain+"/passenger/update", PostPassengerUpdate).Methods("POST")
 	router.HandleFunc(configuration.HttpDomain+"/passenger/list", GetPassengerList).Methods("GET")
 	router.HandleFunc(configuration.HttpDomain+"/passenger", GetPassenger).Methods("GET")
+	router.HandleFunc(configuration.HttpDomain+"/passenger/delete", DeletePassenger).Methods("DELETE")
 	router.HandleFunc(configuration.HttpDomain+"/category/set", PostCategorySet).Methods("POST")
 	router.HandleFunc(configuration.HttpDomain+"/category/list", GetCategoryList).Methods("GET")
 	router.HandleFunc(configuration.HttpDomain+"/uchastok/list", GetUchastokList).Methods("GET")
