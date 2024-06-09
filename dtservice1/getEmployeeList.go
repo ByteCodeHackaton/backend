@@ -35,6 +35,17 @@ func (ns NullString) String() string {
 func GetEmployeeList(w http.ResponseWriter, r *http.Request) {
 	log.Println("Request employee list..")
 
+	limit_ := r.FormValue("limit")
+	offset_ := r.FormValue("off")
+
+	if len(limit_) == 0 {
+		limit_ = "20"
+	}
+
+	if len(offset_) == 0 {
+		offset_ = "0"
+	}
+
 	err := initDatabase(configuration.DbPath)
 	if err != nil {
 		log.Fatal("error initializing DB connection: ", err)
@@ -46,7 +57,7 @@ func GetEmployeeList(w http.ResponseWriter, r *http.Request) {
 	log.Println("database initialized..")
 
 	var employee []Employee
-	rows, err := db.QueryContext(context.Background(), `SELECT * FROM employees`)
+	rows, err := db.QueryContext(context.Background(), `SELECT * FROM employees LIMIT ? OFFSET ?`, limit_, offset_)
 
 	var message, state string
 	var date_, timework_, id_, fio_, uchastok_, smena_, rank_, sex_ string
