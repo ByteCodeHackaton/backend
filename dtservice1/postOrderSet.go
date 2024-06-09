@@ -54,7 +54,7 @@ func PostOrderSet(w http.ResponseWriter, r *http.Request) {
 	}
 
 	log.Printf("Заявка %s добавлена: ", order.Id)
-	response := DocumentResponseMsg{Document_: ResponseMsg{Id: order.Id, Message: message}}
+	response := Order{Id: order.Id}
 	w.Header().Set("Content-Type", cContentTypeJson)
 	json.NewEncoder(w).Encode(response)
 }
