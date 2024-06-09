@@ -87,6 +87,12 @@ type Response struct {
 	Employee []Employee `json:"details,omitempty"`
 }
 
+type ResponseOrder struct {
+	State   string  `json:"state,omitempty" example:"error"`
+	Message string  `json:"message,omitempty" example:"ок"`
+	Order   []Order `json:"details,omitempty"`
+}
+
 type ResponsePassenger struct {
 	State     string      `json:"state,omitempty" example:"error"`
 	Message   string      `json:"message,omitempty" example:"ок"`
@@ -117,6 +123,10 @@ type DocumentResponseMsg struct {
 
 type DocumentResponse struct {
 	Document_ Response `json:"document,omitempty"`
+}
+
+type DocumentResponseOrder struct {
+	Document_ ResponseOrder `json:"document,omitempty"`
 }
 
 type DocumentResponsePassenger struct {
