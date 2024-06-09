@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"database/sql"
-	"encoding/hex"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -28,8 +27,8 @@ func GetAccountExist(w http.ResponseWriter, r *http.Request) {
 
 	login_ := r.FormValue("login")
 	if len(login_) > 0 {
-		blogin_ := hex.EncodeToString(NewBlake2b256([]byte(login_)))
-		row = db.QueryRowContext(context.Background(), `SELECT * FROM accounts WHERE login=?;`, blogin_)
+		//blogin_ := hex.EncodeToString(NewBlake2b256([]byte(login_)))
+		row = db.QueryRowContext(context.Background(), `SELECT * FROM accounts WHERE login=?;`, login_)
 	} else {
 		message = "Parameter not found!"
 		log.Print(message)

@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"encoding/hex"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -31,11 +32,7 @@ func GetAccount(w http.ResponseWriter, r *http.Request) {
 	login_ := r.FormValue("login")
 	password_ := r.FormValue("pass")
 	if len(login_) > 0 && len(password_) > 0 {
-		// blake2b ->
-		blogin_ := hex.EncodeToString(NewBlake2b256([]byte(login_)))
-		bpassword_ := hex.EncodeToString(NewBlake2b256([]byte(password_)))
-		// blake2b <-
-		row = db.QueryRowContext(context.Background(), `SELECT * FROM accounts WHERE login=? and password=?;`, blogin_, bpassword_)
+		row = db.QueryRowContext(context.Background(), `SELECT * FROM accounts WHERE login=?;`, login_)
 	} else {
 		message = "Parameters not found!"
 		log.Print(message)
@@ -55,7 +52,20 @@ func GetAccount(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := Account{Id: account.Id}
+	var response Account
+	// blake2b ->
+	bpassword_ := hex.EncodeToString(NewBlake2b256([]byte(password_ + account.Id)))
+	fmt.Println(bpassword_)
+	// blake2b <-
+	if account.Pass == bpassword_ {
+		response = Account{Id: account.Id}
+	} else {
+		message = "Неверный пароль!"
+		log.Println(message)
+		http.Error(w, message, http.StatusExpectationFailed) // 417
+		return
+	}
+
 	w.Header().Set("Content-Type", cContentTypeJson)
 	json.NewEncoder(w).Encode(response)
 }
