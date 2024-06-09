@@ -52,13 +52,13 @@ type Employee struct {
 }
 
 type Passenger struct {
-	Id          string `json:"id"`
-	Fio         string `json:"fio"`
-	Phone       string `json:"phone"`
-	Category    string `json:"category"`
-	Sex         string `json:"sex"`
-	Description string `json:"description"`
-	Eks         int    `json:"eks"`
+	Id          string `json:"id,omitempty"`
+	Fio         string `json:"fio,omitempty"`
+	Phone       string `json:"phone,omitempty"`
+	Category    string `json:"category,omitempty"`
+	Sex         string `json:"sex,omitempty"`
+	Description string `json:"description,omitempty"`
+	Eks         int    `json:"eks,omitempty"`
 }
 
 type Category struct {
