@@ -4,6 +4,8 @@ go 1.21.3
 
 require github.com/mattn/go-sqlite3 v1.14.22
 
+require github.com/samborkent/uuidv7 v0.0.0-20231110121620-f2e19d87e48b // indirect
+
 require (
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/google/uuid v1.6.0 // indirect

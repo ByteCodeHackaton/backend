@@ -59,6 +59,10 @@ type Employee struct {
 	Sex      string `json:"sex"`
 }
 
+type Role struct {
+	Role string `json:"role"`
+}
+
 var db *sql.DB
 
 func initDatabase(dbPath string) error {
@@ -94,7 +98,7 @@ func main() {
 	fmt.Println(result)
 
 	///////
-	dbPath := "metro.db"
+	dbPath := "../db/metro.db"
 	err = initDatabase(dbPath)
 	if err != nil {
 		log.Fatal("error initializing DB connection: ", err)
@@ -126,7 +130,54 @@ func main() {
 		}
 	}
 
-	loadEmployees()
+	updateEmployees()
+	// loadEmployees()
+	// loadRoles()
+}
+
+func updateEmployees() {
+	role_ := "018ffd91-fcc5-70a9-bf36-f67ca6df0ca0"
+	_, err := db.ExecContext(context.Background(), `UPDATE employees SET id_role=?;`, role_)
+	if err != nil {
+		message := "Ошибка изменения информации о сотруднике: " + err.Error()
+		fmt.Println(message)
+		return
+	}
+}
+
+func loadRoles() {
+	filename, err := os.Open("roles.json")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer filename.Close()
+
+	data, err := io.ReadAll(filename)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var result []Role
+	jsonErr := json.Unmarshal(data, &result)
+
+	if jsonErr != nil {
+		log.Fatal(jsonErr)
+	}
+
+	for i := 0; i <= len(result)-1; i++ {
+		if err != nil {
+			fmt.Println("Parameter transfer error!")
+			return
+		}
+
+		role_uuid := uuidv7.New()
+		fmt.Println("New UUID -", role_uuid.String())
+		id, _ := addRolesToDb(role_uuid.String(), result[i].Role)
+		if id > 0 {
+			fmt.Println("Add role - ", result[i].Role)
+		}
+	}
 }
 
 func loadEmployees() {
@@ -247,6 +298,19 @@ func addEmployeeToDb(date string, timework string, uuid string, fio string, ucha
 // 	}
 // 	return id_, nil
 // }
+
+func addRolesToDb(uuid string, role string) (int64, error) {
+	result, err := db.ExecContext(context.Background(), `INSERT INTO roles_dictionary (id, role) VALUES (?, ?);`, uuid, role)
+	if err != nil {
+		return 0, err
+	}
+	var id_ int64
+	id_, err = result.LastInsertId()
+	if err != nil {
+		return 0, err
+	}
+	return id_, nil
+}
 
 func addAccountsToDb(uuid string, login string, pass string) (int64, error) {
 	result, err := db.ExecContext(context.Background(), `INSERT INTO accounts (id_employee, login, password) VALUES (?, ?, ?);`, uuid, login, pass)
