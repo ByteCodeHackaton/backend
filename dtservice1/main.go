@@ -72,6 +72,7 @@ func main() {
 	router.HandleFunc(configuration.HttpDomain+"/account/exist", GetAccountExist).Methods("GET")
 	router.HandleFunc(configuration.HttpDomain+"/order/set", PostOrderSet).Methods("POST")
 	router.HandleFunc(configuration.HttpDomain+"/order/list", GetOrderList).Methods("GET")
+	router.HandleFunc(configuration.HttpDomain+"/role/list", GetRoleList).Methods("GET")
 
 	log.Println("Init router handlers...")
 

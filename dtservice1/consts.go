@@ -78,6 +78,11 @@ type Rank struct {
 	Rank string `json:"rank"`
 }
 
+type Role struct {
+	Id   string `json:"id"`
+	Role string `json:"role"`
+}
+
 type ResponseMsg struct {
 	Id      string `json:"id,omitempty"`
 	Message string `json:"message,omitempty" example:"ок"`
@@ -119,6 +124,12 @@ type ResponseRank struct {
 	Rank    []Rank `json:"details,omitempty"`
 }
 
+type ResponseRole struct {
+	State   string `json:"state,omitempty" example:"error"`
+	Message string `json:"message,omitempty" example:"ок"`
+	Role    []Role `json:"details,omitempty"`
+}
+
 type DocumentResponseMsg struct {
 	Document_ ResponseMsg `json:"document,omitempty"`
 }
@@ -145,4 +156,8 @@ type DocumentResponseUchastok struct {
 
 type DocumentResponseRank struct {
 	Document_ ResponseRank `json:"document,omitempty"`
+}
+
+type DocumentResponseRole struct {
+	Document_ ResponseRole `json:"document,omitempty"`
 }
