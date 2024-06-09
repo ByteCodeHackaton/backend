@@ -58,7 +58,22 @@ func GetAccount(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(bpassword_)
 	// blake2b <-
 	if account.Pass == bpassword_ {
-		response = Account{Id: account.Id}
+		// acc найден, получить fio & role ->
+		row = db.QueryRowContext(context.Background(), `SELECT fio, id_role FROM employees WHERE id=?;`, account.Id)
+
+		err = row.Scan(&account.Fio, &account.Role)
+		if err != nil {
+			if err.Error() == "sql: no rows in result set" {
+				message = "Сотрудник в БД не найден: " + err.Error()
+			} else {
+				message = "Error get account data: " + err.Error()
+			}
+			log.Println(message)
+			http.Error(w, message, http.StatusExpectationFailed) // 417
+			return
+		}
+		// acc найден, получить fio & role <-
+		response = Account{Id: account.Id, Fio: account.Fio, Role: account.Role}
 	} else {
 		message = "Неверный пароль!"
 		log.Println(message)

@@ -35,6 +35,8 @@ type Account struct {
 	Id    string `json:"id"` // Уникальный идентификатор сотрудника
 	Login string `json:"login,omitempty"`
 	Pass  string `json:"pass,omitempty"`
+	Fio   string `json:"fio,omitempty"`
+	Role  string `json:"role,omitempty"`
 }
 type Employee struct {
 	Date           string `json:"date,omitempty"`
