@@ -10,6 +10,17 @@ import (
 func GetPassengerList(w http.ResponseWriter, r *http.Request) {
 	log.Println("Request passenger list..")
 
+	limit_ := r.FormValue("limit")
+	offset_ := r.FormValue("off")
+
+	if len(limit_) == 0 {
+		limit_ = "20"
+	}
+
+	if len(offset_) == 0 {
+		offset_ = "0"
+	}
+
 	err := initDatabase(configuration.DbPath)
 	if err != nil {
 		log.Fatal("error initializing DB connection: ", err)
@@ -21,7 +32,7 @@ func GetPassengerList(w http.ResponseWriter, r *http.Request) {
 	log.Println("database initialized..")
 
 	var passenger []Passenger
-	rows, err := db.QueryContext(context.Background(), `SELECT * FROM passengers`)
+	rows, err := db.QueryContext(context.Background(), `SELECT * FROM passengers LIMIT ? OFFSET ?`, limit_, offset_)
 
 	var message, state string
 	// var is_busy int
