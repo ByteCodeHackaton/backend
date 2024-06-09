@@ -58,6 +58,7 @@ func main() {
 	router := mux.NewRouter()
 
 	router.HandleFunc(configuration.HttpDomain+"/employee/set", PostEmployeeSet).Methods("POST")
+	router.HandleFunc(configuration.HttpDomain+"/employee/update", PostEmployeeUpdate).Methods("POST")
 	router.HandleFunc(configuration.HttpDomain+"/employee/list", GetEmployeeList).Methods("GET")
 	router.HandleFunc(configuration.HttpDomain+"/passenger/set", PostPassengerSet).Methods("POST")
 	router.HandleFunc(configuration.HttpDomain+"/passenger/update", PostPassengerUpdate).Methods("POST")

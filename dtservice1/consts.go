@@ -37,18 +37,18 @@ type Account struct {
 	Pass  string `json:"pass,omitempty"`
 }
 type Employee struct {
-	Date           string `json:"date"`
-	Timework       string `json:"time_work"`
-	Id             string `json:"id"` // Уникальный идентификатор сотрудника
-	Fio            string `json:"fio"`
-	Uchastok       string `json:"uchastok"`
-	Smena          string `json:"smena"`
-	Rank           string `json:"rank"`
-	Sex            string `json:"sex"`
-	Phone_work     string `json:"phone_work"`
-	Phone_personal string `json:"phone_personal"`
-	Tab_number     string `json:"tab_number"`
-	Type_work      string `json:"type_work"`
+	Date           string `json:"date,omitempty"`
+	Timework       string `json:"time_work,omitempty"`
+	Id             string `json:"id,omitempty"` // Уникальный идентификатор сотрудника
+	Fio            string `json:"fio,omitempty"`
+	Uchastok       string `json:"uchastok,omitempty"`
+	Smena          string `json:"smena,omitempty"`
+	Rank           string `json:"rank,omitempty"`
+	Sex            string `json:"sex,omitempty"`
+	Phone_work     string `json:"phone_work,omitempty"`
+	Phone_personal string `json:"phone_personal,omitempty"`
+	Tab_number     string `json:"tab_number,omitempty"`
+	Type_work      string `json:"type_work,omitempty"`
 }
 
 type Passenger struct {

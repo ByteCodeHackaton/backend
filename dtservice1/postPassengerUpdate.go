@@ -55,7 +55,7 @@ func PostPassengerUpdate(w http.ResponseWriter, r *http.Request) {
 		log.Println(message)
 	}
 
-	response := Passenger{Id: passenger.Id}
+	response := Passenger{Id: uuid_}
 	w.Header().Set("Content-Type", cContentTypeJson)
 	json.NewEncoder(w).Encode(response)
 }
