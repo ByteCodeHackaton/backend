@@ -137,7 +137,7 @@ func regService() {
 		return
 	}
 
-	req, err := http.NewRequest("POST", "localhost:8080/register_service", bytes.NewBuffer(data))
+	req, err := http.NewRequest("POST", "http://localhost:8080/register_service", bytes.NewBuffer(data))
 	if err != nil {
 		fmt.Println(err)
 		return
