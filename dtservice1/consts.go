@@ -7,6 +7,17 @@ type Configuration struct {
 	Version    string `json:"version" example:"1.0"`
 }
 
+type Service struct {
+	Name      string      `json:"name"`
+	Address   string      `json:"address"`
+	Endpoints []Endpoints `json:"endpoints,omitempty"`
+}
+
+type Endpoints struct {
+	Path          string `json:"path"`
+	Authorization bool   `json:"authorization"`
+}
+
 type Order struct {
 	Id         string `json:"id,omitempty" example:"477354"`                   // Уникальный идентификатор заявки
 	Id_Pas     string `json:"id_pas,omitempty" example:"11058"`                // Уникальный идентификатор пассажира
@@ -83,6 +94,11 @@ type Role struct {
 	Role string `json:"role"`
 }
 
+type State struct {
+	Id    string `json:"id"`
+	State string `json:"state"`
+}
+
 type ResponseMsg struct {
 	Id      string `json:"id,omitempty"`
 	Message string `json:"message,omitempty" example:"ок"`
@@ -130,6 +146,11 @@ type ResponseRole struct {
 	Role    []Role `json:"details,omitempty"`
 }
 
+type ResponseState struct {
+	Message string  `json:"message,omitempty" example:"ок"`
+	State   []State `json:"details,omitempty"`
+}
+
 type DocumentResponseMsg struct {
 	Document_ ResponseMsg `json:"document,omitempty"`
 }
@@ -160,4 +181,8 @@ type DocumentResponseRank struct {
 
 type DocumentResponseRole struct {
 	Document_ ResponseRole `json:"document,omitempty"`
+}
+
+type DocumentResponseState struct {
+	Document_ ResponseState `json:"document,omitempty"`
 }
