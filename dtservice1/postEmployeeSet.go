@@ -5,14 +5,16 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+
+	"github.com/samborkent/uuidv7"
 )
 
 func PostEmployeeSet(w http.ResponseWriter, r *http.Request) {
 	log.Println("Request employee set..")
 
 	var emp Employee
-
-	id_ := r.FormValue("id")
+	id_ := uuidv7.New()
+	log.Println(id_)
 
 	err := json.NewDecoder(r.Body).Decode(&emp)
 	if err != nil {
