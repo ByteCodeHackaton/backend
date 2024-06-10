@@ -18,6 +18,10 @@ pub enum GatewayError
     DeserializeError(#[from] serde_json::Error),
     #[error("Ошибка подключения к сервису `{0}` при отправке сообщения")]
     SendError(String),
+    #[error(transparent)]
+    JWTError(#[from] jsonwebtoken::errors::Error),
+    #[error("Ошибка обновления refresh токена `{0}`")]
+    JWTRefreshError(String),
 }
 
 // impl std::fmt::Display for GatewayError

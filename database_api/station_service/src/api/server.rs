@@ -29,5 +29,6 @@ pub async fn run_server()
 
 async fn handler_404() -> impl IntoResponse 
 {
+    
     (StatusCode::NOT_FOUND, "Такого пути нет")
 }

@@ -1,0 +1,2 @@
+GET http://localhost:8080/subway/path?from=nd89811596&to=nd77715428 HTTP/1.1
+

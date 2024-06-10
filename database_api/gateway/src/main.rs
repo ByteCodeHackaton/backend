@@ -1,4 +1,5 @@
 mod error;
+mod jwt;
 
 use hyper::{body, server::conn::http1, service::Service, Uri};
 use hyper_util::{client::legacy::{Client, connect::HttpConnector}, rt::TokioExecutor, rt::TokioIo};
@@ -7,6 +8,8 @@ use http_body_util::{BodyExt, Full};
 use hyper::body::Body;
 use hyper::header;
 use hyper_tls::HttpsConnector;
+use jwt::KEY;
+use logger::backtrace;
 use tokio::net::{TcpListener, TcpStream};
 use std::{collections::HashMap, future::Future, pin::Pin};
 use std::sync::{Arc, Mutex, RwLock};
@@ -20,7 +23,7 @@ use jsonwebtoken::{decode, DecodingKey, Validation, errors::ErrorKind};
 use serde::{Deserialize, Serialize};
 use tower::ServiceBuilder;
 
-const SECRET_KEY: &'static str = "secret_key";
+
 type BoxBody = http_body_util::combinators::BoxBody<Bytes, hyper::Error>;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 struct ServiceConfig 
@@ -34,7 +37,15 @@ impl ServiceConfig
 {
     fn get_endpoint(&self, path: &str) -> Option<&Endpoint> 
     {
-        self.endpoints.iter().find(|f| &f.path == path)
+        if let Some((path, _)) = path.split_once("?")
+        {
+            self.endpoints.iter().find(|f| f.path.replace("/", "") == path.replace("/", ""))
+        }
+        else
+        {
+            //убирем слеши, так как не можем гарантировать что не будут различаться конечные слеши
+            self.endpoints.iter().find(|f| f.path.replace("/", "") == path.replace("/", ""))
+        }
     }
 }
 #[derive(Debug)]
@@ -159,26 +170,7 @@ impl RateLimiter
     }
 }
 
-fn authenticate(token: &str) -> bool 
-{
-    //по умолчанию алгоритм Algorithm::HS256
-    let mut validation = Validation::default();
-    validation.set_audience(&["Me"]);
-    match decode::<serde_json::Value>(&token, &DecodingKey::from_secret(SECRET_KEY.as_ref()), &validation) 
-    {
-        Ok(_data) => true,
-        Err(err) => 
-        {
-            eprintln!("JWT Decoding error: {:?}", err);
-            match *err.kind() 
-            {
-                ErrorKind::InvalidToken => false,  // ошибка токена
-                _ => false
-            }
-        }
-    }
-}
-
+///
 async fn service_handler(req: Request<Incoming>) -> Result<Response<BoxBody>, GatewayError>
 {
     // Example of request transformation: Adding a custom header
@@ -192,8 +184,7 @@ async fn service_handler(req: Request<Incoming>) -> Result<Response<BoxBody>, Ga
     let target_host = auth.unwrap().as_str().replace("localhost", "127.0.0.1");
     let addr: SocketAddr = target_host.parse().unwrap();
     // Отправка запроса на связанный сервис
-    logger::info!("Отправка запроса на {}", req.uri());
-    let req = Request::new(req.boxed());
+    //let req = Request::new(req.boxed());
     let response = send(addr, req).await?;
 
     // Example of response transformation: Append custom JSON
@@ -216,6 +207,78 @@ async fn service_handler(req: Request<Incoming>) -> Result<Response<BoxBody>, Ga
     Ok(Response::new(response.boxed()))
 }
 
+async fn is_autentificate(mut req: Request<Incoming>, need_auth: bool) -> Result<bool, String>
+{
+    if need_auth
+    {
+        return match req.headers().get("Authorization") 
+        {
+            Some(value) => 
+            {
+                let token_str = value.to_str().unwrap_or("");
+                let key = KEY.lock().await;
+                let v = key.validate(token_str);
+                if let Ok(_) = v
+                {
+                    Ok(true)
+                }
+                else 
+                {
+                    let e = v.err().unwrap().to_string();
+                    logger::error!("{}", &e);
+                    Err(e)
+                }
+            },
+            None => 
+            {
+                let e = "Отсуствует заголовок Authorization!";
+                logger::error!("{}", e);
+                Err(e.to_owned())
+            }
+        };
+    }
+    else 
+    {
+        return Ok(true);
+    }
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+struct UpdateTokens
+{
+    pub access: String,
+    pub refresh: String
+}
+async fn update_tokens(req: Request<Incoming>) -> Result<Response<BoxBody>, GatewayError> 
+{
+    let body = req.collect().await?.to_bytes();
+    let tokens: Result<UpdateTokens, serde_json::Error> = serde_json::from_slice(&body);
+   
+    if tokens.is_err()
+    {
+        logger::error!("Неверный формат для обновления токенов -> {}", tokens.err().unwrap());
+        let resp = Response::builder()
+            .status(StatusCode::BAD_REQUEST)
+            .header(header::CONTENT_TYPE, "text/html; charset=utf-8")
+            .body(to_body(Bytes::from("Неверный формат для обновления токенов, необходим формат: '{ \"access\": string, \"refresh\": string}")))?;
+        return  Ok(resp);    
+    }
+    let tokens = tokens.unwrap();
+    let mut keys = KEY.lock().await;
+    let res = keys.update_keys(&tokens.refresh)?;
+    let update_tokens = UpdateTokens
+    {
+        access: res.1,
+        refresh: res.0
+    };
+    let result = serde_json::to_string(&update_tokens).unwrap();
+    let resp = Response::builder()
+            .status(StatusCode::OK)
+            .header(header::CONTENT_TYPE, "application/json ")
+            .body(to_body(Bytes::from(result)))?;
+    return  Ok(resp);
+}
+
 async fn handle_request(
     mut req: Request<Incoming>,
     remote_addr: SocketAddr,
@@ -227,8 +290,6 @@ async fn handle_request(
     {
         return Ok(error_empty_response(StatusCode::TOO_MANY_REQUESTS));
     }
-
-    println!("Получен запрос от {}:{}", remote_addr.ip(), remote_addr.port());
     //TODO сделать сервис аутентификации
     // let unauthorized_response = Response::builder()
     // .status(StatusCode::UNAUTHORIZED)
@@ -250,33 +311,37 @@ async fn handle_request(
     //         return Ok(unauthorized_response);
     //     }
     // }
-
+    //убираем начальный слеш
     let path = req.uri().path().strip_prefix('/');
     if path.is_none()
     {
         return Ok(error_response(format!("Ошибка запроса {}, указан неверный путь к сервису",  req.uri().path()), StatusCode::BAD_REQUEST));
     }
     let path = path.unwrap();
-    // если слеша нет то сервиса в запросе нет
+    //разделяем путь между сервисом и дальнейшим путем
     let parts = path.split_once('/');
     if parts.is_none()
     {
         return Ok(error_response(format!("Ошибка запроса {}, не уточнен сервис к которому производится запрос", path), StatusCode::BAD_REQUEST));
     }
     let (service_name, path) = parts.unwrap();
-    logger::info!("запрос сервиса {} с эндпоинтом {}", service_name, path);
     match registry.get_config(service_name) 
     {
         Some(address) => 
         {
             if let Some(endpoint) = address.get_endpoint(path)
             {
-                //TODO если авторизация необходима то реализовать проверку на этом этапе как раз для этого endpoint и получали
+
+                let sn = [service_name, "/"].concat();
+                let p_q = req.uri().path_and_query().unwrap().to_string().replace(&sn, "");
                 let uri = Uri::builder()
                 .scheme("http")
                 .authority(address.address.clone())
-                .path_and_query(["/", &endpoint.path].concat()).build().unwrap();
+                .path_and_query(p_q).build().unwrap();
+
+                logger::info!("Запрос переадресован на {}", uri.to_string());
                 *req.uri_mut() = uri;
+
                 return service_handler(req).await;
             }
             else 
@@ -296,7 +361,6 @@ async fn router(
     registry: Arc<ServiceRegistry>) -> Result<Response<BoxBody>, GatewayError>
 {   
     let path = req.uri().path();
-    logger::info!("адрес запроса {}", path);
     if path == "/register_service" 
     {
         return register_service(req, Arc::clone(&registry)).await;
@@ -306,13 +370,17 @@ async fn router(
     {
         return deregister_service(req, Arc::clone(&registry)).await;
     }
-    // Handle other requests using the previously defined handler
+    if path == "/update_tokens" 
+    {
+        return update_tokens(req).await;
+    }
     handle_request(req, remote_addr, rate_limiter, registry).await
 }
 
-async fn send(addr:  SocketAddr, req: Request<BoxBody>) -> Result<Response<Incoming>, GatewayError>
+async fn send(addr:  SocketAddr, req: Request<Incoming>) -> Result<Response<Incoming>, GatewayError>
 {
     
+    logger::info!("Отправка запроса на {}", req.uri());
     let client_stream = TcpStream::connect(&addr).await;
     if client_stream.is_err()
     {
@@ -439,3 +507,10 @@ pub fn to_body(bytes: Bytes) -> BoxBody
         .map_err(|never| match never {})
     .boxed()
 }   
+
+
+#[cfg(test)]
+mod tests
+{
+   
+}

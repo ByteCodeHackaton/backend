@@ -22,11 +22,6 @@ impl Display for Station
     }
 }
 
-
-  // "name_station": "Павелецкая КЛ",
-        // "name_line": "5",
-        // "id": "83",
-        // "id_line": "5"
 #[derive(Clone, Serialize, Deserialize, Eq, Debug, PartialEq, Ord, PartialOrd, Hash)]
 pub struct SubwayStation
 {

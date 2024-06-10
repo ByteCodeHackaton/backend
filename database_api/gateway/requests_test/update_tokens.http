@@ -1,0 +1,7 @@
+POST http://localhost:8080/update_tokens HTTP/1.1
+content-type: application/json
+
+{ 
+    "access":"eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNzE4MDcyNDg2LCJpYXQiOjE3MTgwMjkyODYsImlkIjoiMTIzNCJ9.AkUrIzh6IQ__VcBpobMTI0p31HoYspdHYZzMmYpA6P1-o-NVUl8f7cCg3SfwdMNNR0A73RFvwPp1gL-iuCkgDg",
+    "refresh":"eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNzE4MDcyNDg2LCJpYXQiOjE3MTgwMjkyODYsImlkIjoiMTIzNCJ9.AkUrIzh6IQ__VcBpobMTI0p31HoYspdHYZzMmYpA6P1-o-NVUl8f7cCg3SfwdMNNR0A73RFvwPp1gL-iuCkgDg"
+}
