@@ -1678,6 +1678,62 @@
 			},
 			"response": [
 				{
+					"name": "order set 200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{content}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"477354236\",\r\n    \"id_pas\": \"11058234\",\r\n    \"datetime\": \"24.04.2024 7:30:00\",\r\n    \"time3\": \"07:13:52\",\r\n    \"time4\": \"07:51:11\",\r\n    \"cat_pas\": \"ИЗТ\",\r\n    \"status\": \"Заявка закончена\",\r\n    \"tpz\": \"15.03.2024 22:48:43\",\r\n    \"INSP_SEX_M\": \"0\",\r\n    \"INSP_SEX_F\": \"1\",\r\n    \"TIME_OVER\": \"00:52:20\",\r\n    \"id_st1\": \"5\",\r\n    \"id_st2\": \"97\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/order/set",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}{{api}}",
+							"path": [
+								"order",
+								"set"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 Jun 2024 13:30:19 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "19"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"477354236\"\n}"
+				},
+				{
 					"name": "order set 417",
 					"originalRequest": {
 						"method": "POST",
@@ -1736,62 +1792,6 @@
 					],
 					"cookie": [],
 					"body": "Ошибка добавления заявки: constraint failed: UNIQUE constraint failed: orders.id (1555)\n"
-				},
-				{
-					"name": "order set 200",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "{{content}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"477354236\",\r\n    \"id_pas\": \"11058234\",\r\n    \"datetime\": \"24.04.2024 7:30:00\",\r\n    \"time3\": \"07:13:52\",\r\n    \"time4\": \"07:51:11\",\r\n    \"cat_pas\": \"ИЗТ\",\r\n    \"status\": \"Заявка закончена\",\r\n    \"tpz\": \"15.03.2024 22:48:43\",\r\n    \"INSP_SEX_M\": \"0\",\r\n    \"INSP_SEX_F\": \"1\",\r\n    \"TIME_OVER\": \"00:52:20\",\r\n    \"id_st1\": \"5\",\r\n    \"id_st2\": \"97\"\r\n  }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/order/set",
-							"protocol": "{{protocol}}",
-							"host": [
-								"{{url}}"
-							],
-							"port": "{{port}}{{api}}",
-							"path": [
-								"order",
-								"set"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin"
-						},
-						{
-							"key": "Date",
-							"value": "Sun, 09 Jun 2024 13:30:19 GMT"
-						},
-						{
-							"key": "Content-Length",
-							"value": "19"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"id\": \"477354236\"\n}"
 				}
 			]
 		},
@@ -2004,6 +2004,97 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"id\": \"477354234\"\n}"
+				}
+			]
+		},
+		{
+			"name": "order state list",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/order/state/list",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}{{api}}",
+					"path": [
+						"order",
+						"state",
+						"list"
+					]
+				},
+				"description": "Получить весь список документов для закачки на терминал или 1С конфигурацию\n\nGET метод осуществляет выдачу списка пакетов (документов) для закачки на терминал или 1С конфигурацию"
+			},
+			"response": [
+				{
+					"name": "order state list 200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/order/state/list",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}{{api}}",
+							"path": [
+								"order",
+								"state",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Jun 2024 04:26:25 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1089"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"document\": {\n        \"details\": [\n            {\n                \"id\": \"018ffea0-3a7e-7741-b55b-3efacd17ae2c\",\n                \"state\": \"Не подтверждена\"\n            },\n            {\n                \"id\": \"018ffea0-3c19-7a7c-8b1d-9461cc0742a6\",\n                \"state\": \"В рассмотрении\"\n            },\n            {\n                \"id\": \"018ffea0-3cff-7738-8f27-ed3c9bc843a9\",\n                \"state\": \"Принята\"\n            },\n            {\n                \"id\": \"018ffea0-3dd1-70bc-b23d-cbbe44fd1a5f\",\n                \"state\": \"Инспектор выехал\"\n            },\n            {\n                \"id\": \"018ffea0-3f22-7c74-82e1-daec00bcfa44\",\n                \"state\": \"Инспектор на месте\"\n            },\n            {\n                \"id\": \"018ffea0-4018-7666-b68a-c223bfe90e16\",\n                \"state\": \"Поездка\"\n            },\n            {\n                \"id\": \"018ffea0-416e-77f6-acba-cc8cba4ac2ff\",\n                \"state\": \"Заявка закончена\"\n            },\n            {\n                \"id\": \"018ffea0-429a-719e-898a-291e7585a408\",\n                \"state\": \"Выявление\"\n            },\n            {\n                \"id\": \"018ffea0-43ad-7927-b60f-7414c005eddb\",\n                \"state\": \"Лист Ожидания\"\n            },\n            {\n                \"id\": \"018ffea0-4505-7bbf-801f-74c98e1bcd02\",\n                \"state\": \"Отмена\"\n            },\n            {\n                \"id\": \"018ffea0-45d8-72d8-b3d5-8a46ba6a75ca\",\n                \"state\": \"Отказ\"\n            },\n            {\n                \"id\": \"018ffea0-46db-7ebe-ac13-1e6be465807c\",\n                \"state\": \"Пассажир опаздывает\"\n            },\n            {\n                \"id\": \"018ffea0-47f9-754f-884f-41ae979b33c3\",\n                \"state\": \"Инспектор опаздывает\"\n            }\n        ]\n    }\n}"
 				}
 			]
 		},
