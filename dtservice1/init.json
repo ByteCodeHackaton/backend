@@ -1,0 +1,90 @@
+{
+    "name": "sample_service",
+    "address": "localhost:9999",
+    "endpoints": [
+        {
+            "path": "authorization",
+            "authorization": true
+        },
+        {
+            "path": "employee/set",
+            "authorization": true
+        },
+        {
+            "path": "employee/update",
+            "authorization": true
+        },
+        {
+            "path": "employee/list",
+            "authorization": true
+        },
+        {
+            "path": "employee/delete",
+            "authorization": true
+        },
+        {
+            "path": "passenger/set",
+            "authorization": true
+        },
+        {
+            "path": "passenger/update",
+            "authorization": true
+        },
+        {
+            "path": "passenger/list",
+            "authorization": true
+        },
+        {
+            "path": "passenger",
+            "authorization": true
+        },
+        {
+            "path": "passenger/delete",
+            "authorization": true
+        },
+        {
+            "path": "category/set",
+            "authorization": true
+        },
+        {
+            "path": "category/list",
+            "authorization": true
+        },
+        {
+            "path": "uchastok/list",
+            "authorization": true
+        },
+        {
+            "path": "rank/list",
+            "authorization": true
+        },
+        {
+            "path": "account",
+            "authorization": true
+        },
+        {
+            "path": "account/exist",
+            "authorization": true
+        },
+        {
+            "path": "order/set",
+            "authorization": true
+        },
+        {
+            "path": "order/list",
+            "authorization": true
+        },
+        {
+            "path": "order/delete",
+            "authorization": true
+        },
+        {
+            "path": "order/state/list",
+            "authorization": true
+        },
+        {
+            "path": "role/list",
+            "authorization": true
+        }
+    ]
+}
