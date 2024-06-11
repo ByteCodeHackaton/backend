@@ -198,7 +198,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>>
     logger::StructLogger::initialize_logger();
     let registry = Arc::new(ServiceRegistry::try_from_exists());
     let rate_limiter = Arc::new(RateLimiter::new());
-    //let registry = Arc::new(ServiceRegistry::new());
     let addr = SocketAddr::from(([0, 0, 0, 0], 8080));
     let listener = TcpListener::bind(addr).await?;
     loop 
