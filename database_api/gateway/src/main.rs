@@ -5,31 +5,31 @@ mod registry;
 mod rate_limiter;
 mod body_helpers;
 
-use authentification::{authentificate, get_claims, is_autentificated, update_tokens, verify_token};
+use authentification::{authentificate, get_claims, update_tokens, verify_token};
 use body_helpers::{error_empty_response, error_response, unauthorized_response, BoxBody};
 use hyper::{server::conn::http1, Uri};
 use error::GatewayError;
 use http_body_util::BodyExt;
 use hyper_util::rt::TokioIo;
-use jwt::KEY;
+use jwt::{Claims, KEY};
 use rate_limiter::RateLimiter;
-use registry::{deregister_service, register_service, ServiceRegistry};
+use registry::{deregister_service, register_service, ServiceConfig, ServiceRegistry};
 use tokio::net::{TcpListener, TcpStream};
-use std::sync::Arc;
+use std::{collections::HashMap, sync::Arc};
 use std::net::SocketAddr;
 use hyper::{body::Incoming, Request, Response, StatusCode};
 
 ///
-async fn service_handler(req: Request<Incoming>) -> Result<Response<BoxBody>, GatewayError>
+async fn service_handler(req: Request<Incoming>, claims: Option<Claims>) -> Result<Response<BoxBody>, GatewayError>
 {
     // не вижу смысла пока отправлять публичный ключ и токен на микросервисы для идентификации, просто оправлю user_id ну и что то еще если будет нужно, если будет большее количество микросервисов можно будет добавить связку публичный ключ\access token
-    let pc = {
-        let key = KEY.lock().await;
-        key.get_public_key()
-    };
+    // let pc = {
+    //     let key = KEY.lock().await;
+    //     key.get_public_key()
+    // };
     let request = 
     {
-        if let Some(cl) = get_claims(&req).await
+        if let Some(cl) = claims
         {
             Request::builder()
             .method(req.method())
@@ -47,7 +47,6 @@ async fn service_handler(req: Request<Incoming>) -> Result<Response<BoxBody>, Ga
             .unwrap()
         }
     };
-    
     let auth = request.uri().authority();
     let target_host = auth.unwrap().as_str().replace("localhost", "127.0.0.1");
     let addr: SocketAddr = target_host.parse().unwrap();
@@ -86,27 +85,6 @@ async fn handle_request(
     {
         return Ok(error_empty_response(StatusCode::TOO_MANY_REQUESTS));
     }
-    //TODO сделать сервис аутентификации
-    // let unauthorized_response = Response::builder()
-    // .status(StatusCode::UNAUTHORIZED)
-    // .body(to_body(Bytes::from_static(b"Unauthorized")))
-    // .unwrap();
-    // // Authentication
-    // match req.headers().get("Authorization") 
-    // {
-    //     Some(value) => 
-    //     {
-    //         let token_str = value.to_str().unwrap_or("");
-    //         if !authenticate(token_str) 
-    //         {
-    //             return Ok(unauthorized_response);
-    //         }
-    //     },
-    //     None => 
-    //     {
-    //         return Ok(unauthorized_response);
-    //     }
-    // }
     //убираем начальный слеш
     let path = req.uri().path().strip_prefix('/');
     if path.is_none()
@@ -133,19 +111,21 @@ async fn handle_request(
                 .scheme("http")
                 .authority(service.get_address())
                 .path_and_query(p_q).build().unwrap();
+                //если сервис требует авторизации, то проверяем авторизован ли юзер и отправляем unauthorized если нет
+                let uri_str = uri.to_string();
+                *req.uri_mut() = uri;
                 if endpoint.need_authorization()
                 {
-                    let auth = is_autentificated(&req).await;
-                    if !auth
+                    let claims = get_claims(&req).await;
+                    if claims.is_none()
                     {
                         return Ok(unauthorized_response());
                     }
-
+                    logger::info!("Запрос переадресован на (авторизованная зона) {}", &uri_str);
+                    return service_handler(req, claims).await;
                 }
-                logger::info!("Запрос переадресован на {}", uri.to_string());
-                *req.uri_mut() = uri;
-
-                return service_handler(req).await;
+                logger::info!("Запрос переадресован на {}", &uri_str);
+                return service_handler(req, None).await;
             }
             else 
             {
@@ -216,8 +196,9 @@ async fn send(addr:  SocketAddr, req: Request<Incoming>) -> Result<Response<Inco
 async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>>
 {
     logger::StructLogger::initialize_logger();
+    let registry = Arc::new(ServiceRegistry::try_from_exists());
     let rate_limiter = Arc::new(RateLimiter::new());
-    let registry = Arc::new(ServiceRegistry::new());
+    //let registry = Arc::new(ServiceRegistry::new());
     let addr = SocketAddr::from(([0, 0, 0, 0], 8080));
     let listener = TcpListener::bind(addr).await?;
     loop 

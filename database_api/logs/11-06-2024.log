@@ -118,3 +118,104 @@
 [11-06-2024 12:48:27]:⚙ DEBUG -> request; method=GET uri=/favicon.ico version=HTTP/1.1 headers={"host": "localhost:8888", "user-agent": "Mozilla/5.0 (X11; Linux x86_64; rv:126.0) Gecko/20100101 Firefox/126.0", "accept": "image/avif,image/webp,*/*", "accept-language": "ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3", "accept-encoding": "gzip, deflate, br, zstd", "connection": "keep-alive", "referer": "http://localhost:8888/nearest?id=nd89811596&time=10", "sec-fetch-dest": "image", "sec-fetch-mode": "no-cors", "sec-fetch-site": "cross-site", "priority": "u=6"}
 [11-06-2024 12:48:27]:⚙ DEBUG -> started processing request
 [11-06-2024 12:48:27]:⚙ DEBUG -> finished processing request latency=1 ms status=404
+[11-06-2024 13:29:50]:💬 Информация -> Запрос от 127.0.0.1:59634
+[11-06-2024 13:29:50]:⚙ DEBUG -> Запрос регистрации сервиса: {"name":"subway","address":"localhost:8888","endpoints":[{"path":"/nearest","authorization":false},{"path":"/stations","authorization":false},{"path":"/path","authorization":false}]}
+[11-06-2024 13:31:24]:⚙ DEBUG -> Err(connection closed before message completed
+
+Stack backtrace:
+   0: anyhow::error::<impl core::convert::From<E> for anyhow::Error>::from
+             at /home/phobos/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anyhow-1.0.86/src/error.rs:565:25
+   1: <core::result::Result<T,F> as core::ops::try_trait::FromResidual<core::result::Result<core::convert::Infallible,E>>>::from_residual
+             at /rustc/25ef9e3d85d934b27d9dada2f9dd52b1dc63bb04/library/core/src/result.rs:1959:27
+   2: service_registrator::ServiceConfig::register::{{closure}}
+             at ./service_registrator/src/lib.rs:79:20
+   3: station_service::main::{{closure}}
+             at ./station_service/src/main.rs:29:33
+   4: tokio::runtime::park::CachedParkThread::block_on::{{closure}}
+             at /home/phobos/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.0/src/runtime/park.rs:281:63
+   5: tokio::runtime::coop::with_budget
+             at /home/phobos/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.0/src/runtime/coop.rs:107:5
+   6: tokio::runtime::coop::budget
+             at /home/phobos/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.0/src/runtime/coop.rs:73:5
+   7: tokio::runtime::park::CachedParkThread::block_on
+             at /home/phobos/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.0/src/runtime/park.rs:281:31
+   8: tokio::runtime::context::blocking::BlockingRegionGuard::block_on
+             at /home/phobos/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.0/src/runtime/context/blocking.rs:66:9
+   9: tokio::runtime::scheduler::multi_thread::MultiThread::block_on::{{closure}}
+             at /home/phobos/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.0/src/runtime/scheduler/multi_thread/mod.rs:87:13
+  10: tokio::runtime::context::runtime::enter_runtime
+             at /home/phobos/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.0/src/runtime/context/runtime.rs:65:16
+  11: tokio::runtime::scheduler::multi_thread::MultiThread::block_on
+             at /home/phobos/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.0/src/runtime/scheduler/multi_thread/mod.rs:86:9
+  12: tokio::runtime::runtime::Runtime::block_on
+             at /home/phobos/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.0/src/runtime/runtime.rs:349:45
+  13: station_service::main
+             at ./station_service/src/main.rs:31:5
+  14: core::ops::function::FnOnce::call_once
+             at /rustc/25ef9e3d85d934b27d9dada2f9dd52b1dc63bb04/library/core/src/ops/function.rs:250:5
+  15: std::sys_common::backtrace::__rust_begin_short_backtrace
+             at /rustc/25ef9e3d85d934b27d9dada2f9dd52b1dc63bb04/library/std/src/sys_common/backtrace.rs:155:18
+  16: std::rt::lang_start::{{closure}}
+             at /rustc/25ef9e3d85d934b27d9dada2f9dd52b1dc63bb04/library/std/src/rt.rs:166:18
+  17: core::ops::function::impls::<impl core::ops::function::FnOnce<A> for &F>::call_once
+             at /rustc/25ef9e3d85d934b27d9dada2f9dd52b1dc63bb04/library/core/src/ops/function.rs:284:13
+  18: std::panicking::try::do_call
+             at /rustc/25ef9e3d85d934b27d9dada2f9dd52b1dc63bb04/library/std/src/panicking.rs:554:40
+  19: std::panicking::try
+             at /rustc/25ef9e3d85d934b27d9dada2f9dd52b1dc63bb04/library/std/src/panicking.rs:518:19
+  20: std::panic::catch_unwind
+             at /rustc/25ef9e3d85d934b27d9dada2f9dd52b1dc63bb04/library/std/src/panic.rs:142:14
+  21: std::rt::lang_start_internal::{{closure}}
+             at /rustc/25ef9e3d85d934b27d9dada2f9dd52b1dc63bb04/library/std/src/rt.rs:148:48
+  22: std::panicking::try::do_call
+             at /rustc/25ef9e3d85d934b27d9dada2f9dd52b1dc63bb04/library/std/src/panicking.rs:554:40
+  23: std::panicking::try
+             at /rustc/25ef9e3d85d934b27d9dada2f9dd52b1dc63bb04/library/std/src/panicking.rs:518:19
+  24: std::panic::catch_unwind
+             at /rustc/25ef9e3d85d934b27d9dada2f9dd52b1dc63bb04/library/std/src/panic.rs:142:14
+  25: std::rt::lang_start_internal
+             at /rustc/25ef9e3d85d934b27d9dada2f9dd52b1dc63bb04/library/std/src/rt.rs:148:20
+  26: std::rt::lang_start
+             at /rustc/25ef9e3d85d934b27d9dada2f9dd52b1dc63bb04/library/std/src/rt.rs:165:17
+  27: main
+  28: __libc_start_call_main
+  29: __libc_start_main_impl
+  30: _start)
+[11-06-2024 13:31:26]:⚙ DEBUG -> Апи сервера доступно на 0.0.0.0:8888
+[11-06-2024 13:34:05]:⚙ DEBUG -> Запрос регистрации сервиса: {"name":"subway","address":"localhost:8888","endpoints":[{"path":"/nearest","authorization":false},{"path":"/stations","authorization":false},{"path":"/path","authorization":false}]}
+[11-06-2024 13:34:05]:💬 Информация -> Запрос от 127.0.0.1:40884
+[11-06-2024 13:52:06]:⚙ DEBUG -> Запрос регистрации сервиса: {"name":"subway","address":"localhost:8888","endpoints":[{"path":"/nearest","authorization":false},{"path":"/stations","authorization":false},{"path":"/path","authorization":false}]}
+[11-06-2024 13:52:06]:💬 Информация -> Запрос от 127.0.0.1:43620
+[11-06-2024 13:52:06]:⚙ DEBUG -> ServiceRegistry { services: RwLock { data: {"subway": ServiceConfig { name: "subway", address: "localhost:8888", endpoints: [Endpoint { path: "/nearest", authorization: false }, Endpoint { path: "/stations", authorization: false }, Endpoint { path: "/path", authorization: false }] }}, poisoned: false, .. } }
+[11-06-2024 13:52:06]:⚙ DEBUG -> Ok(Response { status: 200, version: HTTP/1.1, headers: {"content-type": "text/html; charset=utf-8", "content-length": "65", "date": "Tue, 11 Jun 2024 10:52:06 GMT"}, body: Body(Streaming) })
+[11-06-2024 13:52:06]:⚙ DEBUG -> Апи сервера доступно на 0.0.0.0:8888
+[11-06-2024 13:52:21]:💬 Информация -> Запрос от 127.0.0.1:39004
+[11-06-2024 13:52:21]:💬 Информация -> Запрос переадресован на http://localhost:8888/nearest?id=nd89811596&time=10
+[11-06-2024 13:52:21]:💬 Информация -> Отправка запроса на http://localhost:8888/nearest?id=nd89811596&time=10, headers: {}
+[11-06-2024 13:52:21]:⚙ DEBUG -> request; method=GET uri=http://localhost:8888/nearest?id=nd89811596&time=10 version=HTTP/1.1 headers={}
+[11-06-2024 13:52:21]:⚙ DEBUG -> started processing request
+[11-06-2024 13:52:21]:⚙ DEBUG -> finished processing request latency=11 ms status=200
+[11-06-2024 13:52:21]:⚙ DEBUG -> получен ответ от сервиса Body(Streaming)
+[11-06-2024 13:53:05]:💬 Информация -> Запрос от 127.0.0.1:38436
+[11-06-2024 13:57:41]:💬 Информация -> Ok([34, 123, 92, 34, 115, 117, 98, 119, 97, 121, 92, 34, 58, 123, 92, 34, 110, 97, 109, 101, 92, 34, 58, 92, 34, 115, 117, 98, 119, 97, 121, 92, 34, 44, 92, 34, 97, 100, 100, 114, 101, 115, 115, 92, 34, 58, 92, 34, 108, 111, 99, 97, 108, 104, 111, 115, 116, 58, 56, 56, 56, 56, 92, 34, 44, 92, 34, 101, 110, 100, 112, 111, 105, 110, 116, 115, 92, 34, 58, 91, 123, 92, 34, 112, 97, 116, 104, 92, 34, 58, 92, 34, 47, 110, 101, 97, 114, 101, 115, 116, 92, 34, 44, 92, 34, 97, 117, 116, 104, 111, 114, 105, 122, 97, 116, 105, 111, 110, 92, 34, 58, 102, 97, 108, 115, 101, 125, 44, 123, 92, 34, 112, 97, 116, 104, 92, 34, 58, 92, 34, 47, 115, 116, 97, 116, 105, 111, 110, 115, 92, 34, 44, 92, 34, 97, 117, 116, 104, 111, 114, 105, 122, 97, 116, 105, 111, 110, 92, 34, 58, 102, 97, 108, 115, 101, 125, 44, 123, 92, 34, 112, 97, 116, 104, 92, 34, 58, 92, 34, 47, 112, 97, 116, 104, 92, 34, 44, 92, 34, 97, 117, 116, 104, 111, 114, 105, 122, 97, 116, 105, 111, 110, 92, 34, 58, 102, 97, 108, 115, 101, 125, 93, 125, 125, 34])
+[11-06-2024 13:59:48]:💬 Информация -> Err(Error("invalid type: string \"{\\\"subway\\\":{\\\"name\\\":\\\"subway\\\",\\\"address\\\":\\\"localhost:8888\\\",\\\"endpoints\\\":[{\\\"path\\\":\\\"/nearest\\\",\\\"authorization\\\":false},{\\\"path\\\":\\\"/stations\\\",\\\"authorization\\\":false},{\\\"path\\\":\\\"/path\\\",\\\"authorization\\\":false}]}}\", expected a map", line: 1, column: 225))
+[11-06-2024 14:09:05]:⚙ DEBUG -> Запрос регистрации сервиса: {"name":"subway","address":"localhost:8888","endpoints":[{"path":"/nearest","authorization":false},{"path":"/stations","authorization":false},{"path":"/path","authorization":false}]}
+[11-06-2024 14:09:05]:💬 Информация -> Запрос от 127.0.0.1:37556
+[11-06-2024 14:09:05]:⚙ DEBUG -> ServiceRegistry { services: RwLock { data: {"subway": ServiceConfig { name: "subway", address: "localhost:8888", endpoints: [Endpoint { path: "/nearest", authorization: false }, Endpoint { path: "/stations", authorization: false }, Endpoint { path: "/path", authorization: false }] }}, poisoned: false, .. } }
+[11-06-2024 14:09:05]:⚙ DEBUG -> Ok(Response { status: 200, version: HTTP/1.1, headers: {"content-type": "text/html; charset=utf-8", "content-length": "65", "date": "Tue, 11 Jun 2024 11:09:05 GMT"}, body: Body(Streaming) })
+[11-06-2024 14:09:05]:⚙ DEBUG -> Апи сервера доступно на 0.0.0.0:8888
+[11-06-2024 14:09:26]:💬 Информация -> Err(Error("invalid type: string \"[{\\\"name\\\":\\\"subway\\\",\\\"address\\\":\\\"localhost:8888\\\",\\\"endpoints\\\":[{\\\"path\\\":\\\"/nearest\\\",\\\"authorization\\\":false},{\\\"path\\\":\\\"/stations\\\",\\\"authorization\\\":false},{\\\"path\\\":\\\"/path\\\",\\\"authorization\\\":false}]}]\", expected a sequence", line: 1, column: 214))
+[11-06-2024 14:13:00]:⚙ DEBUG -> Запрос регистрации сервиса: {"name":"subway","address":"localhost:8888","endpoints":[{"path":"/nearest","authorization":false},{"path":"/stations","authorization":false},{"path":"/path","authorization":false}]}
+[11-06-2024 14:13:00]:💬 Информация -> Запрос от 127.0.0.1:49400
+[11-06-2024 14:13:00]:⚙ DEBUG -> ServiceRegistry { services: RwLock { data: {"subway": ServiceConfig { name: "subway", address: "localhost:8888", endpoints: [Endpoint { path: "/nearest", authorization: false }, Endpoint { path: "/stations", authorization: false }, Endpoint { path: "/path", authorization: false }] }}, poisoned: false, .. } }
+[11-06-2024 14:13:00]:⚙ DEBUG -> Ok(Response { status: 200, version: HTTP/1.1, headers: {"content-type": "text/html; charset=utf-8", "content-length": "65", "date": "Tue, 11 Jun 2024 11:13:00 GMT"}, body: Body(Streaming) })
+[11-06-2024 14:13:00]:⚙ DEBUG -> Апи сервера доступно на 0.0.0.0:8888
+[11-06-2024 14:13:34]:💬 Информация -> Ok([ServiceConfig { name: "subway", address: "localhost:8888", endpoints: [Endpoint { path: "/nearest", authorization: false }, Endpoint { path: "/stations", authorization: false }, Endpoint { path: "/path", authorization: false }] }])
+[11-06-2024 14:13:34]:💬 Информация -> из файла services.json загружен сервис "subway"
+[11-06-2024 14:13:43]:💬 Информация -> Запрос от 127.0.0.1:39934
+[11-06-2024 14:13:43]:💬 Информация -> Запрос переадресован на http://localhost:8888/nearest?id=nd89811596&time=10
+[11-06-2024 14:13:43]:💬 Информация -> Отправка запроса на http://localhost:8888/nearest?id=nd89811596&time=10, headers: {}
+[11-06-2024 14:13:43]:⚙ DEBUG -> request; method=GET uri=http://localhost:8888/nearest?id=nd89811596&time=10 version=HTTP/1.1 headers={}
+[11-06-2024 14:13:43]:⚙ DEBUG -> started processing request
+[11-06-2024 14:13:43]:⚙ DEBUG -> finished processing request latency=6 ms status=200
+[11-06-2024 14:13:43]:⚙ DEBUG -> получен ответ от сервиса Body(Streaming)

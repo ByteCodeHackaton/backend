@@ -61,7 +61,7 @@ pub async fn get_claims(req: &Request<Incoming>) -> Option<Claims>
         },
         None => 
         {
-            let e = "Отсуствует заголовок Authorization!";
+            let e = "Отсуствует заголовок Authorization";
             logger::error!("{}", e);
             None
         }

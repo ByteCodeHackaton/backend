@@ -1,0 +1,20 @@
+[
+  {
+    "name": "subway",
+    "address": "localhost:8888",
+    "endpoints": [
+      {
+        "path": "/nearest",
+        "authorization": false
+      },
+      {
+        "path": "/stations",
+        "authorization": false
+      },
+      {
+        "path": "/path",
+        "authorization": false
+      }
+    ]
+  }
+]

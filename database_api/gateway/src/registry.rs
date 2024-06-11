@@ -69,17 +69,63 @@ impl ServiceRegistry
             services: Arc::new(RwLock::new(HashMap::new())),
         }
     }
+    pub fn try_from_exists() -> Self 
+    {
+        let services = utilites::read_file_to_binary("services.json");
+        if services.is_ok()
+        {
+            let obj = serde_json::de::from_slice::<Vec<ServiceConfig>>(services.as_ref().unwrap());
+            if obj.is_ok()
+            {
+                let mut hm : HashMap<String, ServiceConfig> = HashMap::new();
+                for s in obj.unwrap()
+                {
+                    logger::info!("из файла services.json загружен сервис {:?}", &s.name);
+                    hm.insert(s.name.clone(), s);
+                }
+                ServiceRegistry 
+                {
+                    
+                   services: Arc::new(RwLock::new(hm))
+                }
+            }
+            else
+            {
+                ServiceRegistry 
+                {
+                    services: Arc::new(RwLock::new(HashMap::new())),
+                }
+            }
+        }
+        else
+        {
+            ServiceRegistry 
+            {
+                services: Arc::new(RwLock::new(HashMap::new())),
+            }
+        }
+    }
+    pub fn save(&self)
+    {
+        let guard  = self.services.read().unwrap();
+        let vec = guard.values().map(|v| v).collect::<Vec<&ServiceConfig>>();
+        let _  = utilites::serialize_to_file(vec, "services.json", None);
+    }
 
     pub fn register(&self, name: String, config: ServiceConfig) 
     {
         let mut services = self.services.write().unwrap();
         services.insert(name, config);
+        drop(services);
+        self.save();
     }
 
     pub fn deregister(&self, name: &str) 
     {
         let mut services = self.services.write().unwrap();
         services.remove(name);
+        drop(services);
+        self.save();
     }
 
     pub fn get_address(&self, name: &str) -> Option<String> 
