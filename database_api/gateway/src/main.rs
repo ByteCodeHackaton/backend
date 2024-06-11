@@ -1,174 +1,22 @@
 mod error;
 mod jwt;
+mod authentification;
+mod registry;
+mod rate_limiter;
+mod body_helpers;
 
-use hyper::{body, server::conn::http1, service::Service, Uri};
-use hyper_util::{client::legacy::{Client, connect::HttpConnector}, rt::TokioExecutor, rt::TokioIo};
+use authentification::update_tokens;
+use body_helpers::{error_empty_response, error_response, BoxBody};
+use hyper::{server::conn::http1, Uri};
 use error::GatewayError;
-use http_body_util::{BodyExt, Full};
-use hyper::body::Body;
-use hyper::header;
-use hyper_tls::HttpsConnector;
-use jwt::KEY;
-use logger::backtrace;
+use http_body_util::BodyExt;
+use hyper_util::rt::TokioIo;
+use rate_limiter::RateLimiter;
+use registry::{deregister_service, register_service, ServiceRegistry};
 use tokio::net::{TcpListener, TcpStream};
-use std::{collections::HashMap, future::Future, pin::Pin};
-use std::sync::{Arc, Mutex, RwLock};
+use std::sync::Arc;
 use std::net::SocketAddr;
-use std::time::Duration;
-use hyper::{body::{Bytes, Incoming}, Request, Response, StatusCode};
-//use hyper::client::HttpConnector;
-use hyper::service::{service_fn};
-use serde_json::json;
-use jsonwebtoken::{decode, DecodingKey, Validation, errors::ErrorKind};
-use serde::{Deserialize, Serialize};
-use tower::ServiceBuilder;
-
-
-type BoxBody = http_body_util::combinators::BoxBody<Bytes, hyper::Error>;
-#[derive(Debug, Clone, Serialize, Deserialize)]
-struct ServiceConfig 
-{
-    name: String,
-    address: String,
-    endpoints: Vec<Endpoint>
-}
-
-impl ServiceConfig
-{
-    fn get_endpoint(&self, path: &str) -> Option<&Endpoint> 
-    {
-        if let Some((path, _)) = path.split_once("?")
-        {
-            self.endpoints.iter().find(|f| f.path.replace("/", "") == path.replace("/", ""))
-        }
-        else
-        {
-            //убирем слеши, так как не можем гарантировать что не будут различаться конечные слеши
-            self.endpoints.iter().find(|f| f.path.replace("/", "") == path.replace("/", ""))
-        }
-    }
-}
-#[derive(Debug)]
-struct ServiceRegistry 
-{
-    services: Arc<RwLock<HashMap<String, ServiceConfig>>>,  // Service Name -> Service Address (URL/URI)
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-struct Endpoint
-{
-    path: String,
-    authorization: bool
-}
-
-impl ServiceRegistry 
-{
-    fn new() -> Self 
-    {
-        ServiceRegistry 
-        {
-            services: Arc::new(RwLock::new(HashMap::new())),
-        }
-    }
-
-    fn register(&self, name: String, config: ServiceConfig) 
-    {
-        let mut services = self.services.write().unwrap();
-        services.insert(name, config);
-    }
-
-    fn deregister(&self, name: &str) 
-    {
-        let mut services = self.services.write().unwrap();
-        services.remove(name);
-    }
-
-    fn get_address(&self, name: &str) -> Option<String> 
-    {
-        let services = self.services.read().unwrap();
-        services.get(name).and_then(|a| Some(a.address.clone()))
-    }
-    fn get_endpoints(&self, name: &str) -> Option<Vec<Endpoint>> 
-    {
-        let services = self.services.read().unwrap();
-        services.get(name).and_then(|a| Some(a.endpoints.clone()))
-    }
-    fn get_config(&self, name: &str) -> Option<ServiceConfig> 
-    {
-        let services = self.services.read().unwrap();
-        services.get(name).and_then(|a| Some(a.clone()))
-    }
-}
-
-//непонятно можно просто типы проставить?
-async fn register_service(req: Request<Incoming>, registry: Arc<ServiceRegistry>) -> Result<Response<BoxBody>, GatewayError> 
-{
-    let body = req.collect().await?.to_bytes();
-    let config: Result<ServiceConfig, serde_json::Error> = serde_json::from_slice(&body);
-    if config.is_err()
-    {
-        let body_str = String::from_utf8_lossy(&body);
-        logger::error!("Неверный формат для регистрации сервиса -> {}, {}", body_str, config.err().unwrap());
-        let resp = Response::builder()
-            .status(StatusCode::BAD_REQUEST)
-            .header(header::CONTENT_TYPE, "text/html; charset=utf-8")
-            .body(to_body(Bytes::from("Неверный формат для регистрации сервиса, необходим формат: '{ \"name\": string, \"address\": string, \"endpoints\": [ { \"path\": string, \"authorization\": boolean } ] }'")))?;
-        return  Ok(resp);    
-    }
-    let config = config.unwrap();
-    let service_name = config.name.clone();
-    registry.register(service_name.clone(), config);
-    logger::debug!("{:?}", &registry);
-    let resp = Response::builder()
-            .status(StatusCode::OK)
-            .header(header::CONTENT_TYPE, "text/html; charset=utf-8")
-            .body(to_body(Bytes::from(format!("Сервис {} успешно зарегистрирован", service_name))))?;
-        return  Ok(resp);
-   
-}
-
-async fn deregister_service(req: Request<Incoming>, registry: Arc<ServiceRegistry>) -> Result<Response<BoxBody>, GatewayError> 
-{
-    let body = req.collect().await?.to_bytes();
-    let name = String::from_utf8_lossy(&body).to_string();
-    registry.deregister(&name);
-    let resp = Response::builder()
-            .status(StatusCode::OK)
-            .header(header::CONTENT_TYPE, "text/html; charset=utf-8")
-            .body(to_body(Bytes::from(format!("Сервис {} успешно удален", name))))?;
-    return  Ok(resp);   
-}
-
-struct RateLimiter 
-{
-    visitors: Arc<Mutex<HashMap<SocketAddr, u32>>>,
-}
-
-impl RateLimiter 
-{
-    fn new() -> Self 
-    {
-        RateLimiter 
-        {
-            visitors: Arc::new(Mutex::new(HashMap::new())),
-        }
-    }
-    ///не больше 5 штук
-    fn allow(&self, addr: SocketAddr) -> bool 
-    {
-        let mut visitors = self.visitors.lock().unwrap();
-        let counter = visitors.entry(addr).or_insert(0);
-        if *counter >= 5 
-        { 
-            false
-        } 
-        else 
-        {
-            *counter += 1;
-            true
-        }
-    }
-}
+use hyper::{body::Incoming, Request, Response, StatusCode};
 
 ///
 async fn service_handler(req: Request<Incoming>) -> Result<Response<BoxBody>, GatewayError>
@@ -207,77 +55,6 @@ async fn service_handler(req: Request<Incoming>) -> Result<Response<BoxBody>, Ga
     Ok(Response::new(response.boxed()))
 }
 
-async fn is_autentificate(mut req: Request<Incoming>, need_auth: bool) -> Result<bool, String>
-{
-    if need_auth
-    {
-        return match req.headers().get("Authorization") 
-        {
-            Some(value) => 
-            {
-                let token_str = value.to_str().unwrap_or("");
-                let key = KEY.lock().await;
-                let v = key.validate(token_str);
-                if let Ok(_) = v
-                {
-                    Ok(true)
-                }
-                else 
-                {
-                    let e = v.err().unwrap().to_string();
-                    logger::error!("{}", &e);
-                    Err(e)
-                }
-            },
-            None => 
-            {
-                let e = "Отсуствует заголовок Authorization!";
-                logger::error!("{}", e);
-                Err(e.to_owned())
-            }
-        };
-    }
-    else 
-    {
-        return Ok(true);
-    }
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-struct UpdateTokens
-{
-    pub access: String,
-    pub refresh: String
-}
-async fn update_tokens(req: Request<Incoming>) -> Result<Response<BoxBody>, GatewayError> 
-{
-    let body = req.collect().await?.to_bytes();
-    let tokens: Result<UpdateTokens, serde_json::Error> = serde_json::from_slice(&body);
-   
-    if tokens.is_err()
-    {
-        logger::error!("Неверный формат для обновления токенов -> {}", tokens.err().unwrap());
-        let resp = Response::builder()
-            .status(StatusCode::BAD_REQUEST)
-            .header(header::CONTENT_TYPE, "text/html; charset=utf-8")
-            .body(to_body(Bytes::from("Неверный формат для обновления токенов, необходим формат: '{ \"access\": string, \"refresh\": string}")))?;
-        return  Ok(resp);    
-    }
-    let tokens = tokens.unwrap();
-    let mut keys = KEY.lock().await;
-    let res = keys.update_keys(&tokens.refresh)?;
-    let update_tokens = UpdateTokens
-    {
-        access: res.1,
-        refresh: res.0
-    };
-    let result = serde_json::to_string(&update_tokens).unwrap();
-    let resp = Response::builder()
-            .status(StatusCode::OK)
-            .header(header::CONTENT_TYPE, "application/json ")
-            .body(to_body(Bytes::from(result)))?;
-    return  Ok(resp);
-}
 
 async fn handle_request(
     mut req: Request<Incoming>,
@@ -327,16 +104,16 @@ async fn handle_request(
     let (service_name, path) = parts.unwrap();
     match registry.get_config(service_name) 
     {
-        Some(address) => 
+        Some(service) => 
         {
-            if let Some(endpoint) = address.get_endpoint(path)
+            if let Some(endpoint) = service.get_endpoint(path)
             {
 
                 let sn = [service_name, "/"].concat();
                 let p_q = req.uri().path_and_query().unwrap().to_string().replace(&sn, "");
                 let uri = Uri::builder()
                 .scheme("http")
-                .authority(address.address.clone())
+                .authority(service.get_address())
                 .path_and_query(p_q).build().unwrap();
 
                 logger::info!("Запрос переадресован на {}", uri.to_string());
@@ -374,6 +151,10 @@ async fn router(
     {
         return update_tokens(req).await;
     }
+    // if path == "/authentification" 
+    // {
+    //     return authentificate(req).await;
+    // }
     handle_request(req, remote_addr, rate_limiter, registry).await
 }
 
@@ -438,22 +219,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>>
     }
 }
 
-fn error_response(err: String, code: StatusCode) -> Response<BoxBody>
-{
-    Response::builder()
-    .status(code)
-    .header(header::CONTENT_TYPE, "text/html; charset=utf-8")
-    .body(to_body(Bytes::from(err))).unwrap()
-}
-fn error_empty_response(code: StatusCode) -> Response<BoxBody>
-{
-    Response::builder()
-    .status(code)
-    .header(header::CONTENT_TYPE, "text/html; charset=utf-8")
-    .body(to_body(Bytes::new())).unwrap()
-}
-
-
 
 // impl Service<Request<Incoming>> for RateLimiter
 // {
@@ -492,22 +257,6 @@ fn error_empty_response(code: StatusCode) -> Response<BoxBody>
 //         Box::pin(async { res })
 //     }
 // }
-
-
-fn full<T: Into<Bytes>>(chunk: T) -> BoxBody 
-{
-    Full::new(chunk.into())
-    .map_err(|never| match never {})
-    .boxed()
-}
-
-pub fn to_body(bytes: Bytes) -> BoxBody
-{
-    Full::new(bytes)
-        .map_err(|never| match never {})
-    .boxed()
-}   
-
 
 #[cfg(test)]
 mod tests

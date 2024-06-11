@@ -1,6 +1,6 @@
 use std::collections::HashMap;
-
-use jsonwebtoken::{
+use jsonwebtoken::
+{
     decode, encode, errors::Error, get_current_timestamp, Algorithm, DecodingKey, EncodingKey, TokenData, Validation
 };
 use once_cell::sync::Lazy;
@@ -44,14 +44,14 @@ impl JWT
     {
         let iat =  OffsetDateTime::now_utc();
         let exp = iat + Duration::minutes(5);
-        let claims = Claims { sub: "test".to_string(), exp: exp, iat: iat, id: user_id.to_owned()};
+        let claims = Claims { sub: "access".to_string(),  exp,  iat, id: user_id.to_owned()};
         encode(&jsonwebtoken::Header::new(self.algo.clone()), &claims, &self.encoding_key).unwrap()
     }
     pub fn new_refresh(&self, user_id: &str) -> String
     {
         let iat =  OffsetDateTime::now_utc();
         let exp = iat + Duration::hours(12);
-        let claims = Claims { sub: "test".to_string(), exp: exp, iat: iat, id: user_id.to_owned()};
+        let claims = Claims { sub: "refresh".to_string(), exp: exp, iat: iat, id: user_id.to_owned()};
         encode(&jsonwebtoken::Header::new(self.algo.clone()), &claims, &self.encoding_key).unwrap()
     }
     pub fn get_pair(&mut self, user_id: &str) -> (String, String)
@@ -61,22 +61,45 @@ impl JWT
         self.pairs.insert(refresh.clone(), access.clone());
         (refresh, access)
     }
-    pub fn update_keys(&mut self, key: &str) -> Result<(String, String), GatewayError>
+    pub fn update_keys(&mut self, refresh_key: &str) -> Result<(String, String), GatewayError>
     {
-        let refresh = self.validate(key)?;
+        let refresh = self.validate_refresh(refresh_key);
+        if refresh.is_err()
+        {
+            //Проверяем, если это просроченный ключ то удаляем из связанных массивов
+            if self.pairs.contains_key(refresh_key)
+            {
+                self.pairs.remove(refresh_key);
+            }
+            let mut expired_key: Option<String> = None;
+            for exp in &self.expired
+            {
+                if exp.1.contains(&refresh_key.to_owned())
+                {
+                    expired_key = Some(exp.0.clone());
+                    break;
+                }
+            }
+            if let Some(exp) = expired_key
+            {
+                self.expired.remove(&exp);
+            }
+            return Err(GatewayError::JWTError(refresh.err().unwrap()));
+        }
+        let refresh = refresh.unwrap();
         let id = &refresh.claims.id;
-        if self.pairs.contains_key(key)
+        if self.pairs.contains_key(refresh_key)
         {
             if let Some(exp) = self.expired.get_mut(id)
             {
-                exp.push(key.to_owned());
+                exp.push(refresh_key.to_owned());
             }
             else 
             {
-                self.expired.insert(id.clone(), vec![key.to_owned()]);
+                self.expired.insert(id.clone(), vec![refresh_key.to_owned()]);
             }
             let pairs = self.get_pair(id);
-            self.pairs.remove(key);
+            self.pairs.remove(refresh_key);
             Ok(pairs)
         }
         //ключ уже обновлялся по этому refresh key, необходимо удалить все связанные данные, возможно ключ попал к злоумышленнику
@@ -93,9 +116,16 @@ impl JWT
             return Err(GatewayError::JWTRefreshError(["для юзера ", id, " рефреш токен уже обновлялся, все данные сброшены, вам необходимо заново залогиниться в систему"].concat()));
         }
     }
-    pub fn validate(&self, token: &str) -> Result<TokenData<Claims>, Error>
+    pub fn validate_refresh(&self, token: &str) -> Result<TokenData<Claims>, Error>
     {
-        let validation = Validation::new(self.algo.clone());
+        let mut validation = Validation::new(self.algo.clone());
+        validation.sub = Some("refresh".to_owned());
+        decode::<Claims>(token, &self.decoding_key, &validation)
+    }
+    pub fn validate_access(&self, token: &str) -> Result<TokenData<Claims>, Error>
+    {
+        let mut validation = Validation::new(self.algo.clone());
+        validation.sub = Some("access".to_owned());
         decode::<Claims>(token, &self.decoding_key, &validation)
     }
 }
