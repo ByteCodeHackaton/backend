@@ -7,11 +7,17 @@ authors = ["Alex_Xar <P40b0s@gmail.com>"]
 [workspace]
 members = [
     "api",
-    "db"
-    , "station_service"]
+    "db",
+    "station_service",
+    "order_service",
+    "employess_service", 
+    "gateway", 
+    "service_registrator"
+]
 default-members = ["api"]
 [dependencies]
 logger = {git = "https://github.com/P40b0s/logger.git", branch = "main"}
 utilites = {git = "https://github.com/P40b0s/help_utilites.git", package = "utilites"}
+
 
 [dev.dependencies]
