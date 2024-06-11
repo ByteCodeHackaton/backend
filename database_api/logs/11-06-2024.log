@@ -1,0 +1,120 @@
+[11-06-2024 10:46:56]:💬 Информация -> Запрос от 127.0.0.1:34868
+[11-06-2024 10:48:00]:💬 Информация -> Запрос от 127.0.0.1:49234
+[11-06-2024 10:58:10]:💬 Информация -> Запрос от 127.0.0.1:58880
+[11-06-2024 10:59:03]:💬 Информация -> Запрос от 127.0.0.1:38072
+[11-06-2024 10:59:03]:❌ Ошибка -> Base64 error: Encoded text cannot have a 6-bit remainder.
+[11-06-2024 10:59:14]:💬 Информация -> Запрос от 127.0.0.1:55590
+[11-06-2024 10:59:14]:❌ Ошибка -> Base64 error: Encoded text cannot have a 6-bit remainder.
+[11-06-2024 11:00:40]:💬 Информация -> Запрос от 127.0.0.1:36970
+[11-06-2024 11:00:59]:💬 Информация -> Запрос от 127.0.0.1:46214
+[11-06-2024 11:00:59]:❌ Ошибка -> Base64 error: Encoded text cannot have a 6-bit remainder.
+[11-06-2024 11:01:06]:💬 Информация -> Запрос от 127.0.0.1:56960
+[11-06-2024 11:01:06]:❌ Ошибка -> Base64 error: Invalid byte 34, offset 0.
+[11-06-2024 11:01:15]:💬 Информация -> Запрос от 127.0.0.1:44652
+[11-06-2024 11:01:15]:❌ Ошибка -> Base64 error: Encoded text cannot have a 6-bit remainder.
+[11-06-2024 11:01:21]:💬 Информация -> Запрос от 127.0.0.1:44654
+[11-06-2024 11:01:21]:❌ Ошибка -> Base64 error: Invalid byte 34, offset 0.
+[11-06-2024 11:01:26]:💬 Информация -> Запрос от 127.0.0.1:50232
+[11-06-2024 11:01:26]:❌ Ошибка -> Base64 error: Encoded text cannot have a 6-bit remainder.
+[11-06-2024 11:04:02]:💬 Информация -> Запрос от 127.0.0.1:36320
+[11-06-2024 11:04:02]:❌ Ошибка -> Base64 error: Encoded text cannot have a 6-bit remainder. 🔍[gateway/src/authentification.rs/{{closure}}():25]
+[11-06-2024 11:10:30]:💬 Информация -> Запрос от 127.0.0.1:39590
+[11-06-2024 11:10:51]:💬 Информация -> Запрос от 127.0.0.1:58668
+[11-06-2024 11:10:51]:❌ Ошибка -> Base64 error: Encoded text cannot have a 6-bit remainder. 🔍[gateway/src/authentification.rs/{{closure}}():25]
+[11-06-2024 11:37:06]:💬 Информация -> Запрос от 127.0.0.1:51394
+[11-06-2024 11:37:25]:💬 Информация -> Запрос от 127.0.0.1:34830
+[11-06-2024 11:37:25]:❌ Ошибка -> Base64 error: Encoded text cannot have a 6-bit remainder. 🔍[gateway/src/authentification.rs/{{closure}}():25]
+[11-06-2024 11:42:16]:💬 Информация -> Запрос от 127.0.0.1:40702
+[11-06-2024 11:42:44]:💬 Информация -> Запрос от 127.0.0.1:36612
+[11-06-2024 11:42:44]:💬 Информация -> Проверка токена eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSJ9.eyJzdWIiOiJhY2Nlc3MiLCJleHAiOjE3MTgwOTU2MzYsImlhdCI6MTcxODA5NTMzNiwiaWQiOiJ0ZXN0X2xvZ2luIn0.0hEkfZJieRugyrHqOVhEuzWuiRcG10rgFbqJMfqJTzzbZCDjUNwMlq3SGyOp-MbLByyCfkA-HIxrQIr5EGEOBg
+[11-06-2024 11:43:09]:💬 Информация -> Запрос от 127.0.0.1:59642
+[11-06-2024 11:43:29]:💬 Информация -> Запрос от 127.0.0.1:54458
+[11-06-2024 11:43:29]:💬 Информация -> Проверка токена eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSJ9.eyJzdWIiOiJhY2Nlc3MiLCJleHAiOjE3MTgwOTU2ODksImlhdCI6MTcxODA5NTM4OSwiaWQiOiJ0ZXN0X2xvZ2luIn0.ERPyiUtpyDYA8vpuYvGI5LbueX2A8enXfkjpiafubnxfuQR-6n584XXZsQaj-m4YyElRy3zRCqaMLw6dr0IvBg
+[11-06-2024 11:50:13]:💬 Информация -> Запрос от 127.0.0.1:37422
+[11-06-2024 11:50:28]:💬 Информация -> Запрос от 127.0.0.1:40634
+[11-06-2024 11:50:28]:💬 Информация -> Проверка токена->eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSJ9.eyJzdWIiOiJhY2Nlc3MiLCJleHAiOjE3MTgwOTYxMTMsImlhdCI6MTcxODA5NTgxMywiaWQiOiJ0ZXN0X2xvZ2luIn0.PMsDMLLIDkWRi7NARDkya4-VT8CaaYmjH1Zl1tBCmbJSOOhs5qkV_Jj9xX4Zej_pl0T9gOvKZOsrrcJyv2vyCQ
+[11-06-2024 11:50:50]:💬 Информация -> Запрос от 127.0.0.1:33142
+[11-06-2024 11:51:06]:💬 Информация -> Запрос от 127.0.0.1:50884
+[11-06-2024 11:51:06]:💬 Информация -> Проверка токена->eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSJ9.eyJzdWIiOiJyZWZyZXNoIiwiZXhwIjoxNzE4MTM5MDUwLCJpYXQiOjE3MTgwOTU4NTAsImlkIjoidGVzdF9sb2dpbiJ9.SlLs3lm1R-7LuQ_hDAjzmM1fMItS0ErMfTCpOYsYjcFyPrGKSiwb3ErT-9pobxYrX94vVqMNUxt4FpBuUQ3xBg
+[11-06-2024 11:51:06]:❌ Ошибка -> InvalidSubject 🔍[gateway/src/authentification.rs/{{closure}}():27]
+[11-06-2024 11:56:08]:💬 Информация -> Запрос от 127.0.0.1:51162
+[11-06-2024 11:56:08]:💬 Информация -> Новый рефреш кей действует до 2024-06-11 20:56:08.878860171 +00:00:00
+[11-06-2024 11:56:40]:💬 Информация -> Запрос от 127.0.0.1:43122
+[11-06-2024 11:56:40]:💬 Информация -> Проверка токена->eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSJ9.eyJzdWIiOiJhY2Nlc3MiLCJleHAiOjE3MTgwOTY0NjgsImlhdCI6MTcxODA5NjE2OCwiaWQiOiJ0ZXN0X2xvZ2luIn0.-c2oL6R-ADnEoWMaUqz5ZwAqNbmijDH-qcKjpUFMkcn9JYP1YJpmkAKtxYNL5Ki0apq3Hs893YUKTwCHKnLdDQ
+[11-06-2024 11:59:12]:💬 Информация -> Запрос от 127.0.0.1:57660
+[11-06-2024 11:59:12]:💬 Информация -> Новый рефреш кей действует до 2024-06-11 20:59:12.614995908 +00:00:00
+[11-06-2024 11:59:31]:💬 Информация -> Запрос от 127.0.0.1:41710
+[11-06-2024 11:59:31]:💬 Информация -> Проверка токена->eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSJ9.eyJzdWIiOiJhY2Nlc3MiLCJleHAiOjE3MTgwOTY2NTIsImlhdCI6MTcxODA5NjM1MiwiaWQiOiJ0ZXN0X2xvZ2luIn0.Bzy6Ojogul8L_UTy0Pxn7NwCf87vjmO3DPga1AWzEVtax14S-HDrSHcC87WRi1cXSahpEiYcv-WzjM52wUPzAw
+[11-06-2024 12:00:56]:💬 Информация -> Запрос от 127.0.0.1:40238
+[11-06-2024 12:00:56]:💬 Информация -> Новый рефреш кей действует до 2024-06-11 21:00:56.610280861 +00:00:00
+[11-06-2024 12:01:26]:💬 Информация -> Запрос от 127.0.0.1:48936
+[11-06-2024 12:01:26]:💬 Информация -> Новый рефреш кей действует до 2024-06-11 21:01:26.14288829 +00:00:00
+[11-06-2024 12:01:49]:💬 Информация -> Запрос от 127.0.0.1:42688
+[11-06-2024 12:01:49]:❌ Ошибка -> server error: error from user's Service
+[11-06-2024 12:02:02]:💬 Информация -> Запрос от 127.0.0.1:54510
+[11-06-2024 12:02:02]:❌ Ошибка -> server error: error from user's Service
+[11-06-2024 12:02:43]:💬 Информация -> Запрос от 127.0.0.1:50462
+[11-06-2024 12:02:43]:❌ Ошибка -> server error: error from user's Service
+[11-06-2024 12:06:26]:💬 Информация -> Запрос от 127.0.0.1:45902
+[11-06-2024 12:06:26]:💬 Информация -> Новый рефреш кей действует до 2024-06-11 21:06:26.08962443 +00:00:00
+[11-06-2024 12:06:36]:💬 Информация -> Запрос от 127.0.0.1:59366
+[11-06-2024 12:07:50]:💬 Информация -> Запрос от 127.0.0.1:44434
+[11-06-2024 12:07:50]:💬 Информация -> Новый рефреш кей действует до 2024-06-11 21:07:50.258138485 +00:00:00
+[11-06-2024 12:08:07]:💬 Информация -> Запрос от 127.0.0.1:39174
+[11-06-2024 12:08:07]:💬 Информация -> Проверка токена->eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSJ9.eyJzdWIiOiJhY2Nlc3MiLCJleHAiOjE3MTgwOTcxNzAsImlhdCI6MTcxODA5Njg3MCwiaWQiOiJ0ZXN0X2xvZ2luIn0.KKVhc6oYYSuA7j8ttb24-RL4CHIcccuKPvy0aP63qkgNR7lR9XGTBepTOoA-o1qOx1f-Ai6HqB2iUNohN9p9DQ
+[11-06-2024 12:08:23]:💬 Информация -> Запрос от 127.0.0.1:58476
+[11-06-2024 12:08:23]:💬 Информация -> Новый рефреш кей действует до 2024-06-11 21:08:23.631828358 +00:00:00
+[11-06-2024 12:08:30]:💬 Информация -> Запрос от 127.0.0.1:58492
+[11-06-2024 12:08:57]:❌ Ошибка -> server error: error from user's Service
+[11-06-2024 12:12:19]:💬 Информация -> Запрос от 127.0.0.1:46174
+[11-06-2024 12:12:19]:💬 Информация -> Новый рефреш кей действует до 2024-06-11 21:12:19.597485646 +00:00:00
+[11-06-2024 12:12:43]:💬 Информация -> Запрос от 127.0.0.1:60810
+[11-06-2024 12:12:43]:💬 Информация -> Новый рефреш кей действует до 2024-06-11 21:12:43.733759813 +00:00:00
+[11-06-2024 12:12:50]:💬 Информация -> Запрос от 127.0.0.1:60814
+[11-06-2024 12:13:11]:💬 Информация -> Запрос от 127.0.0.1:59608
+[11-06-2024 12:13:26]:💬 Информация -> Запрос от 127.0.0.1:46386
+[11-06-2024 12:30:57]:💬 Информация -> Запрос от 127.0.0.1:50134
+[11-06-2024 12:30:57]:💬 Информация -> Новый рефреш кей действует до 2024-06-11 21:30:57.270125509 +00:00:00
+[11-06-2024 12:30:59]:⚙ DEBUG -> Запрос регистрации сервиса: {"name":"subway","address":"localhost:8888","endpoints":[{"path":"/nearest","authorization":false},{"path":"/stations","authorization":false},{"path":"/path","authorization":false}]}
+[11-06-2024 12:30:59]:💬 Информация -> Запрос от 127.0.0.1:50146
+[11-06-2024 12:30:59]:⚙ DEBUG -> ServiceRegistry { services: RwLock { data: {"subway": ServiceConfig { name: "subway", address: "localhost:8888", endpoints: [Endpoint { path: "/nearest", authorization: false }, Endpoint { path: "/stations", authorization: false }, Endpoint { path: "/path", authorization: false }] }}, poisoned: false, .. } }
+[11-06-2024 12:30:59]:⚙ DEBUG -> Ok(Response { status: 200, version: HTTP/1.1, headers: {"content-type": "text/html; charset=utf-8", "content-length": "65", "date": "Tue, 11 Jun 2024 09:30:59 GMT"}, body: Body(Streaming) })
+[11-06-2024 12:30:59]:⚙ DEBUG -> Апи сервера доступно на 0.0.0.0:8888
+[11-06-2024 12:31:16]:💬 Информация -> Запрос от 127.0.0.1:46734
+[11-06-2024 12:31:16]:💬 Информация -> Запрос переадресован на http://localhost:8888/nearest?id=nd89811596&time=10
+[11-06-2024 12:31:16]:💬 Информация -> Отправка запроса на http://localhost:8888/nearest?id=nd89811596&time=10, headers: {"public-key": "WTC7HvdACuyTadNtiDVv1s8COLjtXfpj178l61V5QmQ="}
+[11-06-2024 12:31:16]:⚙ DEBUG -> request; method=GET uri=http://localhost:8888/nearest?id=nd89811596&time=10 version=HTTP/1.1 headers={"public-key": "WTC7HvdACuyTadNtiDVv1s8COLjtXfpj178l61V5QmQ="}
+[11-06-2024 12:31:16]:⚙ DEBUG -> started processing request
+[11-06-2024 12:31:16]:⚙ DEBUG -> finished processing request latency=11 ms status=200
+[11-06-2024 12:31:16]:⚙ DEBUG -> получен ответ от сервиса Body(Streaming)
+[11-06-2024 12:46:26]:⚙ DEBUG -> Запрос регистрации сервиса: {"name":"subway","address":"localhost:8888","endpoints":[{"path":"/nearest","authorization":false},{"path":"/stations","authorization":false},{"path":"/path","authorization":false}]}
+[11-06-2024 12:46:26]:💬 Информация -> Запрос от 127.0.0.1:47020
+[11-06-2024 12:46:26]:⚙ DEBUG -> ServiceRegistry { services: RwLock { data: {"subway": ServiceConfig { name: "subway", address: "localhost:8888", endpoints: [Endpoint { path: "/nearest", authorization: false }, Endpoint { path: "/stations", authorization: false }, Endpoint { path: "/path", authorization: false }] }}, poisoned: false, .. } }
+[11-06-2024 12:46:26]:⚙ DEBUG -> Ok(Response { status: 200, version: HTTP/1.1, headers: {"content-type": "text/html; charset=utf-8", "content-length": "65", "date": "Tue, 11 Jun 2024 09:46:26 GMT"}, body: Body(Streaming) })
+[11-06-2024 12:46:26]:⚙ DEBUG -> Апи сервера доступно на 0.0.0.0:8888
+[11-06-2024 12:46:33]:💬 Информация -> Запрос от 127.0.0.1:38582
+[11-06-2024 12:46:33]:💬 Информация -> Новый рефреш кей действует до 2024-06-11 21:46:33.068036028 +00:00:00
+[11-06-2024 12:46:51]:💬 Информация -> Запрос от 127.0.0.1:38286
+[11-06-2024 12:46:51]:💬 Информация -> Запрос переадресован на http://localhost:8888/nearest?id=nd89811596&time=10
+[11-06-2024 12:46:51]:❌ Ошибка -> Отсуствует заголовок Authorization!
+[11-06-2024 12:46:51]:💬 Информация -> Отправка запроса на http://localhost:8888/nearest?id=nd89811596&time=10, headers: {}
+[11-06-2024 12:46:51]:⚙ DEBUG -> request; method=GET uri=http://localhost:8888/nearest?id=nd89811596&time=10 version=HTTP/1.1 headers={}
+[11-06-2024 12:46:51]:⚙ DEBUG -> started processing request
+[11-06-2024 12:46:51]:⚙ DEBUG -> finished processing request latency=7 ms status=200
+[11-06-2024 12:46:51]:⚙ DEBUG -> получен ответ от сервиса Body(Streaming)
+[11-06-2024 12:47:30]:💬 Информация -> Запрос от 127.0.0.1:46430
+[11-06-2024 12:47:30]:💬 Информация -> Новый рефреш кей действует до 2024-06-11 21:47:30.217623033 +00:00:00
+[11-06-2024 12:48:06]:💬 Информация -> Запрос от 127.0.0.1:56316
+[11-06-2024 12:48:06]:💬 Информация -> Запрос переадресован на http://localhost:8888/nearest?id=nd89811596&time=10
+[11-06-2024 12:48:06]:💬 Информация -> Проверка токена->eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSJ9.eyJzdWIiOiJhY2Nlc3MiLCJleHAiOjE3MTgwOTk1NTAsImlhdCI6MTcxODA5OTI1MCwiaWQiOiJ0ZXN0X2xvZ2luIn0.JNhf2YjY_v8GYYjmRnTnbuir_HBl8hlngUv0_zp9F2PESDEfgK38MXHbLwLWOLqLAqssUSnk2M5nTnejz5fqBw
+[11-06-2024 12:48:06]:💬 Информация -> Отправка запроса на http://localhost:8888/nearest?id=nd89811596&time=10, headers: {"user-id": "test_login"}
+[11-06-2024 12:48:06]:⚙ DEBUG -> request; method=GET uri=http://localhost:8888/nearest?id=nd89811596&time=10 version=HTTP/1.1 headers={"user-id": "test_login"}
+[11-06-2024 12:48:06]:⚙ DEBUG -> started processing request
+[11-06-2024 12:48:06]:⚙ DEBUG -> finished processing request latency=1 ms status=200
+[11-06-2024 12:48:06]:⚙ DEBUG -> получен ответ от сервиса Body(Streaming)
+[11-06-2024 12:48:27]:⚙ DEBUG -> request; method=GET uri=/nearest?id=nd89811596&time=10 version=HTTP/1.1 headers={"host": "localhost:8888", "user-agent": "Mozilla/5.0 (X11; Linux x86_64; rv:126.0) Gecko/20100101 Firefox/126.0", "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8", "accept-language": "ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3", "accept-encoding": "gzip, deflate, br, zstd", "connection": "keep-alive", "upgrade-insecure-requests": "1", "sec-fetch-dest": "document", "sec-fetch-mode": "navigate", "sec-fetch-site": "none", "sec-fetch-user": "?1", "priority": "u=1"}
+[11-06-2024 12:48:27]:⚙ DEBUG -> started processing request
+[11-06-2024 12:48:27]:⚙ DEBUG -> finished processing request latency=1 ms status=200
+[11-06-2024 12:48:27]:⚙ DEBUG -> request; method=GET uri=/favicon.ico version=HTTP/1.1 headers={"host": "localhost:8888", "user-agent": "Mozilla/5.0 (X11; Linux x86_64; rv:126.0) Gecko/20100101 Firefox/126.0", "accept": "image/avif,image/webp,*/*", "accept-language": "ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3", "accept-encoding": "gzip, deflate, br, zstd", "connection": "keep-alive", "referer": "http://localhost:8888/nearest?id=nd89811596&time=10", "sec-fetch-dest": "image", "sec-fetch-mode": "no-cors", "sec-fetch-site": "cross-site", "priority": "u=6"}
+[11-06-2024 12:48:27]:⚙ DEBUG -> started processing request
+[11-06-2024 12:48:27]:⚙ DEBUG -> finished processing request latency=1 ms status=404

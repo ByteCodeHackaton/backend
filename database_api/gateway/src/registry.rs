@@ -48,6 +48,17 @@ pub struct Endpoint
     path: String,
     authorization: bool
 }
+impl Endpoint
+{
+    pub fn need_authorization(&self) -> bool
+    {
+        self.authorization
+    }
+    pub fn path(&self) -> &str
+    {
+        &self.path
+    }
+}
 
 impl ServiceRegistry 
 {

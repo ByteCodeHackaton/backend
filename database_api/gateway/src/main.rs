@@ -5,12 +5,13 @@ mod registry;
 mod rate_limiter;
 mod body_helpers;
 
-use authentification::update_tokens;
-use body_helpers::{error_empty_response, error_response, BoxBody};
+use authentification::{authentificate, get_claims, is_autentificated, update_tokens, verify_token};
+use body_helpers::{error_empty_response, error_response, unauthorized_response, BoxBody};
 use hyper::{server::conn::http1, Uri};
 use error::GatewayError;
 use http_body_util::BodyExt;
 use hyper_util::rt::TokioIo;
+use jwt::KEY;
 use rate_limiter::RateLimiter;
 use registry::{deregister_service, register_service, ServiceRegistry};
 use tokio::net::{TcpListener, TcpStream};
@@ -21,21 +22,39 @@ use hyper::{body::Incoming, Request, Response, StatusCode};
 ///
 async fn service_handler(req: Request<Incoming>) -> Result<Response<BoxBody>, GatewayError>
 {
-    // Example of request transformation: Adding a custom header
-    let req = Request::builder()
-        .method(req.method())
-        .uri(req.uri())
-        .header("X-Custom-Header", "My API Gateway")
-        .body(req.into_body())
-        .unwrap();
-    let auth = req.uri().authority();
+    // не вижу смысла пока отправлять публичный ключ и токен на микросервисы для идентификации, просто оправлю user_id ну и что то еще если будет нужно, если будет большее количество микросервисов можно будет добавить связку публичный ключ\access token
+    let pc = {
+        let key = KEY.lock().await;
+        key.get_public_key()
+    };
+    let request = 
+    {
+        if let Some(cl) = get_claims(&req).await
+        {
+            Request::builder()
+            .method(req.method())
+            .uri(req.uri())
+            .header("user-id", cl.user_id())
+            .body(req.into_body())
+            .unwrap()
+        }
+        else 
+        {
+            Request::builder()
+            .method(req.method())
+            .uri(req.uri())
+            .body(req.into_body())
+            .unwrap()
+        }
+    };
+    
+    let auth = request.uri().authority();
     let target_host = auth.unwrap().as_str().replace("localhost", "127.0.0.1");
     let addr: SocketAddr = target_host.parse().unwrap();
     // Отправка запроса на связанный сервис
-    //let req = Request::new(req.boxed());
-    let response = send(addr, req).await?;
+    let response = send(addr, request).await?;
 
-    // Example of response transformation: Append custom JSON
+    // трансформация body иньекция в текущий json
     // let body_bytes = hyper::body::to_bytes(resp.into_body()).await?;
     // let data_result: Result<serde_json::Value, _> = serde_json::from_slice(&body_bytes);
 
@@ -108,14 +127,21 @@ async fn handle_request(
         {
             if let Some(endpoint) = service.get_endpoint(path)
             {
-
                 let sn = [service_name, "/"].concat();
                 let p_q = req.uri().path_and_query().unwrap().to_string().replace(&sn, "");
                 let uri = Uri::builder()
                 .scheme("http")
                 .authority(service.get_address())
                 .path_and_query(p_q).build().unwrap();
+                if endpoint.need_authorization()
+                {
+                    let auth = is_autentificated(&req).await;
+                    if !auth
+                    {
+                        return Ok(unauthorized_response());
+                    }
 
+                }
                 logger::info!("Запрос переадресован на {}", uri.to_string());
                 *req.uri_mut() = uri;
 
@@ -147,21 +173,26 @@ async fn router(
     {
         return deregister_service(req, Arc::clone(&registry)).await;
     }
-    if path == "/update_tokens" 
+    if path == "/authentification" 
+    {
+        return authentificate(req).await;
+    }
+    if path == "/authentification/status" 
+    {
+        return verify_token(&req).await;
+    }
+    if path == "/authentification/refresh" 
     {
         return update_tokens(req).await;
     }
-    // if path == "/authentification" 
-    // {
-    //     return authentificate(req).await;
-    // }
     handle_request(req, remote_addr, rate_limiter, registry).await
 }
 
 async fn send(addr:  SocketAddr, req: Request<Incoming>) -> Result<Response<Incoming>, GatewayError>
 {
     
-    logger::info!("Отправка запроса на {}", req.uri());
+    logger::info!("Отправка запроса на {}, headers: {:?}", req.uri(), req.headers());
+    
     let client_stream = TcpStream::connect(&addr).await;
     if client_stream.is_err()
     {

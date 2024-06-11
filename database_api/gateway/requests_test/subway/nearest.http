@@ -1,2 +1,2 @@
 GET http://localhost:8080/subway/nearest?id=nd89811596&time=10 HTTP/1.1
-
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSJ9.eyJzdWIiOiJhY2Nlc3MiLCJleHAiOjE3MTgwOTk1NTAsImlhdCI6MTcxODA5OTI1MCwiaWQiOiJ0ZXN0X2xvZ2luIn0.JNhf2YjY_v8GYYjmRnTnbuir_HBl8hlngUv0_zp9F2PESDEfgK38MXHbLwLWOLqLAqssUSnk2M5nTnejz5fqBw

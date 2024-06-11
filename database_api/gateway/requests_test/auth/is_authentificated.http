@@ -1,0 +1,3 @@
+POST http://localhost:8080/authentification/status HTTP/1.1
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSJ9.eyJzdWIiOiJhY2Nlc3MiLCJleHAiOjE3MTgwOTcxNzAsImlhdCI6MTcxODA5Njg3MCwiaWQiOiJ0ZXN0X2xvZ2luIn0.KKVhc6oYYSuA7j8ttb24-RL4CHIcccuKPvy0aP63qkgNR7lR9XGTBepTOoA-o1qOx1f-Ai6HqB2iUNohN9p9DQ
+
