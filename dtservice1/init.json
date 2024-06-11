@@ -1,5 +1,5 @@
 {
-    "name": "sample_service",
+    "name": "db_service",
     "address": "localhost:9999",
     "endpoints": [
         {
