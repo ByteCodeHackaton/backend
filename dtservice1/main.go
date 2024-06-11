@@ -9,6 +9,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"time"
 
 	"github.com/gorilla/mux"
@@ -40,7 +41,7 @@ func initial() {
 	// можно вынести в переменные окружения ->
 	configuration.HttpDomain = "/api/v1"
 	configuration.HttpPort = ":5010"
-	configuration.DbPath = "../db/metro.db"
+	configuration.DbPath = "metro.db"
 	configuration.Version = "1.0"
 	log.Println("Initial configuration complete!")
 
@@ -113,7 +114,15 @@ func main() {
 }
 
 func regService() {
-	filename, err := os.Open("init.json")
+	ex, err := os.Executable()
+	if err != nil {
+		log.Fatal(err)
+	}
+	exPath := filepath.Dir(ex)
+	fmt.Println(exPath)
+
+	filename, err := os.Open(exPath + "/" + "init.json")
+	//filename, err := os.Open("init.json")
 	if err != nil {
 		log.Fatal(err)
 	}
