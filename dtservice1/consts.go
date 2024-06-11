@@ -62,6 +62,7 @@ type Employee struct {
 	Phone_personal string `json:"phone_personal,omitempty"`
 	Tab_number     string `json:"tab_number,omitempty"`
 	Type_work      string `json:"type_work,omitempty"`
+	Id_role        string `json:"id_role,omitempty"`
 }
 
 type Passenger struct {
@@ -105,21 +106,27 @@ type ResponseMsg struct {
 }
 
 type Response struct {
-	State    string     `json:"state,omitempty" example:"error"`
-	Message  string     `json:"message,omitempty" example:"ок"`
-	Employee []Employee `json:"details,omitempty"`
+	State       string     `json:"state,omitempty" example:"error"`
+	Message     string     `json:"message,omitempty" example:"ок"`
+	Total_count int        `json:"total_count,omitempty" example:"117"`
+	Page_count  int        `json:"page_count,omitempty" example:"20"`
+	Employee    []Employee `json:"details,omitempty"`
 }
 
 type ResponseOrder struct {
-	State   string  `json:"state,omitempty" example:"error"`
-	Message string  `json:"message,omitempty" example:"ок"`
-	Order   []Order `json:"details,omitempty"`
+	State       string  `json:"state,omitempty" example:"error"`
+	Message     string  `json:"message,omitempty" example:"ок"`
+	Total_count int     `json:"total_count,omitempty" example:"117"`
+	Page_count  int     `json:"page_count,omitempty" example:"20"`
+	Order       []Order `json:"details,omitempty"`
 }
 
 type ResponsePassenger struct {
-	State     string      `json:"state,omitempty" example:"error"`
-	Message   string      `json:"message,omitempty" example:"ок"`
-	Passenger []Passenger `json:"details,omitempty"`
+	State       string      `json:"state,omitempty" example:"error"`
+	Message     string      `json:"message,omitempty" example:"ок"`
+	Total_count int         `json:"total_count,omitempty" example:"117"`
+	Page_count  int         `json:"page_count,omitempty" example:"20"`
+	Passenger   []Passenger `json:"details,omitempty"`
 }
 
 type ResponseCategory struct {

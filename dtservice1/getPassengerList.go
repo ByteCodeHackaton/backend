@@ -2,9 +2,11 @@ package main
 
 import (
 	"context"
+	"database/sql"
 	"encoding/json"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 func GetPassengerList(w http.ResponseWriter, r *http.Request) {
@@ -32,11 +34,22 @@ func GetPassengerList(w http.ResponseWriter, r *http.Request) {
 	log.Println("database initialized..")
 
 	var passenger []Passenger
-	rows, err := db.QueryContext(context.Background(), `SELECT * FROM passengers LIMIT ? OFFSET ?`, limit_, offset_)
+	var message string
+	var row *sql.Row
+	var total_count, page_count int
 
-	var message, state string
-	// var is_busy int
-	// var cur_station NullInt64 // по умолчанию null
+	row = db.QueryRowContext(context.Background(), `SELECT Count(*) FROM passengers;`)
+	err = row.Scan(&total_count)
+	if err != nil {
+		message = "Error get count total passengers: " + err.Error()
+		log.Println(message)
+		http.Error(w, message, http.StatusExpectationFailed) // 417
+		return
+	}
+	limit_i, _ := strconv.Atoi(limit_)
+	page_count = total_count/limit_i + 1
+
+	rows, err := db.QueryContext(context.Background(), `SELECT * FROM passengers LIMIT ? OFFSET ?`, limit_, offset_)
 
 	switch err {
 	case nil:
@@ -66,7 +79,7 @@ func GetPassengerList(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	documentResponse := ResponsePassenger{State: state, Message: message, Passenger: passenger}
+	documentResponse := ResponsePassenger{Total_count: total_count, Page_count: page_count, Passenger: passenger}
 	response := DocumentResponsePassenger{Document_: documentResponse}
 	w.Header().Set("Content-Type", cContentTypeJson)
 	json.NewEncoder(w).Encode(response)

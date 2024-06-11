@@ -137,6 +137,8 @@ off -  смещение выборки (по умолчанию 0)
 ```json
 {
     "document": {
+        "total_count": 118,
+        "page_count": 6,
         "details": [
               {
                 "date": "23.04.2024",
@@ -280,6 +282,8 @@ off -  смещение выборки (по умолчанию 0)
 ```json
 {
     "document": {
+        "total_count": 2,
+        "page_count": 1,
         "details": [
             {
                 "id": "018fe864-84b3-7656-a270-6a57f43821c4",
@@ -646,6 +650,8 @@ off -  смещение выборки (по умолчанию 0)
 ```json
 {
     "document": {
+        "total_count": 3,
+        "page_count": 1,
         "details": [
             {
                 "id": "477354234",
