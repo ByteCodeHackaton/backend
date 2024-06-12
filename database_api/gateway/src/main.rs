@@ -7,7 +7,7 @@ mod body_helpers;
 
 use authentification::{authentificate, get_claims, update_tokens, verify_token};
 use body_helpers::{error_empty_response, error_response, unauthorized_response, BoxBody};
-use hyper::header::ACCESS_CONTROL_ALLOW_ORIGIN;
+use hyper::header::{ACCESS_CONTROL_ALLOW_CREDENTIALS, ACCESS_CONTROL_ALLOW_METHODS, ACCESS_CONTROL_ALLOW_ORIGIN};
 use hyper::{server::conn::http1, Uri};
 use error::GatewayError;
 use http_body_util::BodyExt;
@@ -37,6 +37,8 @@ async fn service_handler(req: Request<Incoming>, claims: Option<Claims>) -> Resu
             .uri(req.uri())
             .header("user-id", cl.user_id())
             .header(ACCESS_CONTROL_ALLOW_ORIGIN, "*")
+            .header(ACCESS_CONTROL_ALLOW_CREDENTIALS, "true")
+            .header(ACCESS_CONTROL_ALLOW_METHODS, "GET, PUSH")
             .body(req.into_body())
             .unwrap()
         }
