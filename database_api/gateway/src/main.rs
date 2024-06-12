@@ -7,6 +7,7 @@ mod body_helpers;
 
 use authentification::{authentificate, get_claims, update_tokens, verify_token};
 use body_helpers::{error_empty_response, error_response, unauthorized_response, BoxBody};
+use hyper::header::ACCESS_CONTROL_ALLOW_ORIGIN;
 use hyper::{server::conn::http1, Uri};
 use error::GatewayError;
 use http_body_util::BodyExt;
@@ -19,7 +20,7 @@ use std::{collections::HashMap, sync::Arc};
 use std::net::SocketAddr;
 use hyper::{body::Incoming, Request, Response, StatusCode};
 
-///
+
 async fn service_handler(req: Request<Incoming>, claims: Option<Claims>) -> Result<Response<BoxBody>, GatewayError>
 {
     // не вижу смысла пока отправлять публичный ключ и токен на микросервисы для идентификации, просто оправлю user_id ну и что то еще если будет нужно, если будет большее количество микросервисов можно будет добавить связку публичный ключ\access token
@@ -35,6 +36,7 @@ async fn service_handler(req: Request<Incoming>, claims: Option<Claims>) -> Resu
             .method(req.method())
             .uri(req.uri())
             .header("user-id", cl.user_id())
+            .header(ACCESS_CONTROL_ALLOW_ORIGIN, "*")
             .body(req.into_body())
             .unwrap()
         }
@@ -43,6 +45,7 @@ async fn service_handler(req: Request<Incoming>, claims: Option<Claims>) -> Resu
             Request::builder()
             .method(req.method())
             .uri(req.uri())
+            .header(ACCESS_CONTROL_ALLOW_ORIGIN, "*")
             .body(req.into_body())
             .unwrap()
         }
