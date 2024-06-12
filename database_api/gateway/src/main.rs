@@ -7,7 +7,7 @@ mod body_helpers;
 
 use authentification::{authentificate, get_claims, update_tokens, verify_token};
 use body_helpers::{error_empty_response, error_response, unauthorized_response, BoxBody};
-use hyper::header::{ACCESS_CONTROL_ALLOW_CREDENTIALS, ACCESS_CONTROL_ALLOW_METHODS, ACCESS_CONTROL_ALLOW_ORIGIN};
+use hyper::header::{ACCESS_CONTROL_ALLOW_CREDENTIALS, ACCESS_CONTROL_ALLOW_HEADERS, ACCESS_CONTROL_ALLOW_METHODS, ACCESS_CONTROL_ALLOW_ORIGIN};
 use hyper::{server::conn::http1, Uri};
 use error::GatewayError;
 use http_body_util::BodyExt;
@@ -35,10 +35,11 @@ async fn service_handler(req: Request<Incoming>, claims: Option<Claims>) -> Resu
             Request::builder()
             .method(req.method())
             .uri(req.uri())
-            .header("user-id", cl.user_id())
-            .header(ACCESS_CONTROL_ALLOW_ORIGIN, "*")
-            .header(ACCESS_CONTROL_ALLOW_CREDENTIALS, "true")
-            .header(ACCESS_CONTROL_ALLOW_METHODS, "GET, PUSH")
+            .header("User-Id", cl.user_id())
+            //.header(ACCESS_CONTROL_ALLOW_ORIGIN, "http://localhost:5173")
+            //.header(ACCESS_CONTROL_ALLOW_CREDENTIALS, "true")
+            //.header(ACCESS_CONTROL_ALLOW_METHODS, "GET, POST")
+            //.header(ACCESS_CONTROL_ALLOW_HEADERS, "User-Id")
             .body(req.into_body())
             .unwrap()
         }
@@ -47,7 +48,9 @@ async fn service_handler(req: Request<Incoming>, claims: Option<Claims>) -> Resu
             Request::builder()
             .method(req.method())
             .uri(req.uri())
-            .header(ACCESS_CONTROL_ALLOW_ORIGIN, "*")
+            //.header(ACCESS_CONTROL_ALLOW_ORIGIN, "http://localhost:5173")
+            //.header(ACCESS_CONTROL_ALLOW_CREDENTIALS, "true")
+            //.header(ACCESS_CONTROL_ALLOW_METHODS, "GET, POST")
             .body(req.into_body())
             .unwrap()
         }
@@ -56,8 +59,12 @@ async fn service_handler(req: Request<Incoming>, claims: Option<Claims>) -> Resu
     let target_host = auth.unwrap().as_str().replace("localhost", "127.0.0.1");
     let addr: SocketAddr = target_host.parse().unwrap();
     // Отправка запроса на связанный сервис
-    let response = send(addr, request).await?;
-
+    let mut response = send(addr, request).await?;
+    let headers = response.headers_mut();
+    headers.append(ACCESS_CONTROL_ALLOW_METHODS, "GET, POST".parse().unwrap());
+    headers.append(ACCESS_CONTROL_ALLOW_HEADERS, "User-Id".parse().unwrap());
+    headers.append(ACCESS_CONTROL_ALLOW_ORIGIN, "http://localhost:5173".parse().unwrap());
+    headers.append(ACCESS_CONTROL_ALLOW_CREDENTIALS, "true".parse().unwrap());
     // трансформация body иньекция в текущий json
     // let body_bytes = hyper::body::to_bytes(resp.into_body()).await?;
     // let data_result: Result<serde_json::Value, _> = serde_json::from_slice(&body_bytes);
