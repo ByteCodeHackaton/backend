@@ -2,6 +2,6 @@ POST http://213.159.215.231:8080/authentification HTTP/1.1
 content-type: application/json
 
 { 
-    "login":"test_login",
-    "password":"1234"
+    "login": "ыыыы",
+    "password": "ыыыы"
 }

@@ -139,7 +139,8 @@ pub async fn authentificate(req: Request<Incoming>) -> Result<Response<BoxBody>,
    
     if crendentials.is_err()
     {
-        logger::error!("Неверный формат для авторизации -> {}", crendentials.err().unwrap());
+        let str = String::from_utf8_lossy(&body);
+        logger::error!("Неверный формат для авторизации ({}) -> {}", str, crendentials.err().unwrap());
         let resp = error_response("Неверный формат для авторизации, необходим формат: '{ \"login\": string, \"password\": string}".to_owned(), StatusCode::BAD_REQUEST);
         return  Ok(resp);    
     }
