@@ -136,12 +136,11 @@ pub async fn authentificate(req: Request<Incoming>) -> Result<Response<BoxBody>,
     
     let body = req.collect().await?.to_bytes();
     let crendentials: Result<Crendentials, serde_json::Error> = serde_json::from_slice(&body);
-   
     if crendentials.is_err()
     {
         let str = String::from_utf8_lossy(&body);
         logger::error!("Неверный формат для авторизации ({}) -> {}", str, crendentials.err().unwrap());
-        let resp = error_response("Неверный формат для авторизации, необходим формат: '{ \"login\": string, \"password\": string}".to_owned(), StatusCode::BAD_REQUEST);
+        let resp = error_response(["Неверный формат для авторизации", str.as_ref(), ", необходим формат: '{ \"login\": string, \"password\": string}"].concat(), StatusCode::BAD_REQUEST);
         return  Ok(resp);    
     }
     let crendentials = crendentials.unwrap();
