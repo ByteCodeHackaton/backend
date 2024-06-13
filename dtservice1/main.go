@@ -88,6 +88,8 @@ func main() {
 	router.HandleFunc(configuration.HttpDomain+"/order/state/list", GetOrderStateList).Methods("GET")
 	router.HandleFunc(configuration.HttpDomain+"/role/list", GetRoleList).Methods("GET")
 	router.HandleFunc(configuration.HttpDomain+"/workday/set", PostWorkdaySet).Methods("POST")
+	router.HandleFunc(configuration.HttpDomain+"/workday/update", PostWorkdayUpdate).Methods("POST")
+	router.HandleFunc(configuration.HttpDomain+"/workday/list", GetWorkdayList).Methods("GET")
 
 	log.Println("Init router handlers...")
 

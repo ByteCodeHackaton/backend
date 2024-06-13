@@ -35,14 +35,15 @@ type Order struct {
 }
 
 type Workday struct {
+	Id             string `json:"id,omitempty" example:"01901160-bf0b-7c72-ba93-2158a7694cb8"`          // Уникальный идентификатор рабочего дня сотрудника
 	Employee_Id    string `json:"employee_id,omitempty" example:"018fee07-b8fb-7350-8147-d6d2925d6873"` // Уникальный идентификатор сотрудника
 	Date_work      string `json:"date_work,omitempty" example:"10.06.2024 0:00:00"`                     // Дата выхода
 	Time_work      string `json:"time_work,omitempty" example:"07:00-19:00"`                            // Время работы (07:00-19:00, 08:00-20:00, 20:00-08:00, 08:00-17:00)
-	State_wd       string `json:"state_wd,omitempty" example:""`                                        // Статус рабочего дня
-	Date_dop_smena string `json:"date_dop_smena,omitempty" example:""`                                  // Дополнительная смена (выход не по своему графику, дата)
-	Date_ucheba    string `json:"date_ucheba,omitempty" example:""`                                     // Учеба с отрывом от производства (дата от-до)
-	Date_change    string `json:"date_change,omitempty" example:""`                                     // Изменение времени работы (если время работы не совпадает с графиком)
-	Intern         string `json:"intern,omitempty" example:""`                                          // Стажировка (заявки только совместно с наставником)
+	State_wd       string `json:"state_wd" example:""`                                                  // Статус рабочего дня
+	Date_dop_smena string `json:"date_dop_smena" example:""`                                            // Дополнительная смена (выход не по своему графику, дата)
+	Date_ucheba    string `json:"date_ucheba" example:""`                                               // Учеба с отрывом от производства (дата от-до)
+	Date_change    string `json:"date_change" example:""`                                               // Изменение времени работы (если время работы не совпадает с графиком)
+	Intern         string `json:"intern" example:""`                                                    // Стажировка (заявки только совместно с наставником)
 }
 
 type EmpDocument struct {
@@ -116,6 +117,15 @@ type ResponseMsg struct {
 	Message string `json:"message,omitempty" example:"ок"`
 }
 
+type ResponseWorkday struct {
+	State       string    `json:"state,omitempty" example:"error"`
+	Id          string    `json:"id,omitempty"`
+	Message     string    `json:"message,omitempty" example:"ок"`
+	Total_count int       `json:"total_count,omitempty" example:"117"`
+	Page_count  int       `json:"page_count,omitempty" example:"20"`
+	Workday     []Workday `json:"details,omitempty"`
+}
+
 type Response struct {
 	State       string     `json:"state,omitempty" example:"error"`
 	Id          string     `json:"id,omitempty"`
@@ -176,6 +186,10 @@ type DocumentResponseMsg struct {
 
 type DocumentResponse struct {
 	Document_ Response `json:"document,omitempty"`
+}
+
+type DocumentResponseWorkday struct {
+	Document_ ResponseWorkday `json:"document,omitempty"`
 }
 
 type DocumentResponseOrder struct {

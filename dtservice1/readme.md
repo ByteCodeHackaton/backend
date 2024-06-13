@@ -28,6 +28,8 @@
 - [ ] [metod get  /order/state/list](Метод получения списка всех статусов заявок)
 - [ ] [metod get  /role/list](Метод получения списка всех значений ролей пользователей)
 - [ ] [metod post  /workday/set](Метод регистрации рабочего дня сотрудника, выполняющего заявки)
+- [ ] [metod post  /workday/upgate](Метод внесения изменений в рабочий день сотрудника, выполняющего заявки)
+- [ ] [metod get  /roworkday/list](Метод получения списка всех рабочих дней для сотрудника с заданным id)
 
 ## Зависимости
 
@@ -893,6 +895,159 @@ json в body:
 ```json
 {
     "id": "01901161-1f38-7c64-a748-d56267cca716"
+}
+```
+
+--------------------------------------------
+
+### /workday/update
+
+входные параметры:
+
+json в body:
+
+```json
+{
+    "id": "01901160-bf0b-7c72-ba93-2158a7694cb8",
+    "employee_id": "018fee07-b8fb-7350-8147-d6d2925d6873",
+    "date_work": "14.06.2024 0:00:00",
+    "time_work": "07:00-19:00",
+    "state_wd": "",
+    "date_dop_smena": "",
+    "date_ucheba": "",
+    "date_change": "",
+    "intern": ""
+  }
+```
+
+на выходе при успешном выполнении статус 200 и json:
+
+```json
+{
+    "id": "01901160-bf0b-7c72-ba93-2158a7694cb8"
+}
+```
+
+где id - уникальный идентификатор рабочего дня сотрудника
+
+--------------------------------------------
+
+### /workday/list
+
+входные параметры:
+id - уникальный id сотрудника
+limit - ограничение выборки (по умолчанию 20 записей)
+off -  смещение выборки (по умолчанию 0)
+
+на выходе при успешном выполнении статус 200 и json:
+
+```json
+{
+    "document": {
+        "total_count": 9,
+        "page_count": 1,
+        "details": [
+            {
+                "id": "01901160-bf0b-7c72-ba93-2158a7694cb8",
+                "employee_id": "018fee07-b8fb-7350-8147-d6d2925d6873",
+                "date_work": "10.06.2024 0:00:00",
+                "time_work": "07:00-19:00",
+                "state_wd": "выходной",
+                "date_dop_smena": "",
+                "date_ucheba": "",
+                "date_change": "",
+                "intern": ""
+            },
+            {
+                "id": "01901160-e4cb-72c7-8611-9c4d95b5469a",
+                "employee_id": "018fee07-b8fb-7350-8147-d6d2925d6873",
+                "date_work": "11.06.2024 0:00:00",
+                "time_work": "07:00-19:00",
+                "state_wd": "",
+                "date_dop_smena": "",
+                "date_ucheba": "",
+                "date_change": "",
+                "intern": ""
+            },
+            {
+                "id": "01901160-fb3e-7af6-8e47-993a064a36ad",
+                "employee_id": "018fee07-b8fb-7350-8147-d6d2925d6873",
+                "date_work": "12.06.2024 0:00:00",
+                "time_work": "07:00-19:00",
+                "state_wd": "",
+                "date_dop_smena": "",
+                "date_ucheba": "",
+                "date_change": "",
+                "intern": ""
+            },
+            {
+                "id": "01901161-0cc8-78c2-a100-4cb11699bf1c",
+                "employee_id": "018fee07-b8fb-7350-8147-d6d2925d6873",
+                "date_work": "13.06.2024 0:00:00",
+                "time_work": "07:00-19:00",
+                "state_wd": "",
+                "date_dop_smena": "",
+                "date_ucheba": "",
+                "date_change": "",
+                "intern": ""
+            },
+            {
+                "id": "01901161-1f38-7c64-a748-d56267cca716",
+                "employee_id": "018fee07-b8fb-7350-8147-d6d2925d6873",
+                "date_work": "14.06.2024 0:00:00",
+                "time_work": "07:00-19:00",
+                "state_wd": "",
+                "date_dop_smena": "",
+                "date_ucheba": "",
+                "date_change": "",
+                "intern": ""
+            },
+            {
+                "id": "019011ef-d7cc-7a2c-bb85-d58778039f8c",
+                "employee_id": "018fee07-b8fb-7350-8147-d6d2925d6873",
+                "date_work": "09.06.2024 0:00:00",
+                "time_work": "07:00-19:00",
+                "state_wd": "",
+                "date_dop_smena": "",
+                "date_ucheba": "",
+                "date_change": "",
+                "intern": ""
+            },
+            {
+                "id": "019011ef-ee38-7829-bf16-07073b0cafab",
+                "employee_id": "018fee07-b8fb-7350-8147-d6d2925d6873",
+                "date_work": "08.06.2024 0:00:00",
+                "time_work": "07:00-19:00",
+                "state_wd": "",
+                "date_dop_smena": "",
+                "date_ucheba": "",
+                "date_change": "",
+                "intern": ""
+            },
+            {
+                "id": "019011f0-03bc-7dda-b50b-caa9e8f4258f",
+                "employee_id": "018fee07-b8fb-7350-8147-d6d2925d6873",
+                "date_work": "07.06.2024 0:00:00",
+                "time_work": "07:00-19:00",
+                "state_wd": "",
+                "date_dop_smena": "",
+                "date_ucheba": "",
+                "date_change": "",
+                "intern": ""
+            },
+            {
+                "id": "019011f0-18e2-73a1-98a2-9e3aacb14d67",
+                "employee_id": "018fee07-b8fb-7350-8147-d6d2925d6873",
+                "date_work": "06.06.2024 0:00:00",
+                "time_work": "07:00-19:00",
+                "state_wd": "",
+                "date_dop_smena": "",
+                "date_ucheba": "",
+                "date_change": "",
+                "intern": ""
+            }
+        ]
+    }
 }
 ```
 
