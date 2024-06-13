@@ -47,7 +47,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"date\": \"25.04.2024\",\r\n    \"time_work\": \"20:00-08:00\",\r\n    \"fio\": \"Тестов В.И.\",\r\n    \"uchastok\": \"018fe823-9419-7fe0-a8cb-19db345ec1bb\",\r\n    \"smena\": \"2Н\",\r\n    \"rank\": \"ЦИ\",\r\n    \"sex\": \"Мужской\",\r\n    \"phone_work\": \"84959112233\",\r\n    \"phone_personal\": \"89119876543\",\r\n    \"tab_number\": \"46573645\",\r\n    \"type_work\": \"лёгкая работа\"\r\n}",
+					"raw": "{\r\n    \"date\": \"25.04.2024\",\r\n    \"time_work\": \"20:00-08:00\",\r\n    \"fio\": \"Тестовитов В.И.\",\r\n    \"uchastok\": \"018fe823-9419-7fe0-a8cb-19db345ec1bb\",\r\n    \"smena\": \"2Н\",\r\n    \"rank\": \"ЦИ\",\r\n    \"sex\": \"Мужской\",\r\n    \"phone_work\": \"84959112233\",\r\n    \"phone_personal\": \"89119876543\",\r\n    \"tab_number\": \"46573645\",\r\n    \"type_work\": \"лёгкая работа\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -70,7 +70,7 @@
 			},
 			"response": [
 				{
-					"name": "employee set",
+					"name": "employee set 200",
 					"originalRequest": {
 						"method": "POST",
 						"header": [
@@ -81,7 +81,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"date\": \"25.04.2024\",\r\n    \"time_work\": \"20:00-08:00\",\r\n    \"fio\": \"Тестовкин В.И.\",\r\n    \"uchastok\": \"018fe823-9419-7fe0-a8cb-19db345ec1ac\",\r\n    \"smena\": \"2Н\",\r\n    \"rank\": \"ЦИ\",\r\n    \"sex\": \"Мужской\",\r\n    \"phone_work\": \"84959112233\",\r\n    \"phone_personal\": \"89119876543\",\r\n    \"tab_number\": \"46573645\",\r\n    \"type_work\": \"лёгкая работа\"\r\n}",
+							"raw": "{\r\n    \"date\": \"25.04.2024\",\r\n    \"time_work\": \"20:00-08:00\",\r\n    \"fio\": \"Тестовитов В.И.\",\r\n    \"uchastok\": \"018fe823-9419-7fe0-a8cb-19db345ec1bb\",\r\n    \"smena\": \"2Н\",\r\n    \"rank\": \"ЦИ\",\r\n    \"sex\": \"Мужской\",\r\n    \"phone_work\": \"84959112233\",\r\n    \"phone_personal\": \"89119876543\",\r\n    \"tab_number\": \"46573645\",\r\n    \"type_work\": \"лёгкая работа\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -89,14 +89,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/order",
+							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/employee/set",
 							"protocol": "{{protocol}}",
 							"host": [
 								"{{url}}"
 							],
 							"port": "{{port}}{{api}}",
 							"path": [
-								"order"
+								"employee",
+								"set"
 							]
 						}
 					},
@@ -114,15 +115,15 @@
 						},
 						{
 							"key": "Date",
-							"value": "Fri, 07 Jun 2024 12:52:11 GMT"
+							"value": "Thu, 13 Jun 2024 08:28:57 GMT"
 						},
 						{
 							"key": "Content-Length",
-							"value": "90"
+							"value": "136"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"document\": {\n        \"message\": \"Добавлен сотрудник: Тестовкин В.И.\"\n    }\n}"
+					"body": "{\n    \"document\": {\n        \"id\": \"019010b6-da44-7602-8294-cf8e529f7680\",\n        \"message\": \"Добавлен сотрудник: Тестовитов В.И.\"\n    }\n}"
 				}
 			]
 		},
@@ -166,7 +167,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"date\": \"25.04.2024\",\r\n    \"time_work\": \"20:00-08:00\",\r\n    \"fio\": \"Тестовых В.И.\",\r\n    \"uchastok\": \"018fe823-9419-7fe0-a8cb-19db345ec1ac\",\r\n    \"smena\": \"2Н\",\r\n    \"rank\": \"ЦИ\",\r\n    \"sex\": \"Женский\",\r\n    \"phone_work\": \"84959112233\",\r\n    \"phone_personal\": \"89119876543\",\r\n    \"tab_number\": \"46573645\",\r\n    \"type_work\": \"лёгкая работа\"\r\n}",
+					"raw": "{\r\n    \"id\": \"019010b6-da44-7602-8294-cf8e529f7680\",\r\n    \"date\": \"25.04.2024\",\r\n    \"time_work\": \"20:00-08:00\",\r\n    \"fio\": \"Тестовcкий В.И.\",\r\n    \"uchastok\": \"018fe823-9419-7fe0-a8cb-19db345ec1ac\",\r\n    \"smena\": \"2Н\",\r\n    \"rank\": \"ЦИ\",\r\n    \"sex\": \"Женский\",\r\n    \"phone_work\": \"84959112233\",\r\n    \"phone_personal\": \"89119876543\",\r\n    \"tab_number\": \"46573645\",\r\n    \"type_work\": \"лёгкая работа\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -174,7 +175,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/employee/update?id=018fe832-eb8f-7d95-b1d3-e22306c5bf23",
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/employee/update",
 					"protocol": "{{protocol}}",
 					"host": [
 						"{{url}}"
@@ -183,13 +184,6 @@
 					"path": [
 						"employee",
 						"update"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "018fe832-eb8f-7d95-b1d3-e22306c5bf23",
-							"description": "UUID v7"
-						}
 					]
 				},
 				"description": "Добавление сообщения на сервис\n\nPOST метод осуществляет отправку сообщения на сервис."
@@ -462,7 +456,7 @@
 					}
 				],
 				"url": {
-					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/employee/delete?id=018fe832-eb8f-7d95-b1d3-e22306c5bf24",
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/employee/delete?id=019010cf-8144-7a21-815b-ee5c0539cc94",
 					"protocol": "{{protocol}}",
 					"host": [
 						"{{url}}"
@@ -475,7 +469,7 @@
 					"query": [
 						{
 							"key": "id",
-							"value": "018fe832-eb8f-7d95-b1d3-e22306c5bf24"
+							"value": "019010cf-8144-7a21-815b-ee5c0539cc94"
 						}
 					]
 				},
@@ -564,7 +558,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"018fe864-84b3-7656-a270-6a57f43821c4\",\r\n    \"fio\": \"Пассажиркова П.П.\",\r\n    \"phone\": \"79871234567\",\r\n    \"category\": \"018fe832-ed6a-7150-8aae-cc3596b17ec9\",\r\n    \"sex\": \"Женский\",\r\n    \"description\": \"\",\r\n    \"eks\": 0\r\n}",
+					"raw": "{\r\n    \"id\": \"018fe864-84b3-7656-a270-6a57f43833c4\",\r\n    \"fio\": \"Пассажировна П.П.\",\r\n    \"phone\": \"79871234578\",\r\n    \"category\": \"018fe832-ed6a-7150-8aae-cc3596b17ec9\",\r\n    \"sex\": \"Женский\",\r\n    \"description\": \"\",\r\n    \"eks\": 0\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -585,7 +579,64 @@
 				},
 				"description": "Получить весь список документов для закачки на терминал или 1С конфигурацию\n\nGET метод осуществляет выдачу списка пакетов (документов) для закачки на терминал или 1С конфигурацию"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "passenger set 200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"018fe864-84b3-7656-a270-6a57f43833c4\",\r\n    \"fio\": \"Пассажировна П.П.\",\r\n    \"phone\": \"79871234578\",\r\n    \"category\": \"018fe832-ed6a-7150-8aae-cc3596b17ec9\",\r\n    \"sex\": \"Женский\",\r\n    \"description\": \"\",\r\n    \"eks\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/passenger/set",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}{{api}}",
+							"path": [
+								"passenger",
+								"set"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 13 Jun 2024 08:25:39 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "138"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"document\": {\n        \"id\": \"019010b3-d457-74b3-8e68-552c850cfb77\",\n        \"message\": \"Добавлен пассажир: Пассажировна П.П.\"\n    }\n}"
+				}
+			]
 		},
 		{
 			"name": "passenger update",
@@ -614,7 +665,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"018fe864-84b3-7656-a270-6a57f43821c4\",\r\n    \"fio\": \"Пассажиркова П.П.\",\r\n    \"phone\": \"79871234567\",\r\n    \"category\": \"018fe832-ed6a-7150-8aae-cc3596b17ec9\",\r\n    \"sex\": \"Женский\",\r\n    \"description\": \"\",\r\n    \"eks\": 1\r\n}",
+					"raw": "{\r\n    \"id\": \"019010a9-73ac-709b-a257-97bba05e3ae5\",\r\n    \"fio\": \"Пассажировна П.П.\",\r\n    \"phone\": \"79871234567\",\r\n    \"category\": \"018fe832-ed6a-7150-8aae-cc3596b17ec9\",\r\n    \"sex\": \"Женский\",\r\n    \"description\": \"ыовраыолвраыовра\",\r\n    \"eks\": 1\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -622,7 +673,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/passenger/update?id=018fe864-84b3-7656-a270-6a57f43821c4",
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/passenger/update",
 					"protocol": "{{protocol}}",
 					"host": [
 						"{{url}}"
@@ -631,13 +682,6 @@
 					"path": [
 						"passenger",
 						"update"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "018fe864-84b3-7656-a270-6a57f43821c4",
-							"description": "018fe864-84b3-7656-a270-6a57f43821c4"
-						}
 					]
 				},
 				"description": "Получить весь список документов для закачки на терминал или 1С конфигурацию\n\nGET метод осуществляет выдачу списка пакетов (документов) для закачки на терминал или 1С конфигурацию"
@@ -962,7 +1006,7 @@
 					}
 				],
 				"url": {
-					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/passenger/delete?id=018fe864-84b3-7656-a270-6a57f43821c4",
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/passenger/delete?id=019010a9-73ac-709b-a257-97bba05e3ae5",
 					"protocol": "{{protocol}}",
 					"host": [
 						"{{url}}"
@@ -975,8 +1019,8 @@
 					"query": [
 						{
 							"key": "id",
-							"value": "018fe864-84b3-7656-a270-6a57f43821c4",
-							"description": "018fe864-84b3-7656-a270-6a57f43821c4"
+							"value": "019010a9-73ac-709b-a257-97bba05e3ae5",
+							"description": "019010a9-73ac-709b-a257-97bba05e3ae5"
 						}
 					]
 				},
@@ -1706,7 +1750,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"477354234\",\r\n    \"id_pas\": \"11058234\",\r\n    \"datetime\": \"24.04.2024 7:30:00\",\r\n    \"time3\": \"07:13:52\",\r\n    \"time4\": \"07:51:11\",\r\n    \"cat_pas\": \"ИЗТ\",\r\n    \"status\": \"Заявка закончена\",\r\n    \"tpz\": \"15.03.2024 22:48:43\",\r\n    \"INSP_SEX_M\": \"0\",\r\n    \"INSP_SEX_F\": \"1\",\r\n    \"TIME_OVER\": \"00:52:20\",\r\n    \"id_st1\": \"5\",\r\n    \"id_st2\": \"97\"\r\n  }",
+					"raw": "{\r\n    \"id\": \"\",\r\n    \"id_pas\": \"11058234\",\r\n    \"datetime\": \"24.04.2024 7:30:00\",\r\n    \"time3\": \"07:13:52\",\r\n    \"time4\": \"07:51:11\",\r\n    \"cat_pas\": \"ИЗТ\",\r\n    \"status\": \"Заявка закончена\",\r\n    \"tpz\": \"15.03.2024 22:48:43\",\r\n    \"INSP_SEX_M\": \"3\",\r\n    \"INSP_SEX_F\": \"1\",\r\n    \"TIME_OVER\": \"00:52:20\",\r\n    \"id_st1\": \"5\",\r\n    \"id_st2\": \"97\"\r\n  }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1740,7 +1784,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"477354236\",\r\n    \"id_pas\": \"11058234\",\r\n    \"datetime\": \"24.04.2024 7:30:00\",\r\n    \"time3\": \"07:13:52\",\r\n    \"time4\": \"07:51:11\",\r\n    \"cat_pas\": \"ИЗТ\",\r\n    \"status\": \"Заявка закончена\",\r\n    \"tpz\": \"15.03.2024 22:48:43\",\r\n    \"INSP_SEX_M\": \"0\",\r\n    \"INSP_SEX_F\": \"1\",\r\n    \"TIME_OVER\": \"00:52:20\",\r\n    \"id_st1\": \"5\",\r\n    \"id_st2\": \"97\"\r\n  }",
+							"raw": "{\r\n    \"id\": \"\",\r\n    \"id_pas\": \"11058234\",\r\n    \"datetime\": \"24.04.2024 7:30:00\",\r\n    \"time3\": \"07:13:52\",\r\n    \"time4\": \"07:51:11\",\r\n    \"cat_pas\": \"ИЗТ\",\r\n    \"status\": \"Заявка закончена\",\r\n    \"tpz\": \"15.03.2024 22:48:43\",\r\n    \"INSP_SEX_M\": \"3\",\r\n    \"INSP_SEX_F\": \"1\",\r\n    \"TIME_OVER\": \"00:52:20\",\r\n    \"id_st1\": \"5\",\r\n    \"id_st2\": \"97\"\r\n  }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1774,75 +1818,15 @@
 						},
 						{
 							"key": "Date",
-							"value": "Sun, 09 Jun 2024 13:30:19 GMT"
+							"value": "Thu, 13 Jun 2024 09:06:10 GMT"
 						},
 						{
 							"key": "Content-Length",
-							"value": "19"
+							"value": "46"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": \"477354236\"\n}"
-				},
-				{
-					"name": "order set 417",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "{{content}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"477354234\",\r\n    \"id_pas\": \"11058234\",\r\n    \"datetime\": \"24.04.2024 7:30:00\",\r\n    \"time3\": \"07:13:52\",\r\n    \"time4\": \"07:51:11\",\r\n    \"cat_pas\": \"ИЗТ\",\r\n    \"status\": \"Заявка закончена\",\r\n    \"tpz\": \"15.03.2024 22:48:43\",\r\n    \"INSP_SEX_M\": \"0\",\r\n    \"INSP_SEX_F\": \"1\",\r\n    \"TIME_OVER\": \"00:52:20\",\r\n    \"id_st1\": \"5\",\r\n    \"id_st2\": \"97\"\r\n  }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/order/set",
-							"protocol": "{{protocol}}",
-							"host": [
-								"{{url}}"
-							],
-							"port": "{{port}}{{api}}",
-							"path": [
-								"order",
-								"set"
-							]
-						}
-					},
-					"status": "Expectation Failed",
-					"code": 417,
-					"_postman_previewlanguage": "plain",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "text/plain; charset=utf-8"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "Date",
-							"value": "Fri, 07 Jun 2024 13:43:53 GMT"
-						},
-						{
-							"key": "Content-Length",
-							"value": "110"
-						}
-					],
-					"cookie": [],
-					"body": "Ошибка добавления заявки: constraint failed: UNIQUE constraint failed: orders.id (1555)\n"
+					"body": "{\n    \"id\": \"019010d8-eeee-7272-a380-34d615655ce0\"\n}"
 				}
 			]
 		},
@@ -1981,7 +1965,7 @@
 					}
 				],
 				"url": {
-					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/order/delete?id=477354234",
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/order/delete?id=019010dc-3a7f-7868-ba1d-6d2e636da0ea",
 					"protocol": "{{protocol}}",
 					"host": [
 						"{{url}}"
@@ -1994,8 +1978,8 @@
 					"query": [
 						{
 							"key": "id",
-							"value": "477354234",
-							"description": "477354234"
+							"value": "019010dc-3a7f-7868-ba1d-6d2e636da0ea",
+							"description": "019010dc-3a7f-7868-ba1d-6d2e636da0ea"
 						}
 					]
 				},
@@ -2013,7 +1997,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/order/delete?id=477354234",
+							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/order/delete?id=019010dc-3a7f-7868-ba1d-6d2e636da0ea",
 							"protocol": "{{protocol}}",
 							"host": [
 								"{{url}}"
@@ -2026,8 +2010,8 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "477354234",
-									"description": "477354234"
+									"value": "019010dc-3a7f-7868-ba1d-6d2e636da0ea",
+									"description": "019010dc-3a7f-7868-ba1d-6d2e636da0ea"
 								}
 							]
 						}
@@ -2046,15 +2030,15 @@
 						},
 						{
 							"key": "Date",
-							"value": "Sun, 09 Jun 2024 17:09:22 GMT"
+							"value": "Thu, 13 Jun 2024 09:10:28 GMT"
 						},
 						{
 							"key": "Content-Length",
-							"value": "19"
+							"value": "46"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": \"477354234\"\n}"
+					"body": "{\n    \"id\": \"019010dc-3a7f-7868-ba1d-6d2e636da0ea\"\n}"
 				}
 			]
 		},
@@ -2261,6 +2245,57 @@
 					"body": "{\n    \"document\": {\n        \"details\": [\n            {\n                \"id\": \"018ffd91-effd-7a98-8289-78f327a6903e\",\n                \"role\": \"Администратор\"\n            },\n            {\n                \"id\": \"018ffd91-fb97-7cf1-a105-43cd25b783e2\",\n                \"role\": \"Специалист\"\n            },\n            {\n                \"id\": \"018ffd91-fc38-759a-9d8c-32b6b0419de4\",\n                \"role\": \"Оператор\"\n            },\n            {\n                \"id\": \"018ffd91-fcc5-70a9-bf36-f67ca6df0ca0\",\n                \"role\": \"Сотрудник\"\n            }\n        ]\n    }\n}"
 				}
 			]
+		},
+		{
+			"name": "/",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "OPTIONS",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{protocol}}://{{url}}/",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "20",
+							"disabled": true
+						},
+						{
+							"key": "off",
+							"value": "0",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Получить весь список документов для закачки на терминал или 1С конфигурацию\n\nGET метод осуществляет выдачу списка пакетов (документов) для закачки на терминал или 1С конфигурацию"
+			},
+			"response": []
 		}
 	],
 	"event": [

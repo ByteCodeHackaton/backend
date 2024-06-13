@@ -56,11 +56,11 @@
         },
         {
             "path": "api/v1/account",
-            "authorization": true
+            "authorization": false
         },
         {
             "path": "api/v1/account/exist",
-            "authorization": true
+            "authorization": false
         },
         {
             "path": "api/v1/order/set",
