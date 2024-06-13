@@ -2379,6 +2379,365 @@
 			]
 		},
 		{
+			"name": "workday set",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"strictSSL": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "{{content}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"\",\r\n    \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\r\n    \"date_work\": \"06.06.2024 0:00:00\",\r\n    \"time_work\": \"07:00-19:00\",\r\n    \"state_wd\": \"\",\r\n    \"date_dop_smena\": \"\",\r\n    \"date_ucheba\": \"\",\r\n    \"date_change\": \"\",\r\n    \"intern\": \"\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/workday/set",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}{{api}}",
+					"path": [
+						"workday",
+						"set"
+					]
+				},
+				"description": "Добавление сообщения на сервис\n\nPOST метод осуществляет отправку сообщения на сервис."
+			},
+			"response": [
+				{
+					"name": "workday set 200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{content}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"\",\r\n    \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\r\n    \"date_work\": \"14.06.2024 0:00:00\",\r\n    \"time_work\": \"07:00-19:00\",\r\n    \"state_wd\": \"\",\r\n    \"date_dop_smena\": \"\",\r\n    \"date_ucheba\": \"\",\r\n    \"date_change\": \"\",\r\n    \"intern\": \"\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/workday/set",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}{{api}}",
+							"path": [
+								"workday",
+								"set"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 13 Jun 2024 11:34:56 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "46"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"01901161-1f38-7c64-a748-d56267cca716\"\n}"
+				}
+			]
+		},
+		{
+			"name": "workday update",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"strictSSL": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "{{content}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"01901160-bf0b-7c72-ba93-2158a7694cb8\",\r\n    \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\r\n    \"date_work\": \"10.06.2024 0:00:00\",\r\n    \"time_work\": \"07:00-19:00\",\r\n    \"state_wd\": \"выходной\",\r\n    \"date_dop_smena\": \"\",\r\n    \"date_ucheba\": \"\",\r\n    \"date_change\": \"\",\r\n    \"intern\": \"\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/workday/update",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}{{api}}",
+					"path": [
+						"workday",
+						"update"
+					]
+				},
+				"description": "Добавление сообщения на сервис\n\nPOST метод осуществляет отправку сообщения на сервис."
+			},
+			"response": [
+				{
+					"name": "workday update 200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{content}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"01901160-bf0b-7c72-ba93-2158a7694cb8\",\r\n    \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\r\n    \"date_work\": \"10.06.2024 0:00:00\",\r\n    \"time_work\": \"07:00-19:00\",\r\n    \"state_wd\": \"\",\r\n    \"date_dop_smena\": \"\",\r\n    \"date_ucheba\": \"\",\r\n    \"date_change\": \"\",\r\n    \"intern\": \"\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/workday/update",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}{{api}}",
+							"path": [
+								"workday",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 13 Jun 2024 13:09:09 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "46"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"01901160-bf0b-7c72-ba93-2158a7694cb8\"\n}"
+				}
+			]
+		},
+		{
+			"name": "workday list",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/workday/list?id=018fee07-b8fb-7350-8147-d6d2925d6873&limit=20&off=0",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}{{api}}",
+					"path": [
+						"workday",
+						"list"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "018fee07-b8fb-7350-8147-d6d2925d6873",
+							"description": "id сотрудника"
+						},
+						{
+							"key": "limit",
+							"value": "20"
+						},
+						{
+							"key": "off",
+							"value": "0"
+						}
+					]
+				},
+				"description": "Получить весь список документов для закачки на терминал или 1С конфигурацию\n\nGET метод осуществляет выдачу списка пакетов (документов) для закачки на терминал или 1С конфигурацию"
+			},
+			"response": [
+				{
+					"name": "workday list 200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/workday/list?id=018fee07-b8fb-7350-8147-d6d2925d6873&limit=20&off=0",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}{{api}}",
+							"path": [
+								"workday",
+								"list"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "018fee07-b8fb-7350-8147-d6d2925d6873",
+									"description": "id сотрудника"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								},
+								{
+									"key": "off",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 13 Jun 2024 14:21:53 GMT"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"document\": {\n        \"total_count\": 9,\n        \"page_count\": 1,\n        \"details\": [\n            {\n                \"id\": \"01901160-bf0b-7c72-ba93-2158a7694cb8\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"10.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"выходной\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"01901160-e4cb-72c7-8611-9c4d95b5469a\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"11.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"01901160-fb3e-7af6-8e47-993a064a36ad\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"12.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"01901161-0cc8-78c2-a100-4cb11699bf1c\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"13.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"01901161-1f38-7c64-a748-d56267cca716\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"14.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"019011ef-d7cc-7a2c-bb85-d58778039f8c\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"09.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"019011ef-ee38-7829-bf16-07073b0cafab\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"08.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"019011f0-03bc-7dda-b50b-caa9e8f4258f\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"07.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"019011f0-18e2-73a1-98a2-9e3aacb14d67\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"06.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            }\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
 			"name": "/",
 			"event": [
 				{
