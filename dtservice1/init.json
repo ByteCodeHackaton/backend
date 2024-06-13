@@ -1,6 +1,6 @@
 {
     "name": "db_service",
-    "address": "localhost:9999",
+    "address": "localhost:5010",
     "endpoints": [
         {
             "path": "api/v1/employee/set",
