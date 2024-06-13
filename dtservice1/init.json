@@ -85,6 +85,18 @@
         {
             "path": "api/v1/role/list",
             "authorization": true
+        },
+        {
+            "path": "api/v1/workday/set",
+            "authorization": true
+        },
+        {
+            "path": "api/v1/workday/update",
+            "authorization": true
+        },
+        {
+            "path": "api/v1/workday/list",
+            "authorization": true
         }
     ]
 }
