@@ -32,7 +32,7 @@ func PostPassengerSet(w http.ResponseWriter, r *http.Request) {
 	}
 	log.Println("database initialized..")
 
-	var message, state string
+	var message string
 	uuid := uuidv7.New()
 
 	result, err := db.ExecContext(context.Background(), `INSERT INTO passengers (id, fio, phone, category, sex, description, eks) VALUES
@@ -54,10 +54,9 @@ func PostPassengerSet(w http.ResponseWriter, r *http.Request) {
 	if id_ > 0 {
 		message = "Добавлен пассажир: " + passenger.Fio
 		log.Println(message)
-		state = uuid.String()
 	}
 
-	documentResponse := Response{State: state, Message: message}
+	documentResponse := Response{Id: uuid.String(), Message: message}
 	response := DocumentResponse{Document_: documentResponse}
 	w.Header().Set("Content-Type", cContentTypeJson)
 	json.NewEncoder(w).Encode(response)

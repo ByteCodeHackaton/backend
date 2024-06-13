@@ -107,6 +107,7 @@ type ResponseMsg struct {
 
 type Response struct {
 	State       string     `json:"state,omitempty" example:"error"`
+	Id          string     `json:"id,omitempty"`
 	Message     string     `json:"message,omitempty" example:"ок"`
 	Total_count int        `json:"total_count,omitempty" example:"117"`
 	Page_count  int        `json:"page_count,omitempty" example:"20"`

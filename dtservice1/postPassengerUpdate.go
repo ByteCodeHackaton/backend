@@ -31,10 +31,10 @@ func PostPassengerUpdate(w http.ResponseWriter, r *http.Request) {
 	log.Println("database initialized..")
 
 	var message string
-	uuid_ := r.FormValue("id")
+	//uuid_ := r.FormValue("id")
 
 	result, err := db.ExecContext(context.Background(), `UPDATE passengers SET fio=?, phone=?, category=?, sex=?, description=?, eks=? WHERE id=?;`,
-		passenger.Fio, passenger.Phone, passenger.Category, passenger.Sex, passenger.Description, passenger.Eks, uuid_)
+		passenger.Fio, passenger.Phone, passenger.Category, passenger.Sex, passenger.Description, passenger.Eks, passenger.Id)
 
 	if err != nil {
 		message = "Ошибка изменения информации о пассажире: " + err.Error()
@@ -55,7 +55,7 @@ func PostPassengerUpdate(w http.ResponseWriter, r *http.Request) {
 		log.Println(message)
 	}
 
-	response := Passenger{Id: uuid_}
+	response := Passenger{Id: passenger.Id}
 	w.Header().Set("Content-Type", cContentTypeJson)
 	json.NewEncoder(w).Encode(response)
 }

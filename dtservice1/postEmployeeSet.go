@@ -34,7 +34,7 @@ func PostEmployeeSet(w http.ResponseWriter, r *http.Request) {
 	}
 	log.Println("database initialized..")
 
-	var message, state string
+	var message string
 	result, err := db.ExecContext(context.Background(), `INSERT INTO employees (date, timework, id, fio, uchastok, smena, rank, sex, is_busy, phone_work, phone_personal, tab_number, type_work) VALUES
 		(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`, emp.Date, emp.Timework, uuid.String(), emp.Fio, emp.Uchastok, emp.Smena, emp.Rank, emp.Sex, 0, emp.Phone_work, emp.Phone_personal, emp.Tab_number, emp.Type_work)
 	if err != nil {
@@ -57,7 +57,7 @@ func PostEmployeeSet(w http.ResponseWriter, r *http.Request) {
 	}
 
 	log.Printf("Работник %s зарегистрирован: ", emp.Fio)
-	documentResponse := Response{State: state, Message: message}
+	documentResponse := Response{Id: uuid.String(), Message: message}
 	response := DocumentResponse{Document_: documentResponse}
 	w.Header().Set("Content-Type", cContentTypeJson)
 	json.NewEncoder(w).Encode(response)

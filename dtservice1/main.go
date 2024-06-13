@@ -90,8 +90,8 @@ func main() {
 	log.Println("Init router handlers...")
 
 	c := cors.New(cors.Options{
-		AllowedOrigins:   []string{"http://localhost:5173"}, // All origins
-		AllowedMethods:   []string{"GET", "POST"},           // Allowing only get, just an example
+		AllowedOrigins:   []string{"http://localhost:5173"},                           // All origins
+		AllowedMethods:   []string{"GET", "POST", "DELETE", "HEAD", "PUT", "OPTIONS"}, // Allowing
 		AllowCredentials: true,
 	})
 
