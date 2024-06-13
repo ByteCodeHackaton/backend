@@ -18,6 +18,6 @@
 
 ***go build -o ../../build/api_service***
 
-- в каталог ***build*** скопировать файл БД: ***metro.db*** и файл настроек gateway: ***init.sh***
+- в каталог ***build*** скопировать файл БД: ***metro.db*** и файл настроек gateway: ***init.json***
 
 ## docs
