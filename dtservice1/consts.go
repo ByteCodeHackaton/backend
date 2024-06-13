@@ -34,6 +34,17 @@ type Order struct {
 	Id_st2     string `json:"id_st2,omitempty" example:"97"`                                    // ID конечной станции
 }
 
+type Workday struct {
+	Employee_Id    string `json:"employee_id,omitempty" example:"018fee07-b8fb-7350-8147-d6d2925d6873"` // Уникальный идентификатор сотрудника
+	Date_work      string `json:"date_work,omitempty" example:"10.06.2024 0:00:00"`                     // Дата выхода
+	Time_work      string `json:"time_work,omitempty" example:"07:00-19:00"`                            // Время работы (07:00-19:00, 08:00-20:00, 20:00-08:00, 08:00-17:00)
+	State_wd       string `json:"state_wd,omitempty" example:""`                                        // Статус рабочего дня
+	Date_dop_smena string `json:"date_dop_smena,omitempty" example:""`                                  // Дополнительная смена (выход не по своему графику, дата)
+	Date_ucheba    string `json:"date_ucheba,omitempty" example:""`                                     // Учеба с отрывом от производства (дата от-до)
+	Date_change    string `json:"date_change,omitempty" example:""`                                     // Изменение времени работы (если время работы не совпадает с графиком)
+	Intern         string `json:"intern,omitempty" example:""`                                          // Стажировка (заявки только совместно с наставником)
+}
+
 type EmpDocument struct {
 	Emp EmpDoc `json:"document"`
 }
