@@ -4,16 +4,111 @@
     "address": "localhost:8888",
     "endpoints": [
       {
-        "path": "/nearest",
+        "path": "nearest",
+        "authorization": false,
+        "params": [
+          "id",
+          "time"
+        ],
+        "description": "Получение ближайших станций по времени"
+      },
+      {
+        "path": "stations",
         "authorization": false
       },
       {
-        "path": "/stations",
+        "path": "path",
+        "authorization": false
+      }
+    ]
+  },
+  {
+    "name": "db_service",
+    "address": "localhost:5010",
+    "endpoints": [
+      {
+        "path": "/api/v1/authorization",
         "authorization": false
       },
       {
-        "path": "/path",
+        "path": "/api/v1/employee/set",
+        "authorization": true
+      },
+      {
+        "path": "/api/v1/employee/update",
+        "authorization": true
+      },
+      {
+        "path": "/api/v1/employee/list",
         "authorization": false
+      },
+      {
+        "path": "/api/v1/employee/delete",
+        "authorization": true
+      },
+      {
+        "path": "/api/v1/passenger/set",
+        "authorization": true
+      },
+      {
+        "path": "/api/v1/passenger/update",
+        "authorization": true
+      },
+      {
+        "path": "/api/v1/passenger/list",
+        "authorization": true
+      },
+      {
+        "path": "/api/v1/passenger",
+        "authorization": true
+      },
+      {
+        "path": "/api/v1/passenger/delete",
+        "authorization": true
+      },
+      {
+        "path": "/api/v1/category/set",
+        "authorization": true
+      },
+      {
+        "path": "/api/v1/category/list",
+        "authorization": true
+      },
+      {
+        "path": "/api/v1/uchastok/list",
+        "authorization": true
+      },
+      {
+        "path": "/api/v1/rank/list",
+        "authorization": true
+      },
+      {
+        "path": "/api/v1/account",
+        "authorization": false
+      },
+      {
+        "path": "/api/v1/account/exist",
+        "authorization": false
+      },
+      {
+        "path": "/api/v1/order/set",
+        "authorization": true
+      },
+      {
+        "path": "/api/v1/order/list",
+        "authorization": true
+      },
+      {
+        "path": "/api/v1/order/delete",
+        "authorization": true
+      },
+      {
+        "path": "/api/v1/order/state/list",
+        "authorization": true
+      },
+      {
+        "path": "/api/v1/role/list",
+        "authorization": true
       }
     ]
   }

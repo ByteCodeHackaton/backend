@@ -3,87 +3,87 @@
     "address": "localhost:9999",
     "endpoints": [
         {
-            "path": "authorization",
+            "path": "api/v1/authorization",
             "authorization": true
         },
         {
-            "path": "employee/set",
+            "path": "api/v1/employee/set",
             "authorization": true
         },
         {
-            "path": "employee/update",
+            "path": "api/v1/employee/update",
             "authorization": true
         },
         {
-            "path": "employee/list",
+            "path": "api/v1/employee/list",
             "authorization": true
         },
         {
-            "path": "employee/delete",
+            "path": "api/v1/employee/delete",
             "authorization": true
         },
         {
-            "path": "passenger/set",
+            "path": "api/v1/passenger/set",
             "authorization": true
         },
         {
-            "path": "passenger/update",
+            "path": "api/v1/passenger/update",
             "authorization": true
         },
         {
-            "path": "passenger/list",
+            "path": "api/v1/passenger/list",
             "authorization": true
         },
         {
-            "path": "passenger",
+            "path": "api/v1/passenger",
             "authorization": true
         },
         {
-            "path": "passenger/delete",
+            "path": "api/v1/passenger/delete",
             "authorization": true
         },
         {
-            "path": "category/set",
+            "path": "api/v1/category/set",
             "authorization": true
         },
         {
-            "path": "category/list",
+            "path": "api/v1/category/list",
             "authorization": true
         },
         {
-            "path": "uchastok/list",
+            "path": "api/v1/uchastok/list",
             "authorization": true
         },
         {
-            "path": "rank/list",
+            "path": "api/v1/rank/list",
             "authorization": true
         },
         {
-            "path": "account",
+            "path": "api/v1/account",
+            "authorization": false
+        },
+        {
+            "path": "api/v1/account/exist",
+            "authorization": false
+        },
+        {
+            "path": "api/v1/order/set",
             "authorization": true
         },
         {
-            "path": "account/exist",
+            "path": "api/v1/order/list",
             "authorization": true
         },
         {
-            "path": "order/set",
+            "path": "api/v1/order/delete",
             "authorization": true
         },
         {
-            "path": "order/list",
+            "path": "api/v1/order/state/list",
             "authorization": true
         },
         {
-            "path": "order/delete",
-            "authorization": true
-        },
-        {
-            "path": "order/state/list",
-            "authorization": true
-        },
-        {
-            "path": "role/list",
+            "path": "api/v1/role/list",
             "authorization": true
         }
     ]

@@ -13,11 +13,11 @@ pub async fn is_autentificated(req: &Request<Incoming>) -> bool
     {
         Some(value) => 
         {
-            let token_str = value.to_str().unwrap_or("");
+            let token_str = value.to_str().unwrap_or("").replace("Bearer ", "");
             logger::info!("Проверка токена->{}", token_str);
             let key = KEY.lock().await;
 
-            let v = key.validate_access(token_str);
+            let v = key.validate_access(&token_str);
             if let Ok(_) = v
             {
                 true
@@ -43,11 +43,11 @@ pub async fn get_claims(req: &Request<Incoming>) -> Option<Claims>
     {
         Some(value) => 
         {
-            let token_str = value.to_str().unwrap_or("");
+            let token_str = value.to_str().unwrap_or("").replace("Bearer ", "");
             logger::info!("Проверка токена->{}", token_str);
             let key = KEY.lock().await;
 
-            let v = key.validate_access(token_str);
+            let v = key.validate_access(&token_str);
             if let Ok(cl) = v
             {
                 Some(cl.claims)

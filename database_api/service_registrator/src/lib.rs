@@ -12,7 +12,15 @@ type BoxBody = http_body_util::combinators::BoxBody<Bytes, hyper::Error>;
 struct Endpoint
 {
     path: String,
-    authorization: bool
+    authorization: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    method: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    params: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    body: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    description: Option<String>
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -39,10 +47,41 @@ impl ServiceConfig
         self.endpoints.push(Endpoint
         {
             path: path.to_owned(),
-            authorization: need_authorization
+            authorization: need_authorization,
+            params: None,
+            method: None,
+            body: None,
+            description: None
         });
         self
     }
+    pub fn add_endpoint_body(mut self, path: &str, need_authorization: bool, body: &str, description: &str) -> Self
+    {
+        self.endpoints.push(Endpoint
+        {
+            path: path.to_owned(),
+            authorization: need_authorization,
+            params: None,
+            method: Some("POST".to_owned()),
+            body: Some(body.to_owned()),
+            description: Some(description.to_owned())
+        });
+        self
+    }
+    pub fn add_endpoint_params(mut self, path: &str, need_authorization: bool, params: &[&str], description: &str) -> Self
+    {
+        self.endpoints.push(Endpoint
+        {
+            path: path.to_owned(),
+            authorization: need_authorization,
+            params: Some(params.iter().map(|v| v.to_string()).collect()),
+            method: None,
+            body: None,
+            description: Some(description.to_owned())
+        });
+        self
+    }
+    
     /// addr - адрес gateway  
 /// sc - конфигурация микросервиса, его эдпоинты с необходимостью авторизации
     pub async fn register(&self, addr:  SocketAddr) -> anyhow::Result<Response<Incoming>>
@@ -102,7 +141,7 @@ mod tests
         logger::StructLogger::initialize_logger();
         let reg_service_addr = SocketAddr::from(([127, 0, 0, 1], 8080));
         let reg = super::ServiceConfig::new("subway", "localhost:8888")
-        .add_endpoint("nearest", false)
+        .add_endpoint_params("nearest", false, &["id", "time"], "Получение ближайших станций по времени")
         .add_endpoint("stations", false)
         .add_endpoint("path", false)
         .register(reg_service_addr).await;
