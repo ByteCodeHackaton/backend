@@ -15,7 +15,19 @@ import (
 func GetAccount(w http.ResponseWriter, r *http.Request) {
 	log.Println("Request account data..")
 
-	err := initDatabase(configuration.DbPath)
+	var message string
+	var account Account
+	var row *sql.Row
+
+	err := json.NewDecoder(r.Body).Decode(&account)
+	if err != nil {
+		message := "Error decoding json!" + err.Error()
+		http.Error(w, err.Error(), http.StatusBadRequest) // 400
+		log.Println(message)
+		return
+	}
+
+	err = initDatabase(configuration.DbPath)
 	if err != nil {
 		log.Fatal("error initializing DB connection: ", err)
 	}
@@ -25,12 +37,8 @@ func GetAccount(w http.ResponseWriter, r *http.Request) {
 	}
 	log.Println("database initialized..")
 
-	var message string
-	var account Account
-	var row *sql.Row
-
-	login_ := r.FormValue("login")
-	password_ := r.FormValue("pass")
+	login_ := account.Login
+	password_ := account.Pass
 	if len(login_) > 0 && len(password_) > 0 {
 		row = db.QueryRowContext(context.Background(), `SELECT * FROM accounts WHERE login=?;`, login_)
 	} else {
