@@ -1267,6 +1267,9 @@
 					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -1278,6 +1281,15 @@
 						"value": "application/json"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\": \"loginQWE@25\",\r\n    \"pass\": \"passQWE@25\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/account?login=loginQWE@25&pass=passQWE@25",
 					"protocol": "{{protocol}}",
@@ -1750,7 +1762,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"\",\r\n    \"id_pas\": \"11058234\",\r\n    \"datetime\": \"24.04.2024 7:30:00\",\r\n    \"time3\": \"07:13:52\",\r\n    \"time4\": \"07:51:11\",\r\n    \"cat_pas\": \"ИЗТ\",\r\n    \"status\": \"Заявка закончена\",\r\n    \"tpz\": \"15.03.2024 22:48:43\",\r\n    \"INSP_SEX_M\": \"3\",\r\n    \"INSP_SEX_F\": \"1\",\r\n    \"TIME_OVER\": \"00:52:20\",\r\n    \"id_st1\": \"5\",\r\n    \"id_st2\": \"97\"\r\n  }",
+					"raw": "{\r\n    \"id\": \"\",\r\n    \"id_pas\": \"11058234\",\r\n    \"datetime\": \"13.06.2024 9:30:00\",\r\n    \"time3\": \"07:13:52\",\r\n    \"time4\": \"07:51:11\",\r\n    \"cat_pas\": \"018fe832-ed6a-7150-8aae-cc3596b14ec9\",\r\n    \"status\": \"018ffea0-3cff-7738-8f27-ed3c9bc843a9\",\r\n    \"tpz\": \"15.03.2024 22:48:43\",\r\n    \"INSP_SEX_M\": \"3\",\r\n    \"INSP_SEX_F\": \"1\",\r\n    \"TIME_OVER\": \"00:52:20\",\r\n    \"id_st1\": \"5\",\r\n    \"id_st2\": \"97\"\r\n  }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1827,6 +1839,126 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"id\": \"019010d8-eeee-7272-a380-34d615655ce0\"\n}"
+				}
+			]
+		},
+		{
+			"name": "order update",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"strictSSL": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "{{content}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"019010d7-d57b-70b1-9398-f2613602beaf\",\r\n    \"id_pas\": \"11058234\",\r\n    \"datetime\": \"14.06.2024 7:30:00\",\r\n    \"time3\": \"07:13:52\",\r\n    \"time4\": \"07:51:11\",\r\n    \"cat_pas\": \"018fe832-ed6a-7150-8aae-cc3596b14ec9\",\r\n    \"status\": \"018ffea0-3cff-7738-8f27-ed3c9bc843a9\",\r\n    \"tpz\": \"15.03.2024 22:48:43\",\r\n    \"INSP_SEX_M\": \"3\",\r\n    \"INSP_SEX_F\": \"1\",\r\n    \"TIME_OVER\": \"00:52:20\",\r\n    \"id_st1\": \"5\",\r\n    \"id_st2\": \"97\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/order/update",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}{{api}}",
+					"path": [
+						"order",
+						"update"
+					]
+				},
+				"description": "Добавление сообщения на сервис\n\nPOST метод осуществляет отправку сообщения на сервис."
+			},
+			"response": [
+				{
+					"name": "order update 200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{content}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"019010d7-d57b-70b1-9398-f2613602beaf\",\r\n    \"id_pas\": \"11058234\",\r\n    \"datetime\": \"14.06.2024 7:30:00\",\r\n    \"time3\": \"07:13:52\",\r\n    \"time4\": \"07:51:11\",\r\n    \"cat_pas\": \"018fe832-ed6a-7150-8aae-cc3596b14ec9\",\r\n    \"status\": \"018ffea0-3cff-7738-8f27-ed3c9bc843a9\",\r\n    \"tpz\": \"15.03.2024 22:48:43\",\r\n    \"INSP_SEX_M\": \"3\",\r\n    \"INSP_SEX_F\": \"1\",\r\n    \"TIME_OVER\": \"00:52:20\",\r\n    \"id_st1\": \"5\",\r\n    \"id_st2\": \"97\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/order/update",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}{{api}}",
+							"path": [
+								"order",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 13 Jun 2024 09:51:42 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "46"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"019010d7-d57b-70b1-9398-f2613602beaf\"\n}"
 				}
 			]
 		},
