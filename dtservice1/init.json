@@ -55,6 +55,10 @@
             "authorization": true
         },
         {
+            "path": "api/v1/account/set",
+            "authorization": false
+        },
+        {
             "path": "api/v1/account",
             "authorization": false
         },

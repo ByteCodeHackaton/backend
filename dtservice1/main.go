@@ -79,6 +79,7 @@ func main() {
 	router.HandleFunc(configuration.HttpDomain+"/category/list", GetCategoryList).Methods("GET")
 	router.HandleFunc(configuration.HttpDomain+"/uchastok/list", GetUchastokList).Methods("GET")
 	router.HandleFunc(configuration.HttpDomain+"/rank/list", GetRankList).Methods("GET")
+	router.HandleFunc(configuration.HttpDomain+"/account/set", PostAccountSet).Methods("POST")
 	router.HandleFunc(configuration.HttpDomain+"/account", GetAccount).Methods("GET")
 	router.HandleFunc(configuration.HttpDomain+"/account/exist", GetAccountExist).Methods("GET")
 	router.HandleFunc(configuration.HttpDomain+"/order/set", PostOrderSet).Methods("POST")
