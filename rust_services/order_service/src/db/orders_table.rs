@@ -167,11 +167,8 @@ mod tests
 {
     use db::{Operations, QuerySelector, Selector};
     use logger::StructLogger;
-
     use crate::db::orders_table::OrdersTable;
-
-
-    // use super::{Operations, Selector, QuerySelector};
+    
     #[tokio::test]
     async fn test_add_order()
     {
@@ -197,48 +194,6 @@ mod tests
         println!("{:?}", &select);
         assert!(select.len() == 1);
     }
-    // #[tokio::test]
-    // async fn test_add_user()
-    // {
-    //     logger::StructLogger::initialize_logger();
-    //     let paging : Vec<String> = PacketsTable::get_with_offset(3, 0, None).await.unwrap().into_iter().map(|m| m.packet_info.delivery_time).collect();
-    //     logger::debug!("{:?}", paging);
-    // }
-
-    // #[tokio::test]
-    // async fn test_json_select()
-    // {
-    //     super::initialize().await;
-    //     let selector_1 = Selector::new(&super::UsersTable::full_select())
-    //     .add_json_param("phones->'is_main'", &false);
-    //     println!("{}", selector_1.query().0);
-    //     let select = super::UsersTable::select(&selector_1).await.unwrap();
-    //     println!("{:?}", &select);
-    //     assert!(select.len() == 1);
-    //     //let _ = super::DiseasesTable::delete(&d).await;
-    //     //assert!(super::DiseasesTable::select(&selector_1).await.unwrap().len() == 0);
-    // }
-
-    // #[tokio::test]
-    // async fn test_diseases_user_select()
-    // {
-    //     logger::StructLogger::initialize_logger();
-    //     let _ = super::initialize().await;
-    //     let select = UsersTable::get_current_diseases_users().await.unwrap();
-    //     assert!(select.len() == 1);
-    //     //let _ = super::DiseasesTable::delete(&d).await;
-    //     //assert!(super::DiseasesTable::select(&selector_1).await.unwrap().len() == 0);
-    // }
-    // #[tokio::test]
-    // async fn test_vacations_user_select()
-    // {
-    //     let _ = super::initialize().await;
-    //     let select = UsersTable::get_users_status().await.unwrap();
-    //     assert!(select.len() == 3);
-    //     //let _ = super::DiseasesTable::delete(&d).await;
-    //     //assert!(super::DiseasesTable::select(&selector_1).await.unwrap().len() == 0);
-    // }
-
 }
 
 

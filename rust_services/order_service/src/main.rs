@@ -10,8 +10,6 @@ use api::run_server;
 use logger::{debug, StructLogger};
 
 
-
-
 #[tokio::main]
 async fn main()
 {
@@ -19,10 +17,10 @@ async fn main()
     run_server().await;
 }
 
-#[cfg(test)]
-mod tests
-{
-    use logger::info;
+// #[cfg(test)]
+// mod tests
+// {
+//     use logger::info;
 
     
-}
+// }

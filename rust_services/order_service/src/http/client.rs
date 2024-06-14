@@ -1,10 +1,6 @@
 use hyper::{body::{Incoming, Bytes}, Request, Response, Uri};
 use serde::{de::DeserializeOwned, Serialize};
-
 use crate::error::OrderError;
-
-
-
 
 pub async fn post<I: Serialize, O: DeserializeOwned>(uri: Uri, obj: &I) -> Result<O, OrderError>
 {
