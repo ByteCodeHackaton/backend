@@ -16,8 +16,7 @@
 						"exec": [
 							""
 						],
-						"type": "text/javascript",
-						"packages": {}
+						"type": "text/javascript"
 					}
 				},
 				{
@@ -26,8 +25,7 @@
 						"exec": [
 							""
 						],
-						"type": "text/javascript",
-						"packages": {}
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -47,7 +45,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"date\": \"25.04.2024\",\r\n    \"time_work\": \"20:00-08:00\",\r\n    \"fio\": \"Тестовитов В.И.\",\r\n    \"uchastok\": \"018fe823-9419-7fe0-a8cb-19db345ec1bb\",\r\n    \"smena\": \"2Н\",\r\n    \"rank\": \"ЦИ\",\r\n    \"sex\": \"Мужской\",\r\n    \"phone_work\": \"84959112233\",\r\n    \"phone_personal\": \"89119876543\",\r\n    \"tab_number\": \"46573645\",\r\n    \"type_work\": \"лёгкая работа\"\r\n}",
+					"raw": "{\r\n    \"date\": \"25.04.2024\",\r\n    \"time_work\": \"20:00-08:00\",\r\n    \"fio\": \"Тестоваа В.И.\",\r\n    \"uchastok\": \"018fe823-9419-7fe0-a8cb-19db345ec1bb\",\r\n    \"smena\": \"2Н\",\r\n    \"rank\": \"ЦИ\",\r\n    \"sex\": \"Мужской\",\r\n    \"phone_work\": \"84959112233\",\r\n    \"phone_personal\": \"89119876543\",\r\n    \"tab_number\": \"46573645\",\r\n    \"type_work\": \"лёгкая работа\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1254,6 +1252,184 @@
 			"response": []
 		},
 		{
+			"name": "account set",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"strictSSL": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "{{content}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"0190168e-7135-7e36-ab90-f349f2452f15\",\r\n    \"login\": \"loginQWE@27\",\r\n    \"pass\": \"passQWE@27\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/account/set",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}{{api}}",
+					"path": [
+						"account",
+						"set"
+					]
+				},
+				"description": "Добавление сообщения на сервис\n\nPOST метод осуществляет отправку сообщения на сервис."
+			},
+			"response": [
+				{
+					"name": "account set 200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{content}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"01901686-bfc4-71ea-a7e3-08b4851fb1e9\",\r\n    \"login\": \"loginQWE@26\",\r\n    \"pass\": \"passQWE@26\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/account/set",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}{{api}}",
+							"path": [
+								"account",
+								"set"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 14 Jun 2024 11:36:34 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "46"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"01901686-bfc4-71ea-a7e3-08b4851fb1e9\"\n}"
+				},
+				{
+					"name": "account set 417",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{content}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"01901686-bfc4-71ea-a7e3-08b4851fb1e9\",\r\n    \"login\": \"loginQWE@26\",\r\n    \"pass\": \"passQWE@26\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/account/set",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}{{api}}",
+							"path": [
+								"account",
+								"set"
+							]
+						}
+					},
+					"status": "Expectation Failed",
+					"code": 417,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 14 Jun 2024 11:36:53 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "119"
+						}
+					],
+					"cookie": [],
+					"body": "Ошибка добавления аккаунта: constraint failed: UNIQUE constraint failed: accounts.login (2067)\n"
+				}
+			]
+		},
+		{
 			"name": "account",
 			"event": [
 				{
@@ -1262,8 +1438,7 @@
 						"exec": [
 							""
 						],
-						"type": "text/javascript",
-						"packages": {}
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -1304,12 +1479,12 @@
 						{
 							"key": "login",
 							"value": "loginQWE@25",
-							"description": "25, 45, 64, 78, 129"
+							"description": "25, 26 45, 64, 78, 129"
 						},
 						{
 							"key": "pass",
 							"value": "passQWE@25",
-							"description": "25, 45, 64, 78, 129"
+							"description": "25, 26, 45, 64, 78, 129"
 						}
 					]
 				},
@@ -2387,8 +2562,7 @@
 						"exec": [
 							""
 						],
-						"type": "text/javascript",
-						"packages": {}
+						"type": "text/javascript"
 					}
 				},
 				{
@@ -2397,8 +2571,7 @@
 						"exec": [
 							""
 						],
-						"type": "text/javascript",
-						"packages": {}
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -2418,7 +2591,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"\",\r\n    \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\r\n    \"date_work\": \"06.06.2024 0:00:00\",\r\n    \"time_work\": \"07:00-19:00\",\r\n    \"state_wd\": \"\",\r\n    \"date_dop_smena\": \"\",\r\n    \"date_ucheba\": \"\",\r\n    \"date_change\": \"\",\r\n    \"intern\": \"\"\r\n  }",
+					"raw": "{\r\n    \"id\": \"\",\r\n    \"employee_id\": \"018fee07-b41e-77a5-aaa3-df70941f8837\",\r\n    \"date_work\": \"2024-06-10T00:00:00\",\r\n    \"time_work\": \"07:00-19:00\",\r\n    \"state_wd\": \"\",\r\n    \"date_dop_smena\": \"\",\r\n    \"date_ucheba\": \"\",\r\n    \"date_change\": \"\",\r\n    \"intern\": \"\"\r\n  }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2452,7 +2625,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"\",\r\n    \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\r\n    \"date_work\": \"14.06.2024 0:00:00\",\r\n    \"time_work\": \"07:00-19:00\",\r\n    \"state_wd\": \"\",\r\n    \"date_dop_smena\": \"\",\r\n    \"date_ucheba\": \"\",\r\n    \"date_change\": \"\",\r\n    \"intern\": \"\"\r\n  }",
+							"raw": "{\r\n    \"id\": \"\",\r\n    \"employee_id\": \"018fee07-bf6a-75b5-83bd-afee940c4064\",\r\n    \"date_work\": \"2024-06-10T00:00:00\",\r\n    \"time_work\": \"07:00-19:00\",\r\n    \"state_wd\": \"\",\r\n    \"date_dop_smena\": \"\",\r\n    \"date_ucheba\": \"\",\r\n    \"date_change\": \"\",\r\n    \"intern\": \"\"\r\n  }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2734,6 +2907,126 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"document\": {\n        \"total_count\": 9,\n        \"page_count\": 1,\n        \"details\": [\n            {\n                \"id\": \"01901160-bf0b-7c72-ba93-2158a7694cb8\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"10.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"выходной\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"01901160-e4cb-72c7-8611-9c4d95b5469a\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"11.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"01901160-fb3e-7af6-8e47-993a064a36ad\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"12.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"01901161-0cc8-78c2-a100-4cb11699bf1c\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"13.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"01901161-1f38-7c64-a748-d56267cca716\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"14.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"019011ef-d7cc-7a2c-bb85-d58778039f8c\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"09.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"019011ef-ee38-7829-bf16-07073b0cafab\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"08.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"019011f0-03bc-7dda-b50b-caa9e8f4258f\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"07.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"019011f0-18e2-73a1-98a2-9e3aacb14d67\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"06.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            }\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "workday date list",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/workday/date/list?date=2024-06-10T00:00:00&limit=20&off=0",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}{{api}}",
+					"path": [
+						"workday",
+						"date",
+						"list"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2024-06-10T00:00:00",
+							"description": "дата выхода на работу"
+						},
+						{
+							"key": "limit",
+							"value": "20"
+						},
+						{
+							"key": "off",
+							"value": "0"
+						}
+					]
+				},
+				"description": "Получить весь список документов для закачки на терминал или 1С конфигурацию\n\nGET метод осуществляет выдачу списка пакетов (документов) для закачки на терминал или 1С конфигурацию"
+			},
+			"response": [
+				{
+					"name": "workday date list 200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/workday/date/list?date=2024-06-10T00:00:00&limit=20&off=0",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}{{api}}",
+							"path": [
+								"workday",
+								"date",
+								"list"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2024-06-10T00:00:00",
+									"description": "дата выхода на работу"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								},
+								{
+									"key": "off",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 14 Jun 2024 13:21:41 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "791"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"document\": {\n        \"total_count\": 3,\n        \"page_count\": 1,\n        \"details\": [\n            {\n                \"id\": \"01901160-bf0b-7c72-ba93-2158a7694cb8\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"2024-06-10T00:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"выходной\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"019016e3-a390-7f4f-ab3a-be8ba782eb2c\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"2024-06-10T00:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"019016e5-4a54-73b8-aa48-2960e1170e70\",\n                \"employee_id\": \"018fee07-b41e-77a5-aaa3-df70941f8837\",\n                \"date_work\": \"2024-06-10T00:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            }\n        ]\n    }\n}"
 				}
 			]
 		},
