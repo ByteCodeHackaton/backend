@@ -1,141 +1,151 @@
 // use std::{borrow::Cow, ops::Deref};
 
 // use logger::backtrace;
-// use transport::{Ack, PacketInfo, Requisites, SenderInfo, Packet};
 // use serde_json::json;
-// use settings::Task;
 // use sqlx::{Row, sqlite::SqliteRow, FromRow, Execute};
+// use utilites::Date;
 // use uuid::Uuid;
 // use crate::AddresseTable;
 
-// use super::{connection::get_connection, from_json, operations::{to_json, CountRequest, Id, IdSelector, Operations, QuerySelector, Selector, SortingOrder}};
+
+// // type Order struct {
+// // 	Id         string `json:"id,omitempty" example:"477354"`                   // Уникальный идентификатор заявки
+// // 	Id_Pas     string `json:"id_pas,omitempty" example:"11058"`                // Уникальный идентификатор пассажира
+// // 	DateTime   string `json:"datetime,omitempty" example:"24.04.2024 7:30:00"` // Дата и время начала заявки
+// // 	Time3      string `json:"time3,omitempty" example:"07:13:52"`              // Время встречи с пассажиром и начало его сопровождения
+// // 	Time4      string `json:"time4,omitempty" example:"07:51:11"`              // Время завершения сопровождения пассажира
+// // 	Cat_pas    string `json:"cat_pas,omitempty" example:"ИЗТ"`                 // Категория пассажира
+// // 	Status     string `json:"status,omitempty" example:"Заявка закончена"`     // Статус заявки
+// // 	Tpz        string `json:"tpz,omitempty" example:"15.03.2024 22:48:43"`     // Время регистрации заявки
+// // 	INSP_SEX_M string `json:"insp_sex_m,omitempty" example:"0"`                // Количество сотрудников мужчин выделяемых на данную заявку
+// // 	INSP_SEX_F string `json:"insp_sex_f,omitempty" example:"1"`                // Количество сотрудников женщин выделяемых на данную заявку
+// // 	TIME_OVER  string `json:"time_over,omitempty" example:"00:52:20"`          // Рассчитанное примерное время на выполнение заявки
+// // 	Id_st1     string `json:"id_st1,omitempty" example:"5"`                    // ID начальной станции
+// // 	Id_st2     string `json:"id_st2,omitempty" example:"97"`                   // ID конечной станции
+// // }
+
+
+// // #[derive(Clone, Serialize, Deserialize, Debug)]
+// // pub struct RequestOrder
+// // {
+// //     pub id: String,
+// //     pub fio: String,
+// //     // from node id
+// //     pub path_from: String,
+// //     // to node id
+// //     pub path_to: String,
+// //     // date
+// //     pub request_date: utilites::Date,
+// //     pub note: Option<String>,
+// //     //требуемое количество сотрудников (непонятно кто это будет решать)
+// //     pub employees_count: u32,
+// //     pub place: Place,
+// // }
+
+// use super::{connection::get_connection, operations::{to_json, CountRequest, Id, IdSelector, Operations, QuerySelector, Selector, SortingOrder}};
 // #[derive(Debug)]
-// pub struct PacketsTable
+// ///Запрос на заявку
+// pub struct RequestOrder
 // {
+//     /// Уникальный идентификатор заявки
 //     id: String,
-//     packet_info: PacketInfo,
-//     task_name: String,
-//     report_sended: bool
+//     /// Время регистрации заявки
+//     date: Date,
+//     /// Уникальный идентификатор пассажира
+//     passagier_id: String,
+//     /// Категория пассажира
+//     passagier_category: String,
+//     /// Время встречи с пассажиром и начало его сопровождения
+//     request_start_date: Date,
+//     /// с какой станции забрать пассажира (id)
+//     path_from_id: String,
+//     /// на какую станцию перевезти пассажира (id)
+//     path_to_id: String,
+//     ///среднее время между станцииями в минутах
+//     average_path_time: u32,
+//     /// заметка оставленная пассажиром
+//     note: Option<String>,
+//     /// место встречи пассажира
+//     place: String,
+//     /// Количество сотрудников мужчин выделяемых на данную заявку
+//     insp_male_count: u32,
+//     /// Количество сотрудников женщин выделяемых на данную заявку
+//     insp_female_count: u32,
 // }
-// impl PacketsTable
+
+
+// impl<'a> Id<'a> for RequestOrder
 // {
-//     pub fn new(packet: &Packet) -> Self
+//     fn get_id(&'a self)-> Uuid
 //     {
-//         Self { id: packet.get_id().to_owned(), packet_info: packet.get_packet_info().to_owned(), task_name: packet.get_task().get_task_name().to_owned(), report_sended: packet.report_sended}
-//     }
-//     pub fn get_id(&self) -> &str
-//     {
-//         &self.id
-//     }
-//     pub fn get_packet_info(&self) -> &PacketInfo
-//     {
-//         &self.packet_info
-//     }
-//     pub fn get_task_name(&self) -> &str
-//     {
-//         &self.task_name
-//     }
-//     pub fn report_is_sended(&self) -> bool
-//     {
-//         self.report_sended
+//         Uuid::parse_str(&self.id).unwrap()
 //     }
 // }
 
-
-
-// impl<'a> Id<'a> for PacketsTable
-// {
-//     fn get_id(&'a self)-> Cow<str> 
-//     {
-//         Cow::from(&self.id)
-//     }
-// }
-
-// impl FromRow<'_, SqliteRow> for PacketsTable
+// impl FromRow<'_, SqliteRow> for RequestOrder
 // {
 //     fn from_row(row: &SqliteRow) -> sqlx::Result<Self> 
 //     {
-//         let id: String =  row.try_get("id")?;
-//         let files = serde_json::from_str::<Vec<String>>(row.try_get("files")?).unwrap();
-//         Ok(
-//         Self
+//         let date: String = row.try_get("date")?;
+//         let date = Date::parse(date).unwrap();
+//         let request_start_date: String = row.try_get("request_start_date")?;
+//         let request_start_date = Date::parse(request_start_date).unwrap();
+//         Ok(Self
 //         {
-//             id,
-//             task_name: row.try_get("task_name")?,
-//             report_sended: row.try_get("report_sended")?,
-//             packet_info: PacketInfo
-//             {
-//                 header_guid: row.try_get("header_id")?,
-//                 packet_directory: row.try_get("directory")?,
-//                 packet_type: row.try_get("packet_type")?,
-//                 delivery_time: row.try_get("delivery_time")?,
-//                 default_pdf: row.try_get("default_pdf")?,
-//                 files,
-//                 requisites: from_json(row, "requisites"),
-//                 sender_info: from_json(row, "sender_info"),
-//                 wrong_encoding: false,
-//                 error: row.try_get("error")?,
-//                 pdf_hash: row.try_get("pdf_hash")?,
-//                 acknowledgment: from_json(row, "acknowledgment"),
-//                 trace_message: row.try_get("trace_message")?,
-//                 update_key: row.try_get("update_key")?,
-//                 visible: row.try_get("visible")?,
-//             }
+//             id: row.try_get("id")?,
+//             date,
+//             passagier_id: row.try_get("passagier_id")?,
+//             passagier_category: row.try_get("passagier_category")?,
+//             request_start_date,
+//             path_from_id: row.try_get("path_from_id")?,
+//             path_to_id: row.try_get("path_to_id")?,
+//             average_path_time: row.try_get("average_path_time")?,
+//             note: row.try_get("note")?,
+//             place: row.try_get("place")?,
+//             insp_male_count: row.try_get("insp_male_count")?,
+//             insp_female_count: row.try_get("insp_female_count")?,
 //         })
 //     }
 // }
 
-// impl<'a> Operations<'a> for PacketsTable
+// impl<'a> Operations<'a> for RequestOrder
 // {
 //     fn table_name() -> &'static str 
 //     {
-//        "packets"
+//        "requests"
 //     }
 //     fn create_table() -> String 
 //     {  
 //         ["CREATE TABLE IF NOT EXISTS ", Self::table_name(), " (
 //             id TEXT PRIMARY KEY NOT NULL,
-//             task_name TEXT NOT NULL,
-//             header_id TEXT, 
-//             directory TEXT NOT NULL, 
-//             packet_type TEXT,
-//             delivery_time TEXT NOT NULL,
-//             error TEXT,
-//             default_pdf TEXT, 
-//             pdf_hash TEXT,
-//             files JSON DEFAULT('[]'),
-//             requisites JSON,
-//             sender_info JSON,
-//             acknowledgment JSON,
-//             update_key TEXT NOT NULL,
-//             visible INTEGER NOT NULL DEFAULT 1,
-//             trace_message TEXT,
-//             report_sended INTEGER NOT NULL DEFAULT 0,
+//             date TEXT NOT NULL,
+//             passagier_id TEXT NOT NULL, 
+//             passagier_category TEXT NOT NULL, 
+//             request_start_date TEXT NOT NULL, 
+//             path_from_id TEXT NOT NULL,
+//             path_to_id TEXT NOT NULL,
+//             average_path_time INTEGER NOT NULL,
+//             note TEXT,
+//             place TEXT NOT NULL,
+//             insp_male_count INTEGER NOT NULL DEFAULT 1,
+//             insp_female_count INTEGER NOT NULL DEFAULT 0
 //             );"].concat()
 //     }
 //     fn full_select() -> String 
 //     {
-//         //SELECT header_id, directory, packet_type, delivery_time, error, default_pdf, 
-//         //files, requisites, sender_info, pdf_hash, update_key,
-//         // acknowledgment, visible, trace_message FROM packets";
 //         ["SELECT 
 //         id,
-//         task_name,
-//         header_id, 
-//         directory, 
-//         packet_type,
-//         delivery_time,
-//         error,
-//         default_pdf,
-//         files,
-//         requisites,
-//         sender_info,
-//         pdf_hash,
-//         update_key,
-//         acknowledgment,
-//         visible,
-//         trace_message,
-//         report_sended 
+//         date,
+//         passagier_id, 
+//         passagier_category, 
+//         request_start_date,
+//         path_from_id,
+//         path_to_id,
+//         average_path_time,
+//         note,
+//         place,
+//         insp_male_count,
+//         insp_female_count
 //         FROM ", Self::table_name()].concat()
 //     }
 //     async fn update(&'a self) -> anyhow::Result<()>

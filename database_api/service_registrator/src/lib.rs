@@ -12,8 +12,17 @@ type BoxBody = http_body_util::combinators::BoxBody<Bytes, hyper::Error>;
 struct Endpoint
 {
     path: String,
-    authorization: bool
+    authorization: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    method: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    params: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    body: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    description: Option<String>
 }
+
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ServiceConfig 
@@ -39,12 +48,47 @@ impl ServiceConfig
         self.endpoints.push(Endpoint
         {
             path: path.to_owned(),
-            authorization: need_authorization
+            authorization: need_authorization,
+            params: None,
+            method: None,
+            body: None,
+            description: None
         });
         self
     }
+    pub fn add_endpoint_body(mut self, path: &str, need_authorization: bool, body: &str, description: &str) -> Self
+    {
+        self.endpoints.push(Endpoint
+        {
+            path: path.to_owned(),
+            authorization: need_authorization,
+            params: None,
+            method: Some("POST".to_owned()),
+            body: Some(body.to_owned()),
+            description: Some(description.to_owned())
+        });
+        self
+    }
+    pub fn add_endpoint_params(mut self, path: &str, need_authorization: bool, params: &[&str], description: &str) -> Self
+    {
+        self.endpoints.push(Endpoint
+        {
+            path: path.to_owned(),
+            authorization: need_authorization,
+            params: Some(params.iter().map(|v| v.to_string()).collect()),
+            method: None,
+            body: None,
+            description: Some(description.to_owned())
+        });
+        self
+    }
+    pub fn as_json(&self) -> String
+    {
+        serde_json::to_string(self).unwrap()
+    }
+    
     /// addr - адрес gateway  
-/// sc - конфигурация микросервиса, его эдпоинты с необходимостью авторизации
+    /// sc - конфигурация микросервиса, его эдпоинты с необходимостью авторизации
     pub async fn register(&self, addr:  SocketAddr) -> anyhow::Result<Response<Incoming>>
     {
         
@@ -95,6 +139,7 @@ mod tests
     use std::net::SocketAddr;
 
     use http_body_util::BodyExt;
+    use serde_json::json;
 
     #[tokio::test]
     async fn test_reg()
@@ -102,13 +147,25 @@ mod tests
         logger::StructLogger::initialize_logger();
         let reg_service_addr = SocketAddr::from(([127, 0, 0, 1], 8080));
         let reg = super::ServiceConfig::new("subway", "localhost:8888")
-        .add_endpoint("nearest", false)
+        .add_endpoint_params("nearest", false, &["id", "time"], "Получение ближайших станций по времени")
         .add_endpoint("stations", false)
         .add_endpoint("path", false)
         .register(reg_service_addr).await;
         let body = reg.unwrap().collect().await.unwrap().to_bytes();
         let name = String::from_utf8_lossy(&body).to_string();
         logger::info!("{:?}", name);
+    }
+    #[test]
+    fn test_json()
+    {
+        logger::StructLogger::initialize_logger();
+        let reg = super::ServiceConfig::new("subway", "localhost:8888")
+        .add_endpoint_params("nearest", false, &["id", "time"], "Получение ближайших станций по времени")
+        .add_endpoint("stations", false)
+        .add_endpoint_body("test", false, &json!({"name": "test_name", "value": "test_value"}).to_string(), "тестовый путь с jsonom")
+        .add_endpoint("path", false)
+        .as_json();
+        logger::info!("{:?}", reg);
     }
 
     #[test]

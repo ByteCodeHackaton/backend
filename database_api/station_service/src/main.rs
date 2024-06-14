@@ -22,11 +22,10 @@ async fn main()
     StructLogger::initialize_logger();
     let reg_service_addr = SocketAddr::from(([127, 0, 0, 1], 8080));
     //регистрация эндпоинтов на гейтвее
-    let reg = service_registrator::ServiceConfig::new("subway", "localhost:8888")
+    let _ = service_registrator::ServiceConfig::new("subway", "localhost:8888")
     .add_endpoint("/nearest", false)
     .add_endpoint("/stations", false)
     .add_endpoint("/path", false)
     .register(reg_service_addr).await;
-    logger::debug!("{:?}", reg);
     run_server().await;
 }

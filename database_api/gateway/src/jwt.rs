@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 use jsonwebtoken::
 {
-    decode, encode, errors::Error, get_current_timestamp, Algorithm, DecodingKey, EncodingKey, TokenData, Validation
+    decode, encode, errors::{Error, ErrorKind}, get_current_timestamp, Algorithm, DecodingKey, EncodingKey, TokenData, Validation
 };
 use once_cell::sync::Lazy;
 use ring::signature::{Ed25519KeyPair, KeyPair};
@@ -51,6 +51,7 @@ impl JWT
     {
         let iat =  OffsetDateTime::now_utc();
         let exp = iat + Duration::hours(12);
+        logger::info!("Новый рефреш кей действует до {}", exp.to_string());
         let claims = Claims { sub: "refresh".to_string(), exp: exp, iat: iat, id: user_id.to_owned()};
         encode(&jsonwebtoken::Header::new(self.algo.clone()), &claims, &self.encoding_key).unwrap()
     }
@@ -126,7 +127,34 @@ impl JWT
     {
         let mut validation = Validation::new(self.algo.clone());
         validation.sub = Some("access".to_owned());
-        decode::<Claims>(token, &self.decoding_key, &validation)
+        let token_data = match decode::<Claims>(token, &self.decoding_key, &validation) 
+        {
+            Ok(c) => Ok(c),
+            Err(err) => match *err.kind() 
+            {
+                ErrorKind::InvalidToken => 
+                {
+                    logger::error!("Token is invalid");
+                    Err(err)
+                },
+                ErrorKind::InvalidIssuer =>  
+                {
+                    logger::error!("Issuer is invalid");
+                    Err(err)
+                },
+                ErrorKind::InvalidSubject =>
+                {
+                    logger::error!("Subject is invalid");
+                    Err(err)
+                },
+                _ => Err(err)
+            },
+        };
+        token_data
+    }
+    pub fn get_public_key(&self) -> String
+    {
+        utilites::Hasher::from_bytes_to_base64(&self.public_key)
     }
 }
 
@@ -141,7 +169,13 @@ pub struct Claims
     iat: OffsetDateTime,
     id: String,
 }
-
+impl Claims
+{
+    pub fn user_id(&self) -> &str
+    {
+        &self.id
+    }
+}
 fn get_keys()
 {
     let doc = Ed25519KeyPair::generate_pkcs8(&ring::rand::SystemRandom::new()).unwrap();
@@ -194,6 +228,8 @@ mod tests
         let pairs = key.get_pair(&id);
         logger::info!("refr: {} access: {}", &pairs.0, &pairs.1);
         let upd = key.update_keys(&pairs.0).unwrap();
+        let va = key.validate_access(&upd.1).unwrap();
+        let vr = key.validate_refresh(&upd.0).unwrap();
         logger::info!("upd_refr: {} upd_access: {}", &upd.0, &upd.1);
         let upd2 = key.update_keys(&pairs.0);
         logger::info!("upd_refr_err:{}", &upd2.err().unwrap());

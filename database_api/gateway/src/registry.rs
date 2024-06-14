@@ -8,9 +8,9 @@ use crate::{body_helpers::{error_response, ok_response, BoxBody}, error::Gateway
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ServiceConfig 
 {
-    name: String,
-    address: String,
-    endpoints: Vec<Endpoint>
+    pub name: String,
+    pub address: String,
+    pub endpoints: Vec<Endpoint>
 }
 
 impl ServiceConfig
@@ -36,6 +36,18 @@ impl ServiceConfig
         &self.address
     } 
 }
+
+pub fn get_all_services_configs(services: Arc<ServiceRegistry>) -> Vec<ServiceConfig>
+{
+    
+    let lock = services.services.read().unwrap();
+    let mut configs: Vec<ServiceConfig> = Vec::with_capacity(lock.values().count());
+    for s in lock.values()
+    {
+        configs.push(s.clone());
+    }
+    configs
+}
 #[derive(Debug)]
 pub struct ServiceRegistry 
 {
@@ -45,8 +57,27 @@ pub struct ServiceRegistry
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Endpoint
 {
-    path: String,
-    authorization: bool
+    pub path: String,
+    pub authorization: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub method: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub params: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub body: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>
+}
+impl Endpoint
+{
+    pub fn need_authorization(&self) -> bool
+    {
+        self.authorization
+    }
+    pub fn path(&self) -> &str
+    {
+        &self.path
+    }
 }
 
 impl ServiceRegistry 
@@ -58,17 +89,63 @@ impl ServiceRegistry
             services: Arc::new(RwLock::new(HashMap::new())),
         }
     }
+    pub fn try_from_exists() -> Self 
+    {
+        let services = utilites::read_file_to_binary("services.json");
+        if services.is_ok()
+        {
+            let obj = serde_json::de::from_slice::<Vec<ServiceConfig>>(services.as_ref().unwrap());
+            if obj.is_ok()
+            {
+                let mut hm : HashMap<String, ServiceConfig> = HashMap::new();
+                for s in obj.unwrap()
+                {
+                    logger::info!("из файла services.json загружен сервис {:?}", &s.name);
+                    hm.insert(s.name.clone(), s);
+                }
+                ServiceRegistry 
+                {
+                    
+                   services: Arc::new(RwLock::new(hm))
+                }
+            }
+            else
+            {
+                ServiceRegistry 
+                {
+                    services: Arc::new(RwLock::new(HashMap::new())),
+                }
+            }
+        }
+        else
+        {
+            ServiceRegistry 
+            {
+                services: Arc::new(RwLock::new(HashMap::new())),
+            }
+        }
+    }
+    pub fn save(&self)
+    {
+        let guard  = self.services.read().unwrap();
+        let vec = guard.values().map(|v| v).collect::<Vec<&ServiceConfig>>();
+        let _  = utilites::serialize_to_file(vec, "services.json", None);
+    }
 
     pub fn register(&self, name: String, config: ServiceConfig) 
     {
         let mut services = self.services.write().unwrap();
         services.insert(name, config);
+        drop(services);
+        self.save();
     }
 
     pub fn deregister(&self, name: &str) 
     {
         let mut services = self.services.write().unwrap();
         services.remove(name);
+        drop(services);
+        self.save();
     }
 
     pub fn get_address(&self, name: &str) -> Option<String> 

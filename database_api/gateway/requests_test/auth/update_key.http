@@ -1,0 +1,7 @@
+POST http://localhost:8080/authentification/refresh HTTP/1.1
+content-type: application/json
+
+{ 
+    "access":"eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSJ9.eyJzdWIiOiJhY2Nlc3MiLCJleHAiOjE3MTgwOTc0MzksImlhdCI6MTcxODA5NzEzOSwiaWQiOiJ0ZXN0X2xvZ2luIn0.wNNPIP0DvV9AZnBB5_gwVzo9fwLpqV-ftRI4yiMJ_gmuKtGZm4Uc_IvC0utvml6OAf2xntvXLHt8EyQbniqqAw",
+    "refresh":"eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSJ9.eyJzdWIiOiJyZWZyZXNoIiwiZXhwIjoxNzE4MTQwMzM5LCJpYXQiOjE3MTgwOTcxMzksImlkIjoidGVzdF9sb2dpbiJ9.fmy__ZNM2-iP8owpHhJYnimEHqKBJz2Q5XphcRlGtUQjnV_Ouo3TVgVVfYt0L_y12ak1_-LjaTLCkKFFJQ6GDg"
+}
