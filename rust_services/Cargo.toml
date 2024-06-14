@@ -1,0 +1,20 @@
+[package]
+name = "subway_micro_services"
+version = "0.1.0"
+edition = "2021"
+authors = ["Alex_Xar <P40b0s@gmail.com>"]
+
+[workspace]
+members = [
+    "db",
+    "station_service",
+    "order_service",
+    "gateway", 
+    "service_registrator"
+]
+[dependencies]
+logger = {git = "https://github.com/P40b0s/logger.git", branch = "main"}
+utilites = {git = "https://github.com/P40b0s/help_utilites.git", package = "utilites"}
+
+
+[dev.dependencies]
