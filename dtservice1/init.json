@@ -101,6 +101,10 @@
         {
             "path": "api/v1/workday/list",
             "authorization": true
+        },
+        {
+            "path": "api/v1/workday/date/list",
+            "authorization": true
         }
     ]
 }
