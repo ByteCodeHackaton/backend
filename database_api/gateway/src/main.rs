@@ -5,6 +5,7 @@ mod registry;
 mod rate_limiter;
 mod body_helpers;
 mod cors;
+mod request;
 
 use authentification::{authentificate, get_claims, update_tokens, verify_token};
 use body_helpers::{empty_response, error_empty_response, error_response, json_response, ok_response, unauthorized_response, BoxBody};
@@ -59,7 +60,7 @@ async fn service_handler(req: Request<Incoming>, claims: Option<Claims>) -> Resu
     let target_host = auth.unwrap().as_str().replace("localhost", "127.0.0.1");
     let addr: SocketAddr = target_host.parse().unwrap();
     // Отправка запроса на связанный сервис
-    let mut response = send(addr, request).await?;
+    let response = crate::request::send_request(addr, request).await?;
     //let headers = response.headers_mut();
     //headers.append(ACCESS_CONTROL_ALLOW_METHODS, "GET, POST, OPTIONS".parse().unwrap());
     //headers.append(ACCESS_CONTROL_ALLOW_HEADERS, "User-Id".parse().unwrap());
@@ -167,56 +168,6 @@ async fn handle_request(
     // {
     //     return Ok(error_empty_response(StatusCode::TOO_MANY_REQUESTS));
     // }
-    //убираем начальный слеш
-    // let path = req.uri().path().strip_prefix('/');
-    // if path.is_none()
-    // {
-    //     return Ok(error_response(format!("Ошибка запроса {}, указан неверный путь к сервису",  req.uri().path()), StatusCode::BAD_REQUEST));
-    // }
-    // let path = path.unwrap();
-    // //разделяем путь между сервисом и дальнейшим путем
-    // let parts = path.split_once('/');
-    // if parts.is_none()
-    // {
-    //     return Ok(error_response(format!("Ошибка запроса {}, не уточнен сервис к которому производится запрос", path), StatusCode::BAD_REQUEST));
-    // }
-    // let (service_name, path) = parts.unwrap();
-    // match registry.get_config(service_name) 
-    // {
-    //     Some(service) => 
-    //     {
-    //         if let Some(endpoint) = service.get_endpoint(path)
-    //         {
-    //             let sn = [service_name, "/"].concat();
-    //             let p_q = req.uri().path_and_query().unwrap().to_string().replace(&sn, "");
-    //             let uri = Uri::builder()
-    //             .scheme("http")
-    //             .authority(service.get_address())
-    //             .path_and_query(p_q).build().unwrap();
-    //             //если сервис требует авторизации, то проверяем авторизован ли юзер и отправляем unauthorized если нет
-    //             let uri_str = uri.to_string();
-    //             *req.uri_mut() = uri;
-    //             if endpoint.need_authorization()
-    //             {
-    //                 let claims = get_claims(&req).await;
-    //                 if claims.is_none()
-    //                 {
-    //                     return Ok(unauthorized_response());
-    //                 }
-    //                 logger::info!("Запрос переадресован на (авторизованная зона) {}", &uri_str);
-    //                 return service_handler(req, claims).await;
-    //             }
-    //             logger::info!("Запрос переадресован на {}", &uri_str);
-    //             return service_handler(req, None).await;
-    //         }
-    //         else 
-    //         {
-    //             return Ok(error_response(format!("Ошибка в сервисе {} не найден путь {}", service_name, path), StatusCode::BAD_REQUEST));
-    //         }
-    //     },
-    //     None => return Ok(error_response(format!("Сервис {} не найден", service_name), StatusCode::NOT_FOUND)),
-    // }
-
 }
 
 async fn router(
@@ -234,7 +185,6 @@ async fn router(
     {
         return register_service(req, Arc::clone(&registry)).await;
     }
-
     if path == "/deregister_service" 
     {
         return deregister_service(req, Arc::clone(&registry)).await;
@@ -264,32 +214,6 @@ pub async fn services_list(registry: Arc<ServiceRegistry>,) -> Result<Response<B
     return  Ok(resp);
 }
 
-
-
-async fn send(addr:  SocketAddr, req: Request<Incoming>) -> Result<Response<Incoming>, GatewayError>
-{
-    
-    logger::info!("Отправка запроса на {}, headers: {:?}", req.uri(), req.headers());
-    
-    let client_stream = TcpStream::connect(&addr).await;
-    if client_stream.is_err()
-    {
-        logger::error!("Ошибка подключения к сервису {} -> {}", addr, client_stream.err().unwrap());
-        return Err(GatewayError::SendError(addr.to_string()));
-    }
-    let io = TokioIo::new(client_stream.unwrap());
-    let (mut sender, conn) = hyper::client::conn::http1::handshake(io).await?;
-    tokio::task::spawn(async move 
-    {
-        if let Err(err) = conn.await 
-        {
-            logger::error!("Ошибка подключения: {:?}", err);
-        }
-    });
-    let send = sender.send_request(req).await?;
-    Ok(send)
-    
-}
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>>
 {
@@ -330,44 +254,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>>
     }
 }
 
-
-// impl Service<Request<Incoming>> for RateLimiter
-// {
-//     type Response = Response<Full<Bytes>>;
-//     type Error = hyper::Error;
-//     type Future = Pin<Box<dyn Future<Output = Result<Self::Response, Self::Error>> + Send>>;
-
-//     fn call(&self, req: Request<Incoming>) -> Self::Future 
-//     {
-//         fn mk_response(s: String) -> Result<Response<Full<Bytes>>, hyper::Error> 
-//         {
-//             Ok(Response::builder().body(Full::new(Bytes::from(s))).unwrap())
-//         }
-        
-//         if !self.allow(remote_addr) 
-//         {
-//             return Ok(Response::builder()
-//                 .status(StatusCode::TOO_MANY_REQUESTS)
-//                 .body(to_body(Bytes::from_static(b"Too many requests")))
-//                 .unwrap());
-//         }
-
-//         if req.uri().path() != "/favicon.ico" {
-//             *self.counter.lock().expect("lock poisoned") += 1;
-//         }
-
-//         let res = match req.uri().path() {
-//             "/" => mk_response(format!("home! counter = {:?}", self.counter)),
-//             "/posts" => mk_response(format!("posts, of course! counter = {:?}", self.counter)),
-//             "/authors" => mk_response(format!(
-//                 "authors extraordinare! counter = {:?}",
-//                 self.counter
-//             )),
-//             _ => mk_response("oh no! not found".into()),
-//         };
-//         Box::pin(async { res })
-//     }
-// }
 
 #[cfg(test)]
 mod tests

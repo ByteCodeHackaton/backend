@@ -2,11 +2,12 @@ use std::{borrow::Cow, rc::Rc};
 use serde::Serialize;
 use serde_json::json;
 use sqlx::{any, sqlite::SqliteRow, FromRow, Row};
+use uuid::Uuid;
 use super::get_connection;
 
 pub trait Id<'a>
 {
-    fn get_id(&'a self)-> Cow<str>;
+    fn get_id(&'a self)-> Uuid;
 }
 
 pub trait Operations<'a> where Self: for<'r> sqlx::FromRow<'r, SqliteRow> + Send + Unpin + Id<'a>
@@ -26,7 +27,7 @@ pub trait Operations<'a> where Self: for<'r> sqlx::FromRow<'r, SqliteRow> + Send
     }
     fn delete(&'a self) ->  impl std::future::Future<Output = anyhow::Result<()>> + Send
     {
-        let id = self.get_id().into_owned();
+        let id = self.get_id().to_string();
         async move
         {
             let mut c = get_connection().await?;

@@ -23,6 +23,7 @@ struct Endpoint
     description: Option<String>
 }
 
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ServiceConfig 
 {
@@ -81,9 +82,13 @@ impl ServiceConfig
         });
         self
     }
+    pub fn as_json(&self) -> String
+    {
+        serde_json::to_string(self).unwrap()
+    }
     
     /// addr - адрес gateway  
-/// sc - конфигурация микросервиса, его эдпоинты с необходимостью авторизации
+    /// sc - конфигурация микросервиса, его эдпоинты с необходимостью авторизации
     pub async fn register(&self, addr:  SocketAddr) -> anyhow::Result<Response<Incoming>>
     {
         
@@ -134,6 +139,7 @@ mod tests
     use std::net::SocketAddr;
 
     use http_body_util::BodyExt;
+    use serde_json::json;
 
     #[tokio::test]
     async fn test_reg()
@@ -148,6 +154,18 @@ mod tests
         let body = reg.unwrap().collect().await.unwrap().to_bytes();
         let name = String::from_utf8_lossy(&body).to_string();
         logger::info!("{:?}", name);
+    }
+    #[test]
+    fn test_json()
+    {
+        logger::StructLogger::initialize_logger();
+        let reg = super::ServiceConfig::new("subway", "localhost:8888")
+        .add_endpoint_params("nearest", false, &["id", "time"], "Получение ближайших станций по времени")
+        .add_endpoint("stations", false)
+        .add_endpoint_body("test", false, &json!({"name": "test_name", "value": "test_value"}).to_string(), "тестовый путь с jsonom")
+        .add_endpoint("path", false)
+        .as_json();
+        logger::info!("{:?}", reg);
     }
 
     #[test]

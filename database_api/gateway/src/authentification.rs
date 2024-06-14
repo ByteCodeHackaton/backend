@@ -1,9 +1,11 @@
 use crate::jwt::Claims;
-use crate::{body_helpers::*, GatewayError};
+use crate::{body_helpers::*, request, GatewayError};
 use crate::error_response;
 use http_body_util::BodyExt;
+use hyper::Uri;
 use hyper::{body::Incoming, Request, Response, StatusCode};
 use logger::backtrace;
+use serde_json::{json, Value};
 use super::jwt::KEY;
 use serde::{Deserialize, Serialize};
 
@@ -124,8 +126,10 @@ pub struct Crendentials
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthorizationResponse
 {
+    login: String,
     user_id: String,
     role: String,
+    fio: String,
     refresh_key: String,
     access_key: String
 }
@@ -133,7 +137,6 @@ pub struct AuthorizationResponse
 //позже неужно добавить адрес эндпоинта для аутентификации в аргументы при старте сервиса
 pub async fn authentificate(req: Request<Incoming>) -> Result<Response<BoxBody>, GatewayError> 
 {
-    
     let body = req.collect().await?.to_bytes();
     let crendentials: Result<Crendentials, serde_json::Error> = serde_json::from_slice(&body);
     if crendentials.is_err()
@@ -145,16 +148,51 @@ pub async fn authentificate(req: Request<Incoming>) -> Result<Response<BoxBody>,
     }
     let crendentials = crendentials.unwrap();
     //тут будет проверка этого дела, а пока эмуляция типа мы получили id юзера после авторизации
-    let user_id = &crendentials.login;
+    let login = &crendentials.login;
     let mut keys = KEY.lock().await;
-    let res = keys.get_pair(user_id);
+    let res = keys.get_pair(login);
+    drop(keys);
+    let r_auth = remoute_auth(&crendentials).await;
+    if r_auth.is_err()
+    {
+        return Ok(r_auth.err().unwrap());
+    }
+    let r_auth = r_auth.unwrap();
     let authorized = AuthorizationResponse
     {
-        user_id: user_id.to_owned(),
-        role: "Оператор".to_owned(),
+        login: login.to_owned(),
+        user_id: r_auth["id"].as_str().unwrap().to_owned(),
+        role: r_auth["role"].as_str().unwrap().to_owned() ,
+        fio: r_auth["fio"].as_str().unwrap().to_owned() ,
         refresh_key: res.0,
         access_key: res.1
     };
     let resp = json_response(&authorized);
     return  Ok(resp);
+}
+
+async fn remoute_auth(cr: & Crendentials) -> Result<Value, Response<BoxBody>>
+{
+    let uri: Uri = "http://localhost:5010/api/v1/account".parse().unwrap();
+    let req_body = json!({
+            "login": &cr.login,
+            "pass": &cr.password
+    });
+    let resp = request::post(uri, &req_body).await;
+    if resp.is_err()
+    {
+        return Err(error_response(resp.err().unwrap().to_string(), StatusCode::BAD_REQUEST));
+    }
+    let resp = resp.unwrap();
+    if resp.status() == StatusCode::from_u16(400).unwrap() || resp.status() == StatusCode::from_u16(417).unwrap()
+    {
+        return Err(error_response("Неверные авторизационные данные".to_owned(), StatusCode::NOT_FOUND));
+    }
+    let body =  resp.collect().await;
+    if body.is_err()
+    {
+        return Err(error_response("Ошибка извлечения тела ответа".to_owned(), StatusCode::INTERNAL_SERVER_ERROR));
+    }
+    let v: Value = serde_json::from_slice(&body.unwrap().to_bytes()).unwrap();
+    Ok(v)
 }
