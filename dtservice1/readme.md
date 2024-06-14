@@ -57,15 +57,16 @@ json в body:
 {
     "date": "25.04.2024",
     "time_work": "20:00-08:00",
-    "fio": "Тестовых В.И.",
-    "uchastok": "018fe823-9419-7fe0-a8cb-19db345ec1ac",
+    "fio": "Тестоваяя В.И.",
+    "uchastok": "018fe823-9419-7fe0-a8cb-19db345ec1bb",
     "smena": "2Н",
     "rank": "ЦИ",
-    "sex": "Мужской",
+    "sex": "Женский",
     "phone_work": "84959112233",
     "phone_personal": "89119876543",
     "tab_number": "46573645",
-    "type_work": "лёгкая работа"
+    "type_work": "лёгкая работа",
+    "id_role": "018ffd91-fcc5-70a9-bf36-f67ca6df0ca0"
 }
 ```
 
@@ -105,11 +106,12 @@ id - уникальный идентификатор сотрудника
     "uchastok": "018fe823-9419-7fe0-a8cb-19db345ec1ac",
     "smena": "2Н",
     "rank": "ЦИ",
-    "sex": "Женский",
+    "sex": "Мужской",
     "phone_work": "84959112233",
     "phone_personal": "89119876543",
     "tab_number": "46573645",
-    "type_work": "лёгкая работа"
+    "type_work": "лёгкая работа",
+    "id_role": "018ffd91-fcc5-70a9-bf36-f67ca6df0ca0"
 }
 ```
 

@@ -32,8 +32,8 @@ func PostEmployeeUpdate(w http.ResponseWriter, r *http.Request) {
 	log.Println("database initialized..")
 
 	result, err := db.ExecContext(context.Background(), `UPDATE employees SET date=?, timework=?, fio=?, uchastok=?, smena=?, rank=?, sex=?, is_busy=?,
-		phone_work=?, phone_personal=?, tab_number=?, type_work=?  WHERE id=?;`, emp.Date, emp.Timework, emp.Fio, emp.Uchastok, emp.Smena, emp.Rank,
-		emp.Sex, 0, emp.Phone_work, emp.Phone_personal, emp.Tab_number, emp.Type_work, emp.Id)
+		phone_work=?, phone_personal=?, tab_number=?, type_work=?, id_role=? WHERE id=?;`, emp.Date, emp.Timework, emp.Fio, emp.Uchastok, emp.Smena, emp.Rank,
+		emp.Sex, 0, emp.Phone_work, emp.Phone_personal, emp.Tab_number, emp.Type_work, emp.Id_role, emp.Id)
 
 	if err != nil {
 		message = "Ошибка изменения информации о сотруднике: " + err.Error()
