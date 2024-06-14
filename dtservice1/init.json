@@ -1,11 +1,7 @@
 {
     "name": "db_service",
-    "address": "localhost:9999",
+    "address": "localhost:5010",
     "endpoints": [
-        {
-            "path": "api/v1/authorization",
-            "authorization": true
-        },
         {
             "path": "api/v1/employee/set",
             "authorization": true
@@ -71,6 +67,10 @@
             "authorization": true
         },
         {
+            "path": "api/v1/order/update",
+            "authorization": true
+        },
+        {
             "path": "api/v1/order/list",
             "authorization": true
         },
@@ -84,6 +84,18 @@
         },
         {
             "path": "api/v1/role/list",
+            "authorization": true
+        },
+        {
+            "path": "api/v1/workday/set",
+            "authorization": true
+        },
+        {
+            "path": "api/v1/workday/update",
+            "authorization": true
+        },
+        {
+            "path": "api/v1/workday/list",
             "authorization": true
         }
     ]

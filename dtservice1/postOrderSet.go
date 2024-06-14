@@ -5,12 +5,16 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+
+	"github.com/samborkent/uuidv7"
 )
 
 func PostOrderSet(w http.ResponseWriter, r *http.Request) {
 	log.Println("Request order set..")
 
 	var order Order
+	uuid := uuidv7.New()
+	log.Println(uuid.String())
 
 	err := json.NewDecoder(r.Body).Decode(&order)
 	if err != nil {
@@ -32,7 +36,7 @@ func PostOrderSet(w http.ResponseWriter, r *http.Request) {
 
 	var message string
 	result, err := db.ExecContext(context.Background(), `INSERT INTO orders (id, id_pas, datetime, time3, time4, cat_pas, status, tpz, insp_sex_m,
-		insp_sex_f, time_over, id_st1, id_st2) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`, order.Id, order.Id_Pas, order.DateTime, order.Time3,
+		insp_sex_f, time_over, id_st1, id_st2) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`, uuid.String(), order.Id_Pas, order.DateTime, order.Time3,
 		order.Time4, order.Cat_pas, order.Status, order.Tpz, order.INSP_SEX_M, order.INSP_SEX_F, order.TIME_OVER, order.Id_st1, order.Id_st2)
 	if err != nil {
 		message = "Ошибка добавления заявки: " + err.Error()
@@ -54,7 +58,7 @@ func PostOrderSet(w http.ResponseWriter, r *http.Request) {
 	}
 
 	log.Printf("Заявка %s добавлена: ", order.Id)
-	response := Order{Id: order.Id}
+	response := Order{Id: uuid.String()}
 	w.Header().Set("Content-Type", cContentTypeJson)
 	json.NewEncoder(w).Encode(response)
 }

@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 type NullInt64 struct {
@@ -57,10 +58,24 @@ func GetEmployeeList(w http.ResponseWriter, r *http.Request) {
 	log.Println("database initialized..")
 
 	var employee []Employee
-	rows, err := db.QueryContext(context.Background(), `SELECT * FROM employees LIMIT ? OFFSET ?`, limit_, offset_)
+	var message string
+	var row *sql.Row
+	var total_count, page_count int
 
-	var message, state string
-	var date_, timework_, id_, fio_, uchastok_, smena_, rank_, sex_ string
+	row = db.QueryRowContext(context.Background(), `SELECT Count(*) FROM employees;`)
+	err = row.Scan(&total_count)
+	if err != nil {
+		message = "Error get count total employees: " + err.Error()
+		log.Println(message)
+		http.Error(w, message, http.StatusExpectationFailed) // 417
+		return
+	}
+	limit_i, _ := strconv.Atoi(limit_)
+	page_count = total_count/limit_i + 1
+
+	rows, err := db.QueryContext(context.Background(), `SELECT * FROM employees LIMIT ? OFFSET ?;`, limit_, offset_)
+
+	var date_, timework_, id_, fio_, uchastok_, smena_, rank_, sex_, id_role_ string
 	var is_busy int
 	var cur_station NullInt64 // по умолчанию null
 	var phone_work_, phone_personal_, tab_number_, type_work_ NullString
@@ -70,7 +85,7 @@ func GetEmployeeList(w http.ResponseWriter, r *http.Request) {
 		for rows.Next() {
 
 			err := rows.Scan(&date_, &timework_, &id_, &fio_, &uchastok_, &smena_, &rank_, &sex_, &is_busy, &cur_station.ni,
-				&phone_work_.ns, &phone_personal_.ns, &tab_number_.ns, &type_work_.ns)
+				&phone_work_.ns, &phone_personal_.ns, &tab_number_.ns, &type_work_.ns, &id_role_)
 			if err == nil {
 				employee = append(employee,
 					Employee{
@@ -85,7 +100,8 @@ func GetEmployeeList(w http.ResponseWriter, r *http.Request) {
 						Phone_work:     phone_work_.String(),
 						Phone_personal: phone_personal_.String(),
 						Tab_number:     tab_number_.String(),
-						Type_work:      type_work_.String()})
+						Type_work:      type_work_.String(),
+						Id_role:        id_role_})
 			}
 		}
 		log.Println("Get employees list successfull!")
@@ -103,7 +119,7 @@ func GetEmployeeList(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	documentResponse := Response{State: state, Message: message, Employee: employee}
+	documentResponse := Response{Total_count: total_count, Page_count: page_count, Employee: employee}
 	response := DocumentResponse{Document_: documentResponse}
 	w.Header().Set("Content-Type", cContentTypeJson)
 	json.NewEncoder(w).Encode(response)

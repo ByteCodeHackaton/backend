@@ -47,7 +47,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"date\": \"25.04.2024\",\r\n    \"time_work\": \"20:00-08:00\",\r\n    \"fio\": \"Тестовкин В.И.\",\r\n    \"uchastok\": \"018fe823-9419-7fe0-a8cb-19db345ec1bb\",\r\n    \"smena\": \"2Н\",\r\n    \"rank\": \"ЦИ\",\r\n    \"sex\": \"Мужской\",\r\n    \"phone_work\": \"84959112233\",\r\n    \"phone_personal\": \"89119876543\",\r\n    \"tab_number\": \"46573645\",\r\n    \"type_work\": \"лёгкая работа\"\r\n}",
+					"raw": "{\r\n    \"date\": \"25.04.2024\",\r\n    \"time_work\": \"20:00-08:00\",\r\n    \"fio\": \"Тестовитов В.И.\",\r\n    \"uchastok\": \"018fe823-9419-7fe0-a8cb-19db345ec1bb\",\r\n    \"smena\": \"2Н\",\r\n    \"rank\": \"ЦИ\",\r\n    \"sex\": \"Мужской\",\r\n    \"phone_work\": \"84959112233\",\r\n    \"phone_personal\": \"89119876543\",\r\n    \"tab_number\": \"46573645\",\r\n    \"type_work\": \"лёгкая работа\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -55,7 +55,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/employee/set?id=018fe832-eb8f-7d95-b1d3-e22306c5bf24",
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/employee/set",
 					"protocol": "{{protocol}}",
 					"host": [
 						"{{url}}"
@@ -64,20 +64,13 @@
 					"path": [
 						"employee",
 						"set"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "018fe832-eb8f-7d95-b1d3-e22306c5bf24",
-							"description": "UUID v7"
-						}
 					]
 				},
 				"description": "Добавление сообщения на сервис\n\nPOST метод осуществляет отправку сообщения на сервис."
 			},
 			"response": [
 				{
-					"name": "employee set",
+					"name": "employee set 200",
 					"originalRequest": {
 						"method": "POST",
 						"header": [
@@ -88,7 +81,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"date\": \"25.04.2024\",\r\n    \"time_work\": \"20:00-08:00\",\r\n    \"fio\": \"Тестовкин В.И.\",\r\n    \"uchastok\": \"018fe823-9419-7fe0-a8cb-19db345ec1ac\",\r\n    \"smena\": \"2Н\",\r\n    \"rank\": \"ЦИ\",\r\n    \"sex\": \"Мужской\",\r\n    \"phone_work\": \"84959112233\",\r\n    \"phone_personal\": \"89119876543\",\r\n    \"tab_number\": \"46573645\",\r\n    \"type_work\": \"лёгкая работа\"\r\n}",
+							"raw": "{\r\n    \"date\": \"25.04.2024\",\r\n    \"time_work\": \"20:00-08:00\",\r\n    \"fio\": \"Тестовитов В.И.\",\r\n    \"uchastok\": \"018fe823-9419-7fe0-a8cb-19db345ec1bb\",\r\n    \"smena\": \"2Н\",\r\n    \"rank\": \"ЦИ\",\r\n    \"sex\": \"Мужской\",\r\n    \"phone_work\": \"84959112233\",\r\n    \"phone_personal\": \"89119876543\",\r\n    \"tab_number\": \"46573645\",\r\n    \"type_work\": \"лёгкая работа\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -96,14 +89,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/order",
+							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/employee/set",
 							"protocol": "{{protocol}}",
 							"host": [
 								"{{url}}"
 							],
 							"port": "{{port}}{{api}}",
 							"path": [
-								"order"
+								"employee",
+								"set"
 							]
 						}
 					},
@@ -121,15 +115,15 @@
 						},
 						{
 							"key": "Date",
-							"value": "Fri, 07 Jun 2024 12:52:11 GMT"
+							"value": "Thu, 13 Jun 2024 08:28:57 GMT"
 						},
 						{
 							"key": "Content-Length",
-							"value": "90"
+							"value": "136"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"document\": {\n        \"message\": \"Добавлен сотрудник: Тестовкин В.И.\"\n    }\n}"
+					"body": "{\n    \"document\": {\n        \"id\": \"019010b6-da44-7602-8294-cf8e529f7680\",\n        \"message\": \"Добавлен сотрудник: Тестовитов В.И.\"\n    }\n}"
 				}
 			]
 		},
@@ -173,7 +167,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"date\": \"25.04.2024\",\r\n    \"time_work\": \"20:00-08:00\",\r\n    \"fio\": \"Тестовых В.И.\",\r\n    \"uchastok\": \"018fe823-9419-7fe0-a8cb-19db345ec1ac\",\r\n    \"smena\": \"2Н\",\r\n    \"rank\": \"ЦИ\",\r\n    \"sex\": \"Женский\",\r\n    \"phone_work\": \"84959112233\",\r\n    \"phone_personal\": \"89119876543\",\r\n    \"tab_number\": \"46573645\",\r\n    \"type_work\": \"лёгкая работа\"\r\n}",
+					"raw": "{\r\n    \"id\": \"019010b6-da44-7602-8294-cf8e529f7680\",\r\n    \"date\": \"25.04.2024\",\r\n    \"time_work\": \"20:00-08:00\",\r\n    \"fio\": \"Тестовcкий В.И.\",\r\n    \"uchastok\": \"018fe823-9419-7fe0-a8cb-19db345ec1ac\",\r\n    \"smena\": \"2Н\",\r\n    \"rank\": \"ЦИ\",\r\n    \"sex\": \"Женский\",\r\n    \"phone_work\": \"84959112233\",\r\n    \"phone_personal\": \"89119876543\",\r\n    \"tab_number\": \"46573645\",\r\n    \"type_work\": \"лёгкая работа\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -181,7 +175,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/employee/update?id=018fe832-eb8f-7d95-b1d3-e22306c5bf23",
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/employee/update",
 					"protocol": "{{protocol}}",
 					"host": [
 						"{{url}}"
@@ -190,13 +184,6 @@
 					"path": [
 						"employee",
 						"update"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "018fe832-eb8f-7d95-b1d3-e22306c5bf23",
-							"description": "UUID v7"
-						}
 					]
 				},
 				"description": "Добавление сообщения на сервис\n\nPOST метод осуществляет отправку сообщения на сервис."
@@ -385,7 +372,7 @@
 			},
 			"response": [
 				{
-					"name": "employee list",
+					"name": "employee list 200",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
@@ -431,7 +418,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Sun, 09 Jun 2024 12:04:18 GMT"
+							"value": "Tue, 11 Jun 2024 09:24:10 GMT"
 						},
 						{
 							"key": "Transfer-Encoding",
@@ -439,7 +426,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"document\": {\n        \"details\": [\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b2d2-7eff-8e2e-c140187a569b\",\n                \"fio\": \"Болотов Г.Е.\",\n                \"uchastok\": \"ЦУ-3 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦСИ\",\n                \"sex\": \"Мужской\",\n                \"phone_work\": \"\",\n                \"phone_personal\": \"\",\n                \"tab_number\": \"\",\n                \"type_work\": \"\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b3b1-7f37-b8be-079ffbfd136e\",\n                \"fio\": \"Шварева М.В.\",\n                \"uchastok\": \"ЦУ-3 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦСИ\",\n                \"sex\": \"Женский\",\n                \"phone_work\": \"\",\n                \"phone_personal\": \"\",\n                \"tab_number\": \"\",\n                \"type_work\": \"\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b41e-77a5-aaa3-df70941f8837\",\n                \"fio\": \"Кузьмичев В.К.\",\n                \"uchastok\": \"ЦУ-3 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Мужской\",\n                \"phone_work\": \"\",\n                \"phone_personal\": \"\",\n                \"tab_number\": \"\",\n                \"type_work\": \"\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b498-7197-8435-56be2854c870\",\n                \"fio\": \"Синяков А.В.\",\n                \"uchastok\": \"ЦУ-3 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Мужской\",\n                \"phone_work\": \"\",\n                \"phone_personal\": \"\",\n                \"tab_number\": \"\",\n                \"type_work\": \"\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b4fe-7d70-890b-21427bf3ac46\",\n                \"fio\": \"Фролов К.В.\",\n                \"uchastok\": \"ЦУ-3 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Мужской\",\n                \"phone_work\": \"\",\n                \"phone_personal\": \"\",\n                \"tab_number\": \"\",\n                \"type_work\": \"\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b57c-7576-b605-ddb7b502ffed\",\n                \"fio\": \"Шарфутов А.В.\",\n                \"uchastok\": \"ЦУ-3 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Мужской\",\n                \"phone_work\": \"\",\n                \"phone_personal\": \"\",\n                \"tab_number\": \"\",\n                \"type_work\": \"\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b62b-7939-8265-1db7d37abc74\",\n                \"fio\": \"Вихров Р.Т.\",\n                \"uchastok\": \"ЦУ-3 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Мужской\",\n                \"phone_work\": \"\",\n                \"phone_personal\": \"\",\n                \"tab_number\": \"\",\n                \"type_work\": \"\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b6db-7374-b842-7c84354e419f\",\n                \"fio\": \"Нижневский П.А.\",\n                \"uchastok\": \"ЦУ-3 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Мужской\",\n                \"phone_work\": \"\",\n                \"phone_personal\": \"\",\n                \"tab_number\": \"\",\n                \"type_work\": \"\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b737-78f9-a285-cbb04b4a2d11\",\n                \"fio\": \"Ноздряков М.С\",\n                \"uchastok\": \"ЦУ-3 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Мужской\",\n                \"phone_work\": \"\",\n                \"phone_personal\": \"\",\n                \"tab_number\": \"\",\n                \"type_work\": \"\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b794-7904-b7ca-446ec542118e\",\n                \"fio\": \"Марухина Н.А.\",\n                \"uchastok\": \"ЦУ-4 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦСИ\",\n                \"sex\": \"Женский\",\n                \"phone_work\": \"\",\n                \"phone_personal\": \"\",\n                \"tab_number\": \"\",\n                \"type_work\": \"\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b851-7a5a-b85f-103bd7195b7e\",\n                \"fio\": \"Арзамасцев В.В.\",\n                \"uchastok\": \"ЦУ-4 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Мужской\",\n                \"phone_work\": \"\",\n                \"phone_personal\": \"\",\n                \"tab_number\": \"\",\n                \"type_work\": \"\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"fio\": \"Куклина Ф.Н.\",\n                \"uchastok\": \"ЦУ-4 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Женский\",\n                \"phone_work\": \"\",\n                \"phone_personal\": \"\",\n                \"tab_number\": \"\",\n                \"type_work\": \"\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b96c-7097-b187-49dc9064898e\",\n                \"fio\": \"Кондратенко А.Н.\",\n                \"uchastok\": \"ЦУ-4 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Женский\",\n                \"phone_work\": \"\",\n                \"phone_personal\": \"\",\n                \"tab_number\": \"\",\n                \"type_work\": \"\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-ba14-7417-a604-a8542b1e097d\",\n                \"fio\": \"Миронова Л.В.\",\n                \"uchastok\": \"ЦУ-4 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Женский\",\n                \"phone_work\": \"\",\n                \"phone_personal\": \"\",\n                \"tab_number\": \"\",\n                \"type_work\": \"\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-bab9-78fa-88bc-d17c62b954b9\",\n                \"fio\": \"Наротьев М.А.\",\n                \"uchastok\": \"ЦУ-4 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Мужской\",\n                \"phone_work\": \"\",\n                \"phone_personal\": \"\",\n                \"tab_number\": \"\",\n                \"type_work\": \"\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-bb82-7b16-aad6-8615d7371ca1\",\n                \"fio\": \"Хализев В.И.\",\n                \"uchastok\": \"ЦУ-4 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Мужской\",\n                \"phone_work\": \"\",\n                \"phone_personal\": \"\",\n                \"tab_number\": \"\",\n                \"type_work\": \"\"\n            },\n            {\n                \"date\": \"24.04.2024\",\n                \"time_work\": \"08:00-20:00\",\n                \"id\": \"018fee07-bbfb-7446-aca3-6c0a66505937\",\n                \"fio\": \"Бушуев А.А.\",\n                \"uchastok\": \"ЦУ-2\",\n                \"smena\": \"1\",\n                \"rank\": \"ЦУ\",\n                \"sex\": \"Мужской\",\n                \"phone_work\": \"\",\n                \"phone_personal\": \"\",\n                \"tab_number\": \"\",\n                \"type_work\": \"\"\n            },\n            {\n                \"date\": \"24.04.2024\",\n                \"time_work\": \"07:00-19:00\",\n                \"id\": \"018fee07-bcb5-7a24-8252-e80a11d26e01\",\n                \"fio\": \"Кольцов М.Ю.\",\n                \"uchastok\": \"ЦУ-2\",\n                \"smena\": \"1\",\n                \"rank\": \"ЦСИ\",\n                \"sex\": \"Мужской\",\n                \"phone_work\": \"\",\n                \"phone_personal\": \"\",\n                \"tab_number\": \"\",\n                \"type_work\": \"\"\n            },\n            {\n                \"date\": \"24.04.2024\",\n                \"time_work\": \"07:00-19:00\",\n                \"id\": \"018fee07-bd0a-7e46-aab5-7a752e2cd890\",\n                \"fio\": \"Лазутин Д.В.\",\n                \"uchastok\": \"ЦУ-2\",\n                \"smena\": \"1\",\n                \"rank\": \"ЦСИ\",\n                \"sex\": \"Мужской\",\n                \"phone_work\": \"\",\n                \"phone_personal\": \"\",\n                \"tab_number\": \"\",\n                \"type_work\": \"\"\n            },\n            {\n                \"date\": \"24.04.2024\",\n                \"time_work\": \"07:00-19:00\",\n                \"id\": \"018fee07-bd7e-7232-83bb-c339ae719882\",\n                \"fio\": \"Чернявская В.А.\",\n                \"uchastok\": \"ЦУ-2\",\n                \"smena\": \"1\",\n                \"rank\": \"ЦСИ\",\n                \"sex\": \"Женский\",\n                \"phone_work\": \"\",\n                \"phone_personal\": \"\",\n                \"tab_number\": \"\",\n                \"type_work\": \"\"\n            }\n        ]\n    }\n}"
+					"body": "{\n    \"document\": {\n        \"total_count\": 118,\n        \"page_count\": 6,\n        \"details\": [\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b2d2-7eff-8e2e-c140187a569b\",\n                \"fio\": \"Болотов Г.Е.\",\n                \"uchastok\": \"ЦУ-3 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦСИ\",\n                \"sex\": \"Мужской\",\n                \"id_role\": \"018ffd91-fcc5-70a9-bf36-f67ca6df0ca0\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b3b1-7f37-b8be-079ffbfd136e\",\n                \"fio\": \"Шварева М.В.\",\n                \"uchastok\": \"ЦУ-3 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦСИ\",\n                \"sex\": \"Женский\",\n                \"id_role\": \"018ffd91-fcc5-70a9-bf36-f67ca6df0ca0\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b41e-77a5-aaa3-df70941f8837\",\n                \"fio\": \"Кузьмичев В.К.\",\n                \"uchastok\": \"ЦУ-3 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Мужской\",\n                \"id_role\": \"018ffd91-fcc5-70a9-bf36-f67ca6df0ca0\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b498-7197-8435-56be2854c870\",\n                \"fio\": \"Синяков А.В.\",\n                \"uchastok\": \"ЦУ-3 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Мужской\",\n                \"id_role\": \"018ffd91-fcc5-70a9-bf36-f67ca6df0ca0\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b4fe-7d70-890b-21427bf3ac46\",\n                \"fio\": \"Фролов К.В.\",\n                \"uchastok\": \"ЦУ-3 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Мужской\",\n                \"id_role\": \"018ffd91-fcc5-70a9-bf36-f67ca6df0ca0\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b57c-7576-b605-ddb7b502ffed\",\n                \"fio\": \"Шарфутов А.В.\",\n                \"uchastok\": \"ЦУ-3 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Мужской\",\n                \"id_role\": \"018ffd91-fcc5-70a9-bf36-f67ca6df0ca0\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b62b-7939-8265-1db7d37abc74\",\n                \"fio\": \"Вихров Р.Т.\",\n                \"uchastok\": \"ЦУ-3 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Мужской\",\n                \"id_role\": \"018ffd91-fcc5-70a9-bf36-f67ca6df0ca0\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b6db-7374-b842-7c84354e419f\",\n                \"fio\": \"Нижневский П.А.\",\n                \"uchastok\": \"ЦУ-3 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Мужской\",\n                \"id_role\": \"018ffd91-fcc5-70a9-bf36-f67ca6df0ca0\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b737-78f9-a285-cbb04b4a2d11\",\n                \"fio\": \"Ноздряков М.С\",\n                \"uchastok\": \"ЦУ-3 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Мужской\",\n                \"id_role\": \"018ffd91-fcc5-70a9-bf36-f67ca6df0ca0\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b794-7904-b7ca-446ec542118e\",\n                \"fio\": \"Марухина Н.А.\",\n                \"uchastok\": \"ЦУ-4 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦСИ\",\n                \"sex\": \"Женский\",\n                \"id_role\": \"018ffd91-fcc5-70a9-bf36-f67ca6df0ca0\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b851-7a5a-b85f-103bd7195b7e\",\n                \"fio\": \"Арзамасцев В.В.\",\n                \"uchastok\": \"ЦУ-4 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Мужской\",\n                \"id_role\": \"018ffd91-fcc5-70a9-bf36-f67ca6df0ca0\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"fio\": \"Куклина Ф.Н.\",\n                \"uchastok\": \"ЦУ-4 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Женский\",\n                \"id_role\": \"018ffd91-fcc5-70a9-bf36-f67ca6df0ca0\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-b96c-7097-b187-49dc9064898e\",\n                \"fio\": \"Кондратенко А.Н.\",\n                \"uchastok\": \"ЦУ-4 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Женский\",\n                \"id_role\": \"018ffd91-fcc5-70a9-bf36-f67ca6df0ca0\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-ba14-7417-a604-a8542b1e097d\",\n                \"fio\": \"Миронова Л.В.\",\n                \"uchastok\": \"ЦУ-4 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Женский\",\n                \"id_role\": \"018ffd91-fcc5-70a9-bf36-f67ca6df0ca0\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-bab9-78fa-88bc-d17c62b954b9\",\n                \"fio\": \"Наротьев М.А.\",\n                \"uchastok\": \"ЦУ-4 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Мужской\",\n                \"id_role\": \"018ffd91-fcc5-70a9-bf36-f67ca6df0ca0\"\n            },\n            {\n                \"date\": \"23.04.2024\",\n                \"time_work\": \"20:00-08:00\",\n                \"id\": \"018fee07-bb82-7b16-aad6-8615d7371ca1\",\n                \"fio\": \"Хализев В.И.\",\n                \"uchastok\": \"ЦУ-4 (Н)\",\n                \"smena\": \"2Н\",\n                \"rank\": \"ЦИ\",\n                \"sex\": \"Мужской\",\n                \"id_role\": \"018ffd91-fcc5-70a9-bf36-f67ca6df0ca0\"\n            },\n            {\n                \"date\": \"24.04.2024\",\n                \"time_work\": \"08:00-20:00\",\n                \"id\": \"018fee07-bbfb-7446-aca3-6c0a66505937\",\n                \"fio\": \"Бушуев А.А.\",\n                \"uchastok\": \"ЦУ-2\",\n                \"smena\": \"1\",\n                \"rank\": \"ЦУ\",\n                \"sex\": \"Мужской\",\n                \"id_role\": \"018ffd91-fcc5-70a9-bf36-f67ca6df0ca0\"\n            },\n            {\n                \"date\": \"24.04.2024\",\n                \"time_work\": \"07:00-19:00\",\n                \"id\": \"018fee07-bcb5-7a24-8252-e80a11d26e01\",\n                \"fio\": \"Кольцов М.Ю.\",\n                \"uchastok\": \"ЦУ-2\",\n                \"smena\": \"1\",\n                \"rank\": \"ЦСИ\",\n                \"sex\": \"Мужской\",\n                \"id_role\": \"018ffd91-fcc5-70a9-bf36-f67ca6df0ca0\"\n            },\n            {\n                \"date\": \"24.04.2024\",\n                \"time_work\": \"07:00-19:00\",\n                \"id\": \"018fee07-bd0a-7e46-aab5-7a752e2cd890\",\n                \"fio\": \"Лазутин Д.В.\",\n                \"uchastok\": \"ЦУ-2\",\n                \"smena\": \"1\",\n                \"rank\": \"ЦСИ\",\n                \"sex\": \"Мужской\",\n                \"id_role\": \"018ffd91-fcc5-70a9-bf36-f67ca6df0ca0\"\n            },\n            {\n                \"date\": \"24.04.2024\",\n                \"time_work\": \"07:00-19:00\",\n                \"id\": \"018fee07-bd7e-7232-83bb-c339ae719882\",\n                \"fio\": \"Чернявская В.А.\",\n                \"uchastok\": \"ЦУ-2\",\n                \"smena\": \"1\",\n                \"rank\": \"ЦСИ\",\n                \"sex\": \"Женский\",\n                \"id_role\": \"018ffd91-fcc5-70a9-bf36-f67ca6df0ca0\"\n            }\n        ]\n    }\n}"
 				}
 			]
 		},
@@ -469,7 +456,7 @@
 					}
 				],
 				"url": {
-					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/employee/delete?id=018fe832-eb8f-7d95-b1d3-e22306c5bf24",
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/employee/delete?id=019010cf-8144-7a21-815b-ee5c0539cc94",
 					"protocol": "{{protocol}}",
 					"host": [
 						"{{url}}"
@@ -482,7 +469,7 @@
 					"query": [
 						{
 							"key": "id",
-							"value": "018fe832-eb8f-7d95-b1d3-e22306c5bf24"
+							"value": "019010cf-8144-7a21-815b-ee5c0539cc94"
 						}
 					]
 				},
@@ -571,7 +558,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"018fe864-84b3-7656-a270-6a57f43821c4\",\r\n    \"fio\": \"Пассажиркова П.П.\",\r\n    \"phone\": \"79871234567\",\r\n    \"category\": \"018fe832-ed6a-7150-8aae-cc3596b17ec9\",\r\n    \"sex\": \"Женский\",\r\n    \"description\": \"\",\r\n    \"eks\": 0\r\n}",
+					"raw": "{\r\n    \"id\": \"018fe864-84b3-7656-a270-6a57f43833c4\",\r\n    \"fio\": \"Пассажировна П.П.\",\r\n    \"phone\": \"79871234578\",\r\n    \"category\": \"018fe832-ed6a-7150-8aae-cc3596b17ec9\",\r\n    \"sex\": \"Женский\",\r\n    \"description\": \"\",\r\n    \"eks\": 0\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -592,7 +579,64 @@
 				},
 				"description": "Получить весь список документов для закачки на терминал или 1С конфигурацию\n\nGET метод осуществляет выдачу списка пакетов (документов) для закачки на терминал или 1С конфигурацию"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "passenger set 200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"018fe864-84b3-7656-a270-6a57f43833c4\",\r\n    \"fio\": \"Пассажировна П.П.\",\r\n    \"phone\": \"79871234578\",\r\n    \"category\": \"018fe832-ed6a-7150-8aae-cc3596b17ec9\",\r\n    \"sex\": \"Женский\",\r\n    \"description\": \"\",\r\n    \"eks\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/passenger/set",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}{{api}}",
+							"path": [
+								"passenger",
+								"set"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 13 Jun 2024 08:25:39 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "138"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"document\": {\n        \"id\": \"019010b3-d457-74b3-8e68-552c850cfb77\",\n        \"message\": \"Добавлен пассажир: Пассажировна П.П.\"\n    }\n}"
+				}
+			]
 		},
 		{
 			"name": "passenger update",
@@ -621,7 +665,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"018fe864-84b3-7656-a270-6a57f43821c4\",\r\n    \"fio\": \"Пассажиркова П.П.\",\r\n    \"phone\": \"79871234567\",\r\n    \"category\": \"018fe832-ed6a-7150-8aae-cc3596b17ec9\",\r\n    \"sex\": \"Женский\",\r\n    \"description\": \"\",\r\n    \"eks\": 1\r\n}",
+					"raw": "{\r\n    \"id\": \"019010a9-73ac-709b-a257-97bba05e3ae5\",\r\n    \"fio\": \"Пассажировна П.П.\",\r\n    \"phone\": \"79871234567\",\r\n    \"category\": \"018fe832-ed6a-7150-8aae-cc3596b17ec9\",\r\n    \"sex\": \"Женский\",\r\n    \"description\": \"ыовраыолвраыовра\",\r\n    \"eks\": 1\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -629,7 +673,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/passenger/update?id=018fe864-84b3-7656-a270-6a57f43821c4",
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/passenger/update",
 					"protocol": "{{protocol}}",
 					"host": [
 						"{{url}}"
@@ -638,13 +682,6 @@
 					"path": [
 						"passenger",
 						"update"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "018fe864-84b3-7656-a270-6a57f43821c4",
-							"description": "018fe864-84b3-7656-a270-6a57f43821c4"
-						}
 					]
 				},
 				"description": "Получить весь список документов для закачки на терминал или 1С конфигурацию\n\nGET метод осуществляет выдачу списка пакетов (документов) для закачки на терминал или 1С конфигурацию"
@@ -831,7 +868,65 @@
 				},
 				"description": "Получить весь список документов для закачки на терминал или 1С конфигурацию\n\nGET метод осуществляет выдачу списка пакетов (документов) для закачки на терминал или 1С конфигурацию"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "passenger list 200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/passenger/list?limit=20&off=0",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}{{api}}",
+							"path": [
+								"passenger",
+								"list"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "20"
+								},
+								{
+									"key": "off",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 11 Jun 2024 09:51:56 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "484"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"document\": {\n        \"total_count\": 2,\n        \"page_count\": 1,\n        \"details\": [\n            {\n                \"id\": \"018fe866-ecc1-7ee5-90d6-7f6c84b1d4a1\",\n                \"fio\": \"Пассажиркин П.П.\",\n                \"phone\": \"79871234567\",\n                \"category\": \"018fe832-ed6a-7150-8aae-cc3596b17ec9\",\n                \"sex\": \"Мужской\",\n                \"description\": \"Дополнительная информация\"\n            },\n            {\n                \"id\": \"018ffded-1bc2-7249-b2b2-65b43764a6ed\",\n                \"fio\": \"Пассажиркова П.П.\",\n                \"phone\": \"79871234567\",\n                \"category\": \"018fe832-ed6a-7150-8aae-cc3596b17ec9\",\n                \"sex\": \"Женский\"\n            }\n        ]\n    }\n}"
+				}
+			]
 		},
 		{
 			"name": "passenger",
@@ -911,7 +1006,7 @@
 					}
 				],
 				"url": {
-					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/passenger/delete?id=018fe864-84b3-7656-a270-6a57f43821c4",
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/passenger/delete?id=019010a9-73ac-709b-a257-97bba05e3ae5",
 					"protocol": "{{protocol}}",
 					"host": [
 						"{{url}}"
@@ -924,8 +1019,8 @@
 					"query": [
 						{
 							"key": "id",
-							"value": "018fe864-84b3-7656-a270-6a57f43821c4",
-							"description": "018fe864-84b3-7656-a270-6a57f43821c4"
+							"value": "019010a9-73ac-709b-a257-97bba05e3ae5",
+							"description": "019010a9-73ac-709b-a257-97bba05e3ae5"
 						}
 					]
 				},
@@ -1172,6 +1267,9 @@
 					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -1183,6 +1281,15 @@
 						"value": "application/json"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\": \"loginQWE@25\",\r\n    \"pass\": \"passQWE@25\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/account?login=loginQWE@25&pass=passQWE@25",
 					"protocol": "{{protocol}}",
@@ -1655,7 +1762,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"477354234\",\r\n    \"id_pas\": \"11058234\",\r\n    \"datetime\": \"24.04.2024 7:30:00\",\r\n    \"time3\": \"07:13:52\",\r\n    \"time4\": \"07:51:11\",\r\n    \"cat_pas\": \"ИЗТ\",\r\n    \"status\": \"Заявка закончена\",\r\n    \"tpz\": \"15.03.2024 22:48:43\",\r\n    \"INSP_SEX_M\": \"0\",\r\n    \"INSP_SEX_F\": \"1\",\r\n    \"TIME_OVER\": \"00:52:20\",\r\n    \"id_st1\": \"5\",\r\n    \"id_st2\": \"97\"\r\n  }",
+					"raw": "{\r\n    \"id\": \"\",\r\n    \"id_pas\": \"11058234\",\r\n    \"datetime\": \"13.06.2024 9:30:00\",\r\n    \"time3\": \"07:13:52\",\r\n    \"time4\": \"07:51:11\",\r\n    \"cat_pas\": \"018fe832-ed6a-7150-8aae-cc3596b14ec9\",\r\n    \"status\": \"018ffea0-3cff-7738-8f27-ed3c9bc843a9\",\r\n    \"tpz\": \"15.03.2024 22:48:43\",\r\n    \"INSP_SEX_M\": \"3\",\r\n    \"INSP_SEX_F\": \"1\",\r\n    \"TIME_OVER\": \"00:52:20\",\r\n    \"id_st1\": \"5\",\r\n    \"id_st2\": \"97\"\r\n  }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1689,7 +1796,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"477354236\",\r\n    \"id_pas\": \"11058234\",\r\n    \"datetime\": \"24.04.2024 7:30:00\",\r\n    \"time3\": \"07:13:52\",\r\n    \"time4\": \"07:51:11\",\r\n    \"cat_pas\": \"ИЗТ\",\r\n    \"status\": \"Заявка закончена\",\r\n    \"tpz\": \"15.03.2024 22:48:43\",\r\n    \"INSP_SEX_M\": \"0\",\r\n    \"INSP_SEX_F\": \"1\",\r\n    \"TIME_OVER\": \"00:52:20\",\r\n    \"id_st1\": \"5\",\r\n    \"id_st2\": \"97\"\r\n  }",
+							"raw": "{\r\n    \"id\": \"\",\r\n    \"id_pas\": \"11058234\",\r\n    \"datetime\": \"24.04.2024 7:30:00\",\r\n    \"time3\": \"07:13:52\",\r\n    \"time4\": \"07:51:11\",\r\n    \"cat_pas\": \"ИЗТ\",\r\n    \"status\": \"Заявка закончена\",\r\n    \"tpz\": \"15.03.2024 22:48:43\",\r\n    \"INSP_SEX_M\": \"3\",\r\n    \"INSP_SEX_F\": \"1\",\r\n    \"TIME_OVER\": \"00:52:20\",\r\n    \"id_st1\": \"5\",\r\n    \"id_st2\": \"97\"\r\n  }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1723,18 +1830,82 @@
 						},
 						{
 							"key": "Date",
-							"value": "Sun, 09 Jun 2024 13:30:19 GMT"
+							"value": "Thu, 13 Jun 2024 09:06:10 GMT"
 						},
 						{
 							"key": "Content-Length",
-							"value": "19"
+							"value": "46"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": \"477354236\"\n}"
+					"body": "{\n    \"id\": \"019010d8-eeee-7272-a380-34d615655ce0\"\n}"
+				}
+			]
+		},
+		{
+			"name": "order update",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
 				},
 				{
-					"name": "order set 417",
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"strictSSL": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "{{content}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"019010d7-d57b-70b1-9398-f2613602beaf\",\r\n    \"id_pas\": \"11058234\",\r\n    \"datetime\": \"14.06.2024 7:30:00\",\r\n    \"time3\": \"07:13:52\",\r\n    \"time4\": \"07:51:11\",\r\n    \"cat_pas\": \"018fe832-ed6a-7150-8aae-cc3596b14ec9\",\r\n    \"status\": \"018ffea0-3cff-7738-8f27-ed3c9bc843a9\",\r\n    \"tpz\": \"15.03.2024 22:48:43\",\r\n    \"INSP_SEX_M\": \"3\",\r\n    \"INSP_SEX_F\": \"1\",\r\n    \"TIME_OVER\": \"00:52:20\",\r\n    \"id_st1\": \"5\",\r\n    \"id_st2\": \"97\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/order/update",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}{{api}}",
+					"path": [
+						"order",
+						"update"
+					]
+				},
+				"description": "Добавление сообщения на сервис\n\nPOST метод осуществляет отправку сообщения на сервис."
+			},
+			"response": [
+				{
+					"name": "order update 200",
 					"originalRequest": {
 						"method": "POST",
 						"header": [
@@ -1745,7 +1916,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"477354234\",\r\n    \"id_pas\": \"11058234\",\r\n    \"datetime\": \"24.04.2024 7:30:00\",\r\n    \"time3\": \"07:13:52\",\r\n    \"time4\": \"07:51:11\",\r\n    \"cat_pas\": \"ИЗТ\",\r\n    \"status\": \"Заявка закончена\",\r\n    \"tpz\": \"15.03.2024 22:48:43\",\r\n    \"INSP_SEX_M\": \"0\",\r\n    \"INSP_SEX_F\": \"1\",\r\n    \"TIME_OVER\": \"00:52:20\",\r\n    \"id_st1\": \"5\",\r\n    \"id_st2\": \"97\"\r\n  }",
+							"raw": "{\r\n    \"id\": \"019010d7-d57b-70b1-9398-f2613602beaf\",\r\n    \"id_pas\": \"11058234\",\r\n    \"datetime\": \"14.06.2024 7:30:00\",\r\n    \"time3\": \"07:13:52\",\r\n    \"time4\": \"07:51:11\",\r\n    \"cat_pas\": \"018fe832-ed6a-7150-8aae-cc3596b14ec9\",\r\n    \"status\": \"018ffea0-3cff-7738-8f27-ed3c9bc843a9\",\r\n    \"tpz\": \"15.03.2024 22:48:43\",\r\n    \"INSP_SEX_M\": \"3\",\r\n    \"INSP_SEX_F\": \"1\",\r\n    \"TIME_OVER\": \"00:52:20\",\r\n    \"id_st1\": \"5\",\r\n    \"id_st2\": \"97\"\r\n  }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1753,7 +1924,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/order/set",
+							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/order/update",
 							"protocol": "{{protocol}}",
 							"host": [
 								"{{url}}"
@@ -1761,37 +1932,33 @@
 							"port": "{{port}}{{api}}",
 							"path": [
 								"order",
-								"set"
+								"update"
 							]
 						}
 					},
-					"status": "Expectation Failed",
-					"code": 417,
-					"_postman_previewlanguage": "plain",
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
 					"header": [
 						{
 							"key": "Content-Type",
-							"value": "text/plain; charset=utf-8"
+							"value": "application/json; charset=utf-8"
 						},
 						{
 							"key": "Vary",
 							"value": "Origin"
 						},
 						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
 							"key": "Date",
-							"value": "Fri, 07 Jun 2024 13:43:53 GMT"
+							"value": "Thu, 13 Jun 2024 09:51:42 GMT"
 						},
 						{
 							"key": "Content-Length",
-							"value": "110"
+							"value": "46"
 						}
 					],
 					"cookie": [],
-					"body": "Ошибка добавления заявки: constraint failed: UNIQUE constraint failed: orders.id (1555)\n"
+					"body": "{\n    \"id\": \"019010d7-d57b-70b1-9398-f2613602beaf\"\n}"
 				}
 			]
 		},
@@ -1856,7 +2023,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/order/list?limit=1&off=0",
+							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/order/list?limit=20&off=0",
 							"protocol": "{{protocol}}",
 							"host": [
 								"{{url}}"
@@ -1869,7 +2036,7 @@
 							"query": [
 								{
 									"key": "limit",
-									"value": "1"
+									"value": "20"
 								},
 								{
 									"key": "off",
@@ -1892,15 +2059,15 @@
 						},
 						{
 							"key": "Date",
-							"value": "Sun, 09 Jun 2024 14:42:57 GMT"
+							"value": "Tue, 11 Jun 2024 09:57:51 GMT"
 						},
 						{
 							"key": "Content-Length",
-							"value": "849"
+							"value": "880"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"document\": {\n        \"details\": [\n            {\n                \"id\": \"477354234\",\n                \"id_pas\": \"11058234\",\n                \"datetime\": \"477354234\",\n                \"time3\": \"07:13:52\",\n                \"time4\": \"07:51:11\",\n                \"cat_pas\": \"ИЗТ\",\n                \"status\": \"Заявка закончена\",\n                \"tpz\": \"15.03.2024 22:48:43\",\n                \"insp_sex_m\": \"0\",\n                \"insp_sex_f\": \"1\",\n                \"time_over\": \"00:52:20\",\n                \"id_st1\": \"5\",\n                \"id_st2\": \"97\"\n            },\n            {\n                \"id\": \"477354235\",\n                \"id_pas\": \"11058234\",\n                \"datetime\": \"477354235\",\n                \"time3\": \"07:13:52\",\n                \"time4\": \"07:51:11\",\n                \"cat_pas\": \"ИЗТ\",\n                \"status\": \"Заявка закончена\",\n                \"tpz\": \"15.03.2024 22:48:43\",\n                \"insp_sex_m\": \"0\",\n                \"insp_sex_f\": \"1\",\n                \"time_over\": \"00:52:20\",\n                \"id_st1\": \"5\",\n                \"id_st2\": \"97\"\n            },\n            {\n                \"id\": \"477354236\",\n                \"id_pas\": \"11058234\",\n                \"datetime\": \"477354236\",\n                \"time3\": \"07:13:52\",\n                \"time4\": \"07:51:11\",\n                \"cat_pas\": \"ИЗТ\",\n                \"status\": \"Заявка закончена\",\n                \"tpz\": \"15.03.2024 22:48:43\",\n                \"insp_sex_m\": \"0\",\n                \"insp_sex_f\": \"1\",\n                \"time_over\": \"00:52:20\",\n                \"id_st1\": \"5\",\n                \"id_st2\": \"97\"\n            }\n        ]\n    }\n}"
+					"body": "{\n    \"document\": {\n        \"total_count\": 3,\n        \"page_count\": 1,\n        \"details\": [\n            {\n                \"id\": \"477354235\",\n                \"id_pas\": \"11058234\",\n                \"datetime\": \"477354235\",\n                \"time3\": \"07:13:52\",\n                \"time4\": \"07:51:11\",\n                \"cat_pas\": \"ИЗТ\",\n                \"status\": \"Заявка закончена\",\n                \"tpz\": \"15.03.2024 22:48:43\",\n                \"insp_sex_m\": \"0\",\n                \"insp_sex_f\": \"1\",\n                \"time_over\": \"00:52:20\",\n                \"id_st1\": \"5\",\n                \"id_st2\": \"97\"\n            },\n            {\n                \"id\": \"477354236\",\n                \"id_pas\": \"11058234\",\n                \"datetime\": \"477354236\",\n                \"time3\": \"07:13:52\",\n                \"time4\": \"07:51:11\",\n                \"cat_pas\": \"ИЗТ\",\n                \"status\": \"Заявка закончена\",\n                \"tpz\": \"15.03.2024 22:48:43\",\n                \"insp_sex_m\": \"0\",\n                \"insp_sex_f\": \"1\",\n                \"time_over\": \"00:52:20\",\n                \"id_st1\": \"5\",\n                \"id_st2\": \"97\"\n            },\n            {\n                \"id\": \"477354234\",\n                \"id_pas\": \"11058234\",\n                \"datetime\": \"477354234\",\n                \"time3\": \"07:13:52\",\n                \"time4\": \"07:51:11\",\n                \"cat_pas\": \"ИЗТ\",\n                \"status\": \"Заявка закончена\",\n                \"tpz\": \"15.03.2024 22:48:43\",\n                \"insp_sex_m\": \"0\",\n                \"insp_sex_f\": \"1\",\n                \"time_over\": \"00:52:20\",\n                \"id_st1\": \"5\",\n                \"id_st2\": \"97\"\n            }\n        ]\n    }\n}"
 				}
 			]
 		},
@@ -1930,7 +2097,7 @@
 					}
 				],
 				"url": {
-					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/order/delete?id=477354234",
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/order/delete?id=019010dc-3a7f-7868-ba1d-6d2e636da0ea",
 					"protocol": "{{protocol}}",
 					"host": [
 						"{{url}}"
@@ -1943,8 +2110,8 @@
 					"query": [
 						{
 							"key": "id",
-							"value": "477354234",
-							"description": "477354234"
+							"value": "019010dc-3a7f-7868-ba1d-6d2e636da0ea",
+							"description": "019010dc-3a7f-7868-ba1d-6d2e636da0ea"
 						}
 					]
 				},
@@ -1962,7 +2129,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/order/delete?id=477354234",
+							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/order/delete?id=019010dc-3a7f-7868-ba1d-6d2e636da0ea",
 							"protocol": "{{protocol}}",
 							"host": [
 								"{{url}}"
@@ -1975,8 +2142,8 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "477354234",
-									"description": "477354234"
+									"value": "019010dc-3a7f-7868-ba1d-6d2e636da0ea",
+									"description": "019010dc-3a7f-7868-ba1d-6d2e636da0ea"
 								}
 							]
 						}
@@ -1995,15 +2162,15 @@
 						},
 						{
 							"key": "Date",
-							"value": "Sun, 09 Jun 2024 17:09:22 GMT"
+							"value": "Thu, 13 Jun 2024 09:10:28 GMT"
 						},
 						{
 							"key": "Content-Length",
-							"value": "19"
+							"value": "46"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": \"477354234\"\n}"
+					"body": "{\n    \"id\": \"019010dc-3a7f-7868-ba1d-6d2e636da0ea\"\n}"
 				}
 			]
 		},
@@ -2210,6 +2377,416 @@
 					"body": "{\n    \"document\": {\n        \"details\": [\n            {\n                \"id\": \"018ffd91-effd-7a98-8289-78f327a6903e\",\n                \"role\": \"Администратор\"\n            },\n            {\n                \"id\": \"018ffd91-fb97-7cf1-a105-43cd25b783e2\",\n                \"role\": \"Специалист\"\n            },\n            {\n                \"id\": \"018ffd91-fc38-759a-9d8c-32b6b0419de4\",\n                \"role\": \"Оператор\"\n            },\n            {\n                \"id\": \"018ffd91-fcc5-70a9-bf36-f67ca6df0ca0\",\n                \"role\": \"Сотрудник\"\n            }\n        ]\n    }\n}"
 				}
 			]
+		},
+		{
+			"name": "workday set",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"strictSSL": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "{{content}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"\",\r\n    \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\r\n    \"date_work\": \"06.06.2024 0:00:00\",\r\n    \"time_work\": \"07:00-19:00\",\r\n    \"state_wd\": \"\",\r\n    \"date_dop_smena\": \"\",\r\n    \"date_ucheba\": \"\",\r\n    \"date_change\": \"\",\r\n    \"intern\": \"\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/workday/set",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}{{api}}",
+					"path": [
+						"workday",
+						"set"
+					]
+				},
+				"description": "Добавление сообщения на сервис\n\nPOST метод осуществляет отправку сообщения на сервис."
+			},
+			"response": [
+				{
+					"name": "workday set 200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{content}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"\",\r\n    \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\r\n    \"date_work\": \"14.06.2024 0:00:00\",\r\n    \"time_work\": \"07:00-19:00\",\r\n    \"state_wd\": \"\",\r\n    \"date_dop_smena\": \"\",\r\n    \"date_ucheba\": \"\",\r\n    \"date_change\": \"\",\r\n    \"intern\": \"\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/workday/set",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}{{api}}",
+							"path": [
+								"workday",
+								"set"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 13 Jun 2024 11:34:56 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "46"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"01901161-1f38-7c64-a748-d56267cca716\"\n}"
+				}
+			]
+		},
+		{
+			"name": "workday update",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"strictSSL": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "{{content}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"01901160-bf0b-7c72-ba93-2158a7694cb8\",\r\n    \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\r\n    \"date_work\": \"10.06.2024 0:00:00\",\r\n    \"time_work\": \"07:00-19:00\",\r\n    \"state_wd\": \"выходной\",\r\n    \"date_dop_smena\": \"\",\r\n    \"date_ucheba\": \"\",\r\n    \"date_change\": \"\",\r\n    \"intern\": \"\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/workday/update",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}{{api}}",
+					"path": [
+						"workday",
+						"update"
+					]
+				},
+				"description": "Добавление сообщения на сервис\n\nPOST метод осуществляет отправку сообщения на сервис."
+			},
+			"response": [
+				{
+					"name": "workday update 200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{content}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"01901160-bf0b-7c72-ba93-2158a7694cb8\",\r\n    \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\r\n    \"date_work\": \"10.06.2024 0:00:00\",\r\n    \"time_work\": \"07:00-19:00\",\r\n    \"state_wd\": \"\",\r\n    \"date_dop_smena\": \"\",\r\n    \"date_ucheba\": \"\",\r\n    \"date_change\": \"\",\r\n    \"intern\": \"\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/workday/update",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}{{api}}",
+							"path": [
+								"workday",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 13 Jun 2024 13:09:09 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "46"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"01901160-bf0b-7c72-ba93-2158a7694cb8\"\n}"
+				}
+			]
+		},
+		{
+			"name": "workday list",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/workday/list?id=018fee07-b8fb-7350-8147-d6d2925d6873&limit=20&off=0",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}{{api}}",
+					"path": [
+						"workday",
+						"list"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "018fee07-b8fb-7350-8147-d6d2925d6873",
+							"description": "id сотрудника"
+						},
+						{
+							"key": "limit",
+							"value": "20"
+						},
+						{
+							"key": "off",
+							"value": "0"
+						}
+					]
+				},
+				"description": "Получить весь список документов для закачки на терминал или 1С конфигурацию\n\nGET метод осуществляет выдачу списка пакетов (документов) для закачки на терминал или 1С конфигурацию"
+			},
+			"response": [
+				{
+					"name": "workday list 200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}://{{url}}:{{port}}{{api}}/workday/list?id=018fee07-b8fb-7350-8147-d6d2925d6873&limit=20&off=0",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}{{api}}",
+							"path": [
+								"workday",
+								"list"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "018fee07-b8fb-7350-8147-d6d2925d6873",
+									"description": "id сотрудника"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								},
+								{
+									"key": "off",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 13 Jun 2024 14:21:53 GMT"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"document\": {\n        \"total_count\": 9,\n        \"page_count\": 1,\n        \"details\": [\n            {\n                \"id\": \"01901160-bf0b-7c72-ba93-2158a7694cb8\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"10.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"выходной\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"01901160-e4cb-72c7-8611-9c4d95b5469a\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"11.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"01901160-fb3e-7af6-8e47-993a064a36ad\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"12.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"01901161-0cc8-78c2-a100-4cb11699bf1c\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"13.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"01901161-1f38-7c64-a748-d56267cca716\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"14.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"019011ef-d7cc-7a2c-bb85-d58778039f8c\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"09.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"019011ef-ee38-7829-bf16-07073b0cafab\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"08.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"019011f0-03bc-7dda-b50b-caa9e8f4258f\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"07.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            },\n            {\n                \"id\": \"019011f0-18e2-73a1-98a2-9e3aacb14d67\",\n                \"employee_id\": \"018fee07-b8fb-7350-8147-d6d2925d6873\",\n                \"date_work\": \"06.06.2024 0:00:00\",\n                \"time_work\": \"07:00-19:00\",\n                \"state_wd\": \"\",\n                \"date_dop_smena\": \"\",\n                \"date_ucheba\": \"\",\n                \"date_change\": \"\",\n                \"intern\": \"\"\n            }\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "/",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "OPTIONS",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{protocol}}://{{url}}/",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "20",
+							"disabled": true
+						},
+						{
+							"key": "off",
+							"value": "0",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Получить весь список документов для закачки на терминал или 1С конфигурацию\n\nGET метод осуществляет выдачу списка пакетов (документов) для закачки на терминал или 1С конфигурацию"
+			},
+			"response": []
 		}
 	],
 	"event": [

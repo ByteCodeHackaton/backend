@@ -2,9 +2,11 @@ package main
 
 import (
 	"context"
+	"database/sql"
 	"encoding/json"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 func GetOrderList(w http.ResponseWriter, r *http.Request) {
@@ -32,9 +34,23 @@ func GetOrderList(w http.ResponseWriter, r *http.Request) {
 	log.Println("database initialized..")
 
 	var order []Order
+	var message string
+	var row *sql.Row
+	var total_count, page_count int
+
+	row = db.QueryRowContext(context.Background(), `SELECT Count(*) FROM orders;`)
+	err = row.Scan(&total_count)
+	if err != nil {
+		message = "Error get count total orders: " + err.Error()
+		log.Println(message)
+		http.Error(w, message, http.StatusExpectationFailed) // 417
+		return
+	}
+	limit_i, _ := strconv.Atoi(limit_)
+	page_count = total_count/limit_i + 1
+
 	rows, err := db.QueryContext(context.Background(), `SELECT * FROM orders LIMIT ? OFFSET ?`, limit_, offset_)
 
-	var message, state string
 	var id_, id_pas_, datetime_, time3_, time4_, cat_pas_, status_, tpz_, insp_sex_m_, insp_sex_f_, time_over_, id_st1_, id_st2_ string
 
 	switch err {
@@ -76,7 +92,7 @@ func GetOrderList(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	documentResponse := ResponseOrder{State: state, Message: message, Order: order}
+	documentResponse := ResponseOrder{Total_count: total_count, Page_count: page_count, Order: order}
 	response := DocumentResponseOrder{Document_: documentResponse}
 	w.Header().Set("Content-Type", cContentTypeJson)
 	json.NewEncoder(w).Encode(response)

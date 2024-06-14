@@ -9,6 +9,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"time"
 
 	"github.com/gorilla/mux"
@@ -40,7 +41,7 @@ func initial() {
 	// можно вынести в переменные окружения ->
 	configuration.HttpDomain = "/api/v1"
 	configuration.HttpPort = ":5010"
-	configuration.DbPath = "../db/metro.db"
+	configuration.DbPath = "metro.db"
 	configuration.Version = "1.0"
 	log.Println("Initial configuration complete!")
 
@@ -81,16 +82,20 @@ func main() {
 	router.HandleFunc(configuration.HttpDomain+"/account", GetAccount).Methods("GET")
 	router.HandleFunc(configuration.HttpDomain+"/account/exist", GetAccountExist).Methods("GET")
 	router.HandleFunc(configuration.HttpDomain+"/order/set", PostOrderSet).Methods("POST")
+	router.HandleFunc(configuration.HttpDomain+"/order/update", PostOrderUpdate).Methods("POST")
 	router.HandleFunc(configuration.HttpDomain+"/order/list", GetOrderList).Methods("GET")
 	router.HandleFunc(configuration.HttpDomain+"/order/delete", DeleteOrder).Methods("DELETE")
 	router.HandleFunc(configuration.HttpDomain+"/order/state/list", GetOrderStateList).Methods("GET")
 	router.HandleFunc(configuration.HttpDomain+"/role/list", GetRoleList).Methods("GET")
+	router.HandleFunc(configuration.HttpDomain+"/workday/set", PostWorkdaySet).Methods("POST")
+	router.HandleFunc(configuration.HttpDomain+"/workday/update", PostWorkdayUpdate).Methods("POST")
+	router.HandleFunc(configuration.HttpDomain+"/workday/list", GetWorkdayList).Methods("GET")
 
 	log.Println("Init router handlers...")
 
 	c := cors.New(cors.Options{
-		AllowedOrigins:   []string{"http://localhost:5173"}, // All origins
-		AllowedMethods:   []string{"GET", "POST"},           // Allowing only get, just an example
+		AllowedOrigins:   []string{"http://localhost:5173"},                           // All origins
+		AllowedMethods:   []string{"GET", "POST", "DELETE", "HEAD", "PUT", "OPTIONS"}, // Allowing
 		AllowCredentials: true,
 	})
 
@@ -113,7 +118,15 @@ func main() {
 }
 
 func regService() {
-	filename, err := os.Open("init.json")
+	ex, err := os.Executable()
+	if err != nil {
+		log.Fatal(err)
+	}
+	exPath := filepath.Dir(ex)
+	fmt.Println(exPath)
+
+	filename, err := os.Open(exPath + "/" + "init.json")
+	//filename, err := os.Open("init.json")
 	if err != nil {
 		log.Fatal(err)
 	}
