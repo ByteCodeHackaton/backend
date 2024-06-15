@@ -8,7 +8,7 @@ mod employees;
 mod work_day;
 use api::run_server;
 use logger::{debug, StructLogger};
-
+pub use work_day::Workday;
 
 #[tokio::main]
 async fn main()

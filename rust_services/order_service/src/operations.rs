@@ -366,10 +366,12 @@ pub async fn find_path(from: &str, to: &str) -> Result<u32, super::error::OrderE
 #[cfg(test)]
 mod tests
 {
+    use hyper::Uri;
     use logger::debug;
+    use serde_json::Value;
     use utilites::Date;
 
-    use crate::order::RequestOrder;
+    use crate::{order::RequestOrder, Workday};
 
 //     #[tokio::test]
 //    async fn test_nearest_station()
@@ -381,16 +383,22 @@ mod tests
 //         debug!("{:?}", o);
 //    }
 
-//    #[tokio::test]
-//    async fn test_point_station()
-//    {
-//         logger::StructLogger::initialize_logger();
-//         super::add_test_workers();
-//         let req1 = RequestOrder::new("Заматова Мамата Ватовна", "nd52567902", "nd77715428", Date::new_date_time(2, 6, 2024, 9, 30, 0), 2, None, crate::order::Place::OnCenter);
-//         let o = super::add_order(&req1).await;
-//         debug!("{:?}", o);
+   #[tokio::test]
+   async fn test_get_workers()
+   {
+        logger::StructLogger::initialize_logger();
+        let uri: Uri = "http://localhost:5010/api/v1/workday/date/list?limit=1000&date=2024-06-12T00:00:00".parse().unwrap();
+        let result = crate::http::get::<Value>(uri).await.unwrap();
+        let arr = result["document"]["details"].as_array().unwrap();
+        for wd in arr 
+        {
+            logger::info!("{:?}", &wd);
+            let wd = serde_json::from_value::<Workday>(wd.to_owned()).unwrap();
+        }
         
-//    }
+        
+        
+   }
 
    #[tokio::test]
    async fn test_complex()
