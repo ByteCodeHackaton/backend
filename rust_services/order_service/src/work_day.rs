@@ -49,6 +49,22 @@ pub struct Workday
     intern: Option<String>
 }
 
+
+impl Workday
+{
+    pub fn work_dates_range(&self) -> (Date, Date)
+    {
+        let (start_time, end_time) = self.time_work.split_once("-").unwrap();
+        let (start_hour, _) = start_time.split_once(":").unwrap();
+        let (end_hour, _) = end_time.split_once(":").unwrap();
+        let start_date_time = self.date_work.clone().add_minutes(start_hour.parse::<i64>().unwrap() * 60);
+        let end_date_time = self.date_work.clone().add_minutes(end_hour.parse::<i64>().unwrap() * 60);
+        (start_date_time, end_date_time)
+    }
+}
+
+
+
 // pub async fn get_work_days() -> Result<Workday, OrderError>
 // {
     
