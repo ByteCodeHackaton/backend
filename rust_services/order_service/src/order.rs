@@ -42,7 +42,7 @@ pub struct RequestOrder
     pub note: Option<String>,
     //требуемое количество сотрудников (непонятно кто это будет решать)
     pub employees_count: u32,
-    pub place: Place,
+    pub place: Option<Place>,
 }
 
 impl RequestOrder
@@ -59,7 +59,7 @@ impl RequestOrder
             request_date: date,
             employees_count: count,
             note,
-            place
+            place: Some(place)
         }
     }
 }
@@ -78,7 +78,7 @@ pub struct Order
     pub path_to: String,
     pub average_path_time: u32,
     pub note: Option<String>,
-    pub place: Place,
+    pub place: Option<Place>,
     pub start_work: utilites::Date,
     pub end_work: utilites::Date,
     ///id сотрудников
@@ -104,5 +104,20 @@ impl Order
 #[cfg(test)]
 mod tests
 {
-   
+    use serde_json::json;
+
+    use super::RequestOrder;
+    #[test]
+    fn test_deserialize()
+    {
+        let js = json!({"id": "01901160-bf0b-7c72-ba93-2158a7694cb8",
+        "fio": "Иванова И.И.",
+        "path_from": "nd52567902",
+        "path_to": "nd77715428",
+        "request_date": "2024-06-02T09:30:00",
+        "note": "Осторожнее!",
+        "employees_count": 2});
+        let rq = serde_json::from_value::<RequestOrder>(js);
+        println!("{:?}", rq);
+    }
 }

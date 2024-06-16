@@ -9,7 +9,7 @@ mod request;
 
 use authentification::{authentificate, get_claims, update_tokens, verify_token};
 use body_helpers::{empty_response, error_empty_response, error_response, json_response, ok_response, unauthorized_response, BoxBody};
-use hyper::header::{HeaderValue, ACCESS_CONTROL_ALLOW_CREDENTIALS, ACCESS_CONTROL_ALLOW_HEADERS, ACCESS_CONTROL_ALLOW_METHODS, ACCESS_CONTROL_ALLOW_ORIGIN, HOST};
+use hyper::header::{HeaderValue, ACCESS_CONTROL_ALLOW_CREDENTIALS, ACCESS_CONTROL_ALLOW_HEADERS, ACCESS_CONTROL_ALLOW_METHODS, ACCESS_CONTROL_ALLOW_ORIGIN, CONTENT_TYPE, HOST};
 use hyper::{HeaderMap, Method};
 use hyper::{server::conn::http1, Uri};
 use error::GatewayError;
@@ -34,7 +34,8 @@ async fn service_handler(req: Request<Incoming>, claims: Option<Claims>) -> Resu
     //     let key = KEY.lock().await;
     //     key.get_public_key()
     // };
-    let request = 
+    let content_type = req.headers().get(CONTENT_TYPE).cloned();
+    let mut request = 
     {
         if let Some(cl) = claims
         {
@@ -56,6 +57,10 @@ async fn service_handler(req: Request<Incoming>, claims: Option<Claims>) -> Resu
             .unwrap()
         }
     };
+    if let Some(ct) = content_type
+    {
+        request.headers_mut().insert(CONTENT_TYPE, ct.to_owned());
+    }
     let auth = request.uri().authority();
     let target_host = auth.unwrap().as_str().replace("localhost", "127.0.0.1");
     let addr: SocketAddr = target_host.parse().unwrap();

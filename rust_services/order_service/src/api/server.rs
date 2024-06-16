@@ -12,7 +12,7 @@ pub async fn run_server()
 {
     let app = Router::new()
         .fallback(handler_404)        
-        //.route("/stations", get(services::get_stations))
+        .route("/orders/request", post(super::services::set_orders))
         //http://127.0.0.1:8888/path?from=sd92939293&to=sd263626162
         //.route("/path", get(services::get_stations_path))
         //http://127.0.0.1:8888/nearest?node_id=sd92939293&time=10
@@ -49,7 +49,7 @@ pub async fn run_server()
     // {
     //     debug!("Подписка успешна! сообщение по подписке получено");
     // });
-    let api_port = 8888;
+    let api_port = 8889;
     let addr = SocketAddr::from(([0, 0, 0, 0], api_port));
     debug!("Апи сервера доступно на {}", &addr);
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();

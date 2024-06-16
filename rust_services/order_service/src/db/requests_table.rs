@@ -260,6 +260,9 @@ mod tests
 {
     use db::{Operations, QuerySelector, Selector};
     use logger::StructLogger;
+    use rand::Rng;
+    use utilites::Date;
+    use uuid::Timestamp;
     use super::RequestsTable;
 
     #[tokio::test]
@@ -267,6 +270,9 @@ mod tests
     {
         StructLogger::initialize_logger();
         super::super::initialize_db().await;
+        let mut rng = rand::thread_rng();
+        let id =  uuid::Uuid::new_v7(Timestamp::from_rfc4122(Date::now().as_naive_datetime().and_utc().timestamp() as u64, rng.gen()));
+        let pass_id =  uuid::Uuid::new_v7(Timestamp::from_rfc4122(Date::now().as_naive_datetime().and_utc().timestamp() as u64, rng.gen()));
         let id = "d428fc2b-db42-4737-a211-414ffc41809d".to_string();
         let p_id = "fa77873a-92f7-42d1-9a19-a79e862b3fc1".to_owned();
         let user = RequestsTable

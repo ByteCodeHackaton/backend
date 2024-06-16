@@ -1,23 +1,10 @@
 [
   {
-    "name": "subway",
-    "address": "localhost:8888",
+    "name": "orders_service",
+    "address": "localhost:8889",
     "endpoints": [
       {
-        "path": "nearest",
-        "authorization": false,
-        "params": [
-          "id",
-          "time"
-        ],
-        "description": "Получение ближайших станций по времени"
-      },
-      {
-        "path": "stations",
-        "authorization": false
-      },
-      {
-        "path": "path",
+        "path": "/orders/request",
         "authorization": false
       }
     ]
@@ -109,6 +96,29 @@
       {
         "path": "/api/v1/role/list",
         "authorization": true
+      }
+    ]
+  },
+  {
+    "name": "subway",
+    "address": "localhost:8888",
+    "endpoints": [
+      {
+        "path": "nearest",
+        "authorization": false,
+        "params": [
+          "id",
+          "time"
+        ],
+        "description": "Получение ближайших станций по времени"
+      },
+      {
+        "path": "stations",
+        "authorization": false
+      },
+      {
+        "path": "path",
+        "authorization": false
       }
     ]
   }

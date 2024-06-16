@@ -27,3 +27,5 @@ uuid = {version = "*", features = ["v7"]}
 utilites = {git = "https://github.com/P40b0s/help_utilites.git", package = "utilites"}
 reqwest = {version = "*", features = ["json"]}
 db = {path = "../db"}
+rand="*"
+service_registrator = { path="../service_registrator" }

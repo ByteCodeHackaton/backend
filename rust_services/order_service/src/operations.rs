@@ -328,7 +328,7 @@ async fn search_in_orders(ord: &RequestOrder, avalible: Vec<(AvalibleEmployees, 
 
 pub async fn find_nearest_stations(id: &str) -> Result<Vec<(String, usize)>, super::error::OrderError>
 {
-    let path = format!("http://localhost:8888/nearest?id={}&time={}", id, 10);
+    let path = format!("http://localhost:8888/nearest?id={}&time={}", id, 40);
     let resp = reqwest::get(path).await?;
     let json: serde_json::Value = resp.json().await?;
     if json["success"].as_bool().unwrap() == false
@@ -405,7 +405,7 @@ mod tests
    {
         logger::StructLogger::initialize_logger();
         super::add_test_workers();
-        let req1 = RequestOrder::new("Заматова Мамата Ватовна", "nd52567902", "nd77715428", Date::new_date_time(2, 6, 2024, 9, 30, 0), 2, None, crate::order::Place::OnCenter);
+        let req1 = RequestOrder::new("Иванова Ивана Ивановна", "nd52567902", "nd77715428", Date::new_date_time(2, 6, 2024, 9, 30, 0), 2, None, crate::order::Place::OnCenter);
         let o = super::add_order(&req1).await;
         debug!("{:?}", o);
         
