@@ -4,7 +4,7 @@
 - [ ] dtservice1 - сервис RESTful API для взаимодействия с пользователями.
 - [ ] docs - документация
 
-## database_api
+## rust_services
 
 ## dtservice1
 
