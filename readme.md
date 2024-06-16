@@ -2,7 +2,6 @@
 
 - [ ] database_api - API Gateway выступает в качестве центральной точки входа для внешних запросов
 - [ ] dtservice1 - сервис RESTful API для взаимодействия с пользователями.
-- [ ] sseservice - сервис SSE для обновления данных на frontend
 - [ ] docs - документация
 
 ## database_api
