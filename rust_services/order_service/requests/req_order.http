@@ -1,0 +1,12 @@
+POST http://localhost:8080/orders_service/orders/request HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": "01901160-bf0b-7c72-ba93-2158a7694cb8",
+    "fio": "Иванова И.И.",
+    "path_from": "nd52567902",
+    "path_to": "nd77715428",
+    "request_date": "2024-06-02T09:30:00",
+    "note": "Осторожнее!",
+    "employees_count": 2
+}
