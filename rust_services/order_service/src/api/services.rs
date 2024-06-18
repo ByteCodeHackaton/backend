@@ -3,7 +3,7 @@ use std::{collections::HashMap, result};
 use axum::{extract::{self, rejection::JsonRejection, Query}, Json};
 use logger::debug;
 use serde_derive::Deserialize;
-use crate::order::{Order, RequestOrder};
+use crate::{order::{Order, RequestOrder, ORDERS}, Workday};
 use super::{error::AppError, response::Response};
 
 // #[derive(Debug, Deserialize)]
@@ -62,5 +62,17 @@ pub async fn set_orders(extract::Json(payload): extract::Json<RequestOrder>) -> 
     {
         super::response::Response::<Order>::from_err(order.err().unwrap().to_string())
     }
-    
+}
+pub async fn get_orders() -> Json<super::response::Response::<Vec<Order>>>
+{
+    if let Some(orders) = ORDERS.get()
+    {
+        let guard = orders.lock().await;
+        let orders = guard.clone();
+        super::response::Response::<Vec<Order>>::new(orders)
+    }
+    else 
+    {
+        super::response::Response::<Vec<Order>>::from_err("Не найдено ни одной заявки".to_owned())
+    }
 }

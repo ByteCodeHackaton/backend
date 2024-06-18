@@ -13,6 +13,7 @@ pub async fn run_server()
     let app = Router::new()
         .fallback(handler_404)        
         .route("/orders/request", post(super::services::set_orders))
+        .route("/orders", get(super::services::get_orders))
         //http://127.0.0.1:8888/path?from=sd92939293&to=sd263626162
         //.route("/path", get(services::get_stations_path))
         //http://127.0.0.1:8888/nearest?node_id=sd92939293&time=10

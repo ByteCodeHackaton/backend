@@ -11,7 +11,7 @@ use utilites::Date;
 use uuid::Timestamp;
 use crate::employees::{AvalibleEmployees, Employees};
 
-//предположим что это ввсе загружено с базы данных
+//предположим что это ввсе загружено с базы данных на базу данных нет времени
 pub static ORDERS : once_cell::sync::OnceCell<Arc<Mutex<Vec<Order>>>> = once_cell::sync::OnceCell::new();
 
 

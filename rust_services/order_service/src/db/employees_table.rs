@@ -1,34 +1,49 @@
 // use std::{borrow::Cow, ops::Deref};
-
 // use logger::backtrace;
 // use serde_json::json;
 // use db::{anyhow, get_connection, SqliteRow, Execute, FromRow, Id, IdSelector, Operations, QuerySelector, Row, Selector, SortingOrder};
 // use utilites::Date;
 // use uuid::Uuid;
-
-// use crate::order::Order;
-
 // use super::DB_DATE_FORMAT;
+
+
+// type Employee struct {
+// 	Date           string `json:"date,omitempty"`
+// 	Timework       string `json:"time_work,omitempty"`
+// 	Id             string `json:"id,omitempty"` // Уникальный идентификатор сотрудника
+// 	Fio            string `json:"fio,omitempty"`
+// 	Uchastok       string `json:"uchastok,omitempty"`
+// 	Smena          string `json:"smena,omitempty"`
+// 	Rank           string `json:"rank,omitempty"`
+// 	Sex            string `json:"sex,omitempty"`
+// 	Phone_work     string `json:"phone_work,omitempty"`
+// 	Phone_personal string `json:"phone_personal,omitempty"`
+// 	Tab_number     string `json:"tab_number,omitempty"`
+// 	Type_work      string `json:"type_work,omitempty"`
+// 	Id_role        string `json:"id_role,omitempty"`
+// }
 
 
 // #[derive(Debug)]
 // ///Заявка
-// pub struct OrdersTable
+// pub struct EmployeesTable
 // {
 //     /// Уникальный идентификатор
 //     id: String,
-//     /// Уникальный идентификатор запроса на заявку
-//     order_id: String,
-//     /// id сотрудника на этой заявке
-//     employee_id: String,
-//     /// начало работы на заявке
-//     start_work: Date,
-//     /// окончание работы на заявке
-//     end_work: Date
+//     ///08:00-18:00
+//     time_work: String,
+//     fio: String,
+//     ///должность
+//     rank: String,
+//     sex: String,
+//     phone_work: String,
+//     phone_personal: String,
+//     id_role: String,
+//     work_type: String
 // }
 
 
-// impl<'a> Id<'a> for Order
+// impl<'a> Id<'a> for EmployeesTable
 // {
 //     fn get_id(&'a self)-> Uuid
 //     {
@@ -36,50 +51,26 @@
 //     }
 // }
 
-// // pub id: String,
-// // pub fio: String,
-// // pub request_date: utilites::Date,
-// // pub path_from: String,
-// // // to node id
-// // pub path_to: String,
-// // pub average_path_time: u32,
-// // pub note: Option<String>,
-// // pub place: Option<Place>,
-// // pub start_work: utilites::Date,
-// // pub end_work: utilites::Date,
-// // ///id сотрудников
-// // pub employess: Vec<String>,
-
-// impl FromRow<'_, SqliteRow> for Order
+// impl FromRow<'_, SqliteRow> for EmployeesTable
 // {
 //     fn from_row(row: &SqliteRow) -> db::Result<Self> 
 //     {
-//         let start_work: String = row.try_get("start_work")?;
-//         let start_work = Date::parse(start_work).unwrap();
-//         let end_work: String = row.try_get("end_work")?;
-//         let end_work = Date::parse(end_work).unwrap();
-//         let request_date: String = row.try_get("request_date")?;
-//         let request_date = Date::parse(request_date).unwrap();
-//         let emp: String = row.try_get("employees")?;
-//         let emp = serde_json::from_str::<Vec<String>>(&emp).unwrap();
 //         Ok(Self
 //         {
 //             id: row.try_get("id")?,
+//             time_work: row.try_get("time_work")?,
 //             fio: row.try_get("fio")?,
-//             request_date,
-//             path_from: row.try_get("path_from")?,
-//             path_to: row.try_get("path_to")?,
-//             average_path_time: row.try_get("average_path_time")?,
-//             note: row.try_get("note")?,
-//             place: None,
-//             employess: emp,
+//             rank: row.try_get("rank")?,
+//             sex: row.try_get("sex")?,
+//             phone_work: row.try_get("phone_work")?,
+//             phone_personal: row.try_get("phone_personal")?,
 //             start_work,
 //             end_work
 //         })
 //     }
 // }
 
-// impl<'a> Operations<'a> for Order
+// impl<'a> Operations<'a> for EmployeesTable
 // {
 //     fn table_name() -> &'static str 
 //     {
@@ -89,30 +80,20 @@
 //     {  
 //         ["CREATE TABLE IF NOT EXISTS ", Self::table_name(), " (
 //             id TEXT PRIMARY KEY NOT NULL,
-//             fio TEXT NOT NULL,
-//             request_date TEXT NOT NULL, 
-//             path_from TEXT NOT NULL, 
-//             path_to TEXT NOT NULL, 
-//             average_path_time INTEGER,
-//             note TEXT,
+//             order_id TEXT NOT NULL,
+//             employee_id TEXT NOT NULL, 
 //             start_work TEXT NOT NULL, 
-//             end_work TEXT NOT NULL,
-//             employess JSON NOT NULL DEFAULT('[]')
+//             end_work TEXT NOT NULL
 //             );"].concat()
 //     }
 //     fn full_select() -> String 
 //     {
 //         ["SELECT 
 //         id,
-//         fio,
-//         request_date, 
-//         path_from,
-//         path_to,
-//         average_path_time,
-//         note,
+//         order_id,
+//         employee_id, 
 //         start_work, 
-//         end_work,
-//         employess
+//         end_work
 //         FROM ", Self::table_name()].concat()
 //     }
 //     async fn update(&'a self) -> anyhow::Result<()>
@@ -120,11 +101,8 @@
 //         let mut c = get_connection().await?;
 //         let sql = ["UPDATE ", Self::table_name(),
 //         " SET 
-//         fio = $2,
-//         request_date = $3,
-//         path_from = $4,
-//         path_to = $5,
-//         average_path_time = 
+//         order_id = $2
+//         employee_id = $3
 //         start_work = $4,
 //         end_work = $5,
 //         WHERE id = $1"].concat();
@@ -196,7 +174,7 @@
 //     }
 // }
 
-// impl OrdersTable
+// impl EmployeesTable
 // {
    
 // }

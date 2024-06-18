@@ -1,7 +1,9 @@
+use hyper::Uri;
 use serde::Deserialize;
+use serde_json::Value;
 use utilites::Date;
 
-use crate::error::OrderError;
+use crate::{employees::AvalibleEmployees, error::OrderError};
 
 //моя структура
 struct WorkdayTemplate
@@ -61,10 +63,70 @@ impl Workday
         let end_date_time = self.date_work.clone().add_minutes(end_hour.parse::<i64>().unwrap() * 60);
         (start_date_time, end_date_time)
     }
+
+    pub async fn get_workers(date: &Date) -> Result<Vec<Workday>, crate::error::OrderError>
+    {
+        let uri: Uri = format!("http://localhost:5010/api/v1/workday/date/list?limit=1000&date={}", date.format(utilites::DateFormat::Serialize)).parse().unwrap();
+        let result = crate::http::get::<Value>(uri).await;
+        if result.is_err()
+        {
+            return Ok(vec![]);
+        }
+        let result = result.unwrap();
+        let arr = result["document"]["details"].as_array().unwrap();
+        let wdays = arr.iter().map(|v| serde_json::from_value::<Workday>(v.to_owned()).unwrap()).collect::<Vec<Workday>>();
+        Ok(wdays)
+    }
+
+    pub async fn get_avalible_employees(date: &Date) -> Result<Vec<AvalibleEmployees>, crate::error::OrderError>
+    {
+        let wd = Workday::get_workers(date).await?;
+        logger::info!("Количество сотрудников в днях {}", wd.len());
+        let aval = wd.into_iter().map(|v| v.into()).collect::<Vec<AvalibleEmployees>>();
+        logger::info!("Количество доступных сотрудников в днях {}", aval.len());
+        Ok(aval)
+    }
 }
 
 
+impl From<Workday> for AvalibleEmployees
+{
+    fn from(value: Workday) -> Self 
+    {
+        let station_id = if value.state_wd.is_empty()
+        {
+            "nd52567902"
+        }
+        else
+        {
+            &value.state_wd
+        };
+        AvalibleEmployees::new(&value.employee_id, value.date_work, &value.time_work, station_id)
+    }
+}
 
+
+#[cfg(test)]
+mod tests
+{
+    use logger::StructLogger;
+    use utilites::Date;
+
+    use crate::Workday;
+
+    #[tokio::test]
+    async fn test_get_wd()
+    {
+        StructLogger::initialize_logger();
+        let date = Date::parse("2024-06-12T00:00:00").unwrap();
+        let w = Workday::get_workers(&date).await.unwrap();
+        logger::info!("{:?}", &w);
+        let range = w[0].work_dates_range();
+        logger::info!("{:?}", range);
+        
+        
+    }
+}
 // pub async fn get_work_days() -> Result<Workday, OrderError>
 // {
     

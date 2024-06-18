@@ -36,17 +36,17 @@ pub fn add_test_workers()
 
     let ava: Vec<AvalibleEmployees> = vec![
         //войковская
-        AvalibleEmployees::new(&emp[3], Date::new_date(2, 6, 2024), "nd77715428"),
+        AvalibleEmployees::new(&emp[3].id, Date::new_date(2, 6, 2024), "07:00-19:00", "nd77715428"),
         //марксистская
-        AvalibleEmployees::new(&emp[7], Date::new_date(2, 6, 2024), "nd86121438"),
+        AvalibleEmployees::new(&emp[7].id, Date::new_date(2, 6, 2024),"07:00-19:00", "nd86121438"),
         
         //маяковская
-        AvalibleEmployees::new(&emp[4], Date::new_date(2, 6, 2024), "nd22676407"),
+        AvalibleEmployees::new(&emp[4].id, Date::new_date(2, 6, 2024),"07:00-19:00", "nd22676407"),
         //тверская
-        AvalibleEmployees::new(&emp[2], Date::new_date(2, 6, 2024), "nd52567902")
+        AvalibleEmployees::new(&emp[2].id, Date::new_date(2, 6, 2024),"07:00-19:00", "nd52567902")
        
     ];
-    crate::employees::FREE.set(Arc::new(Mutex::new(ava)));
+    //crate::employees::FREE.set(Arc::new(Mutex::new(ava)));
 
 }
 
@@ -132,8 +132,9 @@ pub async fn add_order(ord: &RequestOrder) -> Result<Order, OrderError>
 
 pub async fn search_avalible_employees(ord: &RequestOrder) -> Result<Vec<(AvalibleEmployees, Option<(String, String)>)>, OrderError>
 {
-    let mut avalible: Vec<(AvalibleEmployees, Option<(String, String)>)> = employees::search_by_station(&ord.path_from, &ord.request_date).await
-        .into_iter().map(|m| (m, None)).collect();
+    let aval_all = employees::get_workers_on_date(&ord.request_date).await;
+    let mut avalible: Vec<(AvalibleEmployees, Option<(String, String)>)> = aval_all.iter().filter(|s| &s.station_id == &ord.path_from)
+    .map(|m| (m.clone(), None)).collect();
     if !avalible.is_empty()
     {
         info!("Для заявки {}->{} есть {} сотрудников находящихся на {}", &ord.path_from, &ord.path_to, avalible.len(), &ord.path_from);
@@ -145,11 +146,11 @@ pub async fn search_avalible_employees(ord: &RequestOrder) -> Result<Vec<(Avalib
     let stations = find_nearest_stations(&ord.path_from).await?;
     for s in stations
     {
-        let av: Vec<(AvalibleEmployees, Option<(String, String)>)> = employees::search_by_station(&s.0, &ord.request_date).await
-            .into_iter().map(|m| (m, Some((s.0.clone(), ord.path_from.clone())))).collect();
+        let av: Vec<(AvalibleEmployees, Option<(String, String)>)> = aval_all.iter().filter(|s| &s.station_id == &ord.path_from)
+        .map(|m| (m.clone(), Some((s.0.clone(), ord.path_from.clone())))).collect();
         if !av.is_empty()
         {
-            info!("Для заявки {}->{} подобрано {} сотрудников находящийся в пределах 10 минут, на {}", &ord.path_from, &ord.path_to, av.len(), &s.0);
+            info!("Для заявки {}->{} подобрано {} сотрудников находящийся в пределах 60 минут, на {}", &ord.path_from, &ord.path_to, av.len(), &s.0);
             avalible.extend(av);
             if (ord.employees_count as usize) <= avalible.len()
             {
@@ -162,7 +163,7 @@ pub async fn search_avalible_employees(ord: &RequestOrder) -> Result<Vec<(Avalib
         logger::warn!("Внимание, для заявки {} выделено {} доступных сотрудников из {} запрошенных сотрудников", &ord.id, avalible.len(), ord.employees_count);
         return Ok(avalible);
     }
-    return Err(OrderError::NotFreeWorkers("По текущим параметрам заявки нет возможности поставить в работу сотрудника (или на доступных станциях на дату заявки никто не дежурит, либо сотрудники находятся дальше чем в 10 минутах езды от станции указанной в заявке)".to_owned()));
+    return Err(OrderError::NotFreeWorkers("По текущим параметрам заявки нет возможности поставить в работу сотрудника (или на доступных станциях на дату заявки никто не дежурит, либо сотрудники находятся дальше чем в 60 минутах езды от станции указанной в заявке)".to_owned()));
 }
 
 
@@ -285,9 +286,10 @@ async fn search_in_orders(ord: &RequestOrder, avalible: Vec<(AvalibleEmployees, 
     };
     //лочим ордера до момента когда можно будет выбрать временные окна и добавить сотрудников
     let g = ORDERS.get_or_init(|| Arc::new(Mutex::new(vec![])));
-    let guard = g.lock().await;
+    let mut guard = g.lock().await;
     for a in &avalible
     {
+
         let orders_with_worker: Vec<&Order> = guard.iter()
         .filter(|f| f.employess.iter()
             .find(|e| *e == &a.0.id).is_some()).collect();
@@ -318,6 +320,7 @@ async fn search_in_orders(ord: &RequestOrder, avalible: Vec<(AvalibleEmployees, 
     }
     if new_order.employess.len() > 0
     {
+        guard.push(new_order.clone());
         return Ok(new_order);
     }
     else 
@@ -328,7 +331,7 @@ async fn search_in_orders(ord: &RequestOrder, avalible: Vec<(AvalibleEmployees, 
 
 pub async fn find_nearest_stations(id: &str) -> Result<Vec<(String, usize)>, super::error::OrderError>
 {
-    let path = format!("http://localhost:8888/nearest?id={}&time={}", id, 40);
+    let path = format!("http://localhost:8888/nearest?id={}&time={}", id, 60);
     let resp = reqwest::get(path).await?;
     let json: serde_json::Value = resp.json().await?;
     if json["success"].as_bool().unwrap() == false
@@ -373,15 +376,6 @@ mod tests
 
     use crate::{order::RequestOrder, Workday};
 
-//     #[tokio::test]
-//    async fn test_nearest_station()
-//    {
-//         logger::StructLogger::initialize_logger();
-//         super::add_test_workers();
-//         let req1 = RequestOrder::new("Заматова Мамата Ватовна", "nd83680109", "nd68989070", Date::new_date_time(2, 6, 2024, 9, 30, 0), 1, None, crate::order::Place::OnCenter);
-//         let o = super::add_order(&req1).await;
-//         debug!("{:?}", o);
-//    }
 
    #[tokio::test]
    async fn test_get_workers()
@@ -404,8 +398,8 @@ mod tests
    async fn test_complex()
    {
         logger::StructLogger::initialize_logger();
-        super::add_test_workers();
-        let req1 = RequestOrder::new("Иванова Ивана Ивановна", "nd52567902", "nd77715428", Date::new_date_time(2, 6, 2024, 9, 30, 0), 2, None, crate::order::Place::OnCenter);
+        //super::add_test_workers();
+        let req1 = RequestOrder::new("Иванова Ивана Ивановна", "nd52567902", "nd77715428", Date::new_date_time(12, 6, 2024, 9, 30, 0), 2, None, crate::order::Place::OnCenter);
         let o = super::add_order(&req1).await;
         debug!("{:?}", o);
         
