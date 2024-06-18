@@ -64,7 +64,7 @@ func GetOrderList(w http.ResponseWriter, r *http.Request) {
 					Order{
 						Id:         id_,
 						Id_Pas:     id_pas_,
-						DateTime:   id_,
+						DateTime:   datetime_,
 						Time3:      time3_,
 						Time4:      time4_,
 						Cat_pas:    cat_pas_,

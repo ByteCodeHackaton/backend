@@ -43,7 +43,7 @@ func PostOrderUpdate(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var id int64
-	id, err = result.LastInsertId()
+	id, err = result.RowsAffected()
 	if err != nil {
 		message = "Ошибка изменения информации о заявке: " + err.Error()
 		http.Error(w, message, http.StatusExpectationFailed) // 417

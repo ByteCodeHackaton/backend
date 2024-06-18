@@ -41,6 +41,7 @@ func DeleteOrder(w http.ResponseWriter, r *http.Request) {
 	}
 	if id > 0 {
 		message = "Order delete succesfully!"
+		log.Println(message)
 	}
 
 	response := Order{Id: uuid_}
