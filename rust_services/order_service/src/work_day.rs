@@ -109,7 +109,9 @@ impl From<Workday> for AvalibleEmployees
 #[cfg(test)]
 mod tests
 {
+    use hyper::Uri;
     use logger::StructLogger;
+    use serde_json::Value;
     use utilites::Date;
 
     use crate::Workday;
@@ -118,15 +120,30 @@ mod tests
     async fn test_get_wd()
     {
         StructLogger::initialize_logger();
-        let date = Date::parse("2024-06-12T00:00:00").unwrap();
+        let date = Date::parse("2024-06-19T00:00:00").unwrap();
         let w = Workday::get_workers(&date).await.unwrap();
+        assert_eq!(w.len(), 8);
         logger::info!("{:?}", &w);
         let range = w[0].work_dates_range();
         logger::info!("{:?}", range);
         
         
     }
+
+    #[tokio::test]
+    async fn test_get()
+    {
+        StructLogger::initialize_logger();
+        let date = Date::parse("2024-06-19T00:00:00").unwrap();
+        //"http://localhost:5010/api/v1/workday/date/list?limit=1000&date=2024-06-12T00:00:00";
+        //"http://localhost:5010/api/v1/workday/date/list?limit=1000&date=12-06-2024T00:00:00";
+        let uri: Uri = format!("http://localhost:5010/api/v1/workday/date/list?limit=1000&date={}", date.format(utilites::DateFormat::Serialize)).parse().unwrap();
+        let result = crate::http::get::<Value>(uri).await;
+        logger::info!("{:?}", result);
+    }
 }
+
+
 // pub async fn get_work_days() -> Result<Workday, OrderError>
 // {
     

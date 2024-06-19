@@ -2,11 +2,10 @@ POST http://213.159.215.231:8080/orders_service/orders/request HTTP/1.1
 Content-Type: application/json
 
 {
-    "id": "01901160-bf0b-7c72-ba93-2158a7694cb8",
+    "id": "01901160-bf0b-7c72-ba93-2158a76f4cb8",
     "fio": "Иванова И.И.",
-    "path_from": "nd52567902",
+    "path_from": "nd93876286",
     "path_to": "nd77715428",
-    "request_date": "2024-06-12T09:30:00",
-    "note": "Осторожнее!",
-    "employees_count": 2
+    "request_date": "2024-06-19T10:30:00",
+    "employees_count": 1
 }
