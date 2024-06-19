@@ -16,7 +16,7 @@ pub enum OrderError
     #[error("Ошибка сервиса станций `{0}`")]
     StationServiceError(String),
     #[error(transparent)]
-    RequwestError(#[from] reqwest::Error),
+    UtilitesError(#[from] utilites::error::Error),
     #[error("Ошибка подключения к сервису `{0}` при отправке сообщения")]
     SendError(String),
 }

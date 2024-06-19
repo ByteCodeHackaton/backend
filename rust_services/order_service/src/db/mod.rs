@@ -1,6 +1,7 @@
 mod requests_table;
 mod orders_table;
 mod employees_table;
+mod workers_table;
 pub use db::Operations;
 const DB_DATE_FORMAT: utilites::DateFormat = utilites::DateFormat::Serialize;
 pub async fn initialize_db()

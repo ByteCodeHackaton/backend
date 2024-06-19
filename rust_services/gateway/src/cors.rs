@@ -17,7 +17,7 @@ pub fn cors_layer() -> CorsLayer
                 "http://localhost".parse::<HeaderValue>().unwrap(),
                 "http://213.159.215.231".parse::<HeaderValue>().unwrap()
             ])
-            .allow_methods([Method::GET, Method::POST, Method::OPTIONS, Method::PUT, Method::HEAD])
+            .allow_methods([Method::GET, Method::POST, Method::OPTIONS, Method::PUT, Method::HEAD, Method::DELETE])
             .allow_headers([ORIGIN, ACCEPT, CONTENT_TYPE, ACCESS_CONTROL_ALLOW_HEADERS, AUTHORIZATION])
             .allow_credentials(true);
         //"Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"

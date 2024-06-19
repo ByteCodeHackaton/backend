@@ -1,4 +1,5 @@
 use std::sync::{Arc};
+use serde_json::Value;
 use tokio::sync::Mutex;
 
 use logger::{debug, error, info};
@@ -32,7 +33,6 @@ pub fn add_test_workers()
         Employees::new("Мартынов Никита Константинович"),
         Employees::new("Сахаров Захар Андреевич"),
     ];
-    ALL.set(Arc::new(Mutex::new(emp.clone())));
 
     let ava: Vec<AvalibleEmployees> = vec![
         //войковская
@@ -50,73 +50,6 @@ pub fn add_test_workers()
 
 }
 
-//TODO пока непонятно что делать если нужно несколько сотрудников на одного человека
-//сейчас мы выбираем первого ближайшего свободного сотрудника
-// pub async fn add_order(ord: RequestOrder) -> Result<Order, OrderError>
-// {
-//     let avalible = employees::search_by_station(&ord.path_from, &ord.request_date);
-//     if !avalible.is_empty()
-//     {
-//         info!("Для заявки {}->{} есть сотрудник находящийся на {}", &ord.path_from, &ord.path_to, &avalible.station_id);
-//         let order = search_in_orders(&ord, &avalible, None).await;
-//         if order.is_ok()
-//         {
-//             return order;
-//         }
-//     }
-//     else 
-//     {
-//         let stations = find_nearest_stations(&ord.path_from).await?;
-//         for s in stations
-//         {
-//             if let Some(avalible) = employees::search_by_station(&s.0, &ord.request_date)
-//             {
-//                 info!("Для заявки {}->{} подобран сотрудник находящийся в пределах 10 минут, на {}", &ord.path_from, &ord.path_to, &avalible.station_id);
-//                 let order = search_in_orders(&ord, &avalible, Some((&ord.path_from, &s.0))).await;
-//                 if order.is_ok()
-//                 {
-//                     return order;
-//                 }
-//             }
-//         }
-//     }
-//     return Err(OrderError::NotFreeWorkers("По текущим параметрам заявки нет возможности поставить в работу сотрудника (или на доступных станциях на дату заявки никто не дежурит, либо сотрудники находятся дальше чем в 10 минутах езды от станции указанной в заявке)".to_owned()));
-// }
-
-//TODO пока непонятно что делать если нужно несколько сотрудников на одного человека
-//сейчас мы выбираем первого ближайшего свободного сотрудника
-// pub async fn add_order(ord: &RequestOrder) -> Result<Order, OrderError>
-// {
-//     let avalible = search_avalible_employees(ord).await?;
-//     if !avalible.is_empty()
-//     {
-//         info!("Для заявки {}->{} есть сотрудник находящийся на {}", &ord.path_from, &ord.path_to, &ord.path_from);
-//         let order = search_in_orders(&ord, &avalible, None).await;
-//         if order.is_ok()
-//         {
-//             return order;
-//         }
-//     }
-//     else 
-//     {
-//         let stations = find_nearest_stations(&ord.path_from).await?;
-//         for s in stations
-//         {
-//             if let Some(avalible) = employees::search_by_station(&s.0, &ord.request_date)
-//             {
-//                 info!("Для заявки {}->{} подобран сотрудник находящийся в пределах 10 минут, на {}", &ord.path_from, &ord.path_to, &avalible.station_id);
-//                 let order = search_in_orders(&ord, &avalible, Some((&ord.path_from, &s.0))).await;
-//                 if order.is_ok()
-//                 {
-//                     return order;
-//                 }
-//             }
-//         }
-//     }
-//     return Err(OrderError::NotFreeWorkers("По текущим параметрам заявки нет возможности поставить в работу сотрудника (или на доступных станциях на дату заявки никто не дежурит, либо сотрудники находятся дальше чем в 10 минутах езды от станции указанной в заявке)".to_owned()));
-// }
-
-//TODO пока непонятно что делать если нужно несколько сотрудников на одного человека
 //сейчас мы выбираем первого ближайшего свободного сотрудника
 pub async fn add_order(ord: &RequestOrder) -> Result<Order, OrderError>
 {
@@ -166,89 +99,6 @@ pub async fn search_avalible_employees(ord: &RequestOrder) -> Result<Vec<(Avalib
     return Err(OrderError::NotFreeWorkers("По текущим параметрам заявки нет возможности поставить в работу сотрудника (или на доступных станциях на дату заявки никто не дежурит, либо сотрудники находятся дальше чем в 60 минутах езды от станции указанной в заявке)".to_owned()));
 }
 
-
-
-// async fn search_in_orders(ord: &RequestOrder, avalible: &AvalibleEmployees, correction: Option<(&str, &str)>) -> Result<Order, OrderError>
-// {
-//     //если работник с другой станции прибавляем к началу временного отрезка время чтобы добраться до целевой станции
-//     let worker_can_start_from = match correction
-//     {
-//         Some(c) => 
-//         {
-//             find_path(c.0, c.1).await?
-//         },
-//         None => 0
-//     };
-//     //от начального времени убираем время которое необходимо сотруднику чтобы добраться до целевой станции, если он уже не на ней
-//     let o1_time = ord.request_date.clone().sub_minutes(worker_can_start_from as i64);
-//     let minutes = find_path(&ord.path_from, &ord.path_to).await?;
-//     //конечное время заявки состоит из времени на поездку
-//     let o2_time = ord.request_date.clone().add_minutes(minutes as i64);
-//     let mut new_order = Order
-//     {
-//         id: ord.id.clone(),
-//         fio: ord.fio.clone(),
-//         request_date: ord.request_date.clone(),
-//         path_from: ord.path_from.clone(),
-//         path_to: ord.path_to.clone(),
-//         average_path_time: minutes,
-//         note: ord.note.clone(),
-//         place: ord.place.clone(),
-//         start_work: o1_time.clone(),
-//         end_work: o2_time.clone(),
-//         employess: vec![]
-//     };
-
-//     let orders_with_worker = super::order::get_orders(avalible);
-//     //значит данный работник не занят можно его брать
-//     if orders_with_worker.is_empty()
-//     {
-//         let new_order = Order
-//         {
-//             id: ord.id.clone(),
-//             fio: ord.fio.clone(),
-//             request_date: ord.request_date.clone(),
-//             path_from: ord.path_from.clone(),
-//             path_to: ord.path_to.clone(),
-//             average_path_time: minutes,
-//             note: ord.note.clone(),
-//             place: ord.place.clone(),
-//             start_work: o1_time.clone(),
-//             end_work: o2_time.clone(),
-//             employess: vec![avalible.id.clone()]
-//         };
-//         return Ok(new_order);
-//     }
-//     else 
-//     {
-//         //проверяем окна свободного времени у данного работника, если находим такое, то создаем заявку
-//         for o in orders_with_worker
-//         {
-//             let timeline = vec![o.busy_time_range()];
-//             let cmp = Date::in_range((&o1_time, &o2_time), &timeline);
-//             //у работника данный таймлайн свободен можно его брать
-//             if cmp.is_none()
-//             {
-//                 let new_order = Order
-//                 {
-//                     id: ord.id.clone(),
-//                     fio: ord.fio.clone(),
-//                     request_date: ord.request_date.clone(),
-//                     path_from: ord.path_from.clone(),
-//                     path_to: ord.path_to.clone(),
-//                     average_path_time: minutes,
-//                     note: ord.note.clone(),
-//                     place: ord.place.clone(),
-//                     start_work: o1_time.clone(),
-//                     end_work: o2_time.clone(),
-//                     employess: vec![avalible.id.clone()]
-//                 };
-//                 return Ok(new_order);
-//             }
-//         }    
-//     }
-//     return Err(OrderError::NotFreeWorkers("нет свободных сотрудников".to_owned()));
-// }
 //сюда передаем только нужное количество
 async fn search_in_orders(ord: &RequestOrder, avalible: Vec<(AvalibleEmployees, Option<(String, String)>)>) -> Result<Order, OrderError>
 {
@@ -332,8 +182,9 @@ async fn search_in_orders(ord: &RequestOrder, avalible: Vec<(AvalibleEmployees, 
 pub async fn find_nearest_stations(id: &str) -> Result<Vec<(String, usize)>, super::error::OrderError>
 {
     let path = format!("http://localhost:8888/nearest?id={}&time={}", id, 60);
-    let resp = reqwest::get(path).await?;
-    let json: serde_json::Value = resp.json().await?;
+    let json = utilites::http::get::<Value>(path.parse().unwrap()).await?;
+    //let resp = reqwest::get(path).await?;
+    //let json: serde_json::Value = resp.json().await?;
     if json["success"].as_bool().unwrap() == false
     {
         let e = json["message"].as_str().unwrap();
@@ -350,8 +201,9 @@ pub async fn find_nearest_stations(id: &str) -> Result<Vec<(String, usize)>, sup
 pub async fn find_path(from: &str, to: &str) -> Result<u32, super::error::OrderError>
 {
     let path = format!("http://localhost:8888/path?from={}&to={}", from, to);
-    let resp = reqwest::get(path).await?;
-    let json: serde_json::Value = resp.json().await?;
+    let json = utilites::http::get::<Value>(path.parse().unwrap()).await?;
+    //let resp = reqwest::get(path).await?;
+    //let json: serde_json::Value = resp.json().await?;
     if json["success"].as_bool().unwrap() == false
     {
         let e = json["message"].as_str().unwrap();
@@ -374,7 +226,7 @@ mod tests
     use serde_json::Value;
     use utilites::Date;
 
-    use crate::{order::RequestOrder, Workday};
+    use crate::{api, order::RequestOrder, Workday};
 
 
    #[tokio::test]

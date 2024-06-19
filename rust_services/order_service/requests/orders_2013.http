@@ -1,2 +1,2 @@
-POST http://213.159.215.231:8080/orders_service/orders HTTP/1.1
-Content-Type: application/json
+GET http://213.159.215.231:8080/orders_service/orders HTTP/1.1
+

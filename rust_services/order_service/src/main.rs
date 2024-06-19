@@ -21,6 +21,7 @@ async fn main()
     let _ = service_registrator::ServiceConfig::new("orders_service", "localhost:8889")
     .add_endpoint("/orders/request", false)
     .add_endpoint("/orders", false)
+    .add_endpoint("/orders/find", false)
     .register(reg_service_addr).await;
     operations::add_test_workers();
     run_server().await;

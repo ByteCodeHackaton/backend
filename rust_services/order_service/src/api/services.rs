@@ -1,6 +1,6 @@
 use std::{collections::HashMap, result};
 
-use axum::{extract::{self, rejection::JsonRejection, Query}, Json};
+use axum::{extract::{self, rejection::JsonRejection, Query, Path}, Json};
 use logger::debug;
 use serde_derive::Deserialize;
 use crate::{order::{Order, RequestOrder, ORDERS}, Workday};
@@ -74,5 +74,32 @@ pub async fn get_orders() -> Json<super::response::Response::<Vec<Order>>>
     else 
     {
         super::response::Response::<Vec<Order>>::from_err("Не найдено ни одной заявки".to_owned())
+    }
+}
+
+#[derive(Deserialize)]
+pub struct IdQuery
+{
+    id: String
+}
+pub async fn get_orders_by_id(id: Query<IdQuery>) -> Json<super::response::Response::<Order>>
+{
+    let id = &id.id;
+    if let Some(orders) = ORDERS.get()
+    {
+        let guard = orders.lock().await;
+        if let Some(order) = guard.iter().find(|f| &f.id == id)
+        {
+            super::response::Response::<Order>::new(order.clone())
+        }
+        else
+        {
+            super::response::Response::<Order>::from_err(["Заявка с id ", id, " не найдена"].concat())
+        }
+        
+    }
+    else 
+    {
+        super::response::Response::<Order>::from_err("Не найдено ни одной заявки".to_owned())
     }
 }
