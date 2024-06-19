@@ -23,7 +23,6 @@ async fn main()
     .add_endpoint("/orders", false)
     .add_endpoint("/orders/find", false)
     .register(reg_service_addr).await;
-    operations::add_test_workers();
     run_server().await;
 }
 

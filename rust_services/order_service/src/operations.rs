@@ -8,48 +8,6 @@ use uuid::Timestamp;
 
 use crate::{employees::{self, AvalibleEmployees, Employees, ALL}, error::OrderError, order::{ Order, RequestOrder, ORDERS}};
 
-
-pub fn add_test_workers()
-{
-    let emp: Vec<Employees> = vec![
-        Employees::new("Карасев Артём Ильич"),
-        Employees::new("Кузнецов Иван Ильич"),
-        Employees::new("Калачев Михаил Романович"),
-        Employees::new("Латышева Нина Григорьевна"),
-        Employees::new("Орлов Павел Тимофеевич"),
-        Employees::new("Голованова Дарина Львовна"),
-        Employees::new("Соколова Варвара Денисовна"),
-        Employees::new("Аникина София Петровна"),
-        Employees::new("Гусева Агата Глебовна"),
-        Employees::new("Мельников Виктор Егорович"),
-        Employees::new("Полякова Вера Святославовна"),
-        Employees::new("Богомолов Лев Владимирович"),
-        Employees::new("Иванова Ульяна Данииловна"),
-        Employees::new("Еремина Виктория Леонидовна"),
-        Employees::new("Комарова Мирослава Александровна"),
-        Employees::new("Киселева Виктория Егоровна"),
-        Employees::new("Рудакова Елизавета Родионовна"),
-        Employees::new("Королева Таисия Максимовна"),
-        Employees::new("Мартынов Никита Константинович"),
-        Employees::new("Сахаров Захар Андреевич"),
-    ];
-
-    let ava: Vec<AvalibleEmployees> = vec![
-        //войковская
-        AvalibleEmployees::new(&emp[3].id, Date::new_date(2, 6, 2024), "07:00-19:00", "nd77715428"),
-        //марксистская
-        AvalibleEmployees::new(&emp[7].id, Date::new_date(2, 6, 2024),"07:00-19:00", "nd86121438"),
-        
-        //маяковская
-        AvalibleEmployees::new(&emp[4].id, Date::new_date(2, 6, 2024),"07:00-19:00", "nd22676407"),
-        //тверская
-        AvalibleEmployees::new(&emp[2].id, Date::new_date(2, 6, 2024),"07:00-19:00", "nd52567902")
-       
-    ];
-    //crate::employees::FREE.set(Arc::new(Mutex::new(ava)));
-
-}
-
 //сейчас мы выбираем первого ближайшего свободного сотрудника
 pub async fn add_order(ord: &RequestOrder) -> Result<Order, OrderError>
 {
@@ -79,15 +37,25 @@ pub async fn search_avalible_employees(ord: &RequestOrder) -> Result<Vec<(Avalib
     let stations = find_nearest_stations(&ord.path_from).await?;
     for s in stations
     {
-        let av: Vec<(AvalibleEmployees, Option<(String, String)>)> = aval_all.iter().filter(|s| &s.station_id == &ord.path_from)
-        .map(|m| (m.clone(), Some((s.0.clone(), ord.path_from.clone())))).collect();
+        let av: Vec<(AvalibleEmployees, Option<(String, String)>)> = aval_all
+                                                                        .iter()
+                                                                        .filter(|e| &e.station_id == &s.0)
+                                                                        .map(|m| (m.clone(), Some((s.0.clone(), ord.path_from.clone()))))
+                                                                        .collect();
         if !av.is_empty()
         {
-            info!("Для заявки {}->{} подобрано {} сотрудников находящийся в пределах 60 минут, на {}", &ord.path_from, &ord.path_to, av.len(), &s.0);
-            avalible.extend(av);
-            if (ord.employees_count as usize) <= avalible.len()
+            for a in av
             {
-                return Ok(avalible);
+                logger::info!("на удалении {} мин, на станции {} найден сотрудник {} ",s.1, s.0, &a.0.employee_id);
+                if avalible.iter().all(|all| &a.0.employee_id != &all.0.employee_id)
+                {
+                    info!("Для заявки {}->{} подобран сотрудник находящийся в пределах {} минут, на станции {}", &ord.path_from, &ord.path_to, s.1, &s.0);
+                    avalible.push(a);
+                    if (ord.employees_count as usize) <= avalible.len()
+                    {
+                        return Ok(avalible);
+                    }
+                }
             }
         }
     }
@@ -241,12 +209,12 @@ mod tests
    async fn test_get_workers()
    {
         logger::StructLogger::initialize_logger();
-        let uri: Uri = "http://localhost:5010/api/v1/workday/date/list?limit=1000&date=2024-06-12T00:00:00".parse().unwrap();
+        let uri: Uri = "http://localhost:5010/api/v1/workday/date/list?limit=1000&date=2024-06-19T00:00:00".parse().unwrap();
         let result = crate::http::get::<Value>(uri).await.unwrap();
         let arr = result["document"]["details"].as_array().unwrap();
         for wd in arr 
         {
-            logger::info!("{:?}", &wd);
+            logger::info!("{:?}", &wd["employee_id"].as_str().unwrap());
             let wd = serde_json::from_value::<Workday>(wd.to_owned()).unwrap();
         }
         
@@ -259,7 +227,7 @@ mod tests
    {
         logger::StructLogger::initialize_logger();
         //super::add_test_workers();
-        let req1 = RequestOrder::new("Иванова Ивана Ивановна", "nd52567902", "nd77715428", Date::new_date_time(12, 6, 2024, 9, 30, 0), 2, None, crate::order::Place::OnCenter);
+        let req1 = RequestOrder::new("Иванова Ивана Ивановна", "nd86441857", "nd49069277", Date::new_date_time(19, 6, 2024, 9, 30, 0), 2, None, crate::order::Place::OnCenter);
         let o = super::add_order(&req1).await;
         debug!("{:?}", o);
         
