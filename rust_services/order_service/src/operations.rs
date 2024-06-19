@@ -170,7 +170,15 @@ async fn search_in_orders(ord: &RequestOrder, avalible: Vec<(AvalibleEmployees, 
     }
     if new_order.employess.len() > 0
     {
-        guard.push(new_order.clone());
+        if let Some(index) = guard.iter().position(|f| &f.id == &new_order.id)
+        {
+            guard[index] = new_order.clone();
+        }
+        else
+        {
+            guard.push(new_order.clone());
+        }
+
         return Ok(new_order);
     }
     else 
